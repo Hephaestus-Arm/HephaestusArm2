@@ -178,7 +178,7 @@ def dev = DeviceManager.getSpecificDevice( "hidbowler",{
 				return new HIDRotoryLink(d,conf)
 		}
 	)
-	println "Connecting new device: "+d
+	println "Connecting new device: "+d.getName()
 	return d
 })
 def base =DeviceManager.getSpecificDevice( "HephaestusArm",{
