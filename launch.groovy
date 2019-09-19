@@ -161,8 +161,8 @@ def base =DeviceManager.getSpecificDevice( "HephaestusArm",{
 	//If the device does not exist, prompt for the connection
 	
 	MobileBase m = BowlerStudio.loadMobileBaseFromGit(
-		"https://github.com/madhephaestus/SeriesElasticActuator.git",
-		"HIDarm.xml"
+		"https://github.com/madhephaestus/HephaestusArm2.git",
+		"hephaestus.xml"
 		)
 	if(m==null)
 		throw new RuntimeException("Arm failed to assemble itself")
