@@ -1,8 +1,8 @@
 <root>
 <mobilebase>
 	<cadEngine>
-		<git>https://github.com/madhephaestus/SeriesElasticActuator.git</git>
-		<file>seaLinkGen.groovy</file>
+		<git>https://github.com/madhephaestus/HephaestusArm2.git</git>
+		<file>cadGenHephaestusArm.groovy</file>
 	</cadEngine>
 	<driveEngine>
 		<git>https://github.com/madhephaestus/carl-the-hexapod.git</git>
