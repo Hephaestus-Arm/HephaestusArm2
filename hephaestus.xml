@@ -14,8 +14,8 @@
 
 <name>HephaestusArmLimbOne</name>
 	<cadEngine>
-		<git>https://github.com/madhephaestus/SeriesElasticActuator.git</git>
-		<file>seaLinkGen.groovy</file>
+		<git>https://github.com/madhephaestus/HephaestusArm2.git</git>
+		<file>cadGenHephaestusArm.groovy</file>
 	</cadEngine>
 	<kinematics>
 		<git>https://github.com/madhephaestus/carl-the-hexapod.git</git>
