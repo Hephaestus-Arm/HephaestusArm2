@@ -185,8 +185,8 @@ def base =DeviceManager.getSpecificDevice( "HephaestusArm",{
 	//If the device does not exist, prompt for the connection
 	
 	MobileBase m = MobileBaseLoader.fromGit(
-		"https://github.com/madhephaestus/SeriesElasticActuator.git",
-		"HIDarm.xml"
+		"https://github.com/madhephaestus/HephaestusArm2.git",
+		"hephaestus.xml"
 		)
 	MobileBaseCadManager.get(m).setConfigurationViewerMode(true) 
 	if(m==null)
