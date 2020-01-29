@@ -8,6 +8,7 @@ import com.neuronrobotics.sdk.addons.kinematics.DHLink
 import com.neuronrobotics.sdk.addons.kinematics.DHParameterKinematics
 import com.neuronrobotics.sdk.addons.kinematics.LinkConfiguration
 import com.neuronrobotics.sdk.addons.kinematics.MobileBase
+import com.neuronrobotics.sdk.addons.kinematics.math.RotationNR
 import com.neuronrobotics.sdk.addons.kinematics.math.TransformNR
 
 import java.nio.file.Paths;
@@ -38,6 +39,9 @@ CSG moveDHValues(CSG incoming,DHLink dh ){
 return new ICadGenerator(){
 	@Override 
 	public ArrayList<CSG> generateCad(DHParameterKinematics d, int linkIndex) {
+		
+		def vitaminLocations = new HashMap<TransformNR,ArrayList<String>>()
+				
 		ArrayList<DHLink> dhLinks = d.getChain().getLinks()
 		ArrayList<CSG> allCad=new ArrayList<>()
 		int i=linkIndex;
@@ -49,17 +53,45 @@ return new ICadGenerator(){
 		// Transform used by the UI to render the location of the object
 		Affine manipulator = dh.getListener();
 		// loading the vitamins referenced in the configuration
-		CSG servo=   Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
+		//CSG servo=   Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
+		TransformNR locationOfMotorMount = new TransformNR(dh.DhStep(0)).inverse()
 		
-		CSG tmpSrv = moveDHValues(servo,dh)
+		vitaminLocations.put(locationOfMotorMount, [conf.getElectroMechanicalType(),conf.getElectroMechanicalSize()])
+		
+		
+		//CSG tmpSrv = moveDHValues(servo,dh)
 
 		//Compute the location of the base of this limb to place objects at the root of the limb
-		TransformNR step = d.getRobotToFiducialTransform()
-		Transform locationOfBaseOfLimb = com.neuronrobotics.bowlerstudio.physics.TransformFactory.nrToCSG(step)
+		//TransformNR step = d.getRobotToFiducialTransform()
+		//Transform locationOfBaseOfLimb = com.neuronrobotics.bowlerstudio.physics.TransformFactory.nrToCSG(step)
 		
+		double totalMass = 0;
+		TransformNR centerOfMassFromCentroid=new TransformNR();
 		
-		tmpSrv.setManipulator(manipulator)
-		allCad.add(tmpSrv)
+		for(TransformNR tr: vitaminLocations.keySet()) {
+			def vitaminType = vitaminLocations.get(tr)[0]
+			def vitaminSize = vitaminLocations.get(tr)[1]
+			
+			HashMap<String, Object>  measurments = Vitamins.getConfiguration( vitaminType,vitaminSize)
+			
+			CSG vitaminCad=   Vitamins.get(vitaminType,vitaminSize)
+			def massCentroidYValue = measurments.massCentroidY
+			def massCentroidXValue = measurments.massCentroidX
+			def massCentroidZValue = measurments.massCentroidZ
+			def massKgValue = measurments.massKg
+			TransformNR COMCentroid = tr.times(
+				new TransformNR(massCentroidXValue,massCentroidYValue,massCentroidZValue,new RotationNR())
+				)
+			totalMass+=massKgValue
+			
+			//do com calculation here for centerOfMassFromCentroid and totalMass
+		}
+		//Do additional CAD and add to the running CoM
+		conf.setMassKg(totalMass)
+		conf.setCenterOfMassFromCentroid(centerOfMassFromCentroid)
+		
+		//tmpSrv.setManipulator(manipulator)
+		//allCad.add(tmpSrv)
 		println "Generating link: "+linkIndex
 
 		if(i==0){
@@ -78,6 +110,8 @@ return new ICadGenerator(){
 			println "Position "+abstractLink.getCurrentEngineeringUnits()
 			println manipulator
 		}
+		
+		
 		return allCad;
 	}
 	@Override 
