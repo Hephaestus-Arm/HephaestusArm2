@@ -76,7 +76,9 @@ return new ICadGenerator(){
 			
 			CSG vitaminCad=   Vitamins.get(vitaminType,vitaminSize)
 			Transform move = com.neuronrobotics.bowlerstudio.physics.TransformFactory.nrToCSG(tr)
-			allCad.add(vitaminCad.transformed(move))
+			def part = vitaminCad.transformed(move)
+			part.setManipulator(manipulator)
+			allCad.add(part)
 			
 			def massCentroidYValue = measurments.massCentroidY
 			def massCentroidXValue = measurments.massCentroidX
