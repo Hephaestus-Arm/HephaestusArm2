@@ -14,6 +14,7 @@ import com.neuronrobotics.sdk.addons.kinematics.math.TransformNR
 import java.nio.file.Paths;
 
 import eu.mihosoft.vrl.v3d.CSG
+import eu.mihosoft.vrl.v3d.Cube
 import eu.mihosoft.vrl.v3d.FileUtil;
 import eu.mihosoft.vrl.v3d.Transform
 
@@ -56,8 +57,20 @@ return new ICadGenerator(){
 		//CSG servo=   Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
 		TransformNR locationOfMotorMount = new TransformNR(dh.DhStep(0)).inverse()
 		
-		vitaminLocations.put(locationOfMotorMount, [conf.getElectroMechanicalType(),conf.getElectroMechanicalSize()])
-		
+		vitaminLocations.put(locationOfMotorMount, [conf.getShaftType(),conf.getShaftSize()])
+
+		if(linkIndex!=d.getNumberOfLinks()-1 ){
+			LinkConfiguration confPrior = d.getLinkConfiguration(i+1);
+			def vitaminType = confPrior.getElectroMechanicalType()
+			def vitaminSize = confPrior.getElectroMechanicalSize()
+			println "Adding Motor "+vitaminType
+			vitaminLocations.put(new TransformNR(), [
+				vitaminType,
+				vitaminSize
+			])
+		}else {
+			println "\r\nNOT adding "+linkIndex
+		}
 		
 		//CSG tmpSrv = moveDHValues(servo,dh)
 
@@ -84,13 +97,14 @@ return new ICadGenerator(){
 			def massCentroidXValue = measurments.massCentroidX
 			def massCentroidZValue = measurments.massCentroidZ
 			def massKgValue = measurments.massKg
+			println vitaminType+" "+vitaminSize
 			TransformNR COMCentroid = tr.times(
 				new TransformNR(massCentroidXValue,massCentroidYValue,massCentroidZValue,new RotationNR())
 				)
-			totalMass+=massKgValue
-			
+			totalMass+=massKgValue			
 			//do com calculation here for centerOfMassFromCentroid and totalMass
 		}
+		
 		//Do additional CAD and add to the running CoM
 		conf.setMassKg(totalMass)
 		conf.setCenterOfMassFromCentroid(centerOfMassFromCentroid)
@@ -98,24 +112,6 @@ return new ICadGenerator(){
 		//tmpSrv.setManipulator(manipulator)
 		//allCad.add(tmpSrv)
 		println "Generating link: "+linkIndex
-
-		if(i==0){
-			// more at https://github.com/NeuronRobotics/java-bowler/blob/development/src/main/java/com/neuronrobotics/sdk/addons/kinematics/DHLink.java
-			println dh
-			println "D = "+dh.getD()// this is the height of the link
-			println "R = "+dh.getR()// this is the radius of rotation of the link
-			println "Alpha = "+Math.toDegrees(dh.getAlpha())// this is the alpha rotation
-			println "Theta = "+Math.toDegrees(dh.getTheta())// this is the rotation about hte final like orentation
-			println conf // gets the link hardware map from https://github.com/NeuronRobotics/java-bowler/blob/development/src/main/java/com/neuronrobotics/sdk/addons/kinematics/LinkConfiguration.java
-			println conf.getHardwareIndex() // gets the link hardware index
-			println conf.getScale() // gets the link hardware scale to degrees from link units
-			// more from https://github.com/NeuronRobotics/java-bowler/blob/development/src/main/java/com/neuronrobotics/sdk/addons/kinematics/AbstractLink.java
-			println  "Max engineering units for link = " + abstractLink.getMaxEngineeringUnits() 
-			println  "Min engineering units for link = " + abstractLink.getMinEngineeringUnits() 
-			println "Position "+abstractLink.getCurrentEngineeringUnits()
-			println manipulator
-		}
-		
 		
 		return allCad;
 	}
@@ -123,13 +119,7 @@ return new ICadGenerator(){
 	public ArrayList<CSG> generateBody(MobileBase b ) {
 		ArrayList<CSG> allCad=new ArrayList<>();
 		double size =40;
-
-		File servoFile = ScriptingEngine.fileFromGit(
-			"https://github.com/NeuronRobotics/NASACurisoity.git",
-			"STL/body.STL");
-		// Load the .CSG from the disk and cache it in memory
-		CSG body  = Vitamins.get(servoFile)
-
+		def body= new Cube(10).toCSG()
 		body.setManipulator(b.getRootListener());
 		
 
