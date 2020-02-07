@@ -28,7 +28,7 @@ def base =DeviceManager.getSpecificDevice( "HephaestusArm",{
 public class PhysicicsDevice extends NonBowlerDevice{
 
 	def hidEventEngine;
-	def physicsSource ;
+	MobileBase physicsSource ;
 	int count = 0;
 	Runnable run={
 	

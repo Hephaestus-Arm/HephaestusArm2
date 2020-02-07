@@ -116,12 +116,47 @@ return new ICadGenerator(){
 	}
 	@Override 
 	public ArrayList<CSG> generateBody(MobileBase b ) {
+		def vitaminLocations = new HashMap<TransformNR,ArrayList<String>>()
 		ArrayList<CSG> allCad=new ArrayList<>();
-		double size =40;
-		def body= new Cube(10).toCSG()
-		body.setManipulator(b.getRootListener());
+		for(DHParameterKinematics d:b.getAllDHChains()) {
+			// Hardware to engineering units configuration
+			LinkConfiguration conf = d.getLinkConfiguration(0);
+			// loading the vitamins referenced in the configuration
+			//CSG servo=   Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
+			TransformNR locationOfMotorMount = d.getRobotToFiducialTransform()
+			
+			vitaminLocations.put(locationOfMotorMount, [conf.getElectroMechanicalType(),conf.getElectroMechanicalSize()])
+		}
+		double totalMass = 0;
+		TransformNR centerOfMassFromCentroid=new TransformNR();
 		
+		for(TransformNR tr: vitaminLocations.keySet()) {
+			def vitaminType = vitaminLocations.get(tr)[0]
+			def vitaminSize = vitaminLocations.get(tr)[1]
+			
+			HashMap<String, Object>  measurments = Vitamins.getConfiguration( vitaminType,vitaminSize)
+			
+			CSG vitaminCad=   Vitamins.get(vitaminType,vitaminSize)
+			Transform move = com.neuronrobotics.bowlerstudio.physics.TransformFactory.nrToCSG(tr)
+			CSG part = vitaminCad.transformed(move)
+			part.setManipulator(b.getRootListener())
+			allCad.add(part)
+			
+			def massCentroidYValue = measurments.massCentroidY
+			def massCentroidXValue = measurments.massCentroidX
+			def massCentroidZValue = measurments.massCentroidZ
+			def massKgValue = measurments.massKg
+			println vitaminType+" "+vitaminSize
+			TransformNR COMCentroid = tr.times(
+				new TransformNR(massCentroidXValue,massCentroidYValue,massCentroidZValue,new RotationNR())
+				)
+			totalMass+=massKgValue
+			//do com calculation here for centerOfMassFromCentroid and totalMass
+		}
+		//Do additional CAD and add to the running CoM
+		b.setMassKg(totalMass)
+		b.setCenterOfMassFromCentroid(centerOfMassFromCentroid)
 
-		return [body];
+		return allCad;
 	}
 };
