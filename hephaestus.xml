@@ -24,7 +24,7 @@
 <link>
 	<name>basePan</name>
 	<deviceName>hephaestus-37420007</deviceName>
-	<type>pidg-link</type>
+	<type>virtual</type>
 	<index>0</index>
 	<scale>-0.087890625</scale>
 	<upperLimit>1024.0</upperLimit>
@@ -40,18 +40,18 @@
 	<vitamins>
 		<vitamin>
 			<name>electroMechanical</name>
-			<type>hobbyServo</type>
-			<id>hv5932mg</id>
+			<type>brushlessMotor</type>
+			<id>GBM2804H_100T</id>
 		</vitamin>
 		<vitamin>
 			<name>shaft</name>
-			<type>hobbyServoHorn</type>
-			<id>hv6214mg_6</id>
+			<type>brushlessMotorShaft</type>
+			<id>TL2955</id>
 		</vitamin>
 
 	</vitamins>
 	<passive>false</passive>
-	<mass>0.20400000000000001</mass>
+	<mass>0.040100000000000004</mass>
 	<centerOfMassFromCentroid>	<x>0.0</x>
 	<y>0.0</y>
 	<z>0.0</z>
@@ -78,7 +78,7 @@
 <link>
 	<name>baseTilt</name>
 	<deviceName>hephaestus-37420007</deviceName>
-	<type>pidg-link</type>
+	<type>virtual</type>
 	<index>1</index>
 	<scale>-0.087890625</scale>
 	<upperLimit>1024.0</upperLimit>
@@ -94,18 +94,18 @@
 	<vitamins>
 		<vitamin>
 			<name>electroMechanical</name>
-			<type>roundMotor</type>
-			<id>WPI-gb37y3530-50en</id>
+			<type>brushlessMotor</type>
+			<id>GBM2804H_100T</id>
 		</vitamin>
 		<vitamin>
 			<name>shaft</name>
-			<type>dShaft</type>
-			<id>WPI-gb37y3530-50en</id>
+			<type>brushlessMotorShaft</type>
+			<id>TL2955</id>
 		</vitamin>
 
 	</vitamins>
 	<passive>false</passive>
-	<mass>0.0955</mass>
+	<mass>0.040100000000000004</mass>
 	<centerOfMassFromCentroid>	<x>0.0</x>
 	<y>0.0</y>
 	<z>0.0</z>
@@ -132,7 +132,7 @@
 <link>
 	<name>elbow</name>
 	<deviceName>hephaestus-37420007</deviceName>
-	<type>pidg-link</type>
+	<type>virtual</type>
 	<index>2</index>
 	<scale>-0.087890625</scale>
 	<upperLimit>1024.0</upperLimit>
@@ -148,13 +148,13 @@
 	<vitamins>
 		<vitamin>
 			<name>electroMechanical</name>
-			<type>vexMotor</type>
-			<id>393</id>
+			<type>brushlessMotor</type>
+			<id>GBM2804H_100T</id>
 		</vitamin>
 		<vitamin>
 			<name>shaft</name>
-			<type>vexShaft</type>
-			<id>2-inch</id>
+			<type>brushlessMotorShaft</type>
+			<id>TL2955</id>
 		</vitamin>
 
 	</vitamins>

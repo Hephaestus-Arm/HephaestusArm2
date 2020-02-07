@@ -192,9 +192,10 @@ INewLinkProvider provider= new INewLinkProvider() {
 			if(d.isVirtual()){
 				println "\n\n\nDevice is in virtual mode!\n\n\n"
 			}
+			return d
 		})
 		
-		return new HIDRotoryLink(dev,conf,searchName);
+		return new HIDRotoryLink(dev,conf);
 	}
 	
 }
