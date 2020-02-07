@@ -1,6 +1,8 @@
-@GrabResolver(name='sonatype', root='https://oss.sonatype.org/content/repositories/releases/')
-@Grab(group='com.neuronrobotics', module='SimplePacketComsJava', version='0.10.1')
-@Grab(group='com.neuronrobotics', module='SimplePacketComsJava-HID', version='0.10.0')
+@GrabResolver(name='nr', root='https://oss.sonatype.org/service/local/repositories/releases/content/')
+@GrabResolver(name='mvnRepository', root='https://repo1.maven.org/maven2/')
+@Grab(group='net.java.dev.jna', module='jna', version='4.2.2')
+@Grab(group='com.neuronrobotics', module='SimplePacketComsJava', version='0.12.0')
+@Grab(group='com.neuronrobotics', module='SimplePacketComsJava-HID', version='0.13.0')
 @Grab(group='org.hid4java', module='hid4java', version='0.5.0')
 
 import Jama.Matrix;
@@ -13,9 +15,6 @@ import edu.wpi.SimplePacketComs.*;
 import edu.wpi.SimplePacketComs.phy.UDPSimplePacketComs;
 import edu.wpi.SimplePacketComs.device.gameController.*;
 import edu.wpi.SimplePacketComs.device.*
-
-if(args==null)
-	args=["hidbowler"]
 
 public class HephaestusArm extends HIDSimplePacketComs{
 	PacketType pollingPacket = new FloatPacketType(1,64);
@@ -169,19 +168,41 @@ public class HIDRotoryLink extends AbstractRotoryLink{
 }
 
 
-def dev = DeviceManager.getSpecificDevice( args[0],{
-	//If the device does not exist, prompt for the connection
-	
-	def d = new HephaestusArm(0x3742,0x7,args[0])
-	d.connect(); // Connect to it.
-	if(d.isVirtual()){
-		println "\n\n\nDevice is in virtual mode!\n\n\n"
-	}
-	LinkFactory.addLinkProvider("hidsimple",{LinkConfiguration conf->
-				println "Loading link "
-				return new HIDRotoryLink(d,conf)
+INewLinkProvider provider= new INewLinkProvider() {
+	public AbstractLink generate(LinkConfiguration conf) {
+		String searchName = conf.getDeviceScriptingName();
+		int vid=0x3742
+		int pid=0x0007
+		if(searchName.size()>8){
+			String deviceID = searchName.substring(searchName.size()-8,searchName.size())
+			String VIDStr = deviceID.substring(0,4)
+			String PIDStr = deviceID.substring(4,8)
+			try{
+				vid = Integer.parseInt(VIDStr,16); 
+				pid = Integer.parseInt(PIDStr,16); 
+				//println "Searching for Device at "+VIDStr+" "+PIDStr
+			}catch(Throwable t){
+				BowlerStudio.printStackTrace(t)
+			}
+			
 		}
-	)
-	println "Connecting new device: "+d.getName()
-	return d
-})
+		def dev = DeviceManager.getSpecificDevice( searchName,{
+			def d = new HephaestusArm(vid,pid,searchName)
+			d.connect(); // Connect to it.
+			if(d.isVirtual()){
+				println "\n\n\nDevice is in virtual mode!\n\n\n"
+			}
+		})
+		
+		return new HIDRotoryLink(dev,conf,searchName);
+	}
+	
+}
+
+if(args==null)
+	args=["pidg-link"]
+LinkFactory.addLinkProvider(args[0], provider)
+
+return provider
+
+
