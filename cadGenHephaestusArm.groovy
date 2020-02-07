@@ -34,7 +34,6 @@ CSG moveDHValues(CSG incoming,DHLink dh ){
 	TransformNR step = new TransformNR(dh.DhStep(0)).inverse()
 	Transform move = com.neuronrobotics.bowlerstudio.physics.TransformFactory.nrToCSG(step)
 	return incoming.transformed(move)
-	
 }
 
 return new ICadGenerator(){
