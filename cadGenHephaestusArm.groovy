@@ -83,7 +83,6 @@ return new ICadGenerator(){
 
 				double totalMass = 0;
 				TransformNR centerOfMassFromCentroid=new TransformNR();
-
 				for(TransformNR tr: vitaminLocations.keySet()) {
 					def vitaminType = vitaminLocations.get(tr)[0]
 					def vitaminSize = vitaminLocations.get(tr)[1]
@@ -124,19 +123,23 @@ return new ICadGenerator(){
 				ArrayList<CSG> allCad=new ArrayList<>();
 				double baseGrid = grid*2;
 				double baseBoltThickness=15;
-				String boltsize = "M5"
+				String boltsize = "M5x25"
 				for(DHParameterKinematics d:b.getAllDHChains()) {
 					// Hardware to engineering units configuration
 					LinkConfiguration conf = d.getLinkConfiguration(0);
 					// loading the vitamins referenced in the configuration
 					//CSG servo=   Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
 					TransformNR locationOfMotorMount = d.getRobotToFiducialTransform()
-
+					vitaminLocations.put(locationOfMotorMount.copy(), [
+						"ballBearing",
+						"Thrust_1andAHalfinch"
+					])
 					vitaminLocations.put(locationOfMotorMount, [
 						conf.getElectroMechanicalType(),
 						conf.getElectroMechanicalSize()
 					])
 				}
+				
 				vitaminLocations.put(new TransformNR(baseGrid,baseGrid,baseBoltThickness,new RotationNR()),
 						["capScrew", boltsize])
 				vitaminLocations.put(new TransformNR(baseGrid,-baseGrid,baseBoltThickness,new RotationNR()),
