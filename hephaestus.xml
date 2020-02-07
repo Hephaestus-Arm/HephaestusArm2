@@ -23,8 +23,8 @@
 	</kinematics>
 <link>
 	<name>basePan</name>
-	<deviceName>hidbowler</deviceName>
-	<type>virtual</type>
+	<deviceName>hephaestus-37420007</deviceName>
+	<type>pidg-link</type>
 	<index>0</index>
 	<scale>-0.087890625</scale>
 	<upperLimit>1024.0</upperLimit>
@@ -77,8 +77,8 @@
 </link>
 <link>
 	<name>baseTilt</name>
-	<deviceName>hidbowler</deviceName>
-	<type>virtual</type>
+	<deviceName>hephaestus-37420007</deviceName>
+	<type>pidg-link</type>
 	<index>1</index>
 	<scale>-0.087890625</scale>
 	<upperLimit>1024.0</upperLimit>
@@ -131,8 +131,8 @@
 </link>
 <link>
 	<name>elbow</name>
-	<deviceName>hidbowler</deviceName>
-	<type>virtual</type>
+	<deviceName>hephaestus-37420007</deviceName>
+	<type>pidg-link</type>
 	<index>2</index>
 	<scale>-0.087890625</scale>
 	<upperLimit>1024.0</upperLimit>
