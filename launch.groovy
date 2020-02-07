@@ -1,7 +1,10 @@
 
 
+import com.neuronrobotics.bowlerstudio.creature.MobileBaseLoader
+import com.neuronrobotics.bowlerstudio.scripting.ScriptingEngine
 import com.neuronrobotics.sdk.addons.kinematics.MobileBase
 import com.neuronrobotics.sdk.addons.kinematics.math.TransformNR
+import com.neuronrobotics.sdk.common.DeviceManager
 import com.neuronrobotics.sdk.common.NonBowlerDevice
 
 import Jama.Matrix;
@@ -9,7 +12,7 @@ import Jama.Matrix;
 ScriptingEngine.gitScriptRun(
 	"https://github.com/madhephaestus/HephaestusArm2.git", 
 	"PID-G_DeviceLoader.groovy", 
-	["hidbowler"]
+	null
 );
 
 def base =DeviceManager.getSpecificDevice( "HephaestusArm",{
