@@ -130,7 +130,8 @@ return new ICadGenerator(){
 					// loading the vitamins referenced in the configuration
 					//CSG servo=   Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
 					TransformNR locationOfMotorMount = d.getRobotToFiducialTransform()
-					vitaminLocations.put(locationOfMotorMount.copy(), [
+					TransformNR locationOfMotorMountCopy = locationOfMotorMount.copy()
+					vitaminLocations.put(locationOfMotorMountCopy, [
 						"ballBearing",
 						"Thrust_1andAHalfinch"
 					])
