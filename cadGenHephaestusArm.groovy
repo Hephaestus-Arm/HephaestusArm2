@@ -146,14 +146,19 @@ return new ICadGenerator(){
 						conf.getElectroMechanicalSize()
 					])
 				}
-				def mountLoacions = [new TransformNR(baseGrid,baseGrid,baseBoltThickness,new RotationNR()),
-					new TransformNR(baseGrid,-baseGrid,baseBoltThickness,new RotationNR()),
-					new TransformNR(-baseGrid,baseGrid,baseBoltThickness,new RotationNR()),
-					new TransformNR(-baseGrid,-baseGrid,baseBoltThickness,new RotationNR())]
+				def insert=["heatedThreadedInsert", "M5"]
+				def insertMeasurments= Vitamins.getConfiguration(insert[0],
+					insert[1])
+				def mountLoacions = [new TransformNR(baseGrid,baseGrid,0,new RotationNR(180,0,0)),
+					new TransformNR(baseGrid,-baseGrid,0,new RotationNR(180,0,0)),
+					new TransformNR(-baseGrid,baseGrid,0,new RotationNR(180,0,0)),
+					new TransformNR(-baseGrid,-baseGrid,0,new RotationNR(180,0,0))]
 				
 				mountLoacions.forEach{
 					vitaminLocations.put(it,
 						["capScrew", boltsize])
+					vitaminLocations.put(it.copy().translateZ(insertMeasurments.installLength),
+						insert)
 					
 				}
 				
@@ -195,8 +200,9 @@ return new ICadGenerator(){
 				CSG baseCoreshort = new Cylinder(thrustMeasurments.outerDiameter/2+5,baseCoreheight*3.0/4.0).toCSG()
 				CSG mountLug = new Cylinder(15,baseBoltThickness).toCSG().toZMax()
 				CSG mountCap = Parabola.coneByHeight(15, 20)
-								.rotx(90)
-								.toZMin()
+								.rotx(-90)
+								.toZMax()
+								.movez(-baseBoltThickness)
 				def coreParts=[baseCore]
 				mountLoacions.forEach{
 					def place =com.neuronrobotics.bowlerstudio.physics.TransformFactory.nrToCSG(it)
