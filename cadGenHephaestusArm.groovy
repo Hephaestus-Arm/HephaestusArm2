@@ -18,6 +18,7 @@ import eu.mihosoft.vrl.v3d.CSG
 import eu.mihosoft.vrl.v3d.Cube
 import eu.mihosoft.vrl.v3d.Cylinder
 import eu.mihosoft.vrl.v3d.FileUtil;
+import eu.mihosoft.vrl.v3d.Parabola
 import eu.mihosoft.vrl.v3d.Transform
 
 import com.neuronrobotics.bowlerstudio.vitamins.*;
@@ -190,16 +191,26 @@ return new ICadGenerator(){
 				//Do additional CAD and add to the running CoM
 				def thrustMeasurments= Vitamins.getConfiguration("ballBearing",
 						thrustBearingSize)
-				CSG baseCore = new Cylinder(thrustMeasurments.outerDiameter/2+5,baseCoreheight).toCSG()
+				CSG baseCore = new Cylinder(thrustMeasurments.outerDiameter/2+5,baseCoreheight+thrustMeasurments.width/2).toCSG()
+				CSG baseCoreshort = new Cylinder(thrustMeasurments.outerDiameter/2+5,baseCoreheight*3.0/4.0).toCSG()
 				CSG mountLug = new Cylinder(15,baseBoltThickness).toCSG().toZMax()
-				def coreParts=[]
+				CSG mountCap = Parabola.coneByHeight(15, 20)
+								.rotx(90)
+								.toZMin()
+				def coreParts=[baseCore]
 				mountLoacions.forEach{
+					def place =com.neuronrobotics.bowlerstudio.physics.TransformFactory.nrToCSG(it)
 					coreParts.add(
 						CSG.hullAll(mountLug
-									.transformed(com.neuronrobotics.bowlerstudio.physics.TransformFactory.nrToCSG(it))
-									,baseCore)
+									.transformed(place)
+									,baseCoreshort)
 						)
+					coreParts.add(mountCap
+									.transformed(place)
+									)
 				}
+				
+				
 				// assemble the base
 				def Base = CSG.unionAll(coreParts)
 				// add it to the return list
