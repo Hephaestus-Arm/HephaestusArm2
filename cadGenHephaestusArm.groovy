@@ -16,6 +16,7 @@ import java.nio.file.Paths;
 
 import eu.mihosoft.vrl.v3d.CSG
 import eu.mihosoft.vrl.v3d.Cube
+import eu.mihosoft.vrl.v3d.Cylinder
 import eu.mihosoft.vrl.v3d.FileUtil;
 import eu.mihosoft.vrl.v3d.Transform
 
@@ -123,7 +124,9 @@ return new ICadGenerator(){
 				ArrayList<CSG> allCad=new ArrayList<>();
 				double baseGrid = grid*2;
 				double baseBoltThickness=15;
+				double baseCoreheight = 1;
 				String boltsize = "M5x25"
+				def thrustBearingSize = "Thrust_1andAHalfinch"
 				for(DHParameterKinematics d:b.getAllDHChains()) {
 					// Hardware to engineering units configuration
 					LinkConfiguration conf = d.getLinkConfiguration(0);
@@ -131,24 +134,28 @@ return new ICadGenerator(){
 					//CSG servo=   Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
 					TransformNR locationOfMotorMount = d.getRobotToFiducialTransform()
 					TransformNR locationOfMotorMountCopy = locationOfMotorMount.copy()
+					if(locationOfMotorMount.getZ()>baseCoreheight)
+						baseCoreheight=locationOfMotorMount.getZ()
 					vitaminLocations.put(locationOfMotorMountCopy, [
 						"ballBearing",
-						"Thrust_1andAHalfinch"
+						thrustBearingSize
 					])
 					vitaminLocations.put(locationOfMotorMount, [
 						conf.getElectroMechanicalType(),
 						conf.getElectroMechanicalSize()
 					])
 				}
+				def mountLoacions = [new TransformNR(baseGrid,baseGrid,baseBoltThickness,new RotationNR()),
+					new TransformNR(baseGrid,-baseGrid,baseBoltThickness,new RotationNR()),
+					new TransformNR(-baseGrid,baseGrid,baseBoltThickness,new RotationNR()),
+					new TransformNR(-baseGrid,-baseGrid,baseBoltThickness,new RotationNR())]
 				
-				vitaminLocations.put(new TransformNR(baseGrid,baseGrid,baseBoltThickness,new RotationNR()),
+				mountLoacions.forEach{
+					vitaminLocations.put(it,
 						["capScrew", boltsize])
-				vitaminLocations.put(new TransformNR(baseGrid,-baseGrid,baseBoltThickness,new RotationNR()),
-						["capScrew", boltsize])
-				vitaminLocations.put(new TransformNR(-baseGrid,baseGrid,baseBoltThickness,new RotationNR()),
-						["capScrew", boltsize])
-				vitaminLocations.put(new TransformNR(-baseGrid,-baseGrid,baseBoltThickness,new RotationNR()),
-						["capScrew", boltsize])
+					
+				}
+				
 				double totalMass = 0;
 				TransformNR centerOfMassFromCentroid=new TransformNR();
 
@@ -181,6 +188,24 @@ return new ICadGenerator(){
 					//do com calculation here for centerOfMassFromCentroid and totalMass
 				}
 				//Do additional CAD and add to the running CoM
+				def thrustMeasurments= Vitamins.getConfiguration("ballBearing",
+						thrustBearingSize)
+				CSG baseCore = new Cylinder(thrustMeasurments.outerDiameter/2+5,baseCoreheight).toCSG()
+				CSG mountLug = new Cylinder(15,baseBoltThickness).toCSG().toZMax()
+				def coreParts=[]
+				mountLoacions.forEach{
+					coreParts.add(
+						CSG.hullAll(mountLug
+									.transformed(com.neuronrobotics.bowlerstudio.physics.TransformFactory.nrToCSG(it))
+									,baseCore)
+						)
+				}
+				// assemble the base
+				def Base = CSG.unionAll(coreParts)
+				// add it to the return list
+				Base.setManipulator(b.getRootListener())
+				allCad.add(Base)
+				
 				b.setMassKg(totalMass)
 				b.setCenterOfMassFromCentroid(centerOfMassFromCentroid)
 
