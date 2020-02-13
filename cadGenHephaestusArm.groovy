@@ -216,7 +216,6 @@ return new ICadGenerator(){
 									)
 				}
 				
-				
 				// assemble the base
 				CSG wire = new Cube(17,200,5).toCSG()
 								.toZMin()
