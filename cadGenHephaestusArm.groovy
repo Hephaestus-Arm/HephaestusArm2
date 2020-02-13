@@ -224,7 +224,9 @@ return new ICadGenerator(){
 				CSG vitamin_roundMotor_WPI_gb37y3530_50en = Vitamins.get("roundMotor", "WPI-gb37y3530-50en")
 				.toZMin()
 				.union(wire)
-				def Base = CSG.unionAll(coreParts).difference(vitamin_roundMotor_WPI_gb37y3530_50en)
+				def Base = CSG.unionAll(coreParts)
+							.difference(vitamin_roundMotor_WPI_gb37y3530_50en)
+							//.difference(allCad)
 				// add it to the return list
 				Base.setManipulator(b.getRootListener())
 				allCad.add(Base)
