@@ -218,11 +218,18 @@ return new ICadGenerator(){
 				
 				
 				// assemble the base
-				def Base = CSG.unionAll(coreParts)
+				CSG wire = new Cube(17,200,5).toCSG()
+								.toZMin()
+								.toYMin()
+				CSG vitamin_roundMotor_WPI_gb37y3530_50en = Vitamins.get("roundMotor", "WPI-gb37y3530-50en")
+				.toZMin()
+				.union(wire)
+				def Base = CSG.unionAll(coreParts).difference(vitamin_roundMotor_WPI_gb37y3530_50en)
 				// add it to the return list
 				Base.setManipulator(b.getRootListener())
 				allCad.add(Base)
 				
+				allCad.add(vitamin_roundMotor_WPI_gb37y3530_50en)
 				b.setMassKg(totalMass)
 				b.setCenterOfMassFromCentroid(centerOfMassFromCentroid)
 
