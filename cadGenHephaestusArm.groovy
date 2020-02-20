@@ -39,6 +39,17 @@ CSG moveDHValues(CSG incoming,DHLink dh ){
 	return incoming.transformed(move)
 }
 
+class GearManager{
+	MobileBase base;
+	def pinion=[];
+	def spur=[]
+	def seperationDistance=[]
+	public GearManager(MobileBase b) {
+		base=b;
+	}
+	
+}
+
 return new ICadGenerator(){
 			@Override
 			public ArrayList<CSG> generateCad(DHParameterKinematics d, int linkIndex) {
@@ -220,17 +231,17 @@ return new ICadGenerator(){
 				CSG wire = new Cube(17,200,5).toCSG()
 								.toZMin()
 								.toYMin()
-				CSG vitamin_roundMotor_WPI_gb37y3530_50en = Vitamins.get("roundMotor", "WPI-gb37y3530-50en")
-				.toZMin()
-				.union(wire)
+				//CSG vitamin_roundMotor_WPI_gb37y3530_50en = Vitamins.get("roundMotor", "WPI-gb37y3530-50en")
+				//.toZMin()
+				//.union(wire)
 				def Base = CSG.unionAll(coreParts)
-							.difference(vitamin_roundMotor_WPI_gb37y3530_50en)
-							//.difference(allCad)
+							//.difference(vitamin_roundMotor_WPI_gb37y3530_50en)
+							.difference(allCad)
 				// add it to the return list
 				Base.setManipulator(b.getRootListener())
 				allCad.add(Base)
 				
-				allCad.add(vitamin_roundMotor_WPI_gb37y3530_50en)
+				//allCad.add(vitamin_roundMotor_WPI_gb37y3530_50en)
 				b.setMassKg(totalMass)
 				b.setCenterOfMassFromCentroid(centerOfMassFromCentroid)
 
