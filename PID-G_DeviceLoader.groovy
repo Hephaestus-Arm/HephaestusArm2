@@ -182,8 +182,8 @@ INewLinkProvider provider= new INewLinkProvider() {
 		String searchName = conf.getDeviceScriptingName();
 		int vid=0x3742
 		int pid=0x0007
-		if(searchName.size()>8){
-			String deviceID = searchName.substring(searchName.size()-8,searchName.size())
+		if(searchName.length()>8){
+			String deviceID = searchName.substring(searchName.length()-8,searchName.length())
 			String VIDStr = deviceID.substring(0,4)
 			String PIDStr = deviceID.substring(4,8)
 			try{
