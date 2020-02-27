@@ -43,7 +43,7 @@ class GearManager{
 	def pinion=[];
 	def spur=[]
 	def seperationDistance=[]
-	int totalNumTeeth =120
+	int totalNumTeeth =180
 	double defaultRatio = 360.0/2048.0
 	def pitch = 3.0
 	private static HashMap<String, GearManager>  map= new HashMap<>() 
@@ -57,11 +57,20 @@ class GearManager{
 	private GearManager(DHParameterKinematics b) {
 		limb=b;
 		for(int i=0;i<limb.getNumberOfLinks();i++) {
-			def ratio = limb.getLinkConfiguration(i).scale
+			def ratio = limb.getLinkConfiguration(i).getScale()
 			def gearRatio = defaultRatio/ratio
-			int aTeeth = totalNumTeeth/(gearRatio+1)
+			int aTeeth = Math.round(totalNumTeeth/(gearRatio+1))
 			int bTeeth = totalNumTeeth-aTeeth
-			println "Limb ratio "+ratio+" default "+defaultRatio+" at gear: "+gearRatio+" Gear stage "+aTeeth+" to "+bTeeth
+			double realRatio = ((double)bTeeth)/((double)aTeeth)
+			double finalRealScale = defaultRatio/realRatio
+//			println "Limb ratio "+ratio+
+//			" default "+defaultRatio+
+//			" at gear: "+gearRatio+
+//			" Gear stage "+aTeeth+
+//			" to "+bTeeth+
+//			" real ratio: "+realRatio+
+//			" final real scale: "+finalRealScale
+			limb.getLinkConfiguration(i).setScale(finalRealScale)
 			
 		}
 	}
