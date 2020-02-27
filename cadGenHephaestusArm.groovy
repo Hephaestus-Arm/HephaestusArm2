@@ -17,7 +17,6 @@ import java.nio.file.Paths;
 import eu.mihosoft.vrl.v3d.CSG
 import eu.mihosoft.vrl.v3d.Cube
 import eu.mihosoft.vrl.v3d.Cylinder
-import eu.mihosoft.vrl.v3d.FileUtil;
 import eu.mihosoft.vrl.v3d.Parabola
 import eu.mihosoft.vrl.v3d.Transform
 
@@ -27,7 +26,7 @@ import javafx.scene.transform.Affine;
 double grid =25
 
 CSG reverseDHValues(CSG incoming,DHLink dh ){
-	println "Reversing "+dh
+	//println "Reversing "+dh
 	TransformNR step = new TransformNR(dh.DhStep(0))
 	Transform move = com.neuronrobotics.bowlerstudio.physics.TransformFactory.nrToCSG(step)
 	return incoming.transformed(move)
@@ -40,12 +39,31 @@ CSG moveDHValues(CSG incoming,DHLink dh ){
 }
 
 class GearManager{
-	MobileBase base;
+	DHParameterKinematics limb
 	def pinion=[];
 	def spur=[]
 	def seperationDistance=[]
-	public GearManager(MobileBase b) {
-		base=b;
+	int totalNumTeeth =120
+	double defaultRatio = 360.0/2048.0
+	def pitch = 3.0
+	private static HashMap<String, GearManager>  map= new HashMap<>() 
+	public static GearManager get(DHParameterKinematics b) {
+		if(map.get(b.getXml())==null) {
+			map.put(b.getXml(), new GearManager(b))
+		}
+		return map.get(b.getXml())
+	}
+	
+	private GearManager(DHParameterKinematics b) {
+		limb=b;
+		for(int i=0;i<limb.getNumberOfLinks();i++) {
+			def ratio = limb.getLinkConfiguration(i).scale
+			def gearRatio = defaultRatio/ratio
+			int aTeeth = totalNumTeeth/(gearRatio+1)
+			int bTeeth = totalNumTeeth-aTeeth
+			println "Limb ratio "+ratio+" default "+defaultRatio+" at gear: "+gearRatio+" Gear stage "+aTeeth+" to "+bTeeth
+			
+		}
 	}
 	
 }
@@ -53,7 +71,7 @@ class GearManager{
 return new ICadGenerator(){
 			@Override
 			public ArrayList<CSG> generateCad(DHParameterKinematics d, int linkIndex) {
-
+				GearManager.get(d)
 				def vitaminLocations = new HashMap<TransformNR,ArrayList<String>>()
 
 				ArrayList<DHLink> dhLinks = d.getChain().getLinks()
@@ -79,7 +97,7 @@ return new ICadGenerator(){
 					LinkConfiguration confPrior = d.getLinkConfiguration(i+1);
 					def vitaminType = confPrior.getElectroMechanicalType()
 					def vitaminSize = confPrior.getElectroMechanicalSize()
-					println "Adding Motor "+vitaminType
+					//println "Adding Motor "+vitaminType
 					vitaminLocations.put(new TransformNR(), [
 						vitaminType,
 						vitaminSize
@@ -112,7 +130,7 @@ return new ICadGenerator(){
 					def massCentroidXValue = measurments.massCentroidX
 					def massCentroidZValue = measurments.massCentroidZ
 					def massKgValue = measurments.massKg
-					println vitaminType+" "+vitaminSize
+					//println vitaminType+" "+vitaminSize
 					TransformNR COMCentroid = tr.times(
 							new TransformNR(massCentroidXValue,massCentroidYValue,massCentroidZValue,new RotationNR())
 							)
@@ -126,7 +144,7 @@ return new ICadGenerator(){
 
 				//tmpSrv.setManipulator(manipulator)
 				//allCad.add(tmpSrv)
-				println "Generating link: "+linkIndex
+				//println "Generating link: "+linkIndex
 
 				return allCad;
 			}
@@ -192,7 +210,7 @@ return new ICadGenerator(){
 					def massCentroidXValue = measurments.massCentroidX
 					def massCentroidZValue = measurments.massCentroidZ
 					def massKgValue = measurments.massKg
-					println "Base Vitamin "+vitaminType+" "+vitaminSize
+					//println "Base Vitamin "+vitaminType+" "+vitaminSize
 					try {
 						TransformNR COMCentroid = tr.times(
 								new TransformNR(massCentroidXValue,massCentroidYValue,massCentroidZValue,new RotationNR())
