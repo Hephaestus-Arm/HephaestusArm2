@@ -57,20 +57,21 @@ class GearManager{
 	private GearManager(DHParameterKinematics b) {
 		limb=b;
 		for(int i=0;i<limb.getNumberOfLinks();i++) {
-			def ratio = limb.getLinkConfiguration(i).getScale()
+			boolean isNeg = limb.getLinkConfiguration(i).getScale()<0
+			def ratio = Math.abs(limb.getLinkConfiguration(i).getScale())
 			def gearRatio = defaultRatio/ratio
-			int aTeeth = Math.round(totalNumTeeth/(gearRatio+1))
+			int aTeeth = Math.abs(Math.round(totalNumTeeth/(gearRatio+1)))
 			int bTeeth = totalNumTeeth-aTeeth
 			double realRatio = ((double)bTeeth)/((double)aTeeth)
 			double finalRealScale = defaultRatio/realRatio
-//			println "Limb ratio "+ratio+
-//			" default "+defaultRatio+
-//			" at gear: "+gearRatio+
-//			" Gear stage "+aTeeth+
-//			" to "+bTeeth+
-//			" real ratio: "+realRatio+
-//			" final real scale: "+finalRealScale
-			limb.getLinkConfiguration(i).setScale(finalRealScale)
+			println "Limb ratio "+ratio+
+			" default "+defaultRatio+
+			" at gear: "+gearRatio+
+			" Gear stage "+aTeeth+
+			" to "+bTeeth+
+			" real ratio: "+realRatio+
+			" final real scale: "+finalRealScale
+			limb.getLinkConfiguration(i).setScale(isNeg?-finalRealScale:finalRealScale)
 			
 		}
 	}
