@@ -46,6 +46,7 @@ class GearManager{
 	int totalNumTeeth =180
 	double defaultRatio = 360.0/2048.0
 	def pitch = 3.0
+	def thickness = 15
 	private static HashMap<String, GearManager>  map= new HashMap<>() 
 	public static GearManager get(DHParameterKinematics b) {
 		if(map.get(b.getXml())==null) {
@@ -53,7 +54,6 @@ class GearManager{
 		}
 		return map.get(b.getXml())
 	}
-	
 	private GearManager(DHParameterKinematics b) {
 		limb=b;
 		for(int i=0;i<limb.getNumberOfLinks();i++) {
@@ -61,21 +61,49 @@ class GearManager{
 			def ratio = Math.abs(limb.getLinkConfiguration(i).getScale())
 			def gearRatio = defaultRatio/ratio
 			int aTeeth = Math.abs(Math.round(totalNumTeeth/(gearRatio+1)))
+			if(aTeeth<12)
+				aTeeth=12
 			int bTeeth = totalNumTeeth-aTeeth
 			double realRatio = ((double)bTeeth)/((double)aTeeth)
 			double finalRealScale = defaultRatio/realRatio
-			println "Limb ratio "+ratio+
-			" default "+defaultRatio+
-			" at gear: "+gearRatio+
-			" Gear stage "+aTeeth+
-			" to "+bTeeth+
-			" real ratio: "+realRatio+
-			" final real scale: "+finalRealScale
+//			println "Limb ratio "+ratio+
+//			" default "+defaultRatio+
+//			" at gear: "+gearRatio+
+//			" Gear stage "+aTeeth+
+//			" to "+bTeeth+
+//			" real ratio: "+realRatio+
+//			" final real scale: "+finalRealScale
 			limb.getLinkConfiguration(i).setScale(isNeg?-finalRealScale:finalRealScale)
+			println "Making Gears "+b.getScriptingName()+" "+i
 			
+			def bevelGears =ScriptingEngine.gitScriptRun(
+				"https://github.com/madhephaestus/GearGenerator.git", // git location of the library
+				"bevelGear.groovy" , // file to load
+				// Parameters passed to the funcetion
+				[	  aTeeth,// Number of teeth gear a
+					bTeeth,// Number of teeth gear b
+					thickness,// thickness of gear A
+					pitch,// gear pitch in arc length mm
+				   0,// shaft angle, can be from 0 to 100 degrees
+					0// helical angle, only used for 0 degree bevels
+				]
+				)
+			println "Done Making Gears "+b.getScriptingName()+" "+i
+			pinion[i]=bevelGears.get(0)
+			spur[i]=bevelGears.get(1)
+			seperationDistance[i] = bevelGears.get(2)
 		}
 	}
+	def getPinion(int i) {
+		return pinion[i]
+	}
+	def getSpur(int i) {
+		return spur[i]
+	}
 	
+	def getSerperation(int i) {
+		return seperationDistance[i]
+	}
 }
 
 return new ICadGenerator(){
@@ -160,6 +188,11 @@ return new ICadGenerator(){
 			}
 			@Override
 			public ArrayList<CSG> generateBody(MobileBase b ) {
+				
+				for(def limb:b.getAllDHChains()) {
+					
+					GearManager.get(limb)
+				}
 				def vitaminLocations = new HashMap<TransformNR,ArrayList<String>>()
 				ArrayList<CSG> allCad=new ArrayList<>();
 				double baseGrid = grid*2;
