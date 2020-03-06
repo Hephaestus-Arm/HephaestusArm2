@@ -1,4 +1,5 @@
 import com.neuronrobotics.bowlerstudio.creature.ICadGenerator;
+import com.neuronrobotics.bowlerstudio.physics.TransformFactory
 import com.neuronrobotics.bowlerstudio.scripting.ScriptingEngine
 import com.neuronrobotics.bowlerstudio.BowlerStudio
 import com.neuronrobotics.bowlerstudio.creature.CreatureLab;
@@ -40,12 +41,10 @@ CSG moveDHValues(CSG incoming,DHLink dh ){
 
 class GearManager{
 	DHParameterKinematics limb
-	def pinion=[];
-	def spur=[]
-	def seperationDistance=[]
-	int totalNumTeeth =180
+	def gears=[];
+	int totalNumTeeth =100
 	double defaultRatio = 360.0/2048.0
-	def pitch = 3.0
+	def pitch = 4.0
 	def thickness = 15
 	private static HashMap<String, GearManager>  map= new HashMap<>() 
 	public static GearManager get(DHParameterKinematics b) {
@@ -54,9 +53,12 @@ class GearManager{
 		}
 		return map.get(b.getXml())
 	}
+	
 	private GearManager(DHParameterKinematics b) {
 		limb=b;
-		for(int i=0;i<limb.getNumberOfLinks();i++) {
+	}
+	def getLinkGear(int i) {
+		if(!(gears.size()>i)) {
 			boolean isNeg = limb.getLinkConfiguration(i).getScale()<0
 			def ratio = Math.abs(limb.getLinkConfiguration(i).getScale())
 			def gearRatio = defaultRatio/ratio
@@ -74,12 +76,11 @@ class GearManager{
 //			" real ratio: "+realRatio+
 //			" final real scale: "+finalRealScale
 			limb.getLinkConfiguration(i).setScale(isNeg?-finalRealScale:finalRealScale)
-			println "Making Gears "+b.getScriptingName()+" "+i
-			
+			println "Making Gears "+limb.getScriptingName()+" "+i
 			def bevelGears =ScriptingEngine.gitScriptRun(
 				"https://github.com/madhephaestus/GearGenerator.git", // git location of the library
 				"bevelGear.groovy" , // file to load
-				// Parameters passed to the funcetion
+				// Parameters passed to the function
 				[	  aTeeth,// Number of teeth gear a
 					bTeeth,// Number of teeth gear b
 					thickness,// thickness of gear A
@@ -88,30 +89,31 @@ class GearManager{
 					0// helical angle, only used for 0 degree bevels
 				]
 				)
-			println "Done Making Gears "+b.getScriptingName()+" "+i
-			pinion[i]=bevelGears.get(0)
-			spur[i]=bevelGears.get(1)
-			seperationDistance[i] = bevelGears.get(2)
+			println "Done Making Gears "+limb.getScriptingName()+" "+i
+			gears[i]=bevelGears
 		}
+		return gears[i]	
 	}
 	def getPinion(int i) {
-		return pinion[i]
+		return getLinkGear(i).get(0)
 	}
 	def getSpur(int i) {
-		return spur[i]
+		return  getLinkGear(i).get(1)
 	}
 	
 	def getSerperation(int i) {
-		return seperationDistance[i]
+		return  getLinkGear(i).get(2)
 	}
 }
-
 return new ICadGenerator(){
 			@Override
 			public ArrayList<CSG> generateCad(DHParameterKinematics d, int linkIndex) {
-				GearManager.get(d)
+				GearManager gears = GearManager.get(d)
+				CSG pinion = gears.getPinion(0)
+				CSG spur = gears.getSpur(0)
+				double gearShaftCenterDistance = gears.getSerperation(0)
+				gears.getPinion(linkIndex)
 				def vitaminLocations = new HashMap<TransformNR,ArrayList<String>>()
-
 				ArrayList<DHLink> dhLinks = d.getChain().getLinks()
 				ArrayList<CSG> allCad=new ArrayList<>()
 				int i=linkIndex;
@@ -125,7 +127,7 @@ return new ICadGenerator(){
 				// loading the vitamins referenced in the configuration
 				//CSG servo=   Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
 				TransformNR locationOfMotorMount = new TransformNR(dh.DhStep(0)).inverse()
-
+				if(linkIndex!=0)
 				vitaminLocations.put(locationOfMotorMount, [
 					conf.getShaftType(),
 					conf.getShaftSize()
@@ -140,8 +142,6 @@ return new ICadGenerator(){
 						vitaminType,
 						vitaminSize
 					])
-				}else {
-					println "\r\nNOT adding "+linkIndex
 				}
 
 				//CSG tmpSrv = moveDHValues(servo,dh)
@@ -189,10 +189,6 @@ return new ICadGenerator(){
 			@Override
 			public ArrayList<CSG> generateBody(MobileBase b ) {
 				
-				for(def limb:b.getAllDHChains()) {
-					
-					GearManager.get(limb)
-				}
 				def vitaminLocations = new HashMap<TransformNR,ArrayList<String>>()
 				ArrayList<CSG> allCad=new ArrayList<>();
 				double baseGrid = grid*2;
@@ -200,15 +196,29 @@ return new ICadGenerator(){
 				double baseCoreheight = 1;
 				String boltsize = "M5x25"
 				def thrustBearingSize = "Thrust_1andAHalfinch"
+				
 				for(DHParameterKinematics d:b.getAllDHChains()) {
 					// Hardware to engineering units configuration
 					LinkConfiguration conf = d.getLinkConfiguration(0);
+					GearManager gears = GearManager.get(d)
+					
+					//CSG spur = gears.getSpur(0)
+					double gearShaftCenterDistance = gears.getSerperation(0)
 					// loading the vitamins referenced in the configuration
-					//CSG servo=   Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
-					TransformNR locationOfMotorMount = d.getRobotToFiducialTransform()
+					CSG motorModel=   Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
+					double zOffset = motorModel.getMaxZ()
+					TransformNR locationOfMotorMount = d.getRobotToFiducialTransform().copy()
 					TransformNR locationOfMotorMountCopy = locationOfMotorMount.copy()
-					if(locationOfMotorMount.getZ()>baseCoreheight)
-						baseCoreheight=locationOfMotorMount.getZ()
+					//move for gearing
+					locationOfMotorMount.translateX(-gearShaftCenterDistance)
+					TransformNR pinionRoot = locationOfMotorMount.copy()
+					// move the motor down to allign with the shaft
+					locationOfMotorMount.translateZ(-zOffset)
+					if(locationOfMotorMountCopy.getZ()>baseCoreheight)
+						baseCoreheight=locationOfMotorMountCopy.getZ()
+					CSG pinion = gears.getPinion(0)
+									.transformed(TransformFactory.nrToCSG(pinionRoot))
+					allCad.add(pinion)
 					vitaminLocations.put(locationOfMotorMountCopy, [
 						"ballBearing",
 						thrustBearingSize
@@ -216,6 +226,10 @@ return new ICadGenerator(){
 					vitaminLocations.put(locationOfMotorMount, [
 						conf.getElectroMechanicalType(),
 						conf.getElectroMechanicalSize()
+					])
+					vitaminLocations.put(pinionRoot, [
+						conf.getShaftType(),
+						conf.getShaftSize()
 					])
 				}
 				def insert=["heatedThreadedInsert", "M5"]
@@ -244,7 +258,7 @@ return new ICadGenerator(){
 					HashMap<String, Object>  measurments = Vitamins.getConfiguration( vitaminType,vitaminSize)
 
 					CSG vitaminCad=   Vitamins.get(vitaminType,vitaminSize)
-					Transform move = com.neuronrobotics.bowlerstudio.physics.TransformFactory.nrToCSG(tr)
+					Transform move = TransformFactory.nrToCSG(tr)
 					CSG part = vitaminCad.transformed(move)
 					part.setManipulator(b.getRootListener())
 					allCad.add(part)
@@ -268,7 +282,7 @@ return new ICadGenerator(){
 				//Do additional CAD and add to the running CoM
 				def thrustMeasurments= Vitamins.getConfiguration("ballBearing",
 						thrustBearingSize)
-				CSG baseCore = new Cylinder(thrustMeasurments.outerDiameter/2+5,baseCoreheight+thrustMeasurments.width/2).toCSG()
+				CSG baseCore = new Cylinder(thrustMeasurments.outerDiameter/2+5,baseCoreheight).toCSG()
 				CSG baseCoreshort = new Cylinder(thrustMeasurments.outerDiameter/2+5,baseCoreheight*3.0/4.0).toCSG()
 				CSG mountLug = new Cylinder(15,baseBoltThickness).toCSG().toZMax()
 				CSG mountCap = Parabola.coneByHeight(15, 20)
@@ -289,12 +303,7 @@ return new ICadGenerator(){
 				}
 				
 				// assemble the base
-				CSG wire = new Cube(17,200,5).toCSG()
-								.toZMin()
-								.toYMin()
-				//CSG vitamin_roundMotor_WPI_gb37y3530_50en = Vitamins.get("roundMotor", "WPI-gb37y3530-50en")
-				//.toZMin()
-				//.union(wire)
+
 				def Base = CSG.unionAll(coreParts)
 							//.difference(vitamin_roundMotor_WPI_gb37y3530_50en)
 							.difference(allCad)
