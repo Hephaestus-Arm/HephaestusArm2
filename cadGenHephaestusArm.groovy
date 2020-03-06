@@ -46,53 +46,61 @@ class GearManager{
 	double defaultRatio = 360.0/2048.0
 	def pitch = 3.0
 	def thickness = 15
-	private static HashMap<String, GearManager>  map= new HashMap<>() 
+	private static HashMap<String, GearManager>  map= new HashMap<>()
 	public static GearManager get(DHParameterKinematics b) {
 		if(map.get(b.getXml())==null) {
 			map.put(b.getXml(), new GearManager(b))
 		}
 		return map.get(b.getXml())
 	}
-	
+
 	private GearManager(DHParameterKinematics b) {
 		limb=b;
 	}
-	def getLinkGear(int i) {
-		if(!(gears.size()>i)) {
-			boolean isNeg = limb.getLinkConfiguration(i).getScale()<0
-			def ratio = Math.abs(limb.getLinkConfiguration(i).getScale())
-			def gearRatio = defaultRatio/ratio
-			int aTeeth = Math.abs(Math.round(totalNumTeeth/(gearRatio+1)))
-			if(aTeeth<12)
-				aTeeth=12
-			int bTeeth = totalNumTeeth-aTeeth
-			double realRatio = ((double)bTeeth)/((double)aTeeth)
-			double finalRealScale = defaultRatio/realRatio
-//			println "Limb ratio "+ratio+
-//			" default "+defaultRatio+
-//			" at gear: "+gearRatio+
-//			" Gear stage "+aTeeth+
-//			" to "+bTeeth+
-//			" real ratio: "+realRatio+
-//			" final real scale: "+finalRealScale
-			limb.getLinkConfiguration(i).setScale(isNeg?-finalRealScale:finalRealScale)
-			println "Making Gears "+limb.getScriptingName()+" "+i
-			def bevelGears =ScriptingEngine.gitScriptRun(
-				"https://github.com/madhephaestus/GearGenerator.git", // git location of the library
-				"bevelGear.groovy" , // file to load
-				// Parameters passed to the function
-				[	  bTeeth,// Number of teeth gear a
-					aTeeth,// Number of teeth gear b
-					thickness,// thickness of gear A
-					pitch,// gear pitch in arc length mm
-				   0,// shaft angle, can be from 0 to 100 degrees
-					0// helical angle, only used for 0 degree bevels
-				]
-				)
-			println "Done Making Gears "+limb.getScriptingName()+" "+i
-			gears[i]=bevelGears
+	def getLinkGear(int j) {
+		if(gears.size()<=j) {
+			for(int i=gears.size();gears.size()<=j;i++) {
+				boolean isNeg = limb.getLinkConfiguration(i).getScale()<0
+				def ratio = Math.abs(limb.getLinkConfiguration(i).getScale())
+				def gearRatio = defaultRatio/ratio
+				int aTeeth = Math.abs(Math.round(totalNumTeeth/(gearRatio+1)))
+				if(aTeeth<12)
+					aTeeth=12
+				int bTeeth = totalNumTeeth-aTeeth
+				double realRatio = ((double)bTeeth)/((double)aTeeth)
+				double finalRealScale = defaultRatio/realRatio
+				//			println "Limb ratio "+ratio+
+				//			" default "+defaultRatio+
+				//			" at gear: "+gearRatio+
+				//			" Gear stage "+aTeeth+
+				//			" to "+bTeeth+
+				//			" real ratio: "+realRatio+
+				//			" final real scale: "+finalRealScale
+				limb.getLinkConfiguration(i).setScale(isNeg?-finalRealScale:finalRealScale)
+				println "Making Gears "+limb.getScriptingName()+" "+i
+				def bevelGears =ScriptingEngine.gitScriptRun(
+						"https://github.com/madhephaestus/GearGenerator.git", // git location of the library
+						"bevelGear.groovy" , // file to load
+						// Parameters passed to the function
+						[
+							bTeeth,
+							// Number of teeth gear a
+							aTeeth,
+							// Number of teeth gear b
+							thickness,
+							// thickness of gear A
+							pitch,
+							// gear pitch in arc length mm
+							0,
+							// shaft angle, can be from 0 to 100 degrees
+							0// helical angle, only used for 0 degree bevels
+						]
+						)
+				println "Done Making Gears "+limb.getScriptingName()+" "+i
+				gears.add(bevelGears)
+			}
 		}
-		return gears[i]	
+		return gears[j]
 	}
 	def getPinion(int i) {
 		return getLinkGear(i).get(1)
@@ -100,12 +108,13 @@ class GearManager{
 	def getSpur(int i) {
 		return  getLinkGear(i).get(0)
 	}
-	
+
 	def getSerperation(int i) {
 		return  getLinkGear(i).get(2)
 	}
 }
 return new ICadGenerator(){
+			double motorGearPlateThickness = 10
 			@Override
 			public ArrayList<CSG> generateCad(DHParameterKinematics d, int linkIndex) {
 				GearManager gears = GearManager.get(d)
@@ -127,10 +136,10 @@ return new ICadGenerator(){
 				//CSG servo=   Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
 				TransformNR locationOfMotorMount = new TransformNR(dh.DhStep(0)).inverse()
 				if(linkIndex!=0)
-				vitaminLocations.put(locationOfMotorMount, [
-					conf.getShaftType(),
-					conf.getShaftSize()
-				])
+					vitaminLocations.put(locationOfMotorMount, [
+						conf.getShaftType(),
+						conf.getShaftSize()
+					])
 				CSG spurPlaced = spur.transformed(TransformFactory.nrToCSG(locationOfMotorMount))
 				spurPlaced.setManipulator(manipulator)
 				allCad.add(spurPlaced)
@@ -189,7 +198,7 @@ return new ICadGenerator(){
 			}
 			@Override
 			public ArrayList<CSG> generateBody(MobileBase b ) {
-				
+
 				def vitaminLocations = new HashMap<TransformNR,ArrayList<String>>()
 				ArrayList<CSG> allCad=new ArrayList<>();
 				double baseGrid = grid*2;
@@ -197,12 +206,12 @@ return new ICadGenerator(){
 				double baseCoreheight = 1;
 				String boltsize = "M5x25"
 				def thrustBearingSize = "Thrust_1andAHalfinch"
-				
+
 				for(DHParameterKinematics d:b.getAllDHChains()) {
 					// Hardware to engineering units configuration
 					LinkConfiguration conf = d.getLinkConfiguration(0);
 					GearManager gears = GearManager.get(d)
-					
+
 					//CSG spur = gears.getSpur(0)
 					double gearShaftCenterDistance = gears.getSerperation(0)
 					// loading the vitamins referenced in the configuration
@@ -218,7 +227,7 @@ return new ICadGenerator(){
 					if(locationOfBearing.getZ()>baseCoreheight)
 						baseCoreheight=locationOfBearing.getZ()
 					CSG pinion = gears.getPinion(0)
-									.transformed(TransformFactory.nrToCSG(locationOfBearing))
+							.transformed(TransformFactory.nrToCSG(locationOfBearing))
 					allCad.add(pinion)
 					vitaminLocations.put(locationOfBearing, [
 						"ballBearing",
@@ -235,20 +244,22 @@ return new ICadGenerator(){
 				}
 				def insert=["heatedThreadedInsert", "M5"]
 				def insertMeasurments= Vitamins.getConfiguration(insert[0],
-					insert[1])
-				def mountLoacions = [new TransformNR(baseGrid,baseGrid,0,new RotationNR(180,0,0)),
+						insert[1])
+				def mountLoacions = [
+					new TransformNR(baseGrid,baseGrid,0,new RotationNR(180,0,0)),
 					new TransformNR(baseGrid,-baseGrid,0,new RotationNR(180,0,0)),
 					new TransformNR(-baseGrid,baseGrid,0,new RotationNR(180,0,0)),
-					new TransformNR(-baseGrid,-baseGrid,0,new RotationNR(180,0,0))]
-				
+					new TransformNR(-baseGrid,-baseGrid,0,new RotationNR(180,0,0))
+				]
+
 				mountLoacions.forEach{
 					vitaminLocations.put(it,
-						["capScrew", boltsize])
+							["capScrew", boltsize])
 					vitaminLocations.put(it.copy().translateZ(insertMeasurments.installLength),
-						insert)
-					
+							insert)
+
 				}
-				
+
 				double totalMass = 0;
 				TransformNR centerOfMassFromCentroid=new TransformNR();
 
@@ -287,31 +298,31 @@ return new ICadGenerator(){
 				CSG baseCoreshort = new Cylinder(thrustMeasurments.outerDiameter/2+5,baseCoreheight*3.0/4.0).toCSG()
 				CSG mountLug = new Cylinder(15,baseBoltThickness).toCSG().toZMax()
 				CSG mountCap = Parabola.coneByHeight(15, 20)
-								.rotx(-90)
-								.toZMax()
-								.movez(-baseBoltThickness)
+						.rotx(-90)
+						.toZMax()
+						.movez(-baseBoltThickness)
 				def coreParts=[baseCore]
 				mountLoacions.forEach{
 					def place =com.neuronrobotics.bowlerstudio.physics.TransformFactory.nrToCSG(it)
 					coreParts.add(
-						CSG.hullAll(mountLug
-									.transformed(place)
-									,baseCoreshort)
-						)
+							CSG.hullAll(mountLug
+							.transformed(place)
+							,baseCoreshort)
+							)
 					coreParts.add(mountCap
-									.transformed(place)
-									)
+							.transformed(place)
+							)
 				}
-				
+
 				// assemble the base
 
 				def Base = CSG.unionAll(coreParts)
-							//.difference(vitamin_roundMotor_WPI_gb37y3530_50en)
-							.difference(allCad)
+						//.difference(vitamin_roundMotor_WPI_gb37y3530_50en)
+						.difference(allCad)
 				// add it to the return list
 				Base.setManipulator(b.getRootListener())
 				allCad.add(Base)
-				
+
 				//allCad.add(vitamin_roundMotor_WPI_gb37y3530_50en)
 				b.setMassKg(totalMass)
 				b.setCenterOfMassFromCentroid(centerOfMassFromCentroid)
