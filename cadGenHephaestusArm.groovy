@@ -44,7 +44,7 @@ class GearManager{
 	def gears=[];
 	int totalNumTeeth =100
 	double defaultRatio = 360.0/2048.0
-	def pitch = 4.0
+	def pitch = 3.0
 	def thickness = 15
 	private static HashMap<String, GearManager>  map= new HashMap<>() 
 	public static GearManager get(DHParameterKinematics b) {
@@ -81,8 +81,8 @@ class GearManager{
 				"https://github.com/madhephaestus/GearGenerator.git", // git location of the library
 				"bevelGear.groovy" , // file to load
 				// Parameters passed to the function
-				[	  aTeeth,// Number of teeth gear a
-					bTeeth,// Number of teeth gear b
+				[	  bTeeth,// Number of teeth gear a
+					aTeeth,// Number of teeth gear b
 					thickness,// thickness of gear A
 					pitch,// gear pitch in arc length mm
 				   0,// shaft angle, can be from 0 to 100 degrees
@@ -95,10 +95,10 @@ class GearManager{
 		return gears[i]	
 	}
 	def getPinion(int i) {
-		return getLinkGear(i).get(0)
+		return getLinkGear(i).get(1)
 	}
 	def getSpur(int i) {
-		return  getLinkGear(i).get(1)
+		return  getLinkGear(i).get(0)
 	}
 	
 	def getSerperation(int i) {
@@ -109,8 +109,7 @@ return new ICadGenerator(){
 			@Override
 			public ArrayList<CSG> generateCad(DHParameterKinematics d, int linkIndex) {
 				GearManager gears = GearManager.get(d)
-				CSG pinion = gears.getPinion(0)
-				CSG spur = gears.getSpur(0)
+				CSG spur = gears.getSpur(linkIndex)
 				double gearShaftCenterDistance = gears.getSerperation(0)
 				gears.getPinion(linkIndex)
 				def vitaminLocations = new HashMap<TransformNR,ArrayList<String>>()
@@ -132,7 +131,9 @@ return new ICadGenerator(){
 					conf.getShaftType(),
 					conf.getShaftSize()
 				])
-
+				CSG spurPlaced = spur.transformed(TransformFactory.nrToCSG(locationOfMotorMount))
+				spurPlaced.setManipulator(manipulator)
+				allCad.add(spurPlaced)
 				if(linkIndex!=d.getNumberOfLinks()-1 ){
 					LinkConfiguration confPrior = d.getLinkConfiguration(i+1);
 					def vitaminType = confPrior.getElectroMechanicalType()
@@ -159,7 +160,7 @@ return new ICadGenerator(){
 					HashMap<String, Object>  measurments = Vitamins.getConfiguration( vitaminType,vitaminSize)
 
 					CSG vitaminCad=   Vitamins.get(vitaminType,vitaminSize)
-					Transform move = com.neuronrobotics.bowlerstudio.physics.TransformFactory.nrToCSG(tr)
+					Transform move = TransformFactory.nrToCSG(tr)
 					def part = vitaminCad.transformed(move)
 					part.setManipulator(manipulator)
 					allCad.add(part)
@@ -208,18 +209,18 @@ return new ICadGenerator(){
 					CSG motorModel=   Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
 					double zOffset = motorModel.getMaxZ()
 					TransformNR locationOfMotorMount = d.getRobotToFiducialTransform().copy()
-					TransformNR locationOfMotorMountCopy = locationOfMotorMount.copy()
+					TransformNR locationOfBearing = locationOfMotorMount.copy()
 					//move for gearing
 					locationOfMotorMount.translateX(-gearShaftCenterDistance)
 					TransformNR pinionRoot = locationOfMotorMount.copy()
 					// move the motor down to allign with the shaft
 					locationOfMotorMount.translateZ(-zOffset)
-					if(locationOfMotorMountCopy.getZ()>baseCoreheight)
-						baseCoreheight=locationOfMotorMountCopy.getZ()
+					if(locationOfBearing.getZ()>baseCoreheight)
+						baseCoreheight=locationOfBearing.getZ()
 					CSG pinion = gears.getPinion(0)
-									.transformed(TransformFactory.nrToCSG(pinionRoot))
+									.transformed(TransformFactory.nrToCSG(locationOfBearing))
 					allCad.add(pinion)
-					vitaminLocations.put(locationOfMotorMountCopy, [
+					vitaminLocations.put(locationOfBearing, [
 						"ballBearing",
 						thrustBearingSize
 					])
