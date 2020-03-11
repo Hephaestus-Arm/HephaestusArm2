@@ -1,3 +1,5 @@
+import com.neuronrobotics.sdk.common.BowlerAbstractDevice
+
 import com.neuronrobotics.bowlerstudio.creature.ICadGenerator;
 import com.neuronrobotics.bowlerstudio.physics.TransformFactory
 import com.neuronrobotics.bowlerstudio.scripting.ScriptingEngine
@@ -12,6 +14,8 @@ import com.neuronrobotics.sdk.addons.kinematics.LinkConfiguration
 import com.neuronrobotics.sdk.addons.kinematics.MobileBase
 import com.neuronrobotics.sdk.addons.kinematics.math.RotationNR
 import com.neuronrobotics.sdk.addons.kinematics.math.TransformNR
+import com.neuronrobotics.sdk.common.IDeviceAddedListener
+import com.neuronrobotics.sdk.common.IDeviceConnectionEventListener
 
 import java.nio.file.Paths;
 
@@ -45,15 +49,12 @@ class GearManager{
 	int totalNumTeeth =100
 	double defaultRatio = 360.0/2048.0
 	def pitch = 3.0
-	def thickness = 15
-	private static HashMap<String, GearManager>  map= new HashMap<>()
-	public static GearManager get(DHParameterKinematics b) {
-		if(map.get(b.getXml())==null) {
-			map.put(b.getXml(), new GearManager(b))
-		}
-		return map.get(b.getXml())
+	double thickness = 15.0
+	
+	public def clear() {
+		gears.clear()
+		map.clear();
 	}
-
 	private GearManager(DHParameterKinematics b) {
 		limb=b;
 	}
@@ -114,10 +115,17 @@ class GearManager{
 	}
 }
 return new ICadGenerator(){
+			private HashMap<String, GearManager>  map= new HashMap<>()
+			public  GearManager get(DHParameterKinematics b) {
+				if(map.get(b.getXml())==null) {
+					map.put(b.getXml(), new GearManager(b))
+				}
+				return map.get(b.getXml())
+			}
 			double motorGearPlateThickness = 10
 			@Override
 			public ArrayList<CSG> generateCad(DHParameterKinematics d, int linkIndex) {
-				GearManager gears = GearManager.get(d)
+				GearManager gears = this.get(d)
 				CSG spur = gears.getSpur(linkIndex)
 				double gearShaftCenterDistance = gears.getSerperation(0)
 				gears.getPinion(linkIndex)
@@ -189,16 +197,29 @@ return new ICadGenerator(){
 				//Do additional CAD and add to the running CoM
 				conf.setMassKg(totalMass)
 				conf.setCenterOfMassFromCentroid(centerOfMassFromCentroid)
-
-				//tmpSrv.setManipulator(manipulator)
-				//allCad.add(tmpSrv)
-				//println "Generating link: "+linkIndex
-
+				CSG sparD = new Cube(gears.thickness,d.getDH_D(linkIndex),gears.thickness).toCSG()
+						.toYMin()
+						.toZMin()
+				sparD.setManipulator(manipulator)
+				allCad.add(sparD)
+				d.addConnectionEventListener(new IDeviceConnectionEventListener (){
+					
+												/**
+												 * Called on the event of a connection object disconnect.
+												 *
+												 * @param source the source
+												 */
+												public void onDisconnect(BowlerAbstractDevice source) {
+													gears.clear()
+													allCad.clear()
+												}
+												public void onConnect(BowlerAbstractDevice source) {}
+											})
 				return allCad;
 			}
 			@Override
 			public ArrayList<CSG> generateBody(MobileBase b ) {
-
+				
 				def vitaminLocations = new HashMap<TransformNR,ArrayList<String>>()
 				ArrayList<CSG> allCad=new ArrayList<>();
 				double baseGrid = grid*2;
@@ -210,8 +231,20 @@ return new ICadGenerator(){
 				for(DHParameterKinematics d:b.getAllDHChains()) {
 					// Hardware to engineering units configuration
 					LinkConfiguration conf = d.getLinkConfiguration(0);
-					GearManager gears = GearManager.get(d)
-
+					GearManager gears = this.get(d)
+					b.addConnectionEventListener(new IDeviceConnectionEventListener (){
+						
+													/**
+													 * Called on the event of a connection object disconnect.
+													 *
+													 * @param source the source
+													 */
+													public void onDisconnect(BowlerAbstractDevice source) {
+														gears.clear()
+														allCad.clear()
+													}
+													public void onConnect(BowlerAbstractDevice source) {}
+												})
 					//CSG spur = gears.getSpur(0)
 					double gearShaftCenterDistance = gears.getSerperation(0)
 					// loading the vitamins referenced in the configuration
@@ -223,9 +256,10 @@ return new ICadGenerator(){
 					locationOfMotorMount.translateX(-gearShaftCenterDistance)
 					TransformNR pinionRoot = locationOfMotorMount.copy()
 					// move the motor down to allign with the shaft
-					locationOfMotorMount.translateZ(-zOffset)
 					if(locationOfBearing.getZ()>baseCoreheight)
 						baseCoreheight=locationOfBearing.getZ()
+					locationOfMotorMount.translateZ(-zOffset-motorGearPlateThickness)
+					pinionRoot.translateZ(-motorGearPlateThickness)
 					CSG pinion = gears.getPinion(0)
 							.transformed(TransformFactory.nrToCSG(locationOfBearing))
 					allCad.add(pinion)
