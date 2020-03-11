@@ -53,7 +53,6 @@ class GearManager{
 	
 	public def clear() {
 		gears.clear()
-		map.clear();
 	}
 	private GearManager(DHParameterKinematics b) {
 		limb=b;
