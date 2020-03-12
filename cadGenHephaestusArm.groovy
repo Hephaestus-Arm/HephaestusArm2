@@ -42,7 +42,6 @@ CSG moveDHValues(CSG incoming,DHLink dh ){
 	Transform move = com.neuronrobotics.bowlerstudio.physics.TransformFactory.nrToCSG(step)
 	return incoming.transformed(move)
 }
-
 class GearManager{
 	DHParameterKinematics limb
 	def gears=[];
@@ -196,6 +195,11 @@ return new ICadGenerator(){
 				//Do additional CAD and add to the running CoM
 				conf.setMassKg(totalMass)
 				conf.setCenterOfMassFromCentroid(centerOfMassFromCentroid)
+				CSG sparR = new Cube(d.getDH_R(linkIndex),gears.thickness,gears.thickness).toCSG()
+						.toXMax()
+						.toZMin()
+				sparR.setManipulator(manipulator)
+				allCad.add(sparR)
 				CSG sparD = new Cube(gears.thickness,d.getDH_D(linkIndex),gears.thickness).toCSG()
 						.toYMin()
 						.toZMin()
@@ -329,7 +333,7 @@ return new ICadGenerator(){
 						thrustBearingSize)
 				CSG baseCore = new Cylinder(thrustMeasurments.outerDiameter/2+5,baseCoreheight).toCSG()
 				CSG baseCoreshort = new Cylinder(thrustMeasurments.outerDiameter/2+5,baseCoreheight*3.0/4.0).toCSG()
-				CSG mountLug = new Cylinder(15,baseBoltThickness).toCSG().toZMax()
+				CSG mountLug = new Cylinder(15,15,baseBoltThickness,36).toCSG().toZMax()
 				CSG mountCap = Parabola.coneByHeight(15, 20)
 						.rotx(-90)
 						.toZMax()
