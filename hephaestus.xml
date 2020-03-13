@@ -26,9 +26,9 @@
 	<deviceName>hephaestus-37420007</deviceName>
 	<type>pidg-link</type>
 	<index>0</index>
-	<scale>0.029677353896103896</scale>
-	<upperLimit>1024.0</upperLimit>
-	<lowerLimit>-1024.0</lowerLimit>
+	<scale>0.028615552325581394</scale>
+	<upperLimit>4096.0</upperLimit>
+	<lowerLimit>-4096.0</lowerLimit>
 	<upperVelocity>1.0E8</upperVelocity>
 	<lowerVelocity>-1.0E8</lowerVelocity>
 	<staticOffset>0.0</staticOffset>
@@ -51,7 +51,7 @@
 
 	</vitamins>
 	<passive>false</passive>
-	<mass>0.040100000000000004</mass>
+	<mass>0.0391</mass>
 	<centerOfMassFromCentroid>	<x>0.0</x>
 	<y>0.0</y>
 	<z>0.0</z>
@@ -80,9 +80,9 @@
 	<deviceName>hephaestus-37420007</deviceName>
 	<type>pidg-link</type>
 	<index>1</index>
-	<scale>0.029677353896103896</scale>
-	<upperLimit>1024.0</upperLimit>
-	<lowerLimit>-1024.0</lowerLimit>
+	<scale>0.028615552325581394</scale>
+	<upperLimit>4096.0</upperLimit>
+	<lowerLimit>-4096.0</lowerLimit>
 	<upperVelocity>1.0E8</upperVelocity>
 	<lowerVelocity>-1.0E8</lowerVelocity>
 	<staticOffset>0.0</staticOffset>
@@ -134,9 +134,9 @@
 	<deviceName>hephaestus-37420007</deviceName>
 	<type>pidg-link</type>
 	<index>2</index>
-	<scale>0.087890625</scale>
-	<upperLimit>1024.0</upperLimit>
-	<lowerLimit>-1024.0</lowerLimit>
+	<scale>0.08657882462686567</scale>
+	<upperLimit>4096.0</upperLimit>
+	<lowerLimit>-4096.0</lowerLimit>
 	<upperVelocity>1.0E8</upperVelocity>
 	<lowerVelocity>-1.0E8</lowerVelocity>
 	<staticOffset>0.0</staticOffset>
@@ -225,7 +225,7 @@
 	<roty>-0.0</roty>
 	<rotz>-0.0</rotz>
 </baseToZframe>
-	<mass>0.057100000000000005</mass>
+	<mass>0.058100000000000006</mass>
 	<centerOfMassFromCentroid>	<x>0.0</x>
 	<y>0.0</y>
 	<z>0.0</z>

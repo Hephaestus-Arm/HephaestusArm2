@@ -141,23 +141,27 @@ return new ICadGenerator(){
 				// loading the vitamins referenced in the configuration
 				//CSG servo=   Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
 				TransformNR locationOfMotorMount = new TransformNR(dh.DhStep(0)).inverse()
-				if(linkIndex!=0)
+				if(linkIndex!=0) {
 					vitaminLocations.put(locationOfMotorMount, [
 						conf.getShaftType(),
 						conf.getShaftSize()
 					])
+					
+				}
 				CSG spurPlaced = spur.transformed(TransformFactory.nrToCSG(locationOfMotorMount))
 				spurPlaced.setManipulator(manipulator)
 				allCad.add(spurPlaced)
+				
 				if(linkIndex!=d.getNumberOfLinks()-1 ){
 					LinkConfiguration confPrior = d.getLinkConfiguration(i+1);
 					def vitaminType = confPrior.getElectroMechanicalType()
 					def vitaminSize = confPrior.getElectroMechanicalSize()
 					//println "Adding Motor "+vitaminType
-					vitaminLocations.put(new TransformNR(), [
+					vitaminLocations.put(new TransformNR(-gearShaftCenterDistance,0,0,new RotationNR()), [
 						vitaminType,
 						vitaminSize
 					])
+					
 				}
 
 				//CSG tmpSrv = moveDHValues(servo,dh)
@@ -197,14 +201,13 @@ return new ICadGenerator(){
 				conf.setCenterOfMassFromCentroid(centerOfMassFromCentroid)
 				CSG sparR = new Cube(d.getDH_R(linkIndex),gears.thickness,gears.thickness).toCSG()
 						.toXMax()
-						.toZMin()
 				sparR.setManipulator(manipulator)
 				allCad.add(sparR)
-				CSG sparD = new Cube(gears.thickness,d.getDH_D(linkIndex),gears.thickness).toCSG()
-						.toYMin()
-						.toZMin()
-				sparD.setManipulator(manipulator)
-				allCad.add(sparD)
+//				CSG sparD = new Cube(gears.thickness,d.getDH_D(linkIndex),gears.thickness).toCSG()
+//						.toYMin()
+//						.toZMin()
+//				sparD.setManipulator(manipulator)
+//				allCad.add(sparD)
 				d.addConnectionEventListener(new IDeviceConnectionEventListener (){
 					
 												/**
@@ -331,8 +334,9 @@ return new ICadGenerator(){
 				//Do additional CAD and add to the running CoM
 				def thrustMeasurments= Vitamins.getConfiguration("ballBearing",
 						thrustBearingSize)
-				CSG baseCore = new Cylinder(thrustMeasurments.outerDiameter/2+5,baseCoreheight).toCSG()
-				CSG baseCoreshort = new Cylinder(thrustMeasurments.outerDiameter/2+5,baseCoreheight*3.0/4.0).toCSG()
+				def baseCorRad = thrustMeasurments.outerDiameter/2+5
+				CSG baseCore = new Cylinder(baseCorRad,baseCorRad,baseCoreheight,36).toCSG()
+				CSG baseCoreshort = new Cylinder(baseCorRad,baseCorRad,baseCoreheight*3.0/4.0,36).toCSG()
 				CSG mountLug = new Cylinder(15,15,baseBoltThickness,36).toCSG().toZMax()
 				CSG mountCap = Parabola.coneByHeight(15, 20)
 						.rotx(-90)
