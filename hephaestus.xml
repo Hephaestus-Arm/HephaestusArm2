@@ -26,14 +26,16 @@
 	<deviceName>hephaestus-16c00486</deviceName>
 	<type>pidg-link</type>
 	<index>0</index>
-	<scale>-1</scale>
+	<scale>-1.0</scale>
 	<upperLimit>1024.0</upperLimit>
 	<lowerLimit>-1024.0</lowerLimit>
 	<upperVelocity>1.0E8</upperVelocity>
 	<lowerVelocity>-1.0E8</lowerVelocity>
 	<staticOffset>0.0</staticOffset>
+	<deviceTheoreticalMax>180.0</deviceTheoreticalMax>
+	<deviceTheoreticalMin>-180.0</deviceTheoreticalMin>
 	<isLatch>true</isLatch>
-	<indexLatch>235</indexLatch>
+	<indexLatch>235.0</indexLatch>
 	<isStopOnLatch>false</isStopOnLatch>
 	<homingTPS>10000000</homingTPS>
 
@@ -80,14 +82,16 @@
 	<deviceName>hephaestus-16c00486</deviceName>
 	<type>pidg-link</type>
 	<index>1</index>
-	<scale>-1</scale>
+	<scale>-1.0</scale>
 	<upperLimit>1024.0</upperLimit>
 	<lowerLimit>-1024.0</lowerLimit>
 	<upperVelocity>1.0E8</upperVelocity>
 	<lowerVelocity>-1.0E8</lowerVelocity>
 	<staticOffset>0.0</staticOffset>
+	<deviceTheoreticalMax>180.0</deviceTheoreticalMax>
+	<deviceTheoreticalMin>-180.0</deviceTheoreticalMin>
 	<isLatch>true</isLatch>
-	<indexLatch>128</indexLatch>
+	<indexLatch>128.0</indexLatch>
 	<isStopOnLatch>false</isStopOnLatch>
 	<homingTPS>10000000</homingTPS>
 
@@ -123,7 +127,7 @@
 
 	<DHParameters>
 		<Delta>0.0</Delta>
-		<Theta>0.0</Theta>
+		<Theta>-90.0</Theta>
 		<Radius>175.0</Radius>
 		<Alpha>0.0</Alpha>
 	</DHParameters>
@@ -134,14 +138,16 @@
 	<deviceName>hephaestus-16c00486</deviceName>
 	<type>pidg-link</type>
 	<index>2</index>
-	<scale>-1</scale>
-	<upperLimit>1024.0</upperLimit>
-	<lowerLimit>-1024.0</lowerLimit>
+	<scale>1.0</scale>
+	<upperLimit>90.0</upperLimit>
+	<lowerLimit>-90.0</lowerLimit>
 	<upperVelocity>1.0E8</upperVelocity>
 	<lowerVelocity>-1.0E8</lowerVelocity>
 	<staticOffset>0.0</staticOffset>
+	<deviceTheoreticalMax>180.0</deviceTheoreticalMax>
+	<deviceTheoreticalMin>-180.0</deviceTheoreticalMin>
 	<isLatch>true</isLatch>
-	<indexLatch>121</indexLatch>
+	<indexLatch>121.0</indexLatch>
 	<isStopOnLatch>false</isStopOnLatch>
 	<homingTPS>10000000</homingTPS>
 
