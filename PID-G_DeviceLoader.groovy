@@ -13,6 +13,7 @@ import com.neuronrobotics.sdk.addons.kinematics.AbstractLink
 import com.neuronrobotics.sdk.addons.kinematics.AbstractRotoryLink
 import com.neuronrobotics.sdk.addons.kinematics.INewLinkProvider
 import com.neuronrobotics.sdk.addons.kinematics.LinkConfiguration
+import com.neuronrobotics.sdk.addons.kinematics.LinkFactory
 import com.neuronrobotics.sdk.addons.kinematics.imu.*;
 import edu.wpi.SimplePacketComs.BytePacketType;
 import edu.wpi.SimplePacketComs.FloatPacketType;
@@ -21,98 +22,258 @@ import edu.wpi.SimplePacketComs.phy.UDPSimplePacketComs;
 import edu.wpi.SimplePacketComs.device.gameController.*;
 import edu.wpi.SimplePacketComs.device.*
 
-public class HephaestusArm extends HIDSimplePacketComs{
-	PacketType pollingPacket = new FloatPacketType(1,64);
-	PacketType pidPacket = new FloatPacketType(2,64);
-	PacketType PDVelPacket = new FloatPacketType(48,64);
-	PacketType SetVelocity = new FloatPacketType(42,64);
-	PacketType gripperPacket = new FloatPacketType(3,64);
-	String name=null
-	String getName(){
-		return name;
+import java.util.Arrays;
+
+import edu.wpi.SimplePacketComs.FloatPacketType;
+import edu.wpi.SimplePacketComs.PacketType;
+public class NumberOfPID {
+	private int myNum = -1;
+
+	public int getMyNum() {
+		return myNum;
 	}
-	void setName(String n){
-		name =n
+
+	public void setMyNum(int myNum) {
+		this.myNum = myNum;
 	}
-	public HephaestusArm(int vidIn, int pidIn, String n) {
-		super(vidIn, pidIn);
-		name =n
-		pidPacket.oneShotMode();
-		pidPacket.sendOk();
-		PDVelPacket.oneShotMode();		
-		PDVelPacket.sendOk();
-		SetVelocity.oneShotMode();
-		SetVelocity.sendOk();
-		gripperPacket.oneShotMode();
-		gripperPacket.sendOk();
-		for (PacketType pt : Arrays.asList(pollingPacket, pidPacket, PDVelPacket, SetVelocity,gripperPacket)) {
+	
+
+}
+
+public class RBE3001Robot  extends HIDSimplePacketComs{
+	FloatPacketType setSetpoint = new FloatPacketType(1848, 64);
+	FloatPacketType pidStatus = new FloatPacketType(1910, 64);
+	FloatPacketType getConfig = new FloatPacketType(1857, 64);
+	FloatPacketType setConfig = new FloatPacketType(1900, 64);
+
+	PacketType SetPIDVelocity = new FloatPacketType(1811, 64);
+	PacketType SetPDVelocityConstants = new FloatPacketType(1810, 64);
+	PacketType GetPIDVelocity = new FloatPacketType(1822, 64);
+	PacketType GetPDVelocityConstants = new FloatPacketType(1825, 64);
+
+	double[] numPID = new double[1];
+	double[] pidConfigData = new double[15];
+	double[] pidVelConfigData = new double[15];
+
+	double[] piddata = new double[15];
+	double[] veldata = new double[15];
+	NumberOfPID myNum = new NumberOfPID();
+
+	 void setupPidCommands(int numPID) {
+		//new Exception().printStackTrace();
+		myNum.setMyNum(numPID);
+		SetPIDVelocity.waitToSendMode();
+		SetPDVelocityConstants.waitToSendMode();
+		GetPIDVelocity.pollingMode();
+		GetPDVelocityConstants.oneShotMode();
+
+		getConfig.oneShotMode();
+		setConfig.waitToSendMode();
+		setSetpoint.waitToSendMode();
+
+		for (PacketType pt : Arrays.asList(pidStatus, getConfig, setConfig, setSetpoint, SetPIDVelocity,
+				SetPDVelocityConstants, GetPIDVelocity, GetPDVelocityConstants)) {
 			addPollingPacket(pt);
 		}
+
+		addEvent(GetPDVelocityConstants.idOfCommand,  {
+			try {
+				readFloats(GetPDVelocityConstants.idOfCommand, pidVelConfigData);
+				for (int i = 0; i < 3; i++) {
+					System.out.print("\n vp " + getVKp(i));
+					System.out.print(" vd " + getVKd(i));
+					System.out.println("");
+				}
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		});
+
+		addEvent(getConfig.idOfCommand,  {
+			try {
+				readFloats(getConfig.idOfCommand, pidConfigData);
+				for (int i = 0; i < 3; i++) {
+					System.out.print("\n p " + getKp(i));
+					System.out.print(" i " + getKi(i));
+					System.out.print(" d " + getKd(i));
+					System.out.println("");
+				}
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		});
+
+		addEvent(pidStatus.idOfCommand,  {
+			try {
+				if (piddata == null) {
+					// piddata = new double[15];
+					readFloats(pidStatus.idOfCommand, piddata);
+				}
+				readFloats(pidStatus.idOfCommand, piddata);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		});
+		addEvent(GetPIDVelocity.idOfCommand,  {
+			try {
+				if (veldata == null) {
+					// veldata = new double[15];
+					readFloats(GetPIDVelocity.idOfCommand, veldata);
+				}
+				readFloats(GetPIDVelocity.idOfCommand, veldata);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		});
 	}
-	public void addPollingPacketEvent(Runnable event) {
-		addEvent(pollingPacket.idOfCommand, event);
+
+	 public double getNumPid() {
+		return myNum.getMyNum();
 	}
-	public void setValues(int index,float position, float velocity, float force){
-		pollingPacket.getDownstream()[(index*3)+0] = position;
-		pollingPacket.getDownstream()[(index*3)+1] = velocity;
-		pollingPacket.getDownstream()[(index*3)+2] = force;
-		//println "Setting Downstream "+downstream
+
+	 public double getPidSetpoint(int index) {
+
+		return pidStatus.getUpstream()[1 + index * 2 + 0].doubleValue();
 	}
-	public void setGripperPosition(float position){
-		gripperPacket.getDownstream()[0] = position;
-		gripperPacket.oneShotMode();
+
+	 public double getPidPosition(int index) {
+		return pidStatus.getUpstream()[1 + index * 2 + 1].doubleValue();
 	}
-	public void setPIDGains(int index,float kp, float ki, float kd){
-		
-		pidPacket.getDownstream()[(index*3)+0] = kp;
-		pidPacket.getDownstream()[(index*3)+1] = ki;
-		pidPacket.getDownstream()[(index*3)+2] = kd;
-		//println "Setting Downstream "+downstream
+
+	/**
+	 * Velocity domain values
+	 *
+	 * @param index
+	 * @return
+	 */
+	 public double getHardwareOutput(int index) {
+		return GetPIDVelocity.getUpstream()[1 + index * 3 + 2].doubleValue();
 	}
-	public void pushPIDGains(){
-		pidPacket.oneShotMode();
+
+	 public double getVelocity(int index) {
+		return GetPIDVelocity.getUpstream()[1 + index * 3 + 1].doubleValue();
 	}
-	public void setPDVelGains(int index,float kp, float kd){
-		
-		PDVelPacket.getDownstream()[(index*2)+0] = kp;
-		PDVelPacket.getDownstream()[(index*2)+1] = kd;
-		//println "Setting Downstream "+downstream
+
+	 public double getVelSetpoint(int index) {
+
+		return GetPIDVelocity.getUpstream()[1 + index * 3 + 0].doubleValue();
 	}
-	public void pushPDVelGains(){
-		PDVelPacket.oneShotMode();
+
+	 public void updatConfig() {
+		getConfig.oneShotMode();
+		GetPDVelocityConstants.oneShotMode();
 	}
-	public void setVelocity(int index,float TPS){
-		SetVelocity.getDownstream()[index] = TPS;
-		//println "Setting Downstream "+downstream
+
+	 public void setPidGains(int index, double kp, double ki, double kd) {
+		pidConfigData[3 * index + 0] = kp;
+		pidConfigData[3 * index + 1] = ki;
+		pidConfigData[3 * index + 2] = kd;
+		writeFloats(setConfig.idOfCommand, pidConfigData);
+		setConfig.oneShotMode();
+
 	}
-	public void pushVelocity(){
-		SetVelocity.oneShotMode();
+
+	 public double getKp(int index) {
+		readFloats(getConfig.idOfCommand, pidConfigData);
+		return pidConfigData[(3 * index) + 0];
 	}
-	public List<Double> getValues(int index){
-		List<Double> back= new ArrayList<>();
-	
-		back.add(pollingPacket.getUpstream()[(index*3)+0].doubleValue()) ;
-		back.add( pollingPacket.getUpstream()[(index*3)+1].doubleValue());
-		back.add(pollingPacket.getUpstream()[(index*3)+2].doubleValue());
-		
-		return back;
+
+	 public double getKi(int index) {
+		readFloats(getConfig.idOfCommand, pidConfigData);
+		return pidConfigData[(3 * index) + 1];
 	}
-	public double getPosition(int index) {
-		return pollingPacket.getUpstream()[(index*3)+0].doubleValue();
+
+	 public double getKd(int index) {
+		readFloats(getConfig.idOfCommand, pidConfigData);
+		return pidConfigData[(3 * index) + 2];
 	}
-	
-	public Number[] getRawValues(){
-		return pollingPacket.getUpstream();
+
+	 public double getVKp(int index) {
+		readFloats(GetPDVelocityConstants.idOfCommand, pidVelConfigData);
+		return pidVelConfigData[(3 * index) + 0];
 	}
-	public void setRawValues(Number[] set){
-		for(int i=0;i<set.length&&i<pollingPacket.getDownstream().length;i++) {
-			pollingPacket.getDownstream()[i]=set[i];
+
+	 public double getVKd(int index) {
+		readFloats(GetPDVelocityConstants.idOfCommand, pidVelConfigData);
+		return pidVelConfigData[(3 * index) + 2];
+	}
+	 public double getVKi(int index) {
+		readFloats(GetPDVelocityConstants.idOfCommand, pidVelConfigData);
+		return pidVelConfigData[(3 * index) + 1];
+	}
+	 public void setVelocityGains(int index, double kp, double ki,double kd) {
+		pidVelConfigData[3 * index + 0] = kp;
+		pidVelConfigData[3 * index + 1] = ki;
+		pidVelConfigData[3 * index + 2] = kd;
+		writeFloats(SetPDVelocityConstants.idOfCommand, pidVelConfigData);
+		SetPDVelocityConstants.oneShotMode();
+	}
+
+	 public void setPidSetpoints(int msTransition, int mode, double[] data) {
+		def down = new double[2 + getMyNumPid()];
+		down[0] = msTransition;
+		down[1] = mode;
+		for (int i = 0; i < getMyNumPid(); i++) {
+			down[2 + i] = data[i];
 		}
+		writeFloats(setSetpoint.idOfCommand, down);
+		setSetpoint.oneShotMode();
+
 	}
-	
+
+	 public void setPidSetpoint(int msTransition, int mode, int index, double data) {
+		double[] cur = new double[getMyNumPid()];
+		for (int i = 0; i < getMyNumPid(); i++) {
+			if (i == index)
+				cur[index] = data;
+			else
+				cur[i] = getPidSetpoint(i);
+		}
+		cur[index] = data;
+		setPidSetpoints(msTransition, mode, cur);
+
+	}
+
+	 public void setVelocity(int index, double data) {
+		double[] cur = new double[getMyNumPid()];
+		for (int i = 0; i < getMyNumPid(); i++) {
+			if (i == index)
+				cur[index] = data;
+			else
+				cur[i] = getVelSetpoint(i);
+		}
+		cur[index] = data;
+		setVelocity(cur);
+
+	}
+
+	 public void setVelocity(double[] data) {
+		writeFloats(SetPIDVelocity.idOfCommand, data);
+		SetPIDVelocity.oneShotMode();
+
+	}
+
+	 public int getMyNumPid() {
+		return myNum.getMyNum();
+	}
+
+	 public void setMyNumPid(int myNumPid) {
+		if (myNumPid > 0)
+			myNum.setMyNum(myNumPid);
+		throw new RuntimeException("Can not have 0 PID");
+	}
+
+	 public void stop(int currentIndex) {
+		setPidSetpoint(0, 0, currentIndex, getPidPosition(currentIndex));
+	}
+	@Override
+	public String toString() {
+		return getName();
+	}
 }
+
 public class HIDRotoryLink extends AbstractRotoryLink{
-	def device;
+	RBE3001Robot device;
 	int index =0;
 	int lastPushedVal = 0;
 	/**
@@ -121,13 +282,16 @@ public class HIDRotoryLink extends AbstractRotoryLink{
 	 * @param c the c
 	 * @param conf the conf
 	 */
-	public HIDRotoryLink(def c,LinkConfiguration conf) {
+	public HIDRotoryLink(RBE3001Robot c,LinkConfiguration conf) {
 		super(conf);
+		conf.setDeviceTheoreticalMax(180);
+		conf.setDeviceTheoreticalMin(-180);
+		
 		index = conf.getHardwareIndex()
 		device=c
 		if(device ==null)
 			throw new RuntimeException("Device can not be null")
-		c.addEvent(1,{
+		c.addEvent(1910,{
 			int val= getCurrentPosition();
 			if(lastPushedVal!=val){
 				//println "Fire Link Listner "+index+" value "+getCurrentPosition()
@@ -143,7 +307,7 @@ public class HIDRotoryLink extends AbstractRotoryLink{
 	 */
 	@Override
 	public void cacheTargetValueDevice() {
-		device.setValues(index,(float)getTargetValue(),(float)0,(float)0)
+		device.setPidSetpoint(0,0,index,(float)getTargetValue())
 	}
 
 	/* (non-Javadoc)
@@ -167,7 +331,7 @@ public class HIDRotoryLink extends AbstractRotoryLink{
 	 */
 	@Override
 	public double getCurrentPosition() {
-		return device.getPosition(index);
+		return device.getPidPosition(index);
 	}
 
 }
@@ -192,7 +356,7 @@ INewLinkProvider provider= new INewLinkProvider() {
 			
 		}
 		def dev = DeviceManager.getSpecificDevice( searchName,{
-			def d = new HephaestusArm(vid,pid,searchName)
+			def d = new RBE3001Robot(vid,pid,searchName)
 			d.connect(); // Connect to it.
 			if(d.isVirtual()){
 				println "\n\n\nDevice is in virtual mode!\n\n\n"
