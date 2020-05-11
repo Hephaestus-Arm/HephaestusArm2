@@ -1,7 +1,7 @@
 <root>
 <mobilebase>
 	<cadEngine>
-		<git>https://github.com/madhephaestus/HephaestusArm2.git</git>
+		<git>https://github.com/Hephaestus-Arm/HephaestusArm2.git</git>
 		<file>cadGenHephaestusArm.groovy</file>
 	</cadEngine>
 	<driveEngine>
@@ -14,7 +14,7 @@
 
 <name>HephaestusArmLimbOne</name>
 	<cadEngine>
-		<git>https://github.com/madhephaestus/HephaestusArm2.git</git>
+		<git>https://github.com/Hephaestus-Arm/HephaestusArm2.git</git>
 		<file>cadGenHephaestusArm.groovy</file>
 	</cadEngine>
 	<kinematics>

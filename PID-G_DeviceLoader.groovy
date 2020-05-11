@@ -58,7 +58,13 @@ public class RBE3001Robot  extends HIDSimplePacketComs{
 	double[] piddata = new double[15];
 	double[] veldata = new double[15];
 	NumberOfPID myNum = new NumberOfPID();
-
+	public RBE3001Robot(int vidIn, int pidIn) throws Exception {
+		super(vidIn,  pidIn);
+		setupPidCommands(3);
+		connect();
+		if(isVirtual())
+			throw new RuntimeException("Device is virtual!");
+	}
 	 void setupPidCommands(int numPID) {
 		//new Exception().printStackTrace();
 		myNum.setMyNum(numPID);
@@ -356,7 +362,8 @@ INewLinkProvider provider= new INewLinkProvider() {
 			
 		}
 		def dev = DeviceManager.getSpecificDevice( searchName,{
-			def d = new RBE3001Robot(vid,pid,searchName)
+			RBE3001Robot d = new RBE3001Robot(vid,pid)
+			d.setName(searchName);
 			d.connect(); // Connect to it.
 			if(d.isVirtual()){
 				println "\n\n\nDevice is in virtual mode!\n\n\n"
