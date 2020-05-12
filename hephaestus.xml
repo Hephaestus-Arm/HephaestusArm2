@@ -42,13 +42,13 @@
 	<vitamins>
 		<vitamin>
 			<name>electroMechanical</name>
-			<type>brushlessMotor</type>
-			<id>GBM2804H_100T</id>
+			<type>LewanSoulMotor</type>
+			<id>lx_224</id>
 		</vitamin>
 		<vitamin>
 			<name>shaft</name>
-			<type>brushlessMotorShaft</type>
-			<id>TL2955</id>
+			<type>LewanSoulHorn</type>
+			<id>round</id>
 		</vitamin>
 
 	</vitamins>
@@ -98,13 +98,13 @@
 	<vitamins>
 		<vitamin>
 			<name>electroMechanical</name>
-			<type>brushlessMotor</type>
-			<id>GBM2804H_100T</id>
+			<type>LewanSoulMotor</type>
+			<id>lx_224</id>
 		</vitamin>
 		<vitamin>
 			<name>shaft</name>
-			<type>brushlessMotorShaft</type>
-			<id>TL2955</id>
+			<type>LewanSoulHorn</type>
+			<id>round</id>
 		</vitamin>
 
 	</vitamins>
@@ -154,13 +154,13 @@
 	<vitamins>
 		<vitamin>
 			<name>electroMechanical</name>
-			<type>brushlessMotor</type>
-			<id>GBM2804H_100T</id>
+			<type>LewanSoulMotor</type>
+			<id>lx_224</id>
 		</vitamin>
 		<vitamin>
 			<name>shaft</name>
-			<type>brushlessMotorShaft</type>
-			<id>TL2955</id>
+			<type>LewanSoulHorn</type>
+			<id>round</id>
 		</vitamin>
 
 	</vitamins>
