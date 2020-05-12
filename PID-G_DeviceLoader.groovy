@@ -213,7 +213,7 @@ public class RBE3001Robot  extends HIDSimplePacketComs{
 
 	public double getPidPosition(int index) {
 		if(isVirtual()) {
-			def val=setSetpoint.getDownstream()[index+2]
+			def val=setSetpoint.getDownstream()[index+2].doubleValue()
 			//println "Virtual getPosition "+index+" "+val
 			return val;
 		}
@@ -238,7 +238,7 @@ public class RBE3001Robot  extends HIDSimplePacketComs{
 			if (i == index)
 				cur[index] = data;
 			else
-				cur[i] = getPidSetpoint(i);
+				cur[i] = setSetpoint.getDownstream()[i+2].doubleValue()
 		}
 		cur[index] = data;
 		setPidSetpoints(msTransition, mode, cur);
@@ -303,10 +303,10 @@ public class HIDRotoryLink extends AbstractRotoryLink{
 		if(device ==null)
 			throw new RuntimeException("Device can not be null")
 		c.addEvent(1910,{
-			int val= getCurrentPosition();
+			int val= getCurrentPosition()*100;
 			if(lastPushedVal!=val){
 				//println "Fire Link Listner "+index+" value "+getCurrentPosition()
-				fireLinkListener(val);
+				fireLinkListener(getCurrentPosition());
 			}
 			lastPushedVal=val
 		})
