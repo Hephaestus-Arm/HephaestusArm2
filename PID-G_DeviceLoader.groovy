@@ -62,8 +62,8 @@ public class RBE3001Robot  extends HIDSimplePacketComs{
 		super(vidIn,  pidIn);
 		setupPidCommands(3);
 		connect();
-		if(isVirtual())
-			throw new RuntimeException("Device is virtual!");
+//		if(isVirtual())
+//			throw new RuntimeException("Device is virtual!");
 	}
 	 void setupPidCommands(int numPID) {
 		//new Exception().printStackTrace();
@@ -143,6 +143,8 @@ public class RBE3001Robot  extends HIDSimplePacketComs{
 	}
 
 	 public double getPidPosition(int index) {
+		if(isVirtual())
+			 return setSetpoint.getDownstream()[1 + index * 2 + 0].doubleValue();
 		return pidStatus.getUpstream()[1 + index * 2 + 1].doubleValue();
 	}
 
