@@ -135,10 +135,6 @@ public class RBE3001Robot  extends HIDSimplePacketComs{
 		return myNum.getMyNum();
 	}
 
-	public double getPidSetpoint(int index) {
-
-		return pidStatus.getUpstream()[1 + index * 2 + 0].doubleValue();
-	}
 
 
 
@@ -210,9 +206,14 @@ public class RBE3001Robot  extends HIDSimplePacketComs{
 		writeFloats(SetPDVelocityConstants.idOfCommand, pidVelConfigData);
 		SetPDVelocityConstants.oneShotMode();
 	}
+	public double getPidSetpoint(int index) {
+
+		return pidStatus.getUpstream()[1 + index * 2 + 0].doubleValue();
+	}
+
 	public double getPidPosition(int index) {
 		if(isVirtual()) {
-			def val=setSetpoint.getDownstream()[1 + index * 2 + 0].doubleValue()
+			def val=setSetpoint.getDownstream()[index+2]
 			//println "Virtual getPosition "+index+" "+val
 			return val;
 		}
@@ -231,7 +232,7 @@ public class RBE3001Robot  extends HIDSimplePacketComs{
 	}
 
 	public void setPidSetpoint(int msTransition, int mode, int index, double data) {
-		println "Link "+index+" to "+data
+
 		double[] cur = new double[getMyNumPid()];
 		for (int i = 0; i < getMyNumPid(); i++) {
 			if (i == index)
