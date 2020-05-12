@@ -35,7 +35,7 @@
 	<deviceTheoreticalMax>180.0</deviceTheoreticalMax>
 	<deviceTheoreticalMin>-180.0</deviceTheoreticalMin>
 	<isLatch>true</isLatch>
-	<indexLatch>235.0</indexLatch>
+	<indexLatch>180.0</indexLatch>
 	<isStopOnLatch>false</isStopOnLatch>
 	<homingTPS>10000000</homingTPS>
 
@@ -70,7 +70,7 @@
 	<rotz>-0.0</rotz></imuFromCentroid>
 
 	<DHParameters>
-		<Delta>135.0</Delta>
+		<Delta>75.0</Delta>
 		<Theta>0.0</Theta>
 		<Radius>0.0</Radius>
 		<Alpha>-90.0</Alpha>
@@ -128,7 +128,7 @@
 	<DHParameters>
 		<Delta>0.0</Delta>
 		<Theta>-90.0</Theta>
-		<Radius>175.0</Radius>
+		<Radius>92.5</Radius>
 		<Alpha>0.0</Alpha>
 	</DHParameters>
 
@@ -183,8 +183,8 @@
 
 	<DHParameters>
 		<Delta>0.0</Delta>
-		<Theta>90.0</Theta>
-		<Radius>169.28</Radius>
+		<Theta>69.00000000000001</Theta>
+		<Radius>86.26</Radius>
 		<Alpha>0.0</Alpha>
 	</DHParameters>
 
