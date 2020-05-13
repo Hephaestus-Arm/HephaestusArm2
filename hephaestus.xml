@@ -53,7 +53,7 @@
 
 	</vitamins>
 	<passive>false</passive>
-	<mass>0.063</mass>
+	<mass>0.074</mass>
 	<centerOfMassFromCentroid>	<x>0.0</x>
 	<y>0.0</y>
 	<z>0.0</z>
@@ -70,7 +70,7 @@
 	<rotz>-0.0</rotz></imuFromCentroid>
 
 	<DHParameters>
-		<Delta>75.0</Delta>
+		<Delta>40.0</Delta>
 		<Theta>0.0</Theta>
 		<Radius>0.0</Radius>
 		<Alpha>-90.0</Alpha>
@@ -183,7 +183,7 @@
 
 	<DHParameters>
 		<Delta>0.0</Delta>
-		<Theta>69.00000000000001</Theta>
+		<Theta>90.0</Theta>
 		<Radius>86.26</Radius>
 		<Alpha>0.0</Alpha>
 	</DHParameters>
@@ -231,7 +231,7 @@
 	<roty>-0.0</roty>
 	<rotz>-0.0</rotz>
 </baseToZframe>
-	<mass>0.14500000000000002</mass>
+	<mass>0.14300000000000002</mass>
 	<centerOfMassFromCentroid>	<x>0.0</x>
 	<y>0.0</y>
 	<z>0.0</z>

@@ -52,6 +52,8 @@ return new ICadGenerator(){
 	//				return map.get(b.getXml())
 	//			}
 	double motorGearPlateThickness = 10
+	def thrustBearingSize = "Thrust_1andAHalfinch"
+	double centerTheMotorsValue=20;
 	@Override
 	public ArrayList<CSG> generateCad(DHParameterKinematics d, int linkIndex) {
 		def vitaminLocations = new HashMap<TransformNR,ArrayList<String>>()
@@ -67,22 +69,36 @@ return new ICadGenerator(){
 		Affine manipulator = dh.getListener();
 		// loading the vitamins referenced in the configuration
 		//CSG servo=   Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
+		CSG motorModel=   Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
+		double zOffset = motorModel.getMaxZ()
 		TransformNR locationOfMotorMount = new TransformNR(dh.DhStep(0)).inverse()
-		if(linkIndex!=0) {
-			vitaminLocations.put(locationOfMotorMount, [
+		def shaftLocation = locationOfMotorMount.copy()
+		if(linkIndex==0)
+			shaftLocation.translateY(zOffset)
+		else
+			shaftLocation.translateZ(centerTheMotorsValue)
+		vitaminLocations.put(shaftLocation, [
 				conf.getShaftType(),
 				conf.getShaftSize()
+		])
+		if(linkIndex==0) {
+			TransformNR locationOfBearing = locationOfMotorMount.copy()
+			vitaminLocations.put(locationOfBearing.copy().translateY(1), [
+				"ballBearing",
+				thrustBearingSize
 			])
-
 		}
-
+		
 
 		if(linkIndex!=d.getNumberOfLinks()-1 ){
 			LinkConfiguration confPrior = d.getLinkConfiguration(i+1);
 			def vitaminType = confPrior.getElectroMechanicalType()
 			def vitaminSize = confPrior.getElectroMechanicalSize()
 			//println "Adding Motor "+vitaminType
-			vitaminLocations.put(new TransformNR(0,0,0,new RotationNR()), [
+			def motorLocation = new TransformNR(0,0,centerTheMotorsValue,new RotationNR())
+			if(linkIndex==0)
+				motorLocation=motorLocation.times(new TransformNR(0,0,0,new RotationNR(0,180,0)))
+			vitaminLocations.put(motorLocation, [
 				vitaminType,
 				vitaminSize
 			])
@@ -141,8 +157,7 @@ return new ICadGenerator(){
 	 * @param source the source
 	 */
 					public void onDisconnect(BowlerAbstractDevice source) {
-						gears.clear()
-						allCad.clear()
+							allCad.clear()
 					}
 					public void onConnect(BowlerAbstractDevice source) {}
 				})
@@ -157,7 +172,7 @@ return new ICadGenerator(){
 		double baseBoltThickness=15;
 		double baseCoreheight = 1;
 		String boltsize = "M5x25"
-		def thrustBearingSize = "Thrust_1andAHalfinch"
+		
 
 		for(DHParameterKinematics d:b.getAllDHChains()) {
 			// Hardware to engineering units configuration
@@ -211,9 +226,9 @@ return new ICadGenerator(){
 		def insertMeasurments= Vitamins.getConfiguration(insert[0],
 				insert[1])
 		def mountLoacions = [
-			new TransformNR(baseGrid,-baseGrid,0,new RotationNR(180,0,0)),
-			new TransformNR(-baseGrid,baseGrid,0,new RotationNR(180,0,0)),
-			new TransformNR(-baseGrid,-baseGrid,0,new RotationNR(180,0,0))
+			new TransformNR(baseGrid,0,0,new RotationNR(180,0,0)),
+			new TransformNR(-baseGrid,baseGrid*2,0,new RotationNR(180,0,0)),
+			new TransformNR(-baseGrid,-2*baseGrid,0,new RotationNR(180,0,0))
 		]
 
 		mountLoacions.forEach{
@@ -286,6 +301,7 @@ return new ICadGenerator(){
 				.difference(allCad)
 		// add it to the return list
 		Base.setManipulator(b.getRootListener())
+		allCad.clear()
 		allCad.add(Base)
 
 		//allCad.add(vitamin_roundMotor_WPI_gb37y3530_50en)
