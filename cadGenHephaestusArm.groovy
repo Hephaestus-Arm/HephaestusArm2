@@ -211,7 +211,6 @@ return new ICadGenerator(){
 		def insertMeasurments= Vitamins.getConfiguration(insert[0],
 				insert[1])
 		def mountLoacions = [
-			new TransformNR(baseGrid,baseGrid,0,new RotationNR(180,0,0)),
 			new TransformNR(baseGrid,-baseGrid,0,new RotationNR(180,0,0)),
 			new TransformNR(-baseGrid,baseGrid,0,new RotationNR(180,0,0)),
 			new TransformNR(-baseGrid,-baseGrid,0,new RotationNR(180,0,0))
