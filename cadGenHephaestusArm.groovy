@@ -241,13 +241,13 @@ return new ICadGenerator(){
 			
 			def mountMotorSide = linkBuildingBlockRound
 										.movez(centerTheMotorsValue)
-										.movex(-20-movingPartClearence)
+										.movex(-21-movingPartClearence)
 			def mountPassiveSide = linkBuildingBlockRound
 										.movez(-centerTheMotorsValue-linkThickness)
-										.movex(-20-movingPartClearence)
+										.movex(-21-movingPartClearence)
 		   def mountPassiveSideAlligned = linkBuildingBlockRound
 										.movez(centerlineToOuterSurfaceNegativeZ)
-										.movex(-20-movingPartClearence)
+										.movex(-21-movingPartClearence)
 			def clearencelugMotorSide = mountMotorSide.movex(-dh.getR()+bracketOneKeepawayDistance)
 			def clearencelugPassiveSide = mountPassiveSide.movex(-dh.getR()+bracketOneKeepawayDistance)
 			
