@@ -63,6 +63,8 @@ return new ICadGenerator(){
 	double linkYDimention = 20;
 	double GripperServoYOffset = 35
 	String boltsize = "M5x25"
+	double centerlineToOuterSurfacePositiveZ = centerTheMotorsValue+movingPartClearence+linkThickness-1
+	double centerlineToOuterSurfaceNegativeZ = -(centerTheMotorsValue+movingPartClearence+linkThickness)
 	@Override
 	public ArrayList<CSG> generateCad(DHParameterKinematics d, int linkIndex) {
 		def vitaminLocations = new HashMap<TransformNR,ArrayList<String>>()
@@ -83,8 +85,7 @@ return new ICadGenerator(){
 									.toZMin()
 									.movey(-5)
 		CSG linkBuildingBlockRound = new Cylinder(linkYDimention/2,linkThickness).toCSG()
-		double centerlineToOuterSurfacePositiveZ = centerTheMotorsValue+movingPartClearence+linkThickness-1
-		double centerlineToOuterSurfaceNegativeZ = -(centerTheMotorsValue+movingPartClearence+linkThickness)
+	
 		
 		double zOffset = motorModel.getMaxZ()
 		TransformNR locationOfMotorMount = new TransformNR(dh.DhStep(0)).inverse()
