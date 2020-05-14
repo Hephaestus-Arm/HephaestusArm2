@@ -501,11 +501,11 @@ return new ICadGenerator(){
 		CSG baseCore = new Cylinder(baseCorRad,baseCorRad,baseCoreheight,36).toCSG()
 		CSG baseCoreshort = new Cylinder(baseCorRad,baseCorRad,baseCoreheight*3.0/4.0,36).toCSG()
 		CSG mountLug = new Cylinder(15,15,baseBoltThickness,36).toCSG().toZMax()
-		CSG mountCap = Parabola.coneByHeight(15, 20)
+		CSG mountCap = Parabola.coneByHeight(15, 8)
 				.rotx(-90)
 				.toZMax()
 				.movez(-baseBoltThickness)
-		CSG mountUnit= mountLug
+		CSG mountUnit= mountLug.union(mountCap)
 		def coreParts=[baseCore]
 		mountLoacions.forEach{
 			def place =com.neuronrobotics.bowlerstudio.physics.TransformFactory.nrToCSG(it)
@@ -531,6 +531,7 @@ return new ICadGenerator(){
 										.toYMin()
 										.transformed(calibrationFrame)
 										.toZMin()
+										
 		// assemble the base
 		def calibrationTipKeepaway =new Cylinder(linkYDimention/2,
 											centerlineToOuterSurfacePositiveZ-centerlineToOuterSurfaceNegativeZ).toCSG()
@@ -539,6 +540,7 @@ return new ICadGenerator(){
 		coreParts.add(calibrationTipKeepaway)							
 		def Base = CSG.unionAll(coreParts)
 				.union(calibrationFramemountUnit)
+				.union(calibrationFramemountUnit.mirrory())
 				//.difference(vitamin_roundMotor_WPI_gb37y3530bracketOneKeepawayDistanceen)
 				.difference(allCad)
 				.difference(calibrationTipKeepaway)
