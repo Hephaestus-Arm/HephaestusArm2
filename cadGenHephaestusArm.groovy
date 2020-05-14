@@ -505,6 +505,7 @@ return new ICadGenerator(){
 				.rotx(-90)
 				.toZMax()
 				.movez(-baseBoltThickness)
+		CSG mountUnit= mountLug
 		def coreParts=[baseCore]
 		mountLoacions.forEach{
 			def place =com.neuronrobotics.bowlerstudio.physics.TransformFactory.nrToCSG(it)
@@ -517,12 +518,30 @@ return new ICadGenerator(){
 					.transformed(place)
 					)
 		}
-
+		def locationOfCalibration = new TransformNR(0,-50,15, new RotationNR())
+		DHParameterKinematics dev = b.getAllDHChains().get(0)
+		dev.setDesiredTaskSpaceTransform(locationOfCalibration, 0);
+		def jointSpaceVect = dev.inverseKinematics(dev.inverseOffset(locationOfCalibration));
+		println "\n\nCalibration Values "+jointSpaceVect+"\n\n"
+		
+		def calibrationFrame = TransformFactory.nrToCSG(locationOfCalibration)
+								.movex(centerlineToOuterSurfaceNegativeZ)
+		def calibrationFramemountUnit=mountUnit
+										.rotx(180)
+										.toYMin()
+										.transformed(calibrationFrame)
+										.toZMin()
 		// assemble the base
-
+		def calibrationTipKeepaway =new Cylinder(linkYDimention/2,
+											centerlineToOuterSurfacePositiveZ-centerlineToOuterSurfaceNegativeZ).toCSG()
+											.roty(-90)
+									.transformed(calibrationFrame)
+		coreParts.add(calibrationTipKeepaway)							
 		def Base = CSG.unionAll(coreParts)
+				.union(calibrationFramemountUnit)
 				//.difference(vitamin_roundMotor_WPI_gb37y3530bracketOneKeepawayDistanceen)
 				.difference(allCad)
+				.difference(calibrationTipKeepaway)
 		// add it to the return list
 		Base.setManipulator(b.getRootListener())
 		allCad.clear()
@@ -530,7 +549,8 @@ return new ICadGenerator(){
 
 		b.setMassKg(totalMass)
 		b.setCenterOfMassFromCentroid(centerOfMassFromCentroid)
-
+		
+		
 		return allCad;
 	}
 };
