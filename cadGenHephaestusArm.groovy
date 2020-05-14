@@ -45,6 +45,8 @@ CSG moveDHValues(CSG incoming,DHLink dh ){
 }
 
 return new ICadGenerator(){
+
+		static final int bracketOneKeepawayDistance = 50
 	//			private HashMap<String, GearManager>  map= new HashMap<>()
 	//			public  GearManager get(DHParameterKinematics b) {
 	//				if(map.get(b.getXml())==null) {
@@ -94,6 +96,9 @@ return new ICadGenerator(){
 		CSG gripperMotor=null;
 		TransformNR locationOfGripperHinge=null
 		TransformNR locationOfServo=null 
+		def insert=["heatedThreadedInsert", "M5"]
+		def insertMeasurments= Vitamins.getConfiguration(insert[0],
+			insert[1])
 		if(linkIndex==0)
 			shaftLocation.translateY(zOffset)
 		else
@@ -108,6 +113,22 @@ return new ICadGenerator(){
 				"ballBearing",
 				thrustBearingSize
 			])
+		}
+		if(linkIndex==1) {
+			def mountBoltOne =locationOfMotorMount.copy()
+							.times(new TransformNR().translateZ(centerlineToOuterSurfacePositiveZ+linkThickness)
+								.translateY(-bracketOneKeepawayDistance))
+			def mountBoltTwo=mountBoltOne.copy()
+								.times(new TransformNR()
+									.translateY(+20))
+								
+			vitaminLocations.put(mountBoltOne,["capScrew", boltsize])
+			vitaminLocations.put(mountBoltOne.times(new TransformNR().translateZ(-linkThickness-insertMeasurments.installLength)),
+				insert)
+			vitaminLocations.put(mountBoltTwo,["capScrew", boltsize])
+			vitaminLocations.put(mountBoltTwo.times(new TransformNR().translateZ(-linkThickness-insertMeasurments.installLength)),
+				insert)
+			
 		}
 		if(linkIndex==2) {
 			servoAllignmentAngle = Math.toDegrees(Math.atan2(GripperServoYOffset,dh.getR()))
@@ -132,9 +153,8 @@ return new ICadGenerator(){
 //			.translateY(-hingeBackset*Math.sin(Math.toRadians(servoAllignmentAngle))-8)
 //			.translateX(hypot-hingeBackset)
 			
-			def insert=["heatedThreadedInsert", "M5"]
-			def insertMeasurments= Vitamins.getConfiguration(insert[0],
-					insert[1])
+			
+			
 		
 			vitaminLocations.put(locationOfGripperHinge,
 					["capScrew", boltsize])
@@ -210,6 +230,48 @@ return new ICadGenerator(){
 		//Do additional CAD and add to the running CoM
 		conf.setMassKg(totalMass)
 		conf.setCenterOfMassFromCentroid(centerOfMassFromCentroid)
+		Transform actuatorSpace = TransformFactory.nrToCSG(locationOfMotorMount)
+		def tipCupCircle = linkBuildingBlockRound.movez(centerlineToOuterSurfacePositiveZ)
+		def gripperLug = linkBuildingBlockRound.movez(centerlineToOuterSurfaceNegativeZ)
+		def actuatorCircle = tipCupCircle.transformed(actuatorSpace)
+		def passivLinkLug = gripperLug.transformed(actuatorSpace)
+		
+		if(linkIndex==1) {
+			
+			def mountMotorSide = linkBuildingBlockRound
+										.movez(centerTheMotorsValue)
+										.movex(-20-movingPartClearence)
+			def mountPassiveSide = linkBuildingBlockRound
+										.movez(-centerTheMotorsValue-linkThickness)
+										.movex(-20-movingPartClearence)
+		   def mountPassiveSideAlligned = linkBuildingBlockRound
+										.movez(centerlineToOuterSurfaceNegativeZ)
+										.movex(-20-movingPartClearence)
+			def clearencelugMotorSide = mountMotorSide.movex(-dh.getR()+bracketOneKeepawayDistance)
+			def clearencelugPassiveSide = mountPassiveSide.movex(-dh.getR()+bracketOneKeepawayDistance)
+			
+			def passiveSide = mountPassiveSideAlligned.union(passivLinkLug).hull()
+			def center = CSG.unionAll([mountPassiveSideAlligned,mountMotorSide,clearencelugMotorSide,clearencelugPassiveSide])
+							.hull()
+		    CSG motorToCut = Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
+							.rotz(180)
+							.movez(centerTheMotorsValue)
+							.transformed(actuatorSpace)
+			
+			def FullBracket =CSG.unionAll([center,passiveSide])
+							.difference(vitamins)
+							.difference(motorToCut)
+			CSG motorLink = actuatorCircle.movez(-0.5).movex(bracketOneKeepawayDistance)
+			CSG MotorMountBracket = actuatorCircle.movez(-0.5)
+									.union(motorLink)
+									.hull()
+									.difference(FullBracket)
+									.difference(vitamins)
+			
+			MotorMountBracket.setManipulator(manipulator)
+			FullBracket.setManipulator(manipulator)
+			allCad.addAll(FullBracket,MotorMountBracket)
+		}
 		if(linkIndex==2) {
 			CSG objectToGrab = new Sphere(radiusOfGraspingObject,32,16).toCSG()
 			objectToGrab=objectToGrab.intersect(objectToGrab.getBoundingBox().movex(-2))
@@ -217,25 +279,17 @@ return new ICadGenerator(){
 			allCad.add(objectToGrab)
 			
 			def corners =[]
-			Transform actuatorSpace = TransformFactory.nrToCSG(locationOfMotorMount)
 			Transform gripperSpace = TransformFactory.nrToCSG(locationOfServo)
-			Transform hinge = TransformFactory.nrToCSG(locationOfGripperHinge)
-			
-			
+			Transform hinge = TransformFactory.nrToCSG(locationOfGripperHinge)			
 			CSG motorToCut = Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
 							.rotz(90)
 							.movez(centerTheMotorsValue)
-							.transformed(actuatorSpace)
+							.transformed(actuatorSpace)			
 			
 			
 			
-			def tipCupCircle = linkBuildingBlockRound.movez(centerlineToOuterSurfacePositiveZ)
-			def actuatorCircle = tipCupCircle.transformed(actuatorSpace)
-			def servoCube = linkBuildingBlock.toXMax().movez(centerlineToOuterSurfacePositiveZ).roty(90).transformed(gripperSpace)
-			def gripperLug = linkBuildingBlockRound.movez(centerlineToOuterSurfaceNegativeZ)
-			def passivLinkLug = gripperLug.transformed(actuatorSpace)			
+			def servoCube = linkBuildingBlock.toXMax().movez(centerlineToOuterSurfacePositiveZ).roty(90).transformed(gripperSpace)	
 			def rightServoCube = linkBuildingBlock.toZMax().toXMin().movez(-centerlineToOuterSurfaceNegativeZ).roty(-90).transformed(gripperSpace)
-			
 			
 			def servoBracket = servoCube.union(rightServoCube).hull()
 			def supportBracket = rightServoCube.union(passivLinkLug).hull()
@@ -299,13 +353,6 @@ return new ICadGenerator(){
 			gripperMovingCup.setManipulator(manipulator)
 			allCad.addAll(FullBracket,ActuatorBracket,gripperMovingCup)
 		}
-		if(linkIndex==1) {
-			CSG sparR = new Cube(d.getDH_R(linkIndex),5,5).toCSG()
-			.toXMax()
-			.movez(centerTheMotorsValue)
-			sparR.setManipulator(manipulator)
-			allCad.add(sparR)
-		}
 		
 		if(linkIndex==0) {
 			def	baseOfArm = Parabola.coneByHeight(baseCorRad, 40)
@@ -338,6 +385,7 @@ return new ICadGenerator(){
 		vitamins.clear()
 		return allCad;
 	}
+	
 	@Override
 	public ArrayList<CSG> generateBody(MobileBase b ) {
 
@@ -472,14 +520,13 @@ return new ICadGenerator(){
 		// assemble the base
 
 		def Base = CSG.unionAll(coreParts)
-				//.difference(vitamin_roundMotor_WPI_gb37y3530_50en)
+				//.difference(vitamin_roundMotor_WPI_gb37y3530bracketOneKeepawayDistanceen)
 				.difference(allCad)
 		// add it to the return list
 		Base.setManipulator(b.getRootListener())
 		allCad.clear()
 		allCad.add(Base)
 
-		//allCad.add(vitamin_roundMotor_WPI_gb37y3530_50en)
 		b.setMassKg(totalMass)
 		b.setCenterOfMassFromCentroid(centerOfMassFromCentroid)
 
