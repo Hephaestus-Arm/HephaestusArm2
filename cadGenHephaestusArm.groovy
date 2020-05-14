@@ -132,8 +132,9 @@ return new ICadGenerator(){
 			
 		}
 		if(linkIndex==2) {
-			servoAllignmentAngle = Math.toDegrees(Math.atan2(GripperServoYOffset,dh.getR()))
-			println "Angle of servo offset = "+servoAllignmentAngle+" "+GripperServoYOffset+" "+dh.getR()
+			double theta = Math.toDegrees(dh.getTheta())
+			servoAllignmentAngle = Math.toDegrees(Math.atan2(GripperServoYOffset,dh.getR()))-(90-theta)
+			println "Angle of servo offset = "+servoAllignmentAngle+" "+GripperServoYOffset+" "+dh.getR()+" theta "+theta
 			double hypot = Math.sqrt(Math.pow(dh.getR(), 2)+Math.pow(GripperServoYOffset, 2))
 			double hingeBackset = 40
 			locationOfServo=locationOfMotorMount
@@ -332,7 +333,12 @@ return new ICadGenerator(){
 			def movingCupHingeLug = tipCupCircle.roty(90)
 									.movez(-linkYDimention/2)
 									.transformed(hinge)
-			
+			def knotches = new Cube(centerlineToOuterSurfacePositiveZ-centerlineToOuterSurfaceNegativeZ+linkThickness*3,5,3).toCSG()
+							.toXMin()
+							.toZMax()
+							.movex(centerlineToOuterSurfaceNegativeZ-linkThickness)
+							.movey(20)
+							.transformed(hinge)
 			def movingHingeBarrel =  new Cylinder(hingeDiameter/2,linkThickness).toCSG()
 											.movez(-linkYDimention/2-linkThickness/2)
 			def movingPart = movingHingeBarrel
@@ -346,11 +352,13 @@ return new ICadGenerator(){
 			def gripperMovingCup = tipCupCircle.union(pincherCup).hull()
 								.union(movingPart)
 								.difference(objectToGrab)
+								.difference(knotches)
 			def FullBracket =CSG.unionAll([servoBracket,supportBracket,linkToCup,pincherBracket,hingeBarrelMount])
 									.difference(objectToGrab)
 									.difference(vitamins)
 									.difference(ActuatorBracket)
 									.difference(motorToCut)
+									.difference(knotches)
 									
 			FullBracket.setColor(javafx.scene.paint.Color.LIGHTBLUE)
 			gripperMovingCup.setColor(javafx.scene.paint.Color.LIGHTPINK)
