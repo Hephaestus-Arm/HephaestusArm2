@@ -268,7 +268,8 @@ return new ICadGenerator(){
 									.hull()
 									.difference(FullBracket)
 									.difference(vitamins)
-			
+			MotorMountBracket.setColor(javafx.scene.paint.Color.DARKCYAN)
+			FullBracket.setColor(javafx.scene.paint.Color.YELLOW)
 			MotorMountBracket.setManipulator(manipulator)
 			FullBracket.setManipulator(manipulator)
 			allCad.addAll(FullBracket,MotorMountBracket)
@@ -277,6 +278,7 @@ return new ICadGenerator(){
 			CSG objectToGrab = new Sphere(radiusOfGraspingObject,32,16).toCSG()
 			objectToGrab=objectToGrab.intersect(objectToGrab.getBoundingBox().movex(-2))
 			objectToGrab.setManipulator(manipulator)
+			objectToGrab.setColor(javafx.scene.paint.Color.RED)
 			allCad.add(objectToGrab)
 			
 			def corners =[]
@@ -349,6 +351,10 @@ return new ICadGenerator(){
 									.difference(vitamins)
 									.difference(ActuatorBracket)
 									.difference(motorToCut)
+									
+			FullBracket.setColor(javafx.scene.paint.Color.LIGHTBLUE)
+			gripperMovingCup.setColor(javafx.scene.paint.Color.LIGHTPINK)
+			ActuatorBracket.setColor(javafx.scene.paint.Color.DARKCYAN)
 			ActuatorBracket.setManipulator(manipulator)
 			FullBracket.setManipulator(manipulator)
 			gripperMovingCup.setManipulator(manipulator)
@@ -362,6 +368,7 @@ return new ICadGenerator(){
 								.movez(movingPartClearence)
 								.transformed( TransformFactory.nrToCSG(locationOfBearing))
 			.difference(vitamins)
+			baseOfArm.setColor(javafx.scene.paint.Color.WHITE)
 			baseOfArm.setManipulator(manipulator)
 			allCad.add(baseOfArm)
 		}
@@ -549,6 +556,7 @@ return new ICadGenerator(){
 				.difference(allCad)
 				.difference(calibrationTipKeepaway)
 				.difference(cordCutter)
+		Base.setColor(javafx.scene.paint.Color.PINK)
 		// add it to the return list
 		Base.setManipulator(b.getRootListener())
 		allCad.clear()
