@@ -170,8 +170,8 @@ return new ICadGenerator(){
 							.times(new TransformNR(0,0,0,new RotationNR(0,0,-90)))
 							.times(new TransformNR().translateZ(centerlineToOuterSurfacePositiveZ+linkThickness)
 								.translateX(-linkYDimention/2)
-								.translateY(linkYDimention/2))
-			def mountBoltTwo=mountBoltOne.times(new TransformNR().translateY(-linkYDimention))
+								.translateY(linkYDimention/2-3))
+			def mountBoltTwo=mountBoltOne.times(new TransformNR().translateY(-linkYDimention-3))
 			vitaminLocations.put(mountBoltOne,["capScrew", boltsize])
 			vitaminLocations.put(mountBoltOne.times(new TransformNR().translateZ(-linkThickness-insertMeasurments.installLength)),
 				insert)
