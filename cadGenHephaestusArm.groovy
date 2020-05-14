@@ -81,10 +81,14 @@ return new ICadGenerator(){
 		// loading the vitamins referenced in the configuration
 		//CSG servo=   Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
 		CSG motorModel=   Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
-		CSG linkBuildingBlock = new Cube(linkYDimention,linkYDimention*2,linkThickness).toCSG()
-									.toZMin()
-									.movey(-5)
 		CSG linkBuildingBlockRound = new Cylinder(linkYDimention/2,linkThickness).toCSG()
+		CSG linkBuildingBlock = CSG.hullAll([
+									linkBuildingBlockRound.movey(linkYDimention/2),
+									linkBuildingBlockRound.movey(-linkYDimention/2)
+									])
+									.toZMin()
+									.movey(-7)
+		
 	
 		
 		double zOffset = motorModel.getMaxZ()
