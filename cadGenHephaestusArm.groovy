@@ -128,10 +128,10 @@ return new ICadGenerator(){
 									.translateY(+20))
 								
 			vitaminLocations.put(mountBoltOne,["capScrew", boltsize])
-			vitaminLocations.put(mountBoltOne.times(new TransformNR().translateZ(-linkThickness-insertMeasurments.installLength)),
+			vitaminLocations.put(mountBoltOne.times(new TransformNR().translateZ(-linkThickness*2-insertMeasurments.installLength)),
 				insert)
 			vitaminLocations.put(mountBoltTwo,["capScrew", boltsize])
-			vitaminLocations.put(mountBoltTwo.times(new TransformNR().translateZ(-linkThickness-insertMeasurments.installLength)),
+			vitaminLocations.put(mountBoltTwo.times(new TransformNR().translateZ(-linkThickness*2-insertMeasurments.installLength)),
 				insert)
 			
 		}
@@ -245,41 +245,71 @@ return new ICadGenerator(){
 		def passivLinkLug = gripperLug.transformed(actuatorSpace)
 		
 		if(linkIndex==1) {
-			
+			double braceDistance=-5;
+			double linkClearence = 21
 			def mountMotorSide = linkBuildingBlockRound
 										.movez(centerTheMotorsValue)
-										.movex(-21-movingPartClearence)
+										.movex(-linkClearence-movingPartClearence)
 			def mountPassiveSide = linkBuildingBlockRound
 										.movez(-centerTheMotorsValue-linkThickness)
-										.movex(-21-movingPartClearence)
+										.movex(-linkClearence-movingPartClearence)
 		   def mountPassiveSideAlligned = linkBuildingBlockRound
 										.movez(centerlineToOuterSurfaceNegativeZ)
-										.movex(-21-movingPartClearence)
+										.movex(-linkClearence-movingPartClearence)
 			def clearencelugMotorSide = mountMotorSide.movex(-dh.getR()+bracketOneKeepawayDistance)
 			def clearencelugPassiveSide = mountPassiveSide.movex(-dh.getR()+bracketOneKeepawayDistance)
+			CSG motorLink = actuatorCircle.movez(-0.5).movex(bracketOneKeepawayDistance)
 			
+			def bracemountPassiveSideAlligned = linkBuildingBlockRound
+													.movez(centerlineToOuterSurfacePositiveZ)
+													.movez(-0.5)
+													.movey(braceDistance)
+													.movex(-linkClearence-movingPartClearence-dh.getR()+bracketOneKeepawayDistance)
+			def bracemountMotorSide=actuatorCircle
+									.movez(-0.5)
+									.movex(bracketOneKeepawayDistance-linkYDimention/2)
+									.movey(braceDistance)
+										
+			def brace = CSG.unionAll([
+				bracemountMotorSide,
+				bracemountPassiveSideAlligned
+				]).hull()
+			brace = brace
+						.union([
+							brace
+							.movez(-centerlineToOuterSurfacePositiveZ+centerlineToOuterSurfaceNegativeZ+0.5),
+							clearencelugMotorSide,clearencelugPassiveSide
+							]
+						).hull()
 			def passiveSide = mountPassiveSideAlligned.union(passivLinkLug).hull()
+			def motorSidePlate = CSG.hullAll([clearencelugMotorSide,mountMotorSide]);
 			def center = CSG.unionAll([mountPassiveSideAlligned,mountMotorSide,clearencelugMotorSide,clearencelugPassiveSide])
 							.hull()
 		    CSG motorToCut = Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
 							.rotz(180)
 							.movez(centerTheMotorsValue)
 							.transformed(actuatorSpace)
-			
-			def FullBracket =CSG.unionAll([center,passiveSide])
+						
+			CSG MotorMountBracket = actuatorCircle.movez(-0.5)
+							.union(motorLink)
+							.hull()
+							.difference(vitamins)
+			def FullBracket =CSG.unionAll([center,passiveSide,brace])
+							.difference(motorSidePlate)
 							.difference(vitamins)
 							.difference(motorToCut)
-			CSG motorLink = actuatorCircle.movez(-0.5).movex(bracketOneKeepawayDistance)
-			CSG MotorMountBracket = actuatorCircle.movez(-0.5)
-									.union(motorLink)
-									.hull()
-									.difference(FullBracket)
-									.difference(vitamins)
+							.difference(MotorMountBracket)
+			def finalMiddlePlate = motorSidePlate
+								.difference(vitamins)
+								
+			
+			finalMiddlePlate.setColor(javafx.scene.paint.Color.GREENYELLOW)
 			MotorMountBracket.setColor(javafx.scene.paint.Color.DARKCYAN)
 			FullBracket.setColor(javafx.scene.paint.Color.YELLOW)
 			MotorMountBracket.setManipulator(manipulator)
 			FullBracket.setManipulator(manipulator)
-			allCad.addAll(FullBracket,MotorMountBracket)
+			finalMiddlePlate.setManipulator(manipulator)
+			allCad.addAll(FullBracket,MotorMountBracket,finalMiddlePlate)
 		}
 		if(linkIndex==2) {
 			CSG objectToGrab = new Sphere(radiusOfGraspingObject,32,16).toCSG()
