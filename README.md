@@ -20,6 +20,12 @@ hephaestus.xml
 
 This will generate the CAD and run the simulation. 
 
+# Firmware
+
+Use Arduino to program the Teensy 3.5
+
+https://github.com/Hephaestus-Arm/HephaestusArm2-firmware
+
 # BOM and assembly
 
 Main Electronics Kit:
