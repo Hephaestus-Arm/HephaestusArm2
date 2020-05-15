@@ -318,7 +318,9 @@ return new ICadGenerator(){
 			def hingeLinkHole = new Cylinder(1,linkYDimention).toCSG()
 									.toZMax()
 									.movex(centerlineToOuterSurfaceNegativeZ*2/3)
-			def hingeSlotCutter = new Cube(hingeDiameter+1,hingeDiameter*3,linkThickness+movingPartClearence).toCSG()
+			def hingeSlotCutter = new Cube(hingeDiameter*3+1,hingeDiameter*3,linkThickness+movingPartClearence).toCSG()
+									.toXMax()
+									.movex(hingeDiameter+movingPartClearence)
 									.movez(-linkYDimention/2)
 									.transformed(hinge)
 			def innerBarrel = hingeBarrel
