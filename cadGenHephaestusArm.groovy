@@ -309,14 +309,15 @@ return new ICadGenerator(){
 			MotorMountBracket.setManipulator(manipulator)
 			FullBracket.setManipulator(manipulator)
 			finalMiddlePlate.setManipulator(manipulator)
+			FullBracket.setName("MiddleLinkMainBracket")
+			MotorMountBracket.setName("MiddleLinkActuatorBracket")
+			finalMiddlePlate.setName("MiddleLinkMiddleBracket")
 			allCad.addAll(FullBracket,MotorMountBracket,finalMiddlePlate)
 		}
 		if(linkIndex==2) {
 			CSG objectToGrab = new Sphere(radiusOfGraspingObject,32,16).toCSG()
 			objectToGrab=objectToGrab.intersect(objectToGrab.getBoundingBox().movex(-2))
-			objectToGrab.setManipulator(manipulator)
-			objectToGrab.setColor(javafx.scene.paint.Color.RED)
-			allCad.add(objectToGrab)
+			
 			
 			def corners =[]
 			Transform gripperSpace = TransformFactory.nrToCSG(locationOfServo)
@@ -391,6 +392,7 @@ return new ICadGenerator(){
 								.union(movingPart)
 								.difference(objectToGrab)
 								.difference(knotches)
+								.difference(vitamins)
 			def FullBracket =CSG.unionAll([servoBracket,supportBracket,linkToCup,pincherBracket,hingeBarrelMount])
 									.difference(objectToGrab)
 									.difference(vitamins)
@@ -401,10 +403,23 @@ return new ICadGenerator(){
 			FullBracket.setColor(javafx.scene.paint.Color.LIGHTBLUE)
 			gripperMovingCup.setColor(javafx.scene.paint.Color.LIGHTPINK)
 			ActuatorBracket.setColor(javafx.scene.paint.Color.DARKCYAN)
+			objectToGrab.setColor(javafx.scene.paint.Color.RED)
 			ActuatorBracket.setManipulator(manipulator)
 			FullBracket.setManipulator(manipulator)
 			gripperMovingCup.setManipulator(manipulator)
-			allCad.addAll(FullBracket,ActuatorBracket,gripperMovingCup)
+			objectToGrab.setManipulator(manipulator)
+			
+			FullBracket.setName("LastLinkMainBracket")
+			ActuatorBracket.setName("LastLinkActuatorBracket")
+			gripperMovingCup.setName("Gripper")
+			objectToGrab.setName("GamePiece")
+			objectToGrab.setManufacturing ({ mfg ->
+				return mfg.roty(-90).toZMin()				
+			})
+			gripperMovingCup.setManufacturing ({ mfg ->
+				return mfg.rotx(180).toZMin()				
+			})
+			allCad.addAll(FullBracket,ActuatorBracket,gripperMovingCup,objectToGrab)
 		}
 		
 		if(linkIndex==0) {
@@ -416,6 +431,10 @@ return new ICadGenerator(){
 			.difference(vitamins)
 			baseOfArm.setColor(javafx.scene.paint.Color.WHITE)
 			baseOfArm.setManipulator(manipulator)
+			baseOfArm.setName("BaseCone")
+			baseOfArm.setManufacturing ({ mfg ->
+				return mfg.rotx(90).toZMin()				
+			})
 			allCad.add(baseOfArm)
 		}
 		//				CSG sparD = new Cube(gears.thickness,d.getDH_D(linkIndex),gears.thickness).toCSG()
@@ -435,7 +454,7 @@ return new ICadGenerator(){
 					}
 					public void onConnect(BowlerAbstractDevice source) {}
 				})
-		allCad.addAll(vitamins)
+		//allCad.addAll(vitamins)
 		vitamins.clear()
 		return allCad;
 	}
@@ -605,9 +624,9 @@ return new ICadGenerator(){
 		Base.setColor(javafx.scene.paint.Color.PINK)
 		// add it to the return list
 		Base.setManipulator(b.getRootListener())
-		allCad.clear()
+		allCad.clear()// remove the vitamins
 		allCad.add(Base)
-
+		Base.setName("BaseMount")
 		b.setMassKg(totalMass)
 		b.setCenterOfMassFromCentroid(centerOfMassFromCentroid)
 		
