@@ -83,11 +83,11 @@ return new ICadGenerator(){
 		CSG motorModel=   Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
 		CSG linkBuildingBlockRound = new Cylinder(linkYDimention/2,linkThickness).toCSG()
 		CSG linkBuildingBlock = CSG.hullAll([
-									linkBuildingBlockRound.movey(linkYDimention/2),
-									linkBuildingBlockRound.movey(-linkYDimention/2)
+									linkBuildingBlockRound.movey(linkYDimention),
+									linkBuildingBlockRound
 									])
 									.toZMin()
-									.movey(-7)
+									.movey(-5)
 		
 	
 		
@@ -156,6 +156,7 @@ return new ICadGenerator(){
 			locationOfGripperHinge=locationOfServo
 			.copy()
 			.times(new TransformNR().translateY(hypot-hingeBackset))
+			
 //			.translateY(-hingeBackset*Math.sin(Math.toRadians(servoAllignmentAngle))-8)
 //			.translateX(hypot-hingeBackset)
 			
@@ -170,15 +171,16 @@ return new ICadGenerator(){
 							.times(new TransformNR(0,0,0,new RotationNR(0,0,-90)))
 							.times(new TransformNR().translateZ(centerlineToOuterSurfacePositiveZ+linkThickness)
 								.translateX(-linkYDimention/2)
-								.translateY(linkYDimention/2-3))
-			def mountBoltTwo=mountBoltOne.times(new TransformNR().translateY(-linkYDimention-3))
+								.translateY(-5)
+								)
+			def mountBoltTwo=mountBoltOne.times(new TransformNR().translateY(linkYDimention))
 			vitaminLocations.put(mountBoltOne,["capScrew", boltsize])
 			vitaminLocations.put(mountBoltOne.times(new TransformNR().translateZ(-linkThickness-insertMeasurments.installLength)),
 				insert)
 			vitaminLocations.put(mountBoltTwo,["capScrew", boltsize])
 			vitaminLocations.put(mountBoltTwo.times(new TransformNR().translateZ(-linkThickness-insertMeasurments.installLength)),
 				insert)
-			vitaminLocations.put(locationOfServo, [
+			vitaminLocations.put(locationOfServo.times(new TransformNR(0,0,0,new RotationNR(0,180,0))), [
 				"hobbyServo",
 				"towerProMG91"
 			])
