@@ -28,6 +28,9 @@ import eu.mihosoft.vrl.v3d.Transform
 
 import com.neuronrobotics.bowlerstudio.vitamins.*;
 import javafx.scene.transform.Affine;
+import  eu.mihosoft.vrl.v3d.ext.quickhull3d.*
+import eu.mihosoft.vrl.v3d.Vector3d
+
 
 double grid =25
 
@@ -454,7 +457,12 @@ return new ICadGenerator(){
 					}
 					public void onConnect(BowlerAbstractDevice source) {}
 				})
-		//allCad.addAll(vitamins)
+		for(def c:vitamins) {
+			c.setManufacturing ({ mfg ->
+			return null;
+		})
+		}
+		allCad.addAll(vitamins)
 		vitamins.clear()
 		return allCad;
 	}
@@ -579,8 +587,13 @@ return new ICadGenerator(){
 				.movez(-baseBoltThickness)
 		CSG mountUnit= mountLug.union(mountCap)
 		def coreParts=[baseCore]
+		def boltHolePattern = []
+		def bolt = new Cylinder(2.6,20).toCSG()
+					.movez(-10)
 		mountLoacions.forEach{
+			
 			def place =com.neuronrobotics.bowlerstudio.physics.TransformFactory.nrToCSG(it)
+			boltHolePattern.add(bolt.transformed(place))
 			coreParts.add(
 					CSG.hullAll(mountLug
 					.transformed(place)
@@ -590,6 +603,7 @@ return new ICadGenerator(){
 					.transformed(place)
 					)
 		}
+		
 		def locationOfCalibration = new TransformNR(0,-50,15, new RotationNR())
 		DHParameterKinematics dev = b.getAllDHChains().get(0)
 		//dev.setDesiredTaskSpaceTransform(locationOfCalibration, 0);
@@ -613,7 +627,15 @@ return new ICadGenerator(){
 		def cordCutter = new Cube(10,40,30).toCSG()
 							.toYMin()
 							.toZMax()
-							.movez(baseCoreheight-37)				
+							.movez(baseCoreheight-37)	
+		
+		def points = [	new Vector3d(10,0,0),
+					new Vector3d(0, 0, 5),
+					new Vector3d(0, -3, 0),
+					new Vector3d(0, 3, 0)
+		]
+		CSG pointer = HullUtil.hull(points)
+					
 		def Base = CSG.unionAll(coreParts)
 				.union(calibrationFramemountUnit)
 				.union(calibrationFramemountUnit.mirrory())
@@ -621,11 +643,41 @@ return new ICadGenerator(){
 				.difference(allCad)
 				.difference(calibrationTipKeepaway)
 				.difference(cordCutter)
+		Base = Base.union(pointer.movex(Base.getMaxX()-2))
+						.union(pointer.rotz(90).movey(-baseCorRad+2))
 		Base.setColor(javafx.scene.paint.Color.PINK)
 		// add it to the return list
 		Base.setManipulator(b.getRootListener())
-		allCad.clear()// remove the vitamins
-		allCad.add(Base)
+		for(def c:allCad) {
+			c.setManufacturing ({ mfg ->
+			return null;
+		})
+		}
+		double extra = Math.abs(Base.getMinX())
+		def paper = new Cube(8.5*25.4,11.0*25.4,5).toCSG()
+						.toZMax()
+						.toXMin()
+						.movez(1)
+						.movex(-extra)
+						.difference(boltHolePattern)
+		def board = new Cube(8.5*25.4,11.0*25.4,5).toCSG()
+						.toZMax()
+						.toXMin()
+						.movex(-extra)
+						.difference(boltHolePattern)
+		board.setColor(javafx.scene.paint.Color.SANDYBROWN)
+		board.addExportFormat("svg")
+		paper.addExportFormat("svg")
+		paper.setManufacturing ({ mfg ->
+			return mfg.toZMin()
+		})
+		board.setManufacturing ({ mfg ->
+			return mfg.toZMin()
+		})
+		paper.setColor(javafx.scene.paint.Color.WHITE)
+		allCad.addAll(Base,paper,board)
+		Base.addExportFormat("stl")
+		Base.addExportFormat("svg")
 		Base.setName("BaseMount")
 		b.setMassKg(totalMass)
 		b.setCenterOfMassFromCentroid(centerOfMassFromCentroid)
