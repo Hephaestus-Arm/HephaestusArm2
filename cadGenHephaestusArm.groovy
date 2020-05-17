@@ -521,10 +521,10 @@ return new ICadGenerator(){
 				conf.getElectroMechanicalType(),
 				conf.getElectroMechanicalSize()
 			])
-			vitaminLocations.put(pinionRoot, [
-				conf.getShaftType(),
-				conf.getShaftSize()
-			])
+//			vitaminLocations.put(pinionRoot, [
+//				conf.getShaftType(),
+//				conf.getShaftSize()
+//			])
 		}
 		def insert=["heatedThreadedInsert", "M5"]
 		def insertMeasurments= Vitamins.getConfiguration(insert[0],
@@ -545,7 +545,7 @@ return new ICadGenerator(){
 
 		double totalMass = 0;
 		TransformNR centerOfMassFromCentroid=new TransformNR();
-
+		def vitamins=[]
 		for(TransformNR tr: vitaminLocations.keySet()) {
 			def vitaminType = vitaminLocations.get(tr)[0]
 			def vitaminSize = vitaminLocations.get(tr)[1]
@@ -556,7 +556,7 @@ return new ICadGenerator(){
 			Transform move = TransformFactory.nrToCSG(tr)
 			CSG part = vitaminCad.transformed(move)
 			part.setManipulator(b.getRootListener())
-			allCad.add(part)
+			vitamins.add(part)
 
 			def massCentroidYValue = measurments.massCentroidY
 			def massCentroidXValue = measurments.massCentroidX
@@ -588,12 +588,16 @@ return new ICadGenerator(){
 		CSG mountUnit= mountLug.union(mountCap)
 		def coreParts=[baseCore]
 		def boltHolePattern = []
+		def boltHoleKeepawayPattern = []
 		def bolt = new Cylinder(2.6,20).toCSG()
+					.movez(-10)
+		def boltkeepaway = new Cylinder(5,20).toCSG()
 					.movez(-10)
 		mountLoacions.forEach{
 			
 			def place =com.neuronrobotics.bowlerstudio.physics.TransformFactory.nrToCSG(it)
 			boltHolePattern.add(bolt.transformed(place))
+			boltHoleKeepawayPattern.add(boltkeepaway.transformed(place))
 			coreParts.add(
 					CSG.hullAll(mountLug
 					.transformed(place)
@@ -640,7 +644,7 @@ return new ICadGenerator(){
 				.union(calibrationFramemountUnit)
 				.union(calibrationFramemountUnit.mirrory())
 				//.difference(vitamin_roundMotor_WPI_gb37y3530bracketOneKeepawayDistanceen)
-				.difference(allCad)
+				.difference(vitamins)
 				.difference(calibrationTipKeepaway)
 				.difference(cordCutter)
 		Base = Base.union(pointer.movex(Base.getMaxX()-2))
@@ -648,7 +652,7 @@ return new ICadGenerator(){
 		Base.setColor(javafx.scene.paint.Color.PINK)
 		// add it to the return list
 		Base.setManipulator(b.getRootListener())
-		for(def c:allCad) {
+		for(def c:vitamins) {
 			c.setManufacturing ({ mfg ->
 			return null;
 		})
@@ -666,6 +670,16 @@ return new ICadGenerator(){
 						.movex(-extra)
 						.difference(boltHolePattern)
 		board.setColor(javafx.scene.paint.Color.SANDYBROWN)
+		def cardboard = new Cube(8.5*25.4,11.0*25.4,5).toCSG()
+		.toZMax()
+		.toXMin()
+		.movex(-extra)
+		.movez(-5)
+		.difference(boltHoleKeepawayPattern)
+		//.difference(vitamins)
+		cardboard.setColor(javafx.scene.paint.Color.SADDLEBROWN)
+		
+		cardboard.addExportFormat("svg")
 		board.addExportFormat("svg")
 		paper.addExportFormat("svg")
 		paper.setManufacturing ({ mfg ->
@@ -674,15 +688,18 @@ return new ICadGenerator(){
 		board.setManufacturing ({ mfg ->
 			return mfg.toZMin()
 		})
+		cardboard.setManufacturing ({ mfg ->
+			return mfg.toZMin()
+		})
 		paper.setColor(javafx.scene.paint.Color.WHITE)
-		allCad.addAll(Base,paper,board)
+		allCad.addAll(Base,paper,board,cardboard)
 		Base.addExportFormat("stl")
 		Base.addExportFormat("svg")
 		Base.setName("BaseMount")
 		b.setMassKg(totalMass)
 		b.setCenterOfMassFromCentroid(centerOfMassFromCentroid)
 		
-		
+		allCad.addAll(vitamins)
 		return allCad;
 	}
 };
