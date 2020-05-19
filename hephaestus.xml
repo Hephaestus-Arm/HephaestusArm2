@@ -9,7 +9,7 @@
 		<file>WalkingDriveEngine.groovy</file>
 	</driveEngine>
 
-<name>HephaestusArm</name>
+<name>HephaestusArmV2</name>
 <appendage>
 
 <name>HephaestusArmLimbOne</name>
