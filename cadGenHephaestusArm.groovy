@@ -23,6 +23,7 @@ import eu.mihosoft.vrl.v3d.CSG
 import eu.mihosoft.vrl.v3d.Cube
 import eu.mihosoft.vrl.v3d.Cylinder
 import eu.mihosoft.vrl.v3d.Parabola
+import eu.mihosoft.vrl.v3d.RoundedCube
 import eu.mihosoft.vrl.v3d.Sphere
 import eu.mihosoft.vrl.v3d.Transform
 
@@ -426,17 +427,30 @@ return new ICadGenerator(){
 		}
 		
 		if(linkIndex==0) {
+			def supportBeam= new RoundedCube(linkYDimention+linkThickness*2.5,40+linkThickness*2,linkYDimention*2)
+								.cornerRadius(2)
+								.toCSG()
+								.toZMax()
+			def z = dh.getD()-10-movingPartClearence/2
 			def	baseOfArm = Parabola.coneByHeight(baseCorRad, 40)
-								.rotx(90)
-								.toZMin()
-								.movez(movingPartClearence)
-								.transformed( TransformFactory.nrToCSG(locationOfBearing))
-			.difference(vitamins)
+						.rotx(90)
+						.toZMin()
+						.movez(movingPartClearence)
+						
+			baseOfArm=baseOfArm
+						.difference(
+							baseOfArm
+							.getBoundingBox()
+							.movez(z)
+							)
+						.union(supportBeam.movez(z+movingPartClearence))
+						.transformed( TransformFactory.nrToCSG(locationOfBearing))
+						.difference(vitamins)
 			baseOfArm.setColor(javafx.scene.paint.Color.WHITE)
 			baseOfArm.setManipulator(manipulator)
 			baseOfArm.setName("BaseCone")
 			baseOfArm.setManufacturing ({ mfg ->
-				return mfg.rotx(90).toZMin()				
+				return mfg.rotx(-90).toZMin()				
 			})
 			allCad.add(baseOfArm)
 		}
