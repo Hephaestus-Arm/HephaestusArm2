@@ -32,7 +32,8 @@ https://github.com/Hephaestus-Arm/HephaestusArm2-firmware
 
 Get the calibration document:
 
-https://github.com/Hephaestus-Arm/HephaestusArm2/releases/download/0.0.1/CalibrationImageDocument.svg
+![Calibration Image](./CalibrationImageDocument.svg)
+<img src="./CalibrationImageDocument.svg">
 
 and print it on an 8.5x11 inch piece of paper. Put double sided tape on the red section. Carefully place the robots base on the paper alligned to the red section coving the red completely. once firmly attached to the base, assemble the base to the wood board, pushing the bolts through the paper, starting with the 2 bolts to the rear of the robot. Start the holes for the bolts using a sharp pencil. Once the robot is bolted down, secure the paper to the wood board using glue or clear tape. The camer should be placed such that it can see the whole piece of paper. 
 
