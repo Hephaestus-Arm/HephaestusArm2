@@ -2,6 +2,8 @@
 
 This robot is for use in RBE 3001 as a teaching platform for robot kinematics and trajecttory planning. 
 
+![Hephaestus Arm V2](cadImage.png)
+
 # CAD and simulation
 
 Open BowlerStudio, in the menu
