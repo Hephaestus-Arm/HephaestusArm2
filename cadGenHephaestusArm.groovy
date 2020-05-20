@@ -91,6 +91,10 @@ return new ICadGenerator(){
 		CSG motorModel=   Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
 		CSG linkBuildingBlockRoundCyl = new Cylinder(linkYDimention/2,linkYDimention/2,linkThickness,30)
 										.toCSG()
+		CSG linkBuildingBlockRoundSqu = new RoundedCube(linkYDimention,linkYDimention,linkThickness)
+										.cornerRadius(cornerRad)
+										.toCSG()
+										.toZMin()
 		CSG linkBuildingBlockRound = new RoundedCylinder(linkYDimention/2,linkThickness)
 										.cornerRadius(cornerRad)
 										.toCSG()
@@ -259,17 +263,17 @@ return new ICadGenerator(){
 		
 		if(linkIndex==1) {
 			double braceDistance=-5;
-			double linkClearence = 21
+			double linkClearence = 18.5
 			def mountMotorSidekw = linkBuildingBlockRoundCyl
 										.movez(centerTheMotorsValue)
 										.movex(-linkClearence-movingPartClearence)
 			def mountMotorSide = linkBuildingBlockRound
 										.movez(centerTheMotorsValue)
 										.movex(-linkClearence-movingPartClearence)
-			def mountPassiveSide = linkBuildingBlockRound
+			def mountPassiveSide = linkBuildingBlockRoundSqu
 										.movez(-centerTheMotorsValue-linkThickness)
 										.movex(-linkClearence-movingPartClearence)
-		   def mountPassiveSideAlligned = linkBuildingBlockRound
+		   def mountPassiveSideAlligned = linkBuildingBlockRoundSqu
 										.movez(centerlineToOuterSurfaceNegativeZ)
 										.movex(-linkClearence-movingPartClearence)
 			def clearencelugMotorSide = mountMotorSide.movex(-dh.getR()+bracketOneKeepawayDistance)
@@ -318,10 +322,10 @@ return new ICadGenerator(){
 							.hull()
 							.difference(vitamins)
 			def FullBracket =CSG.unionAll([center,passiveSide,brace])
-							.difference(motorSidePlatekw)
+							.difference(motorSidePlatekw.getBoundingBox())
 							.difference(vitamins)
 							.difference(motorToCut)
-							.difference(MotorMountBracketkw)
+							.difference(MotorMountBracketkw.getBoundingBox())
 			def finalMiddlePlate = motorSidePlate
 								.difference(vitamins)
 								
