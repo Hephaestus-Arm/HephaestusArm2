@@ -185,7 +185,7 @@ return new ICadGenerator(){
 				insert)
 			vitaminLocations.put(locationOfServo.times(new TransformNR(0,0,0,new RotationNR(0,180,0))), [
 				"hobbyServo",
-				"towerProMG91"
+				"mg92b"
 			])
 		}
 
