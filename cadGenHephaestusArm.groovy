@@ -24,6 +24,7 @@ import eu.mihosoft.vrl.v3d.Cube
 import eu.mihosoft.vrl.v3d.Cylinder
 import eu.mihosoft.vrl.v3d.Parabola
 import eu.mihosoft.vrl.v3d.RoundedCube
+import eu.mihosoft.vrl.v3d.RoundedCylinder
 import eu.mihosoft.vrl.v3d.Sphere
 import eu.mihosoft.vrl.v3d.Transform
 
@@ -66,8 +67,11 @@ return new ICadGenerator(){
 	double linkThickness = 6
 	double linkYDimention = 20;
 	double GripperServoYOffset = 35
+	def cornerRad=2
 	String boltsize = "M5x25"
-	double centerlineToOuterSurfacePositiveZ = centerTheMotorsValue+movingPartClearence+linkThickness-1
+	HashMap<String,Object> measurmentsHorn = Vitamins.getConfiguration(  "LewanSoulHorn","round")
+	def hornKeepawayLen = measurmentsHorn.mountPlateToHornTop
+	double centerlineToOuterSurfacePositiveZ = centerTheMotorsValue+movingPartClearence+hornKeepawayLen-1
 	double centerlineToOuterSurfaceNegativeZ = -(centerTheMotorsValue+movingPartClearence+linkThickness)
 	@Override
 	public ArrayList<CSG> generateCad(DHParameterKinematics d, int linkIndex) {
@@ -85,7 +89,11 @@ return new ICadGenerator(){
 		// loading the vitamins referenced in the configuration
 		//CSG servo=   Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
 		CSG motorModel=   Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
-		CSG linkBuildingBlockRound = new Cylinder(linkYDimention/2,linkThickness).toCSG()
+		CSG linkBuildingBlockRoundCyl = new Cylinder(linkYDimention/2+0.5,linkThickness)
+										.toCSG()
+		CSG linkBuildingBlockRound = new RoundedCylinder(linkYDimention/2,linkThickness)
+										.cornerRadius(cornerRad)
+										.toCSG()
 		CSG linkBuildingBlock = CSG.hullAll([
 									linkBuildingBlockRound.movey(linkYDimention),
 									linkBuildingBlockRound
@@ -246,11 +254,15 @@ return new ICadGenerator(){
 		def tipCupCircle = linkBuildingBlockRound.movez(centerlineToOuterSurfacePositiveZ)
 		def gripperLug = linkBuildingBlockRound.movez(centerlineToOuterSurfaceNegativeZ)
 		def actuatorCircle = tipCupCircle.transformed(actuatorSpace)
+		def actuatorCirclekw = linkBuildingBlockRoundCyl.movez(centerlineToOuterSurfacePositiveZ).transformed(actuatorSpace)
 		def passivLinkLug = gripperLug.transformed(actuatorSpace)
 		
 		if(linkIndex==1) {
 			double braceDistance=-5;
 			double linkClearence = 21
+			def mountMotorSidekw = linkBuildingBlockRoundCyl
+										.movez(centerTheMotorsValue)
+										.movex(-linkClearence-movingPartClearence)
 			def mountMotorSide = linkBuildingBlockRound
 										.movez(centerTheMotorsValue)
 										.movex(-linkClearence-movingPartClearence)
@@ -261,9 +273,10 @@ return new ICadGenerator(){
 										.movez(centerlineToOuterSurfaceNegativeZ)
 										.movex(-linkClearence-movingPartClearence)
 			def clearencelugMotorSide = mountMotorSide.movex(-dh.getR()+bracketOneKeepawayDistance)
+			def clearencelugMotorSidekw = mountMotorSidekw.movex(-dh.getR()+bracketOneKeepawayDistance)
 			def clearencelugPassiveSide = mountPassiveSide.movex(-dh.getR()+bracketOneKeepawayDistance)
 			CSG motorLink = actuatorCircle.movez(-0.5).movex(bracketOneKeepawayDistance)
-			
+			CSG motorLinkkw = actuatorCirclekw.movez(-0.5).movex(bracketOneKeepawayDistance)
 			def bracemountPassiveSideAlligned = linkBuildingBlockRound
 													.movez(centerlineToOuterSurfacePositiveZ)
 													.movez(-0.5)
@@ -287,22 +300,28 @@ return new ICadGenerator(){
 						).hull()
 			def passiveSide = mountPassiveSideAlligned.union(passivLinkLug).hull()
 			def motorSidePlate = CSG.hullAll([clearencelugMotorSide,mountMotorSide]);
+			motorSidePlate=CSG.hullAll([motorSidePlate,motorSidePlate.toZMax().movez(centerlineToOuterSurfacePositiveZ-0.5)])
+			def motorSidePlatekw = CSG.hullAll([clearencelugMotorSidekw,mountMotorSidekw]);
+			motorSidePlatekw=CSG.hullAll([motorSidePlatekw,motorSidePlatekw.toZMax().movez(centerlineToOuterSurfacePositiveZ-0.5)])
+			
 			def center = CSG.unionAll([mountPassiveSideAlligned,mountMotorSide,clearencelugMotorSide,clearencelugPassiveSide])
 							.hull()
 		    CSG motorToCut = Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
 							.rotz(180)
 							.movez(centerTheMotorsValue)
 							.transformed(actuatorSpace)
-						
+			CSG MotorMountBracketkw = actuatorCirclekw.movez(-0.5)
+							.union(motorLinkkw)
+							.hull()
 			CSG MotorMountBracket = actuatorCircle.movez(-0.5)
 							.union(motorLink)
 							.hull()
 							.difference(vitamins)
 			def FullBracket =CSG.unionAll([center,passiveSide,brace])
-							.difference(motorSidePlate)
+							.difference(motorSidePlatekw)
 							.difference(vitamins)
 							.difference(motorToCut)
-							.difference(MotorMountBracket)
+							.difference(MotorMountBracketkw)
 			def finalMiddlePlate = motorSidePlate
 								.difference(vitamins)
 								
@@ -348,7 +367,9 @@ return new ICadGenerator(){
 			
 			
 			double hingeDiameter = 12
-			def hingeBarrel = new Cylinder(hingeDiameter/2,linkYDimention).toCSG()
+			def hingeBarrel = new RoundedCylinder(hingeDiameter/2,linkYDimention)
+									.cornerRadius(cornerRad)
+									.toCSG()
 									.toZMax()
 			def hingeLinkHole = new Cylinder(1,linkYDimention).toCSG()
 									.toZMax()
@@ -429,7 +450,7 @@ return new ICadGenerator(){
 		if(linkIndex==0) {
 			def z = dh.getD()-10-movingPartClearence/2
 			def supportBeam= new RoundedCube(linkYDimention+linkThickness*2.5,40+linkThickness*2,z)
-								.cornerRadius(2)
+								.cornerRadius(cornerRad)
 								.toCSG()
 								.toZMax()
 			
@@ -638,8 +659,9 @@ return new ICadGenerator(){
 										.toZMin()
 										
 		// assemble the base
-		def calibrationTipKeepaway =new Cylinder(linkYDimention/2,
-											centerlineToOuterSurfacePositiveZ-centerlineToOuterSurfaceNegativeZ).toCSG()
+		def calibrationTipKeepaway =new RoundedCylinder(linkYDimention/2,centerlineToOuterSurfacePositiveZ-centerlineToOuterSurfaceNegativeZ)
+											.cornerRadius(cornerRad)
+											.toCSG()
 											.roty(-90)
 									.transformed(calibrationFrame)
 		coreParts.add(calibrationTipKeepaway)			
