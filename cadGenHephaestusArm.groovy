@@ -427,12 +427,13 @@ return new ICadGenerator(){
 		}
 		
 		if(linkIndex==0) {
-			def supportBeam= new RoundedCube(linkYDimention+linkThickness*2.5,40+linkThickness*2,linkYDimention*2)
+			def z = dh.getD()-10-movingPartClearence/2
+			def supportBeam= new RoundedCube(linkYDimention+linkThickness*2.5,40+linkThickness*2,z)
 								.cornerRadius(2)
 								.toCSG()
 								.toZMax()
-			def z = dh.getD()-10-movingPartClearence/2
-			def	baseOfArm = Parabola.coneByHeight(baseCorRad, 40)
+			
+			def	baseOfArm = Parabola.coneByHeight(baseCorRad, 35)
 						.rotx(90)
 						.toZMin()
 						.movez(movingPartClearence)
