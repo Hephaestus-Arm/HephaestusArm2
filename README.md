@@ -58,9 +58,8 @@ Main Electronics Kit:
 
 1x USB cable https://www.amazon.com/AmazonBasics-Male-Micro-Cable-Black/dp/B0711PVX6Z
 
-1x double sided tape https://www.amazon.com/3M-03609-Scotch-Mount-Molding-Tape/dp/B000BO913C
+1x double sided tape https://www.amazon.com/Scotch-Double-Dispenser-Standard-237/dp/B0000DH8IT/
 
-1x CA glue https://www.amazon.com/Starbond-Cyanoacrylate-Microtips-Woodturning-Stabilizing/dp/B00C32ME6G/
 
 1x pin headers https://www.amazon.com/Generic-Breakaway-Headers-Length-Centered/dp/B015KA0RRU
 
@@ -80,15 +79,13 @@ Gripper servo and regulator for the servo
 
 1x https://www.digikey.com/products/en/motors-solenoids-driver-boards-modules/motors-ac-dc/178?k=mg92b
 
-1x https://www.digikey.com/product-detail/en/adafruit-industries-llc/973/1528-1171-ND/5353631
-
-1x https://www.amazon.com/Ship-Hobbywing-Switch-mode-UBEC-Lowest/dp/B008ZNWOYY
-
 Camera Kit
 
-1x https://www.amazon.com/Sony-Station-Camera-Packaging-PlayStation-3/dp/B0735KNH2X/
+1x PSEye camera https://www.amazon.com/Sony-Station-Camera-Packaging-PlayStation-3/dp/B0735KNH2X/
 
-1x https://www.amazon.com/Magnetic-Adjustable-Indicator-Holder-Digital/dp/B00L5T2ZA8/
+1x Adjustable stand https://www.amazon.com/Magnetic-Adjustable-Indicator-Holder-Digital/dp/B00L5T2ZA8/
 
-1x https://www.amazon.com/Ringlight-Dimmable-Streaming-YouTube-Reading/dp/B07WZCNCP4
+1x CA glue https://www.amazon.com/Starbond-Cyanoacrylate-Microtips-Woodturning-Stabilizing/dp/B00C32ME6G/
+
+1x Ring light https://www.amazon.com/Ringlight-Dimmable-Streaming-YouTube-Reading/dp/B07WZCNCP4
 
