@@ -89,7 +89,7 @@ return new ICadGenerator(){
 		// loading the vitamins referenced in the configuration
 		//CSG servo=   Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
 		CSG motorModel=   Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
-		CSG linkBuildingBlockRoundCyl = new Cylinder(linkYDimention/2+0.5,linkThickness)
+		CSG linkBuildingBlockRoundCyl = new Cylinder(linkYDimention/2,linkYDimention/2,linkThickness,30)
 										.toCSG()
 		CSG linkBuildingBlockRound = new RoundedCylinder(linkYDimention/2,linkThickness)
 										.cornerRadius(cornerRad)
@@ -138,12 +138,12 @@ return new ICadGenerator(){
 			def mountBoltTwo=mountBoltOne.copy()
 								.times(new TransformNR()
 									.translateY(+20))
-								
+							
 			vitaminLocations.put(mountBoltOne,["capScrew", boltsize])
-			vitaminLocations.put(mountBoltOne.times(new TransformNR().translateZ(-linkThickness*2-insertMeasurments.installLength)),
+			vitaminLocations.put(mountBoltOne.times(new TransformNR().translateZ(-linkThickness-hornKeepawayLen-0.5-insertMeasurments.installLength)),
 				insert)
 			vitaminLocations.put(mountBoltTwo,["capScrew", boltsize])
-			vitaminLocations.put(mountBoltTwo.times(new TransformNR().translateZ(-linkThickness*2-insertMeasurments.installLength)),
+			vitaminLocations.put(mountBoltTwo.times(new TransformNR().translateZ(-linkThickness-hornKeepawayLen-0.5-insertMeasurments.installLength)),
 				insert)
 			
 		}
