@@ -352,13 +352,13 @@ return new ICadGenerator(){
 			
 			
 			
-			def servoCube = linkBuildingBlock.toXMax().movez(centerlineToOuterSurfacePositiveZ).roty(90).transformed(gripperSpace)	
+			def servoCube = linkBuildingBlock.toXMax().movez(centerlineToOuterSurfacePositiveZ-0.5).roty(90).transformed(gripperSpace)	
 			def rightServoCube = linkBuildingBlock.toZMax().toXMin().movez(-centerlineToOuterSurfaceNegativeZ).roty(-90).transformed(gripperSpace)
 			
 			def servoBracket = servoCube.union(rightServoCube).hull()
 			def supportBracket = rightServoCube.union(passivLinkLug).hull()
 			def linkToCup = rightServoCube.union(gripperLug).hull()
-			def ActuatorBracket = servoCube.union(actuatorCircle).hull()
+			def ActuatorBracket = servoCube.union(actuatorCircle.movez(-0.5)).hull()
 									.difference(vitamins)
 			
 			CSG pincherCup = new  Cylinder(radiusOfGraspingObject/2,5).toCSG()
