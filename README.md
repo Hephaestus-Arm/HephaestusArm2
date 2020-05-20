@@ -28,6 +28,29 @@ Use Arduino to program the Teensy 3.5
 
 https://github.com/Hephaestus-Arm/HephaestusArm2-firmware
 
+# Calibrate Arm Servos
+
+Before you cna calibrate the arm, the servos need to be within their range of motion. this is checked by the Teensy firmware and enforced at the chips boot. if the pose of the motor is such that it could not reach the full range, the motor is moved by the controller to the correct home pose location and stops the execution of the code. THis is a hardware fault and the controller will not continue until the hardware configuration is changed. the process to get this all configured in the first place is listed below. Note that you only need to adjust the horn location if you do not do the procedure below correctly. 
+
+## first time calibration during assembly
+
+While assembling the robot, keep all of the servo horns detatched until the last step.
+
+Power up the arm and connect the electronics. Press the home button and the motors will move to the home positions they need to be at to achieve the calibration pose. The pose is depicted below
+
+![Calibration Pose](armCalibration.png) 
+
+Calibrate one motor at a time to its calibration pose then home the robot. Reset the Teensy in between by plug cycling its usb. Once the base Motor is calibrated, add its horn and tighten the horn screw very well.
+
+Next insert the second motor and arrange the loose links so that the tip is seated into the calibration pose notch in the base. After you home the second link, add the horn for the second link. 
+
+Finally home for a third time, this time add the last links horn. 
+
+## Calibrate each time you power up the Teensy
+
+From now on, all you need to do to calibrate is move the robot to the home pose and hit the calibration button on the controller. You will need to home the robot each time the Teensy is power cycled. 
+
+
 # Camera Calibaration
 
 Get the calibration document:
