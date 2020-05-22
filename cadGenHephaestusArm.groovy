@@ -561,10 +561,11 @@ return new ICadGenerator(){
 				conf.getElectroMechanicalType(),
 				conf.getElectroMechanicalSize()
 			])
-//			vitaminLocations.put(pinionRoot, [
-//				conf.getShaftType(),
-//				conf.getShaftSize()
-//			])
+			// cut the hole in the base for the shaft
+			vitaminLocations.put(pinionRoot, [
+				conf.getShaftType(),
+				conf.getShaftSize()
+			])
 		}
 		def insert=["heatedThreadedInsert", "M5"]
 		def insertMeasurments= Vitamins.getConfiguration(insert[0],
