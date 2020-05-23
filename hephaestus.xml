@@ -139,7 +139,7 @@
 	<type>pidg-link</type>
 	<index>2</index>
 	<scale>1.0</scale>
-	<upperLimit>90.0</upperLimit>
+	<upperLimit>70.0</upperLimit>
 	<lowerLimit>-90.0</lowerLimit>
 	<upperVelocity>1.0E8</upperVelocity>
 	<lowerVelocity>-1.0E8</lowerVelocity>
