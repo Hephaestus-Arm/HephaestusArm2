@@ -152,6 +152,7 @@ public class RBE3001Robot  extends HIDSimplePacketComs{
 		int intVal = value.intValue();
 		gripperData[0]=intVal;
 		writeBytes(gripper.idOfCommand, gripperData);
+		//println "Setting gripper to "+gripperData
 		gripper.oneShotMode();
 	}
 	/**
