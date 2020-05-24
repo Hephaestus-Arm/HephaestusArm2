@@ -139,8 +139,8 @@
 	<type>pidg-link</type>
 	<index>2</index>
 	<scale>1.0</scale>
-	<upperLimit>70.0</upperLimit>
-	<lowerLimit>-90.0</lowerLimit>
+	<upperLimit>63.0</upperLimit>
+	<lowerLimit>-86.0</lowerLimit>
 	<upperVelocity>1.0E8</upperVelocity>
 	<lowerVelocity>-1.0E8</lowerVelocity>
 	<staticOffset>0.0</staticOffset>
@@ -165,7 +165,7 @@
 
 	</vitamins>
 	<passive>false</passive>
-	<mass>0.0208</mass>
+	<mass>0.020800000000000003</mass>
 	<centerOfMassFromCentroid>	<x>0.0</x>
 	<y>0.0</y>
 	<z>0.0</z>
