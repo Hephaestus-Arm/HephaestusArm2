@@ -211,6 +211,95 @@
 </baseToZframe>
 
 </appendage>
+<appendage>
+
+<name>Hand</name>
+	<cadEngine>
+		<git>https://github.com/madhephaestus/carl-the-hexapod.git</git>
+		<file>ThreeDPrintCad.groovy</file>
+	</cadEngine>
+	<kinematics>
+		<git>https://github.com/madhephaestus/carl-the-hexapod.git</git>
+		<file>DefaultDhSolver.groovy</file>
+	</kinematics>
+<link>
+	<name>gripper</name>
+	<deviceName>dyio</deviceName>
+	<type>servo-rotory</type>
+	<index>0</index>
+	<scale>0.33</scale>
+	<upperLimit>255.0</upperLimit>
+	<lowerLimit>0.0</lowerLimit>
+	<upperVelocity>1.0E8</upperVelocity>
+	<lowerVelocity>-1.0E8</lowerVelocity>
+	<staticOffset>128.43283582089552</staticOffset>
+	<deviceTheoreticalMax>255.0</deviceTheoreticalMax>
+	<deviceTheoreticalMin>0.0</deviceTheoreticalMin>
+	<isLatch>true</isLatch>
+	<indexLatch>235.0</indexLatch>
+	<isStopOnLatch>false</isStopOnLatch>
+	<homingTPS>10000000</homingTPS>
+
+	<vitamins>
+		<vitamin>
+			<name>electroMechanical</name>
+			<type>hobbyServo</type>
+			<id>standardMicro</id>
+		</vitamin>
+		<vitamin>
+			<name>shaft</name>
+			<type>hobbyServoHorn</type>
+			<id>standardMicro1</id>
+		</vitamin>
+
+	</vitamins>
+	<passive>false</passive>
+	<mass>0.01</mass>
+	<centerOfMassFromCentroid>	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>0.0</rotx>
+	<roty>0.0</roty>
+	<rotz>0.0</rotz></centerOfMassFromCentroid>
+	<imuFromCentroid>	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-0.0</rotx>
+	<roty>-0.0</roty>
+	<rotz>-0.0</rotz></imuFromCentroid>
+
+	<DHParameters>
+		<Delta>0.0</Delta>
+		<Theta>0.0</Theta>
+		<Radius>60.0</Radius>
+		<Alpha>-90.0</Alpha>
+	</DHParameters>
+
+</link>
+
+<ZframeToRAS
+>	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-0.0</rotx>
+	<roty>-0.0</roty>
+	<rotz>-0.0</rotz>
+</ZframeToRAS>
+
+<baseToZframe>
+	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>0.0</rotx>
+	<roty>0.0</roty>
+	<rotz>0.0</rotz>
+</baseToZframe>
+
+</appendage>
 
 <ZframeToRAS>
 	<x>0.0</x>
