@@ -22,6 +22,7 @@ import edu.wpi.SimplePacketComs.BytePacketType;
 import edu.wpi.SimplePacketComs.FloatPacketType;
 import edu.wpi.SimplePacketComs.*;
 import edu.wpi.SimplePacketComs.phy.UDPSimplePacketComs;
+import kotlin.reflect.jvm.internal.impl.resolve.constants.IntValue
 import edu.wpi.SimplePacketComs.device.gameController.*;
 import edu.wpi.SimplePacketComs.device.*
 
@@ -46,12 +47,13 @@ public class RBE3001Robot  extends HIDSimplePacketComs{
 	FloatPacketType pidStatus = new FloatPacketType(1910, 64);
 	FloatPacketType getConfig = new FloatPacketType(1857, 64);
 	FloatPacketType setConfig = new FloatPacketType(1900, 64);
-
+	BytePacketType gripper = new BytePacketType(1962, 64);
 	PacketType SetPIDVelocity = new FloatPacketType(1811, 64);
 	PacketType SetPDVelocityConstants = new FloatPacketType(1810, 64);
 	PacketType GetPIDVelocity = new FloatPacketType(1822, 64);
 	PacketType GetPDVelocityConstants = new FloatPacketType(1825, 64);
-
+	
+	byte [] gripperData=new byte[1];
 	double[] numPID = new double[1];
 	double[] pidConfigData = new double[15];
 	double[] pidVelConfigData = new double[15];
@@ -77,9 +79,9 @@ public class RBE3001Robot  extends HIDSimplePacketComs{
 		getConfig.oneShotMode();
 		setConfig.waitToSendMode();
 		setSetpoint.waitToSendMode();
-
+		gripper.waitToSendMode();
 		for (PacketType pt : Arrays.asList(pidStatus, getConfig, setConfig, setSetpoint, SetPIDVelocity,
-		SetPDVelocityConstants, GetPIDVelocity, GetPDVelocityConstants)) {
+		SetPDVelocityConstants, GetPIDVelocity, GetPDVelocityConstants,gripper)) {
 			addPollingPacket(pt);
 		}
 
@@ -139,8 +141,19 @@ public class RBE3001Robot  extends HIDSimplePacketComs{
 	}
 
 
-
-
+	public int getGripper() {
+		return gripperData[0]
+	}
+	public void setGripper(Number value) {
+		if(value>180)
+			value=180;
+		if(value<0)
+			value=0;
+		int intVal = value.intValue();
+		gripperData[0]=intVal;
+		writeBytes(gripper.idOfCommand, gripperData);
+		gripper.oneShotMode();
+	}
 	/**
 	 * Velocity domain values
 	 *
@@ -286,6 +299,57 @@ public class RBE3001Robot  extends HIDSimplePacketComs{
 	}
 }
 
+public class GripperLink extends AbstractRotoryLink{
+	RBE3001Robot device;
+	/**
+	 * Instantiates a new HID rotory link.
+	 *
+	 * @param c the c
+	 * @param conf the conf
+	 */
+	public GripperLink(RBE3001Robot c,LinkConfiguration conf) {
+		super(conf);
+		conf.setDeviceTheoreticalMax(180);
+		conf.setDeviceTheoreticalMin(0);
+		device=c
+		if(device ==null)
+			throw new RuntimeException("Device can not be null")
+
+	}
+
+	/* (non-Javadoc)
+	 * @see com.neuronrobotics.sdk.addons.kinematics.AbstractLink#cacheTargetValueDevice()
+	 */
+	@Override
+	public void cacheTargetValueDevice() {
+		device.setGripper(getTargetValue());
+	}
+
+	/* (non-Javadoc)
+	 * @see com.neuronrobotics.sdk.addons.kinematics.AbstractLink#flush(double)
+	 */
+	@Override
+	public void flushDevice(double time) {
+		// auto flushing
+	}
+
+	/* (non-Javadoc)
+	 * @see com.neuronrobotics.sdk.addons.kinematics.AbstractLink#flushAll(double)
+	 */
+	@Override
+	public void flushAllDevice(double time) {
+		// auto flushing
+	}
+
+	/* (non-Javadoc)
+	 * @see com.neuronrobotics.sdk.addons.kinematics.AbstractLink#getCurrentPosition()
+	 */
+	@Override
+	public double getCurrentPosition() {
+		return device.getGripper();
+	}
+
+}
 public class HIDRotoryLink extends AbstractRotoryLink{
 	RBE3001Robot device;
 	int index =0;
@@ -354,44 +418,48 @@ public class HIDRotoryLink extends AbstractRotoryLink{
 
 }
 
-
-INewLinkProvider provider= new INewLinkProvider() {
-			public AbstractLink generate(LinkConfiguration conf) {
-				String searchName = conf.getDeviceScriptingName();
-				int vid=0x3742
-				int pid=0x0007
-				if(searchName.size()>8){
-					String deviceID = searchName.substring(searchName.size()-8,searchName.size())
-					String VIDStr = deviceID.substring(0,4)
-					String PIDStr = deviceID.substring(4,8)
-					try{
-						vid = Integer.parseInt(VIDStr,16);
-						pid = Integer.parseInt(PIDStr,16);
-						//println "Searching for Device at "+VIDStr+" "+PIDStr
-					}catch(Throwable t){
-						BowlerStudio.printStackTrace(t)
-					}
-
-				}
-				def dev = DeviceManager.getSpecificDevice( searchName,{
-					RBE3001Robot d = new RBE3001Robot(vid,pid)
-					d.setName(searchName);
-					d.connect(); // Connect to it.
-					if(d.isVirtual()){
-						println "\n\n\nDevice is in virtual mode!\n\n\n"
-					}
-					return d
-				})
-
-				return new HIDRotoryLink(dev,conf);
-			}
-
+RBE3001Robot getDevice(LinkConfiguration conf) {
+	String searchName = conf.getDeviceScriptingName();
+	int vid=0x3742
+	int pid=0x0007
+	if(searchName.size()>8){
+		String deviceID = searchName.substring(searchName.size()-8,searchName.size())
+		String VIDStr = deviceID.substring(0,4)
+		String PIDStr = deviceID.substring(4,8)
+		try{
+			vid = Integer.parseInt(VIDStr,16);
+			pid = Integer.parseInt(PIDStr,16);
+			//println "Searching for Device at "+VIDStr+" "+PIDStr
+		}catch(Throwable t){
+			BowlerStudio.printStackTrace(t)
 		}
 
+	}
+	return DeviceManager.getSpecificDevice( searchName,{
+		RBE3001Robot d = new RBE3001Robot(vid,pid)
+		d.setName(searchName);
+		d.connect(); // Connect to it.
+		if(d.isVirtual()){
+			println "\n\n\nDevice is in virtual mode!\n\n\n"
+		}
+		return d
+	})
+}
+
+INewLinkProvider provider= new INewLinkProvider() {
+	public AbstractLink generate(LinkConfiguration conf) {
+		return new HIDRotoryLink(getDevice(conf),conf);
+	}
+}
+INewLinkProvider gripprovider= new INewLinkProvider() {
+	public AbstractLink generate(LinkConfiguration conf) {
+		return new GripperLink(getDevice(conf),conf);
+	}
+}
 if(args==null)
 	args=["pidg-link"]
 LinkFactory.addLinkProvider(args[0], provider)
-
+LinkFactory.addLinkProvider("gripperLink", gripprovider)
 return provider
 
 
