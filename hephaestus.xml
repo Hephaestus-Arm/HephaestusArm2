@@ -187,36 +187,24 @@
 		<Radius>100.0</Radius>
 		<Alpha>0.0</Alpha>
 	</DHParameters>
+	
+<mobilebase>
+	<cadEngine>
+		<git>https://github.com/Hephaestus-Arm/HephaestusArm2.git</git>
+		<file>cadGenHephaestusArm.groovy</file>
+	</cadEngine>
+	<driveEngine>
+		<git>https://github.com/madhephaestus/carl-the-hexapod.git</git>
+		<file>WalkingDriveEngine.groovy</file>
+</driveEngine>
 
-</link>
-
-<ZframeToRAS
->	<x>0.0</x>
-	<y>0.0</y>
-	<z>0.0</z>
-	<rotw>1.0</rotw>
-	<rotx>-0.0</rotx>
-	<roty>-0.0</roty>
-	<rotz>-0.0</rotz>
-</ZframeToRAS>
-
-<baseToZframe>
-	<x>0.0</x>
-	<y>0.0</y>
-	<z>55.0</z>
-	<rotw>1.0</rotw>
-	<rotx>-2.7755575615628907E-17</rotx>
-	<roty>-2.775557561562889E-17</roty>
-	<rotz>8.326672684688674E-17</rotz>
-</baseToZframe>
-
-</appendage>
+<name>HephaestusHand</name>	
 <appendage>
 
 <name>Hand</name>
 	<cadEngine>
-		<git>https://github.com/madhephaestus/carl-the-hexapod.git</git>
-		<file>ThreeDPrintCad.groovy</file>
+		<git>https://github.com/Hephaestus-Arm/HephaestusArm2.git</git>
+		<file>cadGenHephaestusArm.groovy</file>
 	</cadEngine>
 	<kinematics>
 		<git>https://github.com/madhephaestus/carl-the-hexapod.git</git>
@@ -297,6 +285,70 @@
 	<rotx>0.0</rotx>
 	<roty>0.0</roty>
 	<rotz>0.0</rotz>
+</baseToZframe>
+
+</appendage>
+<ZframeToRAS>
+	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-0.0</rotx>
+	<roty>-0.0</roty>
+	<rotz>-0.0</rotz>
+</ZframeToRAS>
+
+<baseToZframe>
+	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-0.0</rotx>
+	<roty>-0.0</roty>
+	<rotz>-0.0</rotz>
+</baseToZframe>
+	<mass>0.14300000000000002</mass>
+	<centerOfMassFromCentroid>	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-0.0</rotx>
+	<roty>-0.0</roty>
+	<rotz>-0.0</rotz></centerOfMassFromCentroid>
+	<imuFromCentroid>	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-0.0</rotx>
+	<roty>-0.0</roty>
+	<rotz>-0.0</rotz></imuFromCentroid>
+
+<vitamins>
+
+</vitamins>
+
+</mobilebase>
+
+</link>
+
+<ZframeToRAS
+>	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-0.0</rotx>
+	<roty>-0.0</roty>
+	<rotz>-0.0</rotz>
+</ZframeToRAS>
+
+<baseToZframe>
+	<x>0.0</x>
+	<y>0.0</y>
+	<z>55.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-2.7755575615628907E-17</rotx>
+	<roty>-2.775557561562889E-17</roty>
+	<rotz>8.326672684688674E-17</rotz>
 </baseToZframe>
 
 </appendage>
