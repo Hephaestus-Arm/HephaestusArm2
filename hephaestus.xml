@@ -227,13 +227,13 @@
 	<deviceName>hephaestus-16c00486</deviceName>
 	<type>gripperLink</type>
 	<index>0</index>
-	<scale>0.33</scale>
-	<upperLimit>255.0</upperLimit>
+	<scale>0.52</scale>
+	<upperLimit>180.0</upperLimit>
 	<lowerLimit>0.0</lowerLimit>
 	<upperVelocity>1.0E8</upperVelocity>
 	<lowerVelocity>-1.0E8</lowerVelocity>
-	<staticOffset>128.43283582089552</staticOffset>
-	<deviceTheoreticalMax>255.0</deviceTheoreticalMax>
+	<staticOffset>180.0</staticOffset>
+	<deviceTheoreticalMax>180.0</deviceTheoreticalMax>
 	<deviceTheoreticalMin>0.0</deviceTheoreticalMin>
 	<isLatch>true</isLatch>
 	<indexLatch>235.0</indexLatch>
