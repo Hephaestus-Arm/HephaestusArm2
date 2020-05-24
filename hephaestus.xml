@@ -186,9 +186,7 @@
 		<Theta>90.0</Theta>
 		<Radius>100.0</Radius>
 		<Alpha>0.0</Alpha>
-	</DHParameters>
-	
-<mobilebase>
+		<mobilebase>
 	<cadEngine>
 		<git>https://github.com/Hephaestus-Arm/HephaestusArm2.git</git>
 		<file>cadGenHephaestusArm.groovy</file>
@@ -328,6 +326,9 @@
 </vitamins>
 
 </mobilebase>
+		
+	</DHParameters>
+	
 
 </link>
 
