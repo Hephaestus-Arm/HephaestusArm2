@@ -224,8 +224,8 @@
 	</kinematics>
 <link>
 	<name>gripper</name>
-	<deviceName>dyio</deviceName>
-	<type>servo-rotory</type>
+	<deviceName>hephaestus-16c00486</deviceName>
+	<type>gripperLink</type>
 	<index>0</index>
 	<scale>0.33</scale>
 	<upperLimit>255.0</upperLimit>
