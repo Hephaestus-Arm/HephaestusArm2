@@ -348,6 +348,7 @@ return new ICadGenerator(){
 			
 			def corners =[]
 			Transform gripperSpace = TransformFactory.nrToCSG(locationOfServo)
+			//dh.
 			Transform hinge = TransformFactory.nrToCSG(locationOfGripperHinge)			
 			CSG motorToCut = Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
 							.rotz(90)
