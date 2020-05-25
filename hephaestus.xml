@@ -186,6 +186,7 @@
 		<Theta>90.0</Theta>
 		<Radius>100.0</Radius>
 		<Alpha>0.0</Alpha>
+
 		<mobilebase>
 	<cadEngine>
 		<git>https://github.com/Hephaestus-Arm/HephaestusArm2.git</git>
@@ -194,9 +195,9 @@
 	<driveEngine>
 		<git>https://github.com/madhephaestus/carl-the-hexapod.git</git>
 		<file>WalkingDriveEngine.groovy</file>
-</driveEngine>
+	</driveEngine>
 
-<name>HephaestusHand</name>	
+<name>HephaestusHand</name>
 <appendage>
 
 <name>Hand</name>
@@ -222,7 +223,7 @@
 	<deviceTheoreticalMax>180.0</deviceTheoreticalMax>
 	<deviceTheoreticalMin>0.0</deviceTheoreticalMin>
 	<isLatch>true</isLatch>
-	<indexLatch>235.0</indexLatch>
+	<indexLatch>180.0</indexLatch>
 	<isStopOnLatch>false</isStopOnLatch>
 	<homingTPS>10000000</homingTPS>
 
@@ -276,7 +277,7 @@
 </ZframeToRAS>
 
 <baseToZframe>
-	<x>0.0</x>
+	<x>-40.0</x>
 	<y>0.0</y>
 	<z>0.0</z>
 	<rotw>1.0</rotw>
@@ -286,6 +287,7 @@
 </baseToZframe>
 
 </appendage>
+
 <ZframeToRAS>
 	<x>0.0</x>
 	<y>0.0</y>
@@ -326,9 +328,8 @@
 </vitamins>
 
 </mobilebase>
-		
+
 	</DHParameters>
-	
 
 </link>
 
