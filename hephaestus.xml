@@ -231,12 +231,12 @@
 		<vitamin>
 			<name>electroMechanical</name>
 			<type>hobbyServo</type>
-			<id>standardMicro</id>
+			<id>mg92b</id>
 		</vitamin>
 		<vitamin>
 			<name>shaft</name>
 			<type>hobbyServoHorn</type>
-			<id>standardMicro1</id>
+			<id>tproSG90_1</id>
 		</vitamin>
 
 	</vitamins>
