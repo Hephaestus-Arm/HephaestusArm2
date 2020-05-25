@@ -142,7 +142,10 @@ public class RBE3001Robot  extends HIDSimplePacketComs{
 
 
 	public int getGripper() {
-		return gripperData[0]
+		int val= gripperData[0]
+		if(val<0)
+			val+=256
+		return val;
 	}
 	public void setGripper(Number value) {
 		if(value>180)
@@ -302,6 +305,7 @@ public class RBE3001Robot  extends HIDSimplePacketComs{
 
 public class GripperLink extends AbstractRotoryLink{
 	RBE3001Robot device;
+	int lastPushedVal = 0;
 	/**
 	 * Instantiates a new HID rotory link.
 	 *
@@ -315,6 +319,18 @@ public class GripperLink extends AbstractRotoryLink{
 		device=c
 		if(device ==null)
 			throw new RuntimeException("Device can not be null")
+		c.addEvent(1962,{
+			int val= getCurrentPosition()*100;
+			if(lastPushedVal!=val){
+				//println "Fire Link Listner "+index+" value "+getCurrentPosition()
+				try {
+					fireLinkListener(getCurrentPosition());
+				}catch(Throwable t) {
+					
+				}
+			}
+			lastPushedVal=val
+		})
 
 	}
 
