@@ -22,6 +22,7 @@ import java.nio.file.Paths;
 import eu.mihosoft.vrl.v3d.CSG
 import eu.mihosoft.vrl.v3d.Cube
 import eu.mihosoft.vrl.v3d.Cylinder
+import eu.mihosoft.vrl.v3d.FileUtil
 import eu.mihosoft.vrl.v3d.Parabola
 import eu.mihosoft.vrl.v3d.RoundedCube
 import eu.mihosoft.vrl.v3d.RoundedCylinder
@@ -432,38 +433,43 @@ return new ICadGenerator(){
 								.transformed(hinge)
 								.union(movingCupHingeLug.union(tipCupCircle).hull())
 								.difference(hingeLinkHole.transformed(hinge))
-			def gripperMovingCup = tipCupCircle.union(pincherCup).hull()
+			def gripperMovingCupstl = tipCupCircle.union(pincherCup).hull()
 								.union(movingPart)
 								.difference(objectToGrab)
 								.difference(knotches)
 								.difference(vitamins)
+								.transformed(hinge.inverse())// move the gripper to the tip
+								
 			def FullBracket =CSG.unionAll([servoBracket,supportBracket,linkToCup,pincherBracket,hingeBarrelMount])
 									.difference(objectToGrab)
 									.difference(vitamins)
 									.difference(ActuatorBracket)
 									.difference(motorToCut)
 									.difference(knotches)
-									
+			// Save the gripper cup to an STL to be loaded by the hand cad script and hung on the hand 
+			File dir= ScriptingEngine.getRepositoryCloneDirectory(d.getGitCadEngine()[0])
+			FileUtil.write(Paths.get(dir.getAbsolutePath()+"/gripper.stl"),
+				gripperMovingCupstl
+				
+				.toStlString());
 			FullBracket.setColor(javafx.scene.paint.Color.LIGHTBLUE)
-			gripperMovingCup.setColor(javafx.scene.paint.Color.LIGHTPINK)
+			
 			ActuatorBracket.setColor(javafx.scene.paint.Color.DARKCYAN)
 			objectToGrab.setColor(javafx.scene.paint.Color.RED)
 			ActuatorBracket.setManipulator(manipulator)
 			FullBracket.setManipulator(manipulator)
-			gripperMovingCup.setManipulator(manipulator)
+			
 			objectToGrab.setManipulator(manipulator)
 			
 			FullBracket.setName("LastLinkMainBracket")
 			ActuatorBracket.setName("LastLinkActuatorBracket")
-			gripperMovingCup.setName("Gripper")
+			
 			objectToGrab.setName("GamePiece")
 			objectToGrab.setManufacturing ({ mfg ->
 				return mfg.roty(-90).toZMin()				
 			})
-			gripperMovingCup.setManufacturing ({ mfg ->
-				return mfg.rotx(180).toZMin()				
-			})
-			allCad.addAll(FullBracket,ActuatorBracket,gripperMovingCup,objectToGrab)
+			
+			allCad.addAll(FullBracket,ActuatorBracket,objectToGrab)
 		}
 		
 		if(linkIndex==0) {
