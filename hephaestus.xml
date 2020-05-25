@@ -165,7 +165,7 @@
 
 	</vitamins>
 	<passive>false</passive>
-	<mass>0.020800000000000003</mass>
+	<mass>0.020800000000000006</mass>
 	<centerOfMassFromCentroid>	<x>0.0</x>
 	<y>0.0</y>
 	<z>0.0</z>
@@ -260,7 +260,7 @@
 	<DHParameters>
 		<Delta>0.0</Delta>
 		<Theta>0.0</Theta>
-		<Radius>60.0</Radius>
+		<Radius>40.0</Radius>
 		<Alpha>-90.0</Alpha>
 	</DHParameters>
 
@@ -277,13 +277,13 @@
 </ZframeToRAS>
 
 <baseToZframe>
-	<x>-40.0</x>
-	<y>0.0</y>
-	<z>0.0</z>
-	<rotw>1.0</rotw>
-	<rotx>0.0</rotx>
-	<roty>0.0</roty>
-	<rotz>0.0</rotz>
+	<x>-34.450830007359635</x>
+	<y>-22.652600552784413</y>
+	<z>-1.4404089311351427E-15</z>
+	<rotw>0.6971116044734189</rotw>
+	<rotx>0.6971116044734187</rotx>
+	<roty>0.11847113955936989</roty>
+	<rotz>0.1184711395593697</rotz>
 </baseToZframe>
 
 </appendage>
@@ -374,7 +374,7 @@
 	<roty>-0.0</roty>
 	<rotz>-0.0</rotz>
 </baseToZframe>
-	<mass>0.001</mass>
+	<mass>0.14300000000000002</mass>
 	<centerOfMassFromCentroid>	<x>0.0</x>
 	<y>0.0</y>
 	<z>0.0</z>

@@ -157,6 +157,12 @@ return new ICadGenerator(){
 			println "Angle of servo offset = "+servoAllignmentAngle+" "+GripperServoYOffset+" "+dh.getR()+" theta "+theta
 			double hypot = Math.sqrt(Math.pow(dh.getR(), 2)+Math.pow(GripperServoYOffset, 2))
 			double hingeBackset = 40
+			if(dh.getSlaveMobileBase()!=null) {
+				MobileBase hand = dh.getSlaveMobileBase();
+				DHParameterKinematics gripperLimb=hand.getAllDHChains().get(0);
+				hingeBackset = gripperLimb.getDH_R(0);
+				
+			}
 			locationOfServo=locationOfMotorMount
 			.copy()
 			.times(
@@ -348,7 +354,15 @@ return new ICadGenerator(){
 			
 			def corners =[]
 			Transform gripperSpace = TransformFactory.nrToCSG(locationOfServo)
-			//dh.
+			
+			// Move the kinematic location of the gripper based on how the CAD needs the hinge to be
+			if(dh.getSlaveMobileBase()!=null) {
+				MobileBase hand = dh.getSlaveMobileBase();
+				DHParameterKinematics gripperLimb=hand.getAllDHChains().get(0);
+				gripperLimb.setRobotToFiducialTransform(locationOfGripperHinge
+					.times(new TransformNR(0,0,0,new RotationNR(0,90,0)))// align
+					);
+			}
 			Transform hinge = TransformFactory.nrToCSG(locationOfGripperHinge)			
 			CSG motorToCut = Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
 							.rotz(90)
