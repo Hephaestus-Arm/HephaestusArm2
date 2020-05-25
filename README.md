@@ -73,7 +73,7 @@ Main Electronics Kit:
 
 1x Line Driver: https://www.digikey.com/product-detail/en/texas-instruments/SN74HC126N/296-8221-5-ND
 
-1x Breadboard https://www.digikey.com/product-detail/en/dfrobot/FIT0096/1738-1326-ND/7597069
+1x Breadboard https://www.digikey.com/product-detail/en/adafruit-industries-llc/239/1528-2143-ND/7244929
 
 4x resistors https://www.digikey.com/product-detail/en/stackpole-electronics-inc/CF14JT10K0/CF14JT10K0CT-ND/1830374
 
