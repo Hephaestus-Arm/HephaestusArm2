@@ -118,6 +118,7 @@ return new ICadGenerator(){
 		CSG gripperMotor=null;
 		TransformNR locationOfGripperHinge=null
 		TransformNR locationOfServo=null 
+		double servoZOffset = 0;
 		def insert=["heatedThreadedInsert", "M5"]
 		def insertMeasurments= Vitamins.getConfiguration(insert[0],
 			insert[1])
@@ -207,6 +208,8 @@ return new ICadGenerator(){
 				"hobbyServo",
 				"mg92b"
 			])
+			CSG srv =Vitamins.get("hobbyServo","mg92b")
+			servoZOffset=srv.getMaxZ()
 		}
 
 		if(linkIndex!=d.getNumberOfLinks()-1 ){
@@ -360,10 +363,17 @@ return new ICadGenerator(){
 			if(dh.getSlaveMobileBase()!=null) {
 				MobileBase hand = dh.getSlaveMobileBase();
 				DHParameterKinematics gripperLimb=hand.getAllDHChains().get(0);
+				DHParameterKinematics gripperMotorLimb=hand.getAllDHChains().get(1);
 				gripperLimb.setRobotToFiducialTransform(locationOfGripperHinge
 					.times(new TransformNR(0,0,0,new RotationNR(0,90,0)))// align
 					);
+				gripperMotorLimb.setRobotToFiducialTransform(locationOfServo
+						.times(new TransformNR(0,0,0,new RotationNR(0,180,0)))// align
+						.times(new TransformNR().translateZ(servoZOffset))
+						
+						);
 			}
+			
 			Transform hinge = TransformFactory.nrToCSG(locationOfGripperHinge)			
 			CSG motorToCut = Vitamins.get(conf.getElectroMechanicalType(),conf.getElectroMechanicalSize())
 							.rotz(90)
@@ -518,7 +528,7 @@ return new ICadGenerator(){
 					}
 					public void onConnect(BowlerAbstractDevice source) {}
 				})
-		for(def c:vitamins) {
+		for(CSG c:vitamins) {
 			c.setManufacturing ({ mfg ->
 			return null;
 		})
