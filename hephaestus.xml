@@ -203,7 +203,7 @@
 <name>Hand</name>
 	<cadEngine>
 		<git>https://github.com/Hephaestus-Arm/HephaestusArm2.git</git>
-		<file>cadGenHephaestusArm.groovy</file>
+		<file>cadGenHand.groovy</file>
 	</cadEngine>
 	<kinematics>
 		<git>https://github.com/madhephaestus/carl-the-hexapod.git</git>
