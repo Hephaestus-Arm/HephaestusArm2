@@ -404,6 +404,8 @@ return new ICadGenerator(){
 			def hingeLinkHole = new Cylinder(1,linkYDimention).toCSG()
 									.toZMax()
 									.movex(centerlineToOuterSurfaceNegativeZ*2/3)
+			def hingeHole = new Cylinder(2.75,linkYDimention).toCSG()
+									.toZMax()
 			def hingeSlotCutter = new Cube(hingeDiameter*3+1,hingeDiameter*3,linkThickness+movingPartClearence/2).toCSG()
 									.toXMax()
 									.movex(hingeDiameter+movingPartClearence)
@@ -443,11 +445,12 @@ return new ICadGenerator(){
 								.transformed(hinge)
 								.union(movingCupHingeLug.union(tipCupCircle).hull())
 								.difference(hingeLinkHole.transformed(hinge))
+								.difference(hingeHole.transformed(hinge))
 			def gripperMovingCupstl = tipCupCircle.union(pincherCup).hull()
 								.union(movingPart)
 								.difference(objectToGrab)
 								.difference(knotches)
-								.difference(vitamins)
+								//.difference(vitamins)
 								.transformed(hinge.inverse())// move the gripper to the tip
 								
 			def FullBracket =CSG.unionAll([servoBracket,supportBracket,linkToCup,pincherBracket,hingeBarrelMount])
