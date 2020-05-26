@@ -70,6 +70,8 @@ return new ICadGenerator(){
 	double GripperServoYOffset = 35
 	def cornerRad=2
 	String boltsize = "M5x25"
+	def insert=["heatedThreadedInsert", "M5"]
+	
 	HashMap<String,Object> measurmentsHorn = Vitamins.getConfiguration(  "LewanSoulHorn","round")
 	def hornKeepawayLen = measurmentsHorn.mountPlateToHornTop
 	double centerlineToOuterSurfacePositiveZ = centerTheMotorsValue+movingPartClearence+hornKeepawayLen-1
@@ -353,7 +355,13 @@ return new ICadGenerator(){
 		}
 		if(linkIndex==2) {
 			CSG objectToGrab = new Sphere(radiusOfGraspingObject,32,16).toCSG()
-			objectToGrab=objectToGrab.intersect(objectToGrab.getBoundingBox().movex(-2))
+			CSG box = objectToGrab.getBoundingBox().movex(-2)
+			CSG insertpart = Vitamins.get(insert[0],insert[1])
+								.roty(90)
+								.toXMax()
+								.movex(box.getMaxX())
+			
+			
 			
 			
 			def corners =[]
@@ -459,6 +467,9 @@ return new ICadGenerator(){
 									.difference(ActuatorBracket)
 									.difference(motorToCut)
 									.difference(knotches)
+									
+			objectToGrab=objectToGrab.intersect(box)
+									.difference(insertpart)
 			// Save the gripper cup to an STL to be loaded by the hand cad script and hung on the hand 
 			File dir= ScriptingEngine.getRepositoryCloneDirectory(d.getGitCadEngine()[0])
 			FileUtil.write(Paths.get(dir.getAbsolutePath()+"/gripper.stl"),
@@ -549,7 +560,8 @@ return new ICadGenerator(){
 		double baseGrid = grid;
 		double baseBoltThickness=15;
 		double baseCoreheight = 1;
-		
+		def insertMeasurments= Vitamins.getConfiguration(insert[0],
+			insert[1])
 		
 
 		for(DHParameterKinematics d:b.getAllDHChains()) {
@@ -601,9 +613,8 @@ return new ICadGenerator(){
 				conf.getShaftSize()
 			])
 		}
-		def insert=["heatedThreadedInsert", "M5"]
-		def insertMeasurments= Vitamins.getConfiguration(insert[0],
-				insert[1])
+		
+		
 		def mountLoacions = [
 			new TransformNR(baseGrid,0,0,new RotationNR(180,0,0)),
 			new TransformNR(-baseGrid,baseGrid,0,new RotationNR(180,0,0)),
