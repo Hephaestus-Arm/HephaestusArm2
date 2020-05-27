@@ -380,6 +380,8 @@ return new ICadGenerator(){
 						.times(new TransformNR().translateZ(servoZOffset))
 						
 						);
+				gripperLimb.refreshPose();	
+				gripperMotorLimb.refreshPose();
 			}
 			
 			Transform hinge = TransformFactory.nrToCSG(locationOfGripperHinge)			
