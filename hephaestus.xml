@@ -165,7 +165,7 @@
 
 	</vitamins>
 	<passive>false</passive>
-	<mass>0.020800000000000003</mass>
+	<mass>0.020800000000000006</mass>
 	<centerOfMassFromCentroid>	<x>0.0</x>
 	<y>0.0</y>
 	<z>0.0</z>
@@ -214,12 +214,12 @@
 	<deviceName>hephaestus-16c00486</deviceName>
 	<type>gripperLink</type>
 	<index>0</index>
-	<scale>-0.22</scale>
+	<scale>0.22</scale>
 	<upperLimit>180.0</upperLimit>
 	<lowerLimit>0.0</lowerLimit>
 	<upperVelocity>1.0E8</upperVelocity>
 	<lowerVelocity>-1.0E8</lowerVelocity>
-	<staticOffset>180.0</staticOffset>
+	<staticOffset>0.0</staticOffset>
 	<deviceTheoreticalMax>180.0</deviceTheoreticalMax>
 	<deviceTheoreticalMin>0.0</deviceTheoreticalMin>
 	<isLatch>true</isLatch>
@@ -303,12 +303,12 @@
 	<deviceName>hephaestus-16c00486</deviceName>
 	<type>gripperLink</type>
 	<index>0</index>
-	<scale>-0.5</scale>
+	<scale>0.5</scale>
 	<upperLimit>180.0</upperLimit>
 	<lowerLimit>0.0</lowerLimit>
 	<upperVelocity>1.0E8</upperVelocity>
 	<lowerVelocity>-1.0E8</lowerVelocity>
-	<staticOffset>180.0</staticOffset>
+	<staticOffset>0.0</staticOffset>
 	<deviceTheoreticalMax>180.0</deviceTheoreticalMax>
 	<deviceTheoreticalMin>0.0</deviceTheoreticalMin>
 	<isLatch>true</isLatch>
@@ -348,7 +348,7 @@
 
 	<DHParameters>
 		<Delta>0.0</Delta>
-		<Theta>0.0</Theta>
+		<Theta>90.0</Theta>
 		<Radius>40.0</Radius>
 		<Alpha>-90.0</Alpha>
 	</DHParameters>
