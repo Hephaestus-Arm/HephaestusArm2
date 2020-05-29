@@ -102,9 +102,9 @@ Thrust bearing:
 
 Some M5 bolts and heated inserts
 
-8x https://www.mcmaster.com/94180a361 (sold in packs of 50)
+12x inserts https://www.mcmaster.com/94180a361 (sold in packs of 50)
 
-8x https://www.mcmaster.com/91292A129-91292A129 (sold in packs of 50)
+8x M5x25 https://www.mcmaster.com/91292A129-91292A129 (sold in packs of 50)
 
 Gripper servo and regulator for the servo
 
