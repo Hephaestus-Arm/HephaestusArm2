@@ -71,7 +71,7 @@ and print it on an 8.5x11 inch piece of paper. Put double sided tape on the red 
 
 Main Electronics Kit:
 
-3x motor https://www.amazon.com/LewanSoul-Connectors-Equipped-Position-Temperature/dp/B0817X3Z3W 
+3x motor https://www.amazon.com/LewanSoul-Connectors-Equipped-Position-Temperature/dp/B0817X3Z3W
 
 1x power supply: https://www.digikey.com/product-detail/en/mean-well-usa-inc/GST60A07-P1J/1866-2147-ND/7703710
 
