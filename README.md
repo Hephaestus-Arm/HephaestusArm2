@@ -113,3 +113,5 @@ and print it on an 8.5x11 inch piece of paper. Put double sided tape on the red 
 
 1x Ring light https://www.newegg.com/p/0SW-01GA-00025?Item=9SIAK0NAUS4868&Tpk=9SIAK0NAUS4868
 
+1 x nut for mounting camera stand https://www.mcmaster.com/90975A030
+
