@@ -348,7 +348,7 @@
 
 	<DHParameters>
 		<Delta>0.0</Delta>
-		<Theta>90.0</Theta>
+		<Theta>0.0</Theta>
 		<Radius>40.0</Radius>
 		<Alpha>-90.0</Alpha>
 	</DHParameters>
@@ -463,7 +463,7 @@
 	<roty>-0.0</roty>
 	<rotz>-0.0</rotz>
 </baseToZframe>
-	<mass>0.14300000000000002</mass>
+	<mass>0.001</mass>
 	<centerOfMassFromCentroid>	<x>0.0</x>
 	<y>0.0</y>
 	<z>0.0</z>
