@@ -81,7 +81,7 @@ and print it on an 8.5x11 inch piece of paper. Put double sided tape on the red 
 
 1x Line Driver: https://www.digikey.com/product-detail/en/texas-instruments/SN74HC126N/296-8221-5-ND
 
-1x Breadboard https://www.digikey.com/product-detail/en/adafruit-industries-llc/239/1528-2143-ND/7244929
+1x Breadboard https://www.sparkfun.com/products/12002
 
 4x resistors https://www.digikey.com/product-detail/en/stackpole-electronics-inc/CF14JT10K0/CF14JT10K0CT-ND/1830374
 
