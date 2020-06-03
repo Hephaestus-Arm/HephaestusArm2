@@ -69,7 +69,7 @@ and print it on an 8.5x11 inch piece of paper. Put double sided tape on the red 
 
 # 6 BOM and assembly
 
-Main Electronics Kit:
+## Main Kit:
 
 3x motor https://www.amazon.com/LewanSoul-Connectors-Equipped-Position-Temperature/dp/B0817X3Z3W
 
@@ -91,26 +91,19 @@ Main Electronics Kit:
 
 1x double sided tape https://www.amazon.com/Scotch-Double-Dispenser-Standard-237/dp/B0000DH8IT/
 
-
 1x pin headers https://www.amazon.com/Generic-Breakaway-Headers-Length-Centered/dp/B015KA0RRU
 
-Thrust bearing:
+1x Thrust bearing: https://www.mcmaster.com/5909k41
 
-1x https://www.mcmaster.com/5909k41
-
-2x https://www.mcmaster.com/5909K54-5909K54
-
-Some M5 bolts and heated inserts
+2x Thrust bearing surface:  https://www.mcmaster.com/5909K54-5909K54
 
 12x inserts https://www.mcmaster.com/94180a361 (sold in packs of 50)
 
 8x M5x25 https://www.mcmaster.com/91292A129-91292A129 (sold in packs of 50)
 
-Gripper servo and regulator for the servo
+1x Gripper servo  https://www.digikey.com/products/en/motors-solenoids-driver-boards-modules/motors-ac-dc/178?k=mg92b
 
-1x https://www.digikey.com/products/en/motors-solenoids-driver-boards-modules/motors-ac-dc/178?k=mg92b
-
-Camera Kit
+## Camera Kit
 
 1x PSEye camera https://www.amazon.com/Sony-Station-Camera-Packaging-PlayStation-3/dp/B0735KNH2X/
 
