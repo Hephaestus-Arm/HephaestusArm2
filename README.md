@@ -129,13 +129,15 @@ and print it on an 8.5x11 inch piece of paper. Put double sided tape on the red 
 
 3x M5x25 https://www.mcmaster.com/91292A129-91292A129 (sold in packs of 50)
 
+```Engineering substitutions for cost ok here```
+
 9x M5x12 https://www.mcmaster.com/91290A228 (sold in  pack of 100)
 
 ```Engineering substitutions for cost ok here```
 
 1x Gripper servo  https://www.digikey.com/products/en/motors-solenoids-driver-boards-modules/motors-ac-dc/178?k=mg92b
 
-   ```These are much cheaper in bulk from https://usa.banggood.com/Towerpro-MG92B-Robot-13_8g-3_5KG-Torque-Mental-Gear-Digital-Servo-p-978253.html?cur_warehouse=USA ```
+   ```These are much cheaper in bulk from https://www.alibaba.com/product-detail/MG92B-Digital-Metal-Gear-Servo-For_60765301994.html ```
 
 ## Camera Kit
 
