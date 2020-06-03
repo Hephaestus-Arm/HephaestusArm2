@@ -73,33 +73,63 @@ and print it on an 8.5x11 inch piece of paper. Put double sided tape on the red 
 
 3x motor https://www.amazon.com/dp/B081CTX6DM/ref=twister_B0817ZKWF9
 
+```NO Engineering substitutions here```
+
 1x power supply: https://www.digikey.com/product-detail/en/mean-well-usa-inc/GST60A07-P1J/1866-2147-ND/7703710
+
+```Engineering substitutions for cost ok here```
 
 1x Barrel Jack adapter: https://www.sparkfun.com/products/10288
 
+```Engineering substitutions for cost ok here```
+
 1x Arduino Teensy 3.5 https://www.digikey.com/product-detail/en/sparkfun-electronics/DEV-14056/1568-1464-ND/6569368
+
+```NO Engineering substitutions here```
 
 1x Line Driver: https://www.digikey.com/product-detail/en/texas-instruments/SN74HC126N/296-8221-5-ND
 
+```Engineering substitutions for cost ok here```
+
 1x Breadboard https://www.sparkfun.com/products/12002
+
+```Engineering substitutions for cost ok here```
 
 4x resistors https://www.digikey.com/product-detail/en/stackpole-electronics-inc/CF14JT10K0/CF14JT10K0CT-ND/1830374
 
+```Engineering substitutions for cost ok here```
+
 1x Wire kit: https://www.amazon.com/MCIGICM-Breadboard-Jumper-Cables-Arduino/dp/B081GMJVPB
+
+```Engineering substitutions for cost ok here```
 
 1x USB cable https://www.amazon.com/AmazonBasics-Male-Micro-Cable-Black/dp/B0711PVX6Z
 
+```Engineering substitutions for cost ok here```
+
 1x double sided tape https://www.amazon.com/Scotch-Double-Dispenser-Standard-237/dp/B0000DH8IT/
+
+```Engineering substitutions for cost ok here```
 
 1x pin headers https://www.pololu.com/product/1065
 
+```Engineering substitutions for cost ok here```
+
 1x Thrust bearing: https://www.mcmaster.com/5909k41
+
+```Engineering substitutions for cost ok here```
 
 2x Thrust bearing surface:  https://www.mcmaster.com/5909K54-5909K54
 
+```Engineering substitutions for cost ok here```
+
 12x inserts https://www.mcmaster.com/94180a361 (sold in packs of 50)
 
+```Engineering substitutions for cost ok here```
+
 8x M5x25 https://www.mcmaster.com/91292A129-91292A129 (sold in packs of 50)
+
+```Engineering substitutions for cost ok here```
 
 1x Gripper servo  https://www.digikey.com/products/en/motors-solenoids-driver-boards-modules/motors-ac-dc/178?k=mg92b
 
@@ -109,9 +139,11 @@ and print it on an 8.5x11 inch piece of paper. Put double sided tape on the red 
 
 1x PSEye camera https://www.amazon.com/Sony-Station-Camera-Packaging-PlayStation-3/dp/B0735KNH2X/
 
+```NO Engineering substitutions here, sourcing is flexible```
+
 1x Adjustable stand https://www.amazon.com/Magnetic-Adjustable-Indicator-Holder-Digital/dp/B00L5T2ZA8/
   
-  ```If its possible to source something without the base, just the 5/16-18 threaded end, that would be even better (if cheaper)````
+  ``` If its possible to source something without the base, just the 5/16-18 threaded end, that would be even better if cheaper ````
 
 1x CA glue https://www.amazon.com/Starbond-Cyanoacrylate-Microtips-Woodturning-Stabilizing/dp/B00C32ME6G/
 
