@@ -75,7 +75,7 @@ and print it on an 8.5x11 inch piece of paper. Put double sided tape on the red 
 
 1x power supply: https://www.digikey.com/product-detail/en/mean-well-usa-inc/GST60A07-P1J/1866-2147-ND/7703710
 
-1x Barrel Jack adapter: https://www.addicore.com/female-barrel-with-terminals-p/ad470.htm
+1x Barrel Jack adapter: https://www.sparkfun.com/products/10288
 
 1x Arduino Teensy 3.5 https://www.digikey.com/product-detail/en/sparkfun-electronics/DEV-14056/1568-1464-ND/6569368
 
