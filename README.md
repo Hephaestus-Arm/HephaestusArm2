@@ -91,7 +91,7 @@ and print it on an 8.5x11 inch piece of paper. Put double sided tape on the red 
 
 1x double sided tape https://www.amazon.com/Scotch-Double-Dispenser-Standard-237/dp/B0000DH8IT/
 
-1x pin headers https://www.amazon.com/Generic-Breakaway-Headers-Length-Centered/dp/B015KA0RRU
+1x pin headers https://www.pololu.com/product/1065
 
 1x Thrust bearing: https://www.mcmaster.com/5909k41
 
