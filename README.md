@@ -111,5 +111,5 @@ and print it on an 8.5x11 inch piece of paper. Put double sided tape on the red 
 
 1x CA glue https://www.amazon.com/Starbond-Cyanoacrylate-Microtips-Woodturning-Stabilizing/dp/B00C32ME6G/
 
-1x Ring light https://www.amazon.com/Ringlight-Dimmable-Streaming-YouTube-Reading/dp/B07WZCNCP4
+1x Ring light https://www.newegg.com/p/0SW-01GA-00025?Item=9SIAK0NAUS4868&Tpk=9SIAK0NAUS4868
 
