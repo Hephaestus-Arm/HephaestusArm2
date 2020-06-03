@@ -103,15 +103,23 @@ and print it on an 8.5x11 inch piece of paper. Put double sided tape on the red 
 
 1x Gripper servo  https://www.digikey.com/products/en/motors-solenoids-driver-boards-modules/motors-ac-dc/178?k=mg92b
 
+   ```These are much cheaper in bulk from https://usa.banggood.com/Towerpro-MG92B-Robot-13_8g-3_5KG-Torque-Mental-Gear-Digital-Servo-p-978253.html?cur_warehouse=USA ```
+
 ## Camera Kit
 
 1x PSEye camera https://www.amazon.com/Sony-Station-Camera-Packaging-PlayStation-3/dp/B0735KNH2X/
 
 1x Adjustable stand https://www.amazon.com/Magnetic-Adjustable-Indicator-Holder-Digital/dp/B00L5T2ZA8/
+  
+  ```If its possible to source something without the base, just the 5/16-18 threaded end, that would be even better (if cheaper)````
 
 1x CA glue https://www.amazon.com/Starbond-Cyanoacrylate-Microtips-Woodturning-Stabilizing/dp/B00C32ME6G/
 
+  ``` Any small super glue is fine here```
+
 1x Ring light https://www.newegg.com/p/0SW-01GA-00025?Item=9SIAK0NAUS4868&Tpk=9SIAK0NAUS4868
+  
+  ```Sourcing a cheaper one is also good```
 
 1 x nut for mounting camera stand https://www.mcmaster.com/90975A030
 
