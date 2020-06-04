@@ -147,7 +147,7 @@ and print it on an 8.5x11 inch piece of paper. Put double sided tape on the red 
 
 1x Adjustable stand https://www.amazon.com/Magnetic-Adjustable-Indicator-Holder-Digital/dp/B00L5T2ZA8/
 
-```If its possible to source something without the base, just the 5/16-18 threaded end, that would be even better if cheaper```
+```If its possible to source something without the base, just the M8 threaded end, that would be even better if cheaper```
 
 1x CA glue https://www.amazon.com/Starbond-Cyanoacrylate-Microtips-Woodturning-Stabilizing/dp/B00C32ME6G/
 
