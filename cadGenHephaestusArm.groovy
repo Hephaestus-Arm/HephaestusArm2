@@ -571,8 +571,8 @@ return new ICadGenerator(){
 		double baseCoreheight = 1;
 		def insertMeasurments= Vitamins.getConfiguration(insert[0],
 			insert[1])
-		double xOffset = grid*5;
-		double yOffset = -grid*5
+		double xOffset = grid*7;
+		double yOffset = grid*6;
 		def cameraNut = new TransformNR(xOffset+grid/2,yOffset+grid/2,0,new RotationNR(0,0,0))
 		CSG cameraBoltHole = new Cylinder(4.1,cameraInsertLength+2).toCSG()
 		def mountLoacionsCamera = [
@@ -655,7 +655,8 @@ return new ICadGenerator(){
 			new TransformNR(0,-yOffsetFeducial,0,new RotationNR(180,0,0)),// feducial
 			new TransformNR(0,yOffsetFeducial,0,new RotationNR(180,0,0)),// feducial
 			new TransformNR(baseGrid+yOffsetFeducial,yOffsetFeducial,0,new RotationNR(180,0,0)),// feducial
-			new TransformNR(yOffsetFeducial-baseGrid,0,0,new RotationNR(180,0,0))// feducial
+			new TransformNR(yOffsetFeducial-baseGrid,0,0,new RotationNR(180,0,0)),// feducial
+			new TransformNR(baseGrid+yOffsetFeducial,-yOffsetFeducial,0,new RotationNR(180,0,0))// feducial
 		]
 		def mountLoacions = [
 			new TransformNR(baseGrid,0,0,new RotationNR(180,0,0)),//base
@@ -687,6 +688,14 @@ return new ICadGenerator(){
 		double totalMass = 0;
 		TransformNR centerOfMassFromCentroid=new TransformNR();
 		def vitamins=[]
+		mountLoacionsCamera.forEach{
+			vitamins.add(new Cylinder(5.75/2,cameraInsertLength+1)
+				.toCSG()
+				.toZMax()
+				.transformed(TransformFactory.nrToCSG(it))
+				)
+
+		}
 		for(TransformNR tr: vitaminLocations.keySet()) {
 			def vitaminType = vitaminLocations.get(tr)[0]
 			def vitaminSize = vitaminLocations.get(tr)[1]
@@ -783,6 +792,7 @@ return new ICadGenerator(){
 		CSG pointer = HullUtil.hull(points)
 		cameraBlock=cameraBlock.difference(vitamins)
 		cameraBlock.setColor(javafx.scene.paint.Color.BLUE)
+		cameraBlock.setName("CameraStandMount")
 		cameraBlock.setManufacturing ({ mfg ->
 			return mfg.roty(180).toZMin()
 		})
@@ -807,23 +817,28 @@ return new ICadGenerator(){
 		})
 		}
 		double extra = Math.abs(Base.getMinX())
+		double cornerOffset=grid*1.75
+		double boardx=8.5*25.4+cornerOffset
+		double boardy=11.0*25.4+cornerOffset
 		def paper = new Cube(8.5*25.4,11.0*25.4,1).toCSG()
 						.toZMax()
 						.toXMin()
 						.movez(1)
 						.movex(-extra)
 						.difference(boltHolePattern)
-		def board = new Cube(8.5*25.4,11.0*25.4,boardThickness).toCSG()
+		def board = new Cube(boardx,boardy,boardThickness).toCSG()
 						.toZMax()
 						.toXMin()
 						.movex(-extra)
+						.movey(cornerOffset/2)
 						//.difference(boltHolePattern)
 						.difference(vitamins)
 		board.setColor(javafx.scene.paint.Color.SANDYBROWN)
-		def cardboard = new Cube(8.5*25.4,11.0*25.4,2).toCSG()
+		def cardboard = new Cube(boardx,boardy,2).toCSG()
 		.toZMax()
 		.toXMin()
 		.movex(-extra)
+		.movey(cornerOffset/2)
 		.movez(-boardThickness)
 		.difference(boltHoleKeepawayPattern)
 		.difference(vitamins)
