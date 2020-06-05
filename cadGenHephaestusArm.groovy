@@ -571,7 +571,7 @@ return new ICadGenerator(){
 		double baseCoreheight = 1;
 		def insertMeasurments= Vitamins.getConfiguration(insert[0],
 			insert[1])
-		double xOffset = grid*4;
+		double xOffset = grid*5;
 		double yOffset = -grid*5
 		def cameraNut = new TransformNR(xOffset+grid/2,yOffset+grid/2,0,new RotationNR(0,0,0))
 		CSG cameraBoltHole = new Cylinder(4.1,cameraInsertLength+2).toCSG()
@@ -650,11 +650,12 @@ return new ICadGenerator(){
 				conf.getShaftSize()
 			])
 		}
+		double yOffsetFeducial = baseGrid*4
 		def mountLoacionsFeducials = [
-			new TransformNR(0,-baseGrid*4,0,new RotationNR(180,0,0)),// feducial
-			new TransformNR(0,baseGrid*4,0,new RotationNR(180,0,0)),// feducial
-			new TransformNR(baseGrid*5,baseGrid*4,0,new RotationNR(180,0,0)),// feducial
-			new TransformNR(baseGrid*4,0,0,new RotationNR(180,0,0))// feducial
+			new TransformNR(0,-yOffsetFeducial,0,new RotationNR(180,0,0)),// feducial
+			new TransformNR(0,yOffsetFeducial,0,new RotationNR(180,0,0)),// feducial
+			new TransformNR(baseGrid+yOffsetFeducial,yOffsetFeducial,0,new RotationNR(180,0,0)),// feducial
+			new TransformNR(yOffsetFeducial-baseGrid,0,0,new RotationNR(180,0,0))// feducial
 		]
 		def mountLoacions = [
 			new TransformNR(baseGrid,0,0,new RotationNR(180,0,0)),//base
