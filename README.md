@@ -131,7 +131,7 @@ and print it on an 8.5x11 inch piece of paper. Put double sided tape on the red 
 
 ```Engineering substitutions for cost ok here```
 
-9x M5x12 https://www.mcmaster.com/91290A228 (sold in  pack of 100)
+13x M5x12 https://www.mcmaster.com/91290A228 (sold in  pack of 100)
 
 ```Engineering substitutions for cost ok here```
 
