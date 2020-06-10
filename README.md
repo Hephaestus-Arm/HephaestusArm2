@@ -157,5 +157,5 @@ and print it on an 8.5x11 inch piece of paper. Put double sided tape on the red 
   
   ```Sourcing a cheaper one is also good```
 
-1 x nut for mounting camera stand https://www.mcmaster.com/94180A504
+1 x nut for mounting camera stand https://www.mcmaster.com/98965A410
 
