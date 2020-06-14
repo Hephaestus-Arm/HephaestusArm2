@@ -83,13 +83,17 @@ and print it on an 8.5x11 inch piece of paper. Put double sided tape on the red 
 
 ```Engineering substitutions for cost ok here```
 
-1x Arduino Teensy 3.5 https://www.digikey.com/product-detail/en/sparkfun-electronics/DEV-14056/1568-1464-ND/6569368
+1x Adafruit ItsyBitsy https://www.adafruit.com/product/3800
 
 ```NO Engineering substitutions here```
 
 1x Line Driver: https://www.digikey.com/product-detail/en/texas-instruments/SN74HC126N/296-8221-5-ND
 
 ```Engineering substitutions for cost ok here```
+
+1x header kit for processor https://www.adafruit.com/product/4173
+
+```Substitutions here ok```
 
 1x Breadboard https://www.sparkfun.com/products/12002
 
