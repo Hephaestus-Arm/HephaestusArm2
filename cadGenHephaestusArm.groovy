@@ -806,6 +806,7 @@ return new ICadGenerator(){
 				.difference(vitamins)
 				.difference(calibrationTipKeepaway)
 				.difference(cordCutter)
+		Base = Base.intersect(Base.getBoundingBox().toXMin().movex(-baseCorRad))		
 		Base = Base.union(pointer.movex(Base.getMaxX()-2))
 						.union(pointer.rotz(90).movey(-baseCorRad+2))
 		Base.setColor(javafx.scene.paint.Color.PINK)
