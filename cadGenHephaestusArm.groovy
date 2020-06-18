@@ -32,6 +32,7 @@ import eu.mihosoft.vrl.v3d.Transform
 import com.neuronrobotics.bowlerstudio.vitamins.*;
 import javafx.scene.transform.Affine;
 import  eu.mihosoft.vrl.v3d.ext.quickhull3d.*
+import eu.mihosoft.vrl.v3d.parametrics.LengthParameter
 import eu.mihosoft.vrl.v3d.Vector3d
 
 
@@ -97,9 +98,10 @@ return new ICadGenerator(){
 	])
 	.toZMin()
 	.movey(-5)
-
+	LengthParameter offset		= new LengthParameter("printerOffset",0.5,[2,0])
 	@Override
 	public ArrayList<CSG> generateCad(DHParameterKinematics d, int linkIndex) {
+		offset.setMM(0.5)
 		def vitaminLocations = new HashMap<TransformNR,ArrayList<String>>()
 		ArrayList<DHLink> dhLinks = d.getChain().getLinks()
 		ArrayList<CSG> allCad=new ArrayList<>()
@@ -252,7 +254,7 @@ return new ICadGenerator(){
 			def vitaminSize = vitaminLocations.get(tr)[1]
 
 			HashMap<String, Object>  measurments = Vitamins.getConfiguration( vitaminType,vitaminSize)
-
+			offset.setMM(0.5)
 			CSG vitaminCad=   Vitamins.get(vitaminType,vitaminSize)
 			Transform move = TransformFactory.nrToCSG(tr)
 			def part = vitaminCad.transformed(move)
@@ -701,7 +703,7 @@ return new ICadGenerator(){
 			def vitaminSize = vitaminLocations.get(tr)[1]
 
 			HashMap<String, Object>  measurments = Vitamins.getConfiguration( vitaminType,vitaminSize)
-
+			offset.setMM(0.5)
 			CSG vitaminCad=   Vitamins.get(vitaminType,vitaminSize)
 			Transform move = TransformFactory.nrToCSG(tr)
 			CSG part = vitaminCad.transformed(move)
