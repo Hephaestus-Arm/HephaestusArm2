@@ -111,9 +111,6 @@ and print it on an 8.5x11 inch piece of paper. Put double sided tape on the red 
 
 ```Engineering substitutions for cost ok here```
 
-1x double sided tape https://www.amazon.com/Scotch-Double-Dispenser-Standard-237/dp/B0000DH8IT/
-
-```Engineering substitutions for cost ok here```
 
 1x pin headers https://www.pololu.com/product/1065
 
