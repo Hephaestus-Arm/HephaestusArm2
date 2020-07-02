@@ -662,6 +662,7 @@ return new ICadGenerator(){
 			new TransformNR(baseGrid+yOffsetFeducial,-yOffsetFeducial,0,new RotationNR(180,0,0)),// feducial
 			new TransformNR(-baseGrid, baseGrid*7,0,new RotationNR(180,0,0)),// corner mount
 			new TransformNR( baseGrid*8, -baseGrid*5,0,new RotationNR(180,0,0)),// corner mount
+			new TransformNR( baseGrid*8,0,0,new RotationNR(180,0,0)),// corner mount
 			new TransformNR( -baseGrid, -baseGrid*5,0,new RotationNR(180,0,0))// corner mount
 		]
 		def mountLoacions = [
