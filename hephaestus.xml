@@ -83,7 +83,7 @@
 	<type>pidg-link</type>
 	<index>1</index>
 	<scale>1.0</scale>
-	<upperLimit>100.0</upperLimit>
+	<upperLimit>95.0</upperLimit>
 	<lowerLimit>-54.0</lowerLimit>
 	<upperVelocity>1.0E8</upperVelocity>
 	<lowerVelocity>-1.0E8</lowerVelocity>
@@ -463,7 +463,7 @@
 	<roty>-0.0</roty>
 	<rotz>-0.0</rotz>
 </baseToZframe>
-	<mass>0.001</mass>
+	<mass>0.17000000000000004</mass>
 	<centerOfMassFromCentroid>	<x>0.0</x>
 	<y>0.0</y>
 	<z>0.0</z>
