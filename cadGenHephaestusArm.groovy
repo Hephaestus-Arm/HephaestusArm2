@@ -652,13 +652,17 @@ return new ICadGenerator(){
 				conf.getShaftSize()
 			])
 		}
+		
 		double yOffsetFeducial = baseGrid*4
 		def mountLoacionsFeducials = [
 			new TransformNR(0,-yOffsetFeducial,0,new RotationNR(180,0,0)),// feducial
 			new TransformNR(0,yOffsetFeducial,0,new RotationNR(180,0,0)),// feducial
 			new TransformNR(baseGrid+yOffsetFeducial,yOffsetFeducial,0,new RotationNR(180,0,0)),// feducial
 			new TransformNR(yOffsetFeducial-baseGrid,0,0,new RotationNR(180,0,0)),// feducial
-			new TransformNR(baseGrid+yOffsetFeducial,-yOffsetFeducial,0,new RotationNR(180,0,0))// feducial
+			new TransformNR(baseGrid+yOffsetFeducial,-yOffsetFeducial,0,new RotationNR(180,0,0)),// feducial
+			new TransformNR(-baseGrid, baseGrid*7,0,new RotationNR(180,0,0)),// corner mount
+			new TransformNR( baseGrid*8, -baseGrid*5,0,new RotationNR(180,0,0)),// corner mount
+			new TransformNR( -baseGrid, -baseGrid*5,0,new RotationNR(180,0,0))// corner mount
 		]
 		def mountLoacions = [
 			new TransformNR(baseGrid,0,0,new RotationNR(180,0,0)),//base
