@@ -54,7 +54,9 @@ Serial  , 7.5v  , GND
 ## 4 Servo pinout
 
 Brown = ground
+
 red   = 5v from USB
+
 Yellow = Servo Pulse
 
 ## 5 PINOUT
