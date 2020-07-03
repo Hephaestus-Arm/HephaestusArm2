@@ -22,52 +22,23 @@ hephaestus.xml
 
 This will generate the CAD and run the simulation. 
 
-# 3 Firmware
+# 3 Build the electronics
 
-Install the firmware using Arduino with the Teensy driver installed.
+[Wire the electronics](electronics.md)
 
-## 3.1 Arduino Download
+# 4 Build the arm
 
-Install from here: https://github.com/WPIRoboticsEngineering/RobotInterfaceBoard/blob/master/InstallEclipse.md
+[Build instructions](assembly.md)
 
-## 3.2 Firmware Download
-
-Use Arduino to program the Teensy 3.5
-
-https://github.com/Hephaestus-Arm/HephaestusArm2-firmware
-
-# 4 Calibrate Arm Servos
-
-Before you cna calibrate the arm, the servos need to be within their range of motion. this is checked by the Teensy firmware and enforced at the chips boot. if the pose of the motor is such that it could not reach the full range, the motor is moved by the controller to the correct home pose location and stops the execution of the code. THis is a hardware fault and the controller will not continue until the hardware configuration is changed. the process to get this all configured in the first place is listed below. Note that you only need to adjust the horn location if you do not do the procedure below correctly. 
-
-## 4.1 first time calibration during assembly
-
-While assembling the robot, keep all of the servo horns detatched until the last step.
-
-Power up the arm and connect the electronics. Press the home button and the motors will move to the home positions they need to be at to achieve the calibration pose. The pose is depicted below
+# 5 Homing the arm
 
 ![Calibration Pose](armCalibration.png) 
 
-Calibrate one motor at a time to its calibration pose then home the robot. Reset the Teensy in between by plug cycling its usb. Once the base Motor is calibrated, add its horn and tighten the horn screw very well.
-
-Next insert the second motor and arrange the loose links so that the tip is seated into the calibration pose notch in the base. After you home the second link, add the horn for the second link. 
-
-Finally home for a third time, this time add the last links horn. 
-
-## 4.2 Calibrate each time you power up the Teensy
-
-From now on, all you need to do to calibrate is move the robot to the home pose and hit the calibration button on the controller. You will need to home the robot each time the Teensy is power cycled. 
+From now on, all you need to do to calibrate is move the robot to the home pose and hit the calibration button on the controller. You will need to home the robot each time the Microcontroller is power cycled. 
 
 
-# 5 Camera Calibaration
 
-Get the calibration document:
-
-![Calibration Image](./CalibrationImageDocument.svg)
-
-and print it on an 8.5x11 inch piece of paper. Put double sided tape on the red section. Carefully place the robots base on the paper alligned to the red section coving the red completely. once firmly attached to the base, assemble the base to the wood board, pushing the bolts through the paper, starting with the 2 bolts to the rear of the robot. Start the holes for the bolts using a sharp pencil. Once the robot is bolted down, secure the paper to the wood board using glue or clear tape. The camer should be placed such that it can see the whole piece of paper. 
-
-# 6 BOM and assembly
+# 6 Bill Of Materials
 
 ## Main Kit:
 
