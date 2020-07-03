@@ -143,7 +143,7 @@ The gripper will power up fully open place the horn on as shown
 
 also add the rubber band.
 
-Use solid core wire to hhold the gripper open in the toggel pose
+Use solid core wire to hold the gripper open in the toggle pose
 
 <img src="photos/10.jpg" width="300">
 <img src="photos/8.jpg" width="300">

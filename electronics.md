@@ -27,6 +27,7 @@ Double click the reset button on the ItsyBitsy while plugged in. It will show up
 
 The electronics for the Hephaerstus Arm are made using an Adafruit ItsyBitsy, a line driver and a button. 
 
+## 2 Components
 
 Solder up the ItsyBitsy with headers and place it in the breadboard.
 
@@ -40,7 +41,7 @@ Use the double sided headers to add a 3 pin servo header
 
 NOTE the servo and LX-224 motors use DIFFERENT voltages for power. 
 
-## 2 LX-224 Pinout
+## 3 LX-224 Pinout
 
 If the notch in the keyed cable is pointing 'down'
 
@@ -50,13 +51,13 @@ From left to right:
 Serial  , 7.5v  , GND
 ```
 
-## 3 Servo pinout
+## 4 Servo pinout
 
 Brown = ground
 red   = 5v from USB
 Yellow = Servo Pulse
 
-## 4 PINOUT
+## 5 PINOUT
 
 ItsyBitsy GPIO-12 to Servo Pulse
  
@@ -78,7 +79,7 @@ Connect all grounds
 
 Barrel Jack 7.5v to LX-224 Power
 
-## 5 Provision LX-224 ID numbers
+## 6 Provision LX-224 ID numbers
 
 Program the FW to the ItsyBitsy and open Putty connecting to the serial port provided by the firmware. 
 
@@ -113,7 +114,7 @@ ID
  
  and hit enter to set the ID of the elbow motor. Unplug and plug in the second motor. 
 
-## Calibrate before beginning assembly
+## 7 Calibrate before beginning assembly
 
 Now plug in all 3 motors and reboot the firmware. Press and hold the home button until the red LED on pin 13 flashes quickly (at least one second) where quickly is 100ms on 100ms off. All motors will be moved to their home pose. Keep track of which index is which. 
 
