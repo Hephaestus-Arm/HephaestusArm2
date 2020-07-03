@@ -108,13 +108,13 @@ ID
  ID 2
  ```
  
- and hit enter to set the ID of the middle motor. Unplug and plug in the second motor. Type: 
+ and hit enter to set the ID of the middle motor. Unplug and plug in the third motor. Type: 
  
  ```
  ID 3
  ```
  
- and hit enter to set the ID of the elbow motor. Unplug and plug in the second motor. 
+ and hit enter to set the ID of the elbow motor. Now you can plug in all 3 motors. 
 
 ## 7 Calibrate before beginning assembly
 
