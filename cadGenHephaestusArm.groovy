@@ -99,9 +99,10 @@ return new ICadGenerator(){
 	.toZMin()
 	.movey(-5)
 	LengthParameter offset		= new LengthParameter("printerOffset",0.5,[2,0])
+	double offsetValue = 0.6
 	@Override
 	public ArrayList<CSG> generateCad(DHParameterKinematics d, int linkIndex) {
-		offset.setMM(0.5)
+		offset.setMM(offsetValue)
 		def vitaminLocations = new HashMap<TransformNR,ArrayList<String>>()
 		ArrayList<DHLink> dhLinks = d.getChain().getLinks()
 		ArrayList<CSG> allCad=new ArrayList<>()
@@ -254,7 +255,7 @@ return new ICadGenerator(){
 			def vitaminSize = vitaminLocations.get(tr)[1]
 
 			HashMap<String, Object>  measurments = Vitamins.getConfiguration( vitaminType,vitaminSize)
-			offset.setMM(0.5)
+			offset.setMM(offsetValue)
 			CSG vitaminCad=   Vitamins.get(vitaminType,vitaminSize)
 			Transform move = TransformFactory.nrToCSG(tr)
 			def part = vitaminCad.transformed(move)
@@ -708,7 +709,7 @@ return new ICadGenerator(){
 			def vitaminSize = vitaminLocations.get(tr)[1]
 
 			HashMap<String, Object>  measurments = Vitamins.getConfiguration( vitaminType,vitaminSize)
-			offset.setMM(0.5)
+			offset.setMM(offsetValue)
 			CSG vitaminCad=   Vitamins.get(vitaminType,vitaminSize)
 			Transform move = TransformFactory.nrToCSG(tr)
 			CSG part = vitaminCad.transformed(move)
