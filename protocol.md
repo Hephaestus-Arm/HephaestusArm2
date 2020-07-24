@@ -15,17 +15,17 @@ Set the gripper value
 | downstream Bytes |4 | 1 |
 | Contents downstream |1962 | Gripper value 0-180|
 | upstream Bytes |4 | --- |
-| Contents upstream |1962 ||
+| Contents upstream |1962 |---|
 
 
-## Float packets
+## Set Motor Setpoints With Time
 
-An example float packet from the warehouse robot looks like this:
+Set the setpoint of the Motors with interpolation. Time is in milliseconds. The interpolation mode determines the trajectory the motor takes. Positions are in degrees. 
 
-| |ID | float |float |float |float |float |float |
-|--- |--- | --- |--- | --- |--- | --- | --- |
-| downstream Bytes |4 | 4 | 4 | 4 | 4 | 4 | 4 |
-| Contents downstream |1936 | pickup area | pickup x | pickup z | drop off area | drop off  x | drop off  z |
-| upstream Bytes |4 | 0 |
-| Contents upstream |1936 | ---|
+| |ID | float |float |float |float |float |
+|--- |--- | --- |--- | --- |--- | --- | 
+| downstream Bytes |4 | 4 | 4 | 4 | 4 | 4 |
+| Contents downstream |1848 | mS duration of move| interpolation mode 0=linear,1=sinusoidal | motor 1 position | motor 2 position | motor 3 position | 
+| upstream Bytes |4 | --- |
+| Contents upstream |1848 | ---|
 
