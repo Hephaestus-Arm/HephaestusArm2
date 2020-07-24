@@ -31,9 +31,9 @@ Set the setpoint of the Motors with interpolation. Time is in milliseconds. The 
 
 # Get Positions and Setpoint
 
-| |ID | ---  | | | | ||
+| |ID |  | | | | ||
 |--- |--- | --- |--- | --- |--- | --- |  --- | 
 | downstream Bytes |4 | --- |
-| Contents downstream |1910 |
+| Contents downstream |1910 | --- |
 | upstream Bytes |4 | float |float |float |float |float |float |
 | Contents upstream |1910 |  motor 1 Setpoint|  motor 1 position |motor 2 Setpoint | motor 2 position |motor 3 Setpoint | motor 3 position | 
