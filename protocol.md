@@ -5,7 +5,7 @@
 [SimplePacketComs Theory of Operation](https://github.com/madhephaestus/SimplePacketComs)
 
 Our firmware uses an HID implementation built on the Adafruit TinyUSB stack.
-### ServoServer
+# ServoServer
 
 Set the gripper value
 
@@ -18,14 +18,22 @@ Set the gripper value
 | Contents upstream |1962 |---|
 
 
-## Set Motor Setpoints With Time
+# Set Motor Setpoints With Time
 
 Set the setpoint of the Motors with interpolation. Time is in milliseconds. The interpolation mode determines the trajectory the motor takes. Positions are in degrees. 
 
 | |ID | float |float |float |float |float |
 |--- |--- | --- |--- | --- |--- | --- | 
 | downstream Bytes |4 | 4 | 4 | 4 | 4 | 4 |
-| Contents downstream |1848 | mS duration of move| interpolation mode 0=linear,1=sinusoidal | motor 1 position | motor 2 position | motor 3 position | 
+| Contents downstream |1848 | mS duration of move| interpolation mode 0=linear,1=sinusoidal | motor 1 target position | motor 2 target  position | motor 3 target  position | 
 | upstream Bytes |4 | --- |
 | Contents upstream |1848 | ---|
 
+# Get Positions and Setpoint
+
+| |ID |  | | | | ||
+|--- |--- | --- |--- | --- |--- | --- |  --- | 
+| downstream Bytes |4 |
+| Contents downstream |1910 |
+| upstream Bytes |4 | float |float |float |float |float |float |
+| Contents upstream |1910 |  motor 1 Setpoint|  motor 1 position |motor 2 Setpoint | motor 2 position |motor 3 Setpoint | motor 3 position | 
