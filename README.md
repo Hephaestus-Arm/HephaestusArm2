@@ -1,6 +1,6 @@
 # 1 Hephaestus Arm v2
 
-This robot is for use in RBE 3001 as a teaching platform for robot kinematics and trajecttory planning. 
+This robot is for use in RBE 3001 as a teaching platform for robot kinematics and trajecttory planning and image recognition. 
 
 <img src="photos/assembly.jpg" width="600">
 
@@ -36,9 +36,11 @@ This will generate the CAD and run the simulation.
 
 From now on, all you need to do to calibrate is move the robot to the home pose and hit the calibration button on the controller. You will need to home the robot each time the Microcontroller is power cycled. 
 
+# 6 Communication
 
+[Communication Protocol](protocol.md)
 
-# 6 Bill Of Materials
+# 7 Bill Of Materials
 
 ## Main Kit:
 
