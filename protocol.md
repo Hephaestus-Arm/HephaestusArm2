@@ -11,7 +11,7 @@ Set the gripper value
 
 
 | |ID | byte 0 |
-|--- |--- | --- |--- |
+|--- |--- | --- |
 | downstream Bytes |4 | 1 |
 | Contents downstream |1962 | Gripper value 0-180|
 | upstream Bytes |4 | --- |
