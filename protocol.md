@@ -9,6 +9,8 @@ Our firmware uses an HID implementation built on the Adafruit TinyUSB stack.
 
 Set the gripper value
 
+NOTE this uses one byte as the value, not a float.
+
 
 | |ID | byte 0 |
 |--- |--- | --- |
