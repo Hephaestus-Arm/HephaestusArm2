@@ -37,3 +37,16 @@ Set the setpoint of the Motors with interpolation. Time is in milliseconds. The 
 | Contents downstream |1910 | --- |
 | upstream Bytes |4 | float |float |float |float |float |float |
 | Contents upstream |1910 |  motor 1 Setpoint|  motor 1 position |motor 2 Setpoint | motor 2 position |motor 3 Setpoint | motor 3 position | 
+
+# ERROR packet
+
+If you send an ID that the device doesn't understand you will get this packet back. It happens when you send the wrong ID number, or forget to attach servers in the firmware to the coms stack. 
+
+
+| |ID | |
+|--- |--- | --- |
+| downstream Bytes |4 | --- |
+| Contents downstream |99 | --- |
+| upstream Bytes |4 | --- |
+| Contents upstream |99 |---|
+
