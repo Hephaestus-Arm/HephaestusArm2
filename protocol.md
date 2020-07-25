@@ -48,7 +48,7 @@ If you send an ID that the device doesn't understand you will get this packet ba
 | |ID | |
 |--- |--- | --- |
 | downstream Bytes |4 | --- |
-| Contents downstream |99 | --- |
+| Contents downstream |unknown by server | --- |
 | upstream Bytes |4 | --- |
 | Contents upstream |99 |---|
 
