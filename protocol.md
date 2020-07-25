@@ -12,7 +12,7 @@ Set the gripper value
 NOTE this uses one byte as the value, not a float.
 
 
-| |ID | byte 0 |
+| |ID | byte  |
 |--- |--- | --- |
 | downstream Bytes |4 | 1 |
 | Contents downstream |1962 | Gripper value 0-180|
