@@ -192,6 +192,7 @@ return new ICadGenerator(){
 			locationOfGripperHinge=locationOfServo
 			.copy()
 			.times(new TransformNR().translateY(hypot-hingeBackset))
+			.times(new TransformNR(0,0,0,new RotationNR(0,0,90)))
 			
 //			.translateY(-hingeBackset*Math.sin(Math.toRadians(servoAllignmentAngle))-8)
 //			.translateX(hypot-hingeBackset)
