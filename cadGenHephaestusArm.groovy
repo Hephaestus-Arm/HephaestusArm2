@@ -798,27 +798,23 @@ return new ICadGenerator(){
 					)
 		}
 		
-		def locationOfCalibration = new TransformNR(0,-50,15, new RotationNR())
-		DHParameterKinematics dev = b.getAllDHChains().get(0)
-		//dev.setDesiredTaskSpaceTransform(locationOfCalibration, 0);
-		def jointSpaceVect = dev.inverseKinematics(dev.inverseOffset(locationOfCalibration));
-		println "\n\nCalibration Values "+jointSpaceVect+"\n\n"
 		
-		def calibrationFrame = TransformFactory.nrToCSG(locationOfCalibration)
-								.movex(centerlineToOuterSurfaceNegativeZ)
-		def calibrationFramemountUnit=mountUnit
-										.rotx(180)
-										.toYMin()
-										.transformed(calibrationFrame)
-										.toZMin()
-										
+		
+//		def calibrationFrame = TransformFactory.nrToCSG(locationOfCalibration)
+//								.movex(centerlineToOuterSurfaceNegativeZ)
+//		def calibrationFramemountUnit=mountUnit
+//										.rotx(180)
+//										.toYMin()
+//										.transformed(calibrationFrame)
+//										.toZMin()
+									
 		// assemble the base
-		def calibrationTipKeepaway =new RoundedCylinder(linkYDimention/2,centerlineToOuterSurfacePositiveZ-centerlineToOuterSurfaceNegativeZ)
-											.cornerRadius(cornerRad)
-											.toCSG()
-											.roty(-90)
-									.transformed(calibrationFrame)
-		coreParts.add(calibrationTipKeepaway)			
+//		def calibrationTipKeepaway =new RoundedCylinder(linkYDimention/2,centerlineToOuterSurfacePositiveZ-centerlineToOuterSurfaceNegativeZ)
+//											.cornerRadius(cornerRad)
+//											.toCSG()
+//											.roty(-90)
+//									.transformed(calibrationFrame)
+		//coreParts.add(calibrationTipKeepaway)			
 		def cordCutter = new Cube(10,40,30).toCSG()
 							.toYMin()
 							.toZMax()
@@ -840,11 +836,11 @@ return new ICadGenerator(){
 		
 		allCad.add(cameraBlock)
 		def Base = CSG.unionAll(coreParts)
-				.union(calibrationFramemountUnit)
-				.union(calibrationFramemountUnit.mirrory())
+				//.union(calibrationFramemountUnit)
+				//.union(calibrationFramemountUnit.mirrory())
 				//.difference(vitamin_roundMotor_WPI_gb37y3530bracketOneKeepawayDistanceen)
 				.difference(vitamins)
-				.difference(calibrationTipKeepaway)
+				//.difference(calibrationTipKeepaway)
 				.difference(cordCutter)
 		Base = Base.intersect(Base.getBoundingBox().toXMin().movex(-baseCorRad))		
 		Base = Base.union(pointer.movex(Base.getMaxX()-2))
@@ -904,14 +900,23 @@ return new ICadGenerator(){
 		Base.setName("BaseMount")
 		b.setMassKg(totalMass)
 		b.setCenterOfMassFromCentroid(centerOfMassFromCentroid)
-		
+		double calibrationHeight=25
+		double coneOffset=-5
+		def locationOfCalibration = new TransformNR(0,-100,calibrationHeight, new RotationNR())
+		DHParameterKinematics dev = b.getAllDHChains().get(0)
+		//dev.setDesiredTaskSpaceTransform(locationOfCalibration, 0);
+		def jointSpaceVect = dev.inverseKinematics(dev.inverseOffset(locationOfCalibration));
+		println "\n\nCalibration Joint Values "+jointSpaceVect+"\n\n"
+		def calibrationFrame = TransformFactory.nrToCSG(locationOfCalibration)
 		CSG objectToGrab = new Sphere(radiusOfGraspingObject,32,16).toCSG()
-							.movez(25)
-		CSG post = Parabola.coneByHeight(10, 20)
+							//.movez(25)
+		CSG post = Parabola.coneByHeight(10, calibrationHeight+coneOffset)
 					.rotx(90)
-					.toZMin()
+					.toZMax()
+					.movez(coneOffset)
 		CSG calibration = objectToGrab.union(post)
-							.movey(-100)
+							.transformed(calibrationFrame)
+							//.movey(-100)
 							.difference(vitamins)
 		calibration.setColor(javafx.scene.paint.Color.LIME)
 		
