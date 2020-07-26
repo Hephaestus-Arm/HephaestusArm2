@@ -409,7 +409,12 @@ return new ICadGenerator(){
 			
 			
 			def servoCube = linkBuildingBlock.toXMax().movez(centerlineToOuterSurfacePositiveZ-0.5).roty(90).transformed(gripperSpace)	
-			def rightServoCube = linkBuildingBlock.toZMax().toXMin().movez(-centerlineToOuterSurfaceNegativeZ).roty(-90).transformed(gripperSpace)
+			def rightServoCube = linkBuildingBlock
+								.toZMax()
+								.toXMin()
+								.movez(-centerlineToOuterSurfaceNegativeZ)
+								.roty(-90)
+								.transformed(gripperSpace)
 			
 			def servoBracket = servoCube.union(rightServoCube).hull()
 			def supportBracket = rightServoCube.union(passivLinkLug).hull()
@@ -742,7 +747,7 @@ return new ICadGenerator(){
 			CSG part = vitaminCad.transformed(move)
 			part.setManipulator(b.getRootListener())
 			vitamins.add(part)
-
+			part.setManufacturing({inciming->return null})
 			def massCentroidYValue = measurments.massCentroidY
 			def massCentroidXValue = measurments.massCentroidX
 			def massCentroidZValue = measurments.massCentroidZ
@@ -899,6 +904,18 @@ return new ICadGenerator(){
 		Base.setName("BaseMount")
 		b.setMassKg(totalMass)
 		b.setCenterOfMassFromCentroid(centerOfMassFromCentroid)
+		
+		CSG objectToGrab = new Sphere(radiusOfGraspingObject,32,16).toCSG()
+							.movez(25)
+		CSG post = Parabola.coneByHeight(10, 20)
+					.rotx(90)
+					.toZMin()
+		CSG calibration = objectToGrab.union(post)
+							.movey(-100)
+							.difference(vitamins)
+		calibration.setColor(javafx.scene.paint.Color.LIME)
+		
+		allCad.add(calibration)
 		
 		allCad.addAll(vitamins)
 		return allCad;
