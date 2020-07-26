@@ -70,7 +70,7 @@ return new ICadGenerator(){
 	double movingPartClearence =1.5
 	double linkThickness = 6
 	double linkYDimention = 20;
-	double GripperServoYOffset = 35
+	double GripperServoYOffset = 55
 	def cornerRad=2
 	String boltsize = "M5x25"
 	def insert=["heatedThreadedInsert", "M5"]
@@ -188,12 +188,16 @@ return new ICadGenerator(){
 					)
 			.translateY(-GripperServoYOffset)
 			.times(new TransformNR().translateZ(linkYDimention/2))
-			
+//			.times(
+//				new TransformNR(0,0,0,new RotationNR(0,0,180))
+//				)
+				
 			locationOfGripperHinge=locationOfServo
 			.copy()
 			.times(new TransformNR().translateY(hypot-hingeBackset))
-			.times(new TransformNR(0,0,0,new RotationNR(0,0,90)))
-			
+			.times(new TransformNR(0,0,0,new RotationNR(0,0,-90)))
+			.times(new TransformNR().translateZ(linkYDimention/2))
+			.times(new TransformNR().translateX(-linkYDimention/2))
 //			.translateY(-hingeBackset*Math.sin(Math.toRadians(servoAllignmentAngle))-8)
 //			.translateX(hypot-hingeBackset)
 			
@@ -415,6 +419,9 @@ return new ICadGenerator(){
 			CSG pincherCup = new  Cylinder(radiusOfGraspingObject/2,5).toCSG()
 	
 			def pincherBracket = gripperLug.union(pincherCup).hull()
+									.rotx(90)
+			  //.times(new TransformNR(0,0,0,new RotationNR(0,0,90)))
+			
 			
 			
 			double hingeDiameter = 12
@@ -464,10 +471,14 @@ return new ICadGenerator(){
 										)
 								.hull()
 								.transformed(hinge)
-								.union(movingCupHingeLug.union(tipCupCircle).hull())
+								.union(movingCupHingeLug.union(tipCupCircle
+																.rotx(90)
+																.rotz(-servoAllignmentAngle)).hull())
 								.difference(hingeLinkHole.transformed(hinge))
 								.difference(hingeHole.transformed(hinge))
 			def gripperMovingCupstl = tipCupCircle.union(pincherCup).hull()
+								.rotx(90)	
+								.rotz(-servoAllignmentAngle)		
 								.union(movingPart)
 								.difference(objectToGrab)
 								.difference(knotches)
