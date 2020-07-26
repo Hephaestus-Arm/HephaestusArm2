@@ -71,6 +71,7 @@ return new ICadGenerator(){
 	double linkThickness = 6
 	double linkYDimention = 20;
 	double GripperServoYOffset = 55
+	double hingeDiameter = 12
 	def cornerRad=2
 	String boltsize = "M5x25"
 	def insert=["heatedThreadedInsert", "M5"]
@@ -412,23 +413,39 @@ return new ICadGenerator(){
 			
 			def servoBracket = servoCube.union(rightServoCube).hull()
 			def supportBracket = rightServoCube.union(passivLinkLug).hull()
-			def linkToCup = rightServoCube.union(gripperLug).hull()
+			def hingeBarrel = new RoundedCylinder(hingeDiameter/2,linkYDimention)
+			.cornerRadius(cornerRad)
+			.toCSG()
+			.toZMax()
+			def innerBarrel = hingeBarrel
+			.toXMax()
+			.movex(-centerlineToOuterSurfaceNegativeZ)
+			def linkToCup = rightServoCube.union(
+				[gripperLug
+				.movez(-linkYDimention/2)
+				.transformed(hinge),
+				hingeBarrel.movez(-linkYDimention/2-linkThickness/2).transformed(hinge)
+				]
+				).hull()
+			
 			def ActuatorBracket = servoCube.union(actuatorCircle.movez(-0.5)).hull()
 									.difference(vitamins)
 			
 			CSG pincherCup = new  Cylinder(radiusOfGraspingObject/2,5).toCSG()
 	
-			def pincherBracket = gripperLug.union(pincherCup).hull()
-									.rotx(90)
+			def pincherBracket = gripperLug.union(
+				[pincherCup
+					]
+				).hull()
+				.rotx(90)
+				.rotz(-servoAllignmentAngle)
+				.union(innerBarrel.transformed(hinge)).hull()				
 			  //.times(new TransformNR(0,0,0,new RotationNR(0,0,90)))
 			
 			
 			
-			double hingeDiameter = 12
-			def hingeBarrel = new RoundedCylinder(hingeDiameter/2,linkYDimention)
-									.cornerRadius(cornerRad)
-									.toCSG()
-									.toZMax()
+			
+			
 			def hingeLinkHole = new Cylinder(1,linkYDimention).toCSG()
 									.toZMax()
 									.movex(centerlineToOuterSurfaceNegativeZ*2/3)
@@ -439,9 +456,7 @@ return new ICadGenerator(){
 									.movex(hingeDiameter+movingPartClearence)
 									.movez(-linkYDimention/2)
 									.transformed(hinge)
-			def innerBarrel = hingeBarrel
-											.toXMax()
-											.movex(-centerlineToOuterSurfaceNegativeZ)
+		
 			def hingeBrace = innerBarrel
 								.transformed(hinge)
 								.union(servoCube).union(rightServoCube)
