@@ -900,9 +900,10 @@ return new ICadGenerator(){
 		Base.setName("BaseMount")
 		b.setMassKg(totalMass)
 		b.setCenterOfMassFromCentroid(centerOfMassFromCentroid)
+		
 		double calibrationHeight=25
 		double coneOffset=-5
-		def locationOfCalibration = new TransformNR(0,-100,calibrationHeight, new RotationNR())
+		def locationOfCalibration = new TransformNR(0,100,calibrationHeight, new RotationNR())
 		DHParameterKinematics dev = b.getAllDHChains().get(0)
 		//dev.setDesiredTaskSpaceTransform(locationOfCalibration, 0);
 		def jointSpaceVect = dev.inverseKinematics(dev.inverseOffset(locationOfCalibration));
@@ -910,7 +911,7 @@ return new ICadGenerator(){
 		def calibrationFrame = TransformFactory.nrToCSG(locationOfCalibration)
 		CSG objectToGrab = new Sphere(radiusOfGraspingObject,32,16).toCSG()
 							//.movez(25)
-		CSG post = Parabola.coneByHeight(10, calibrationHeight+coneOffset)
+		CSG post = Parabola.coneByHeight(8, calibrationHeight+coneOffset)
 					.rotx(90)
 					.toZMax()
 					.movez(coneOffset)
@@ -919,7 +920,6 @@ return new ICadGenerator(){
 							//.movey(-100)
 							.difference(vitamins)
 		calibration.setColor(javafx.scene.paint.Color.LIME)
-		
 		allCad.add(calibration)
 		
 		allCad.addAll(vitamins)
