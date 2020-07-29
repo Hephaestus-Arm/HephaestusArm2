@@ -70,9 +70,6 @@ From now on, all you need to do to calibrate is move the robot to the home pose 
 
 ```Engineering substitutions for cost ok here```
 
-1x header kit for processor https://www.adafruit.com/product/4173
-
-```Substitutions here ok```
 
 1x Breadboard https://www.sparkfun.com/products/12002
 
