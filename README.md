@@ -22,6 +22,12 @@ hephaestus.xml
 
 This will generate the CAD and run the simulation. 
 
+## STL's 
+
+[Current Release Printable STL's](https://github.com/Hephaestus-Arm/HephaestusArm2/releases/download/0.1.0/release-0.1.0.zip)
+
+print with supports everywhere, do not reorent parts. 
+
 # 3 Build the electronics
 
 [Wire the electronics](electronics.md)
