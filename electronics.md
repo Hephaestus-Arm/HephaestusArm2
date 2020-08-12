@@ -59,6 +59,8 @@ then you didnt *DOUBLE CLICK* the button on the ItsyBItsy.
 
 ## 2 Components
 
+<img src="photos/hep-arm-witing.png" width="600">
+
 Solder up the ItsyBitsy with headers and place it in the breadboard.
 
 Find the 74hc126 line driver and place it in the breadboard https://www.digikey.com/product-detail/en/texas-instruments/SN74HC126N/296-8221-5-ND
