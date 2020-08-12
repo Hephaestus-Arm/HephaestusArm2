@@ -7,7 +7,7 @@
 
 Use the Adafruit flash drive emulation to program the Adafruit ItsyBitsy. The firmware source is found at 
 
-https://github.com/Hephaestus-Arm/HephaestusArm2-firmware/
+[Source code for reference only](https://github.com/Hephaestus-Arm/HephaestusArm2-firmware/)
 
 but you will not need to compile the source. the FW is distributed as
 
