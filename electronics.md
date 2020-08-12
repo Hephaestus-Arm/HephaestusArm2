@@ -27,6 +27,22 @@ Double click the reset button on the ItsyBitsy while plugged in. It will show up
 
 The electronics for the Hephaerstus Arm are made using an Adafruit ItsyBitsy, a line driver and a button. 
 
+## 1.3 Troubleshooting
+
+If you see
+
+```
+curcuitpython
+```
+
+as the flash drive ame instead of
+
+```
+ItsyM4Boot
+```
+
+then you didnt *DOUBLE CLICK* the button on the ItsyBItsy. 
+
 ## 2 Components
 
 Solder up the ItsyBitsy with headers and place it in the breadboard.
