@@ -2,6 +2,20 @@
 
 <img src="photos/2.jpg" width="600">
 
+# 0 depenancies and tools
+
+* A PC running Ubuntu 18.04 linux
+* [BowlerStudio](https://commonwealthrobotics.com/) installed from the PPA or the .deb (this provides the USB driver)
+* Putty
+* Matlab (Installed from the WPI sources)
+* Access to tools listed here: https://github.com/WPIRoboticsEngineering/ZenRobotBuildKit#tools-kit-online-only-suggested
+
+## Optional
+
+* [Sloeber to compile firmware](https://github.com/WPIRoboticsEngineering/RobotInterfaceBoard/blob/master/InstallEclipse.md#linux-bundled-sloeber)
+
+
+
 # 1 Firmware
 
 
