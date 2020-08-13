@@ -63,7 +63,9 @@ then you didnt *DOUBLE CLICK* the button on the ItsyBItsy.
 
 Solder up the ItsyBitsy with headers and place it in the breadboard.
 
-Find the 74hc126 line driver and place it in the breadboard https://www.digikey.com/product-detail/en/texas-instruments/SN74HC126N/296-8221-5-ND
+Find the [74hc126](https://www.digikey.com/product-detail/en/texas-instruments/SN74HC126N/296-8221-5-ND) line driver and place it in the breadboard 
+
+[74hc126 driver](https://www.ti.com/lit/ds/symlink/sn74hc126.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1597341911818)
 
 Use the double stick tape to attach the barrel jack adapter to the breadboard. 
 
