@@ -115,6 +115,8 @@ From now on, all you need to do to calibrate is move the robot to the home pose 
 1x Gripper servo  https://www.digikey.com/products/en/motors-solenoids-driver-boards-modules/motors-ac-dc/178?k=mg92b
 
    ```These are much cheaper in bulk from https://www.alibaba.com/product-detail/MG92B-Digital-Metal-Gear-Servo-For_60765301994.html ```
+   
+2x Button (comes in 20 pack for $2.50) https://www.digikey.com/products/en?mpart=367&v=1528 
 
 ## Camera Kit
 
