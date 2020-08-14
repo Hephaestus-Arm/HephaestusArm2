@@ -111,6 +111,9 @@ Yellow = Servo Pulse
 
 ## 5 PINOUT
 
+<img src="photos/2.jpg" width="600">
+<img src="photos/hep-arm-witing.png" width="600">
+
 ItsyBitsy GPIO-12 to Servo Pulse
  
 ItsyBitsy GPIO-1  to 74hc126 A (see datasheet)
@@ -140,6 +143,10 @@ Program the FW to the ItsyBitsy and open Putty connecting to the serial port pro
 Plug in the USB to the ItsyBitsy
 
 Open putty and set it to talk to the serial port:
+
+```
+putty -serial /dev/ttyACM0 -sercfg 115200,1,n,1,N
+```
 
 <img src="photos/putty.png" width="600">
 
