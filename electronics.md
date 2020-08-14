@@ -12,7 +12,8 @@
 * Git
 
 ```
-	sudo add-apt-repository ppa:mad-hephaestus/commonwealthrobotics -y
+	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 71EA898B 
+	sudo add-apt-repository "deb http://ppa.launchpad.net/mad-hephaestus/commonwealthrobotics/ubuntu bionic main" -y
 	sudo apt-get update 
 	sudo apt-get install bowlerstudio curl git putty
 ```
