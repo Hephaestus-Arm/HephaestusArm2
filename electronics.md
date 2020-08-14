@@ -121,6 +121,10 @@ Barrel Jack 7.5v to LX-224 Power
 
 Program the FW to the ItsyBitsy and open Putty connecting to the serial port provided by the firmware. 
 
+Open putty and set it to talk to the serial port:
+
+<img src="photos/putty.png" width="600">
+
 Plug in one and only one motor. 
 
 Type 
