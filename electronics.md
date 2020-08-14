@@ -160,7 +160,7 @@ ID
  
  ### 6.5 Provision Motor 2 
  
- Unplug and plug in the second motor. Type: 
+ Unplug Motor 1 and plug in the second motor. Type: 
  
   ```
  ID 2
@@ -172,7 +172,7 @@ ID
  
  ### 6.6 Provision Motor 3 
  
- Unplug and plug in the third motor. Type: 
+ Unplug Motor 2 and plug in the third motor. Type: 
  
  ```
  ID 3
