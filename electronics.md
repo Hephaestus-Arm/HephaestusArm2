@@ -4,19 +4,38 @@
 
 # 0 depenancies and tools
 
-* A PC running Ubuntu 18.04 linux
-* [BowlerStudio](https://commonwealthrobotics.com/) installed from the PPA or the .deb (this provides the USB driver)
-* Putty
-* [Matlab Installed using your WPI login](https://www.mathworks.com/academia/tah-portal/worcester-polytechnic-institute-40552010.html)
-* Access to tools listed here: https://github.com/WPIRoboticsEngineering/ZenRobotBuildKit#tools-kit-online-only-suggested
-* Git
 
+
+* A PC running Ubuntu 18.04 linux
 ```
 	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 71EA898B 
 	sudo add-apt-repository "deb http://ppa.launchpad.net/mad-hephaestus/commonwealthrobotics/ubuntu bionic main" -y
 	sudo apt-get update 
-	sudo apt-get install bowlerstudio curl git putty
+	sudo apt-get install bowlerstudio curl git putty  zip unzip
 ```
+* Access to tools listed here: https://github.com/WPIRoboticsEngineering/ZenRobotBuildKit#tools-kit-online-only-suggested
+* [Matlab Installed using your WPI login](https://www.mathworks.com/academia/tah-portal/worcester-polytechnic-institute-40552010.html)
+  * Sign in with your WPI account
+  * Download the Linux version R2020a 
+  * matlab_R2020a_glnxa64.zip
+ ```
+ cd Downloads/ #the directory where the matlab_R2020a_glnxa64.zip is
+ ls matlab_R2020a_glnxa64.zip # Make sure you see the zip file
+ unzip matlab_R2020a_glnxa64.zip -d matlab
+ cd matlab
+ sudo ./install
+ ```
+ Sign in with you WPI account again to accuire licences.
+ 
+Under products add 
+
+* Image Acquisition Toolbox
+* Image Processing Toolbox
+
+Under Options check the check box
+
+Make simlinks to MATLAB scripts
+
 
 ## Optional
 
