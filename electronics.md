@@ -5,6 +5,9 @@
 # 0 depenancies and tools
 
 
+## 0.1 Linux install
+
+Do NOT use a VM. Native install is nessissary for access to the robot arm. 
 
 * A PC running Ubuntu 18.04 linux
 ```
@@ -13,7 +16,12 @@
 	sudo apt-get update 
 	sudo apt-get install bowlerstudio curl git putty  zip unzip
 ```
+
+## 0.2 Tools
+
 * Access to tools listed here: https://github.com/WPIRoboticsEngineering/ZenRobotBuildKit#tools-kit-online-only-suggested
+
+## 0.3 Matlab Install
 * [Matlab Installed using your WPI login](https://www.mathworks.com/academia/tah-portal/worcester-polytechnic-institute-40552010.html)
   * Sign in with your WPI account
   * Download the Linux version R2020a 
@@ -35,6 +43,16 @@ Under products add
 Under Options check the check box
 
 Make simlinks to MATLAB scripts
+
+Install MATLAB
+
+## 0.4 Matlab configuration
+
+Open matlab by typing in the terminal
+
+```
+matlab
+```
 
 
 ## Optional
