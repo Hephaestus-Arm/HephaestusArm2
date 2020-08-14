@@ -12,6 +12,7 @@ Do NOT use a VM. Native install is nessissary for access to the robot arm.
 * A PC running Ubuntu 18.04 linux
 ```
 	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 71EA898B 
+	sudo apt-get install software-properties-common
 	sudo add-apt-repository "deb http://ppa.launchpad.net/mad-hephaestus/commonwealthrobotics/ubuntu bionic main" -y
 	sudo apt-get update 
 	sudo apt-get install bowlerstudio curl git putty  zip unzip
