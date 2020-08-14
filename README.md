@@ -68,7 +68,11 @@ From now on, all you need to do to calibrate is move the robot to the home pose 
 
 [Communication Protocol](protocol.md)
 
-# 7 Bill Of Materials
+# 7 Matlab Setup
+
+[Setup Matlab and begin working](https://github.com/Hephaestus-Arm/RBE3001_Matlab)
+
+# 8 Bill Of Materials
 
 ## Main Kit:
 
