@@ -121,11 +121,21 @@ Barrel Jack 7.5v to LX-224 Power
 
 Program the FW to the ItsyBitsy and open Putty connecting to the serial port provided by the firmware. 
 
+### 6.1 Start Putty
+
+Plug in the USB to the ItsyBitsy
+
 Open putty and set it to talk to the serial port:
 
 <img src="photos/putty.png" width="600">
 
+### 6.2 Power up the system
+
 Plug in one and only one motor. 
+
+Plug in the Power cable.
+
+### 6.3 Read the provision state of the first motor
 
 Type 
 
@@ -136,25 +146,43 @@ ID
  
  The firmware will print out the ID of the motor connected. 
  
+ ### 6.4 Provision Motor 1
+ 
  Now type 
  
  ```
  ID 1
  ```
  
- and hit enter to set the ID of the base motor. Unplug and plug in the second motor. Type: 
+ and hit enter to set the ID of the base motor. 
+ 
+ Verify with step 6.3 above
+ 
+ ### 6.5 Provision Motor 2 
+ 
+ Unplug and plug in the second motor. Type: 
  
   ```
  ID 2
  ```
  
- and hit enter to set the ID of the middle motor. Unplug and plug in the third motor. Type: 
+ and hit enter to set the ID of the middle motor. 
+ 
+ Verify with step 6.3 above
+ 
+ ### 6.6 Provision Motor 3 
+ 
+ Unplug and plug in the third motor. Type: 
  
  ```
  ID 3
  ```
  
- and hit enter to set the ID of the elbow motor. Now you can plug in all 3 motors. 
+ and hit enter to set the ID of the elbow motor. 
+ 
+ Verify with step 6.3 above
+ 
+ Now you can plug in all 3 motors. 
 
 ## 7 Calibrate before beginning assembly
 
