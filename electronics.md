@@ -53,7 +53,9 @@ Open matlab by typing in the terminal
 ```
 matlab
 ```
+Under Environment -> Preferences -> MATLAB -> Keyboard Shortcuts
 
+switch Active  settings from Emacs Default Set to Windows Default Set
 
 ## Optional
 
