@@ -21,41 +21,7 @@ Do NOT use a VM. Native install is nessissary for access to the robot arm.
 
 * Access to tools listed here: https://github.com/WPIRoboticsEngineering/ZenRobotBuildKit#tools-kit-online-only-suggested
 
-## 0.3 Matlab Install
-* [Matlab Installed using your WPI login](https://www.mathworks.com/academia/tah-portal/worcester-polytechnic-institute-40552010.html)
-  * Sign in with your WPI account
-  * Download the Linux version R2020a 
-  * matlab_R2020a_glnxa64.zip
- ```
- cd Downloads/ #the directory where the matlab_R2020a_glnxa64.zip is
- ls matlab_R2020a_glnxa64.zip # Make sure you see the zip file
- unzip matlab_R2020a_glnxa64.zip -d matlab
- cd matlab
- sudo ./install
- ```
- Sign in with you WPI account again to accuire licences.
- 
-Under products add 
 
-* Image Acquisition Toolbox
-* Image Processing Toolbox
-
-Under Options check the check box
-
-Make simlinks to MATLAB scripts
-
-Install MATLAB
-
-## 0.4 Matlab configuration
-
-Open matlab by typing in the terminal
-
-```
-matlab
-```
-Under Environment -> Preferences -> MATLAB -> Keyboard Shortcuts
-
-switch Active  settings from Emacs Default Set to Windows Default Set
 
 ## Optional
 
