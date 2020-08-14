@@ -7,8 +7,15 @@
 * A PC running Ubuntu 18.04 linux
 * [BowlerStudio](https://commonwealthrobotics.com/) installed from the PPA or the .deb (this provides the USB driver)
 * Putty
-* Matlab (Installed from the WPI sources)
+* [Matlab Installed using your WPI login](https://www.mathworks.com/academia/tah-portal/worcester-polytechnic-institute-40552010.html)
 * Access to tools listed here: https://github.com/WPIRoboticsEngineering/ZenRobotBuildKit#tools-kit-online-only-suggested
+* Git
+
+```
+	sudo add-apt-repository ppa:mad-hephaestus/commonwealthrobotics -y
+	sudo apt-get update 
+	sudo apt-get install bowlerstudio curl git putty
+```
 
 ## Optional
 
