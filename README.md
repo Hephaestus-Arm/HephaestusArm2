@@ -4,6 +4,28 @@ This robot is for use in RBE 3001 as a teaching platform for robot kinematics an
 
 <img src="photos/assembly.jpg" width="600">
 
+
+## 1.1 depenancies and tools
+
+* A PC running Ubuntu 18.04 linux
+* [BowlerStudio](https://commonwealthrobotics.com/) installed from the PPA or the .deb (this provides the USB driver)
+* Putty
+* [Matlab Installed using your WPI login](https://www.mathworks.com/academia/tah-portal/worcester-polytechnic-institute-40552010.html)
+* Access to tools listed here: https://github.com/WPIRoboticsEngineering/ZenRobotBuildKit#tools-kit-online-only-suggested
+* Git
+
+```
+	sudo add-apt-repository ppa:mad-hephaestus/commonwealthrobotics -y
+	sudo apt-get update 
+	sudo apt-get install bowlerstudio curl git putty
+```
+
+## Optional
+
+* [Sloeber to compile firmware](https://github.com/WPIRoboticsEngineering/RobotInterfaceBoard/blob/master/InstallEclipse.md#linux-bundled-sloeber)
+
+
+
 # 2 CAD and simulation
 
 Open BowlerStudio, in the menu
