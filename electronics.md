@@ -77,6 +77,8 @@ NOTE the servo and LX-224 motors use DIFFERENT voltages for power.
 
 ## 3 LX-224 Pinout
 
+<img src="photos/lx-224-cable.jpg" width="600">
+
 If the notch in the keyed cable is pointing 'down'
 
 From left to right:
