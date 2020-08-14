@@ -121,7 +121,7 @@ ItsyBitsy GPIO-9  to 74HC126 OE
 
 74HC126 Y         to LX-224 Serial Pin
 
-ItsyBitsy GPIO-9  to Home Switch pin 1
+ItsyBitsy GPIO-11  to Home Switch pin 1
 
 Home Switch pin 2 to Ground
 
