@@ -144,6 +144,8 @@ From now on, all you need to do to calibrate is move the robot to the home pose 
    
 2x Button (comes in 20 pack for $2.50) https://www.digikey.com/products/en?mpart=367&v=1528 
 
+1x Power cord https://www.digikey.com/product-detail/en/mean-well-usa-inc/YP12-YC12/1866-5006-ND/7707223
+
 ## Camera Kit
 
 1x PSEye camera https://www.amazon.com/Sony-Station-Camera-Packaging-PlayStation-3/dp/B0735KNH2X/
