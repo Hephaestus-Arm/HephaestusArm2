@@ -145,7 +145,7 @@ Plug in the USB to the ItsyBitsy
 Open putty and set it to talk to the serial port:
 
 ```
-putty -serial /dev/ttyACM0 -sercfg 115200,1,n,1,N
+putty -serial /dev/ttyACM0 -sercfg 115200,8,n,1,N
 ```
 
 <img src="photos/putty.png" width="600">
