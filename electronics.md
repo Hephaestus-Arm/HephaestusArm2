@@ -93,12 +93,12 @@ NOTE the servo and LX-224 motors use DIFFERENT voltages for power.
 
 <img src="photos/lx-224-cable.jpg" width="600">
 
-If the notch in the keyed cable is pointing 'down'
+Looking into the pins, if the notch in the keyed cable is pointing 'down'
 
 From left to right:
 
 ```
-Serial  , 7.5v  , GND
+GND , Serial  , 7.5v  
 ```
 
 ## 4 Servo pinout
