@@ -98,7 +98,7 @@ Looking into the pins, if the notch in the keyed cable is pointing 'down'
 From left to right:
 
 ```
-GND , Serial  , 7.5v  
+GND , 7.5v , Serial  
 ```
 
 ## 4 Servo pinout
