@@ -129,6 +129,10 @@ Home the robot in its calibration pose now that all motors are in place.
 
 If the robot homes and holds the calibration pose then you are safe to move on. If one of the motors comes off the calibrtation pose, pull that horn and reset it closer to the correct pose, if you have to err to one side go past the calibration pose away from where the motor moved itself
 
+## Else Add the horn screw to Motor 1
+
+Pull motor 2 out of its slot and add the horn screw to Motor 1
+
 # Add last 2 motor horn screws
 
 <img src="photos/15.jpg" width="300">
