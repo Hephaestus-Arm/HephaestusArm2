@@ -22,7 +22,12 @@
 
 # Add threaded inserts
 
+ONLY hammer the M8 tee nut for the camera stand.
+
 <img src="photos/71.jpg" width="300">
+
+Use the soldering iron for the rest.
+
 <img src="photos/70.jpg" width="300">
 <img src="photos/69.jpg" width="300">
 <img src="photos/68.jpg" width="300">
@@ -36,6 +41,8 @@
 <img src="photos/60.jpg" width="300">
 
 # add horn to link 1 output bracket
+
+the splined horn is used, the idle horn is not used at all. 
 
 <img src="photos/58.jpg" width="300">
 <img src="photos/57.jpg" width="300">
