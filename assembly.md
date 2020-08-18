@@ -132,6 +132,7 @@ If the robot homes and holds the calibration pose then you are safe to move on. 
 ## Else Add the horn screw to Motor 1
 
 Pull motor 2 out of its slot and add the horn screw to Motor 1
+<img src="photos/motor1Screw.jpg" width="300">
 
 # Add last 2 motor horn screws
 
