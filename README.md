@@ -57,7 +57,7 @@ print with supports everywhere, do not reorent parts.
 
 ![Calibration Pose](armCalibration.png) 
 
-![Calibration Pose](photos/calibrationPose.png) 
+![Calibration Pose](photos/calibrationPose.jpg) 
 
 From now on, all you need to do to calibrate is move the robot to the home pose and hit the calibration button on the controller. You will need to home the robot each time the Microcontroller is power cycled. 
 
