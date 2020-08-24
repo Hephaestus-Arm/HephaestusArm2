@@ -163,3 +163,11 @@ From now on, all you need to do to calibrate is move the robot to the home pose 
 
 1 x nut for mounting camera stand https://www.mcmaster.com/98965A410
 
+## Camera Kit v2
+
+1 x https://www.adafruit.com/product/1643  $7.50
+
+
+
+
+
