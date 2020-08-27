@@ -82,7 +82,7 @@ Remove the backing of the breadboard and use the double stick tape to attach the
 
 <img src="photos/2.jpg" width="300">
 
-# 10 Wire all Motors and Home them
+# 10 Wire all Motors and Calibrate them
 
 <img src="photos/34.jpg" width="300">
 
@@ -121,13 +121,13 @@ Place motor 2 in link 1 output bracket but dont add the screws yet.
 <img src="photos/18.jpg" width="300">
 <img src="photos/17.jpg" width="300">
 
-# 17 Home the robot to verify the horn
+# 17 Calibrate the robot to verify the horn
 
-Home the robot in its calibration pose now that all motors are in place. 
+ Calibrate the robot in its calibration pose now that all motors are in place. 
 
 ## 17.1 If the motors move after calibration
 
-If the robot homes and holds the calibration pose then you are safe to move on. If one of the motors comes off the calibrtation pose, pull that horn and reset it closer to the correct pose, if you have to err to one side go past the calibration pose away from where the motor moved itself. Return to step 17.
+If the robot  Calibrates and holds the calibration pose then you are safe to move on. If one of the motors comes off the calibrtation pose, pull that horn and reset it closer to the correct pose, if you have to err to one side go past the calibration pose away from where the motor moved itself. Return to step 17.
 
 ## 17.2 Else Add the horn screw to Motor 1
 
