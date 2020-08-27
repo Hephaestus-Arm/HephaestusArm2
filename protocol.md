@@ -45,7 +45,7 @@ Set the setpoint of the Motors with interpolation. Time is in milliseconds. The 
 | |ID |  float|float | float|float |float |float|float |float |float|
 |--- |--- | --- |--- | --- |--- | --- |  --- | --- | --- |  --- | 
 | downstream Bytes |4 | --- |
-| Contents downstream |1910 | --- |
+| Contents downstream |1822 | --- |
 | upstream Bytes |4 | 4 |4 |4 |4 |4 |4 |4 |4 |4 |
 | Contents upstream |1822 |  motor 1 Velocity Mode Setpoint|  motor 1 velocity |motor 1 computed effort | motor 2 Velocity Mode Setpoint|  motor 2 velocity |motor 2 computed effort |motor 3 Velocity Mode Setpoint|  motor 3 velocity |motor 3 computed effort |
 
