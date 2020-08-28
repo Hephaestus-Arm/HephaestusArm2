@@ -770,7 +770,8 @@ return new ICadGenerator(){
 		DHParameterKinematics dev = b.getAllDHChains().get(0)
 		//dev.setDesiredTaskSpaceTransform(locationOfCalibration, 0);
 		def jointSpaceVect = dev.inverseKinematics(dev.inverseOffset(locationOfCalibration));
-		println "\n\nCalibration Values "+jointSpaceVect+"\n\n"
+		println "\n\nCalibration Values "+jointSpaceVect+"\n at pose: "+locationOfCalibration+"\n\n"
+		
 		
 		def calibrationFrame = TransformFactory.nrToCSG(locationOfCalibration)
 								.movex(centerlineToOuterSurfaceNegativeZ)
