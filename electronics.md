@@ -28,6 +28,10 @@ Do NOT use a VM. Native install is nessissary for access to the robot arm.
 
 * [Sloeber to compile firmware](https://github.com/WPIRoboticsEngineering/RobotInterfaceBoard/blob/master/InstallEclipse.md#linux-bundled-sloeber)
 
+## 0.3 Learn to Solder
+
+
+[![Alt text](https://img.youtube.com/vi/FWBCbFPXJLg/0.jpg)](https://www.youtube.com/watch?v=FWBCbFPXJLg)
 
 
 # 1 Firmware
