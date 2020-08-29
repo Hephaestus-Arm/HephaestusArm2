@@ -18,7 +18,7 @@ Do NOT use a VM. Native install is nessissary for access to the robot arm.
 	sudo apt-get install bowlerstudio curl git putty  zip unzip lightdm
 	sudo dpkg-reconfigure  lightdm 
 ```
-Select lightdm as teh default. 
+Select lightdm as the default. 
 
 ## 0.2 Tools
 
