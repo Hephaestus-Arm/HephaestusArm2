@@ -98,7 +98,6 @@ NOTE the servo and LX-224 motors use DIFFERENT voltages for power.
 ## 3 LX-224 Pinout
 
 <img src="photos/lx-224-cable-fixed.jpg" width="600">
-<img src="photos/closeup.jpg" width="600">
 
 Looking into the pins, if the notch in the keyed cable is pointing 'down'
 
@@ -107,6 +106,10 @@ From left to right:
 ```
 GND , 7.5v , Serial  
 ```
+
+NOTE when its in a breadboard it looks reversed, because the image above is looking into the pin holes, but as you assemble it the pin holes face down into the breadboard.
+
+<img src="photos/closeup.jpg" width="600">
 
 ## 4 Servo pinout
 
