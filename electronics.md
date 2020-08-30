@@ -15,8 +15,10 @@ Do NOT use a VM. Native install is nessissary for access to the robot arm.
 	sudo apt-get install software-properties-common
 	sudo add-apt-repository "deb http://ppa.launchpad.net/mad-hephaestus/commonwealthrobotics/ubuntu bionic main" -y
 	sudo apt-get update 
-	sudo apt-get install bowlerstudio curl git putty  zip unzip
+	sudo apt-get install bowlerstudio curl git putty  zip unzip lightdm
+	sudo dpkg-reconfigure  lightdm 
 ```
+Select lightdm as the default. 
 
 ## 0.2 Tools
 
@@ -28,6 +30,10 @@ Do NOT use a VM. Native install is nessissary for access to the robot arm.
 
 * [Sloeber to compile firmware](https://github.com/WPIRoboticsEngineering/RobotInterfaceBoard/blob/master/InstallEclipse.md#linux-bundled-sloeber)
 
+## 0.3 Learn to Solder
+
+
+[![Alt text](https://img.youtube.com/vi/FWBCbFPXJLg/0.jpg)](https://www.youtube.com/watch?v=FWBCbFPXJLg)
 
 
 # 1 Firmware
