@@ -191,7 +191,7 @@ If the command runs successfully a black black window will pop up. This is a ser
 
 Inorder to verify communication is working type ID in the window and you should get an reply that looks similar to below.
 
-![](photos/putty2.png)
+![](photos/putty3.png)
 
 
 ### 5.3 Setting Motor Provisions
@@ -202,29 +202,17 @@ In order to provision the motors we need to use the `ID` command, it is a very s
 ID 
 ```
 
-![](photos/putty2.png)
-
 will return the ID of the current motor that is plugged in
 
-```
-ID Command Output (pic)
-
-```
+![](photos/putty3.png)
 
 and typing 
 
-```
-ID X
-```
+![](photos/putty4.png)
 
 will set the ID of the current motor to X (X being a number). 
 
-```
-ID X Command Output again (pic)
-```
 ![](photos/putty4.png)
-
-
 
 Go ahead and provision the Smart servos with ID's 1,2, and 3. 
 
