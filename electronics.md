@@ -1,8 +1,6 @@
 # Electronics Instructions
 
-```
-Replace with completed board pic
-```
+![](photos/completed_board_wires.jpg)
 
 # 0 Setup
 
@@ -39,32 +37,26 @@ In order to program the ItsyBitsy we will be using Adafruits Flashdrive Emulatio
 
 1. Plug in the ItsyBitsy to your computer using the micro-usb cable in your kit.
 
-```
-pic
-```
+![](photos/initplug.jpg)
 
 2. Open up 2 File Explorer Windows on Ubuntu.
 
-```
-pic
-```
 
 3. Navigate to the download location of the firmware in one window (Probably your `Downloads` Folder).
-```
-pic
-```
+    ![](photos/flash2.png)
 
 4. *Double Click* the reset button on the ItsyBitsy. This will put it in bootloader mode. The ItsyBitsy should disappear momentarily and then show up as `ITSYM4BOOT`.
-```
-pic
-```
-5. Open ITSYM4BOOT in the other window and drag `Current.UF2` into it. 
-```
-pic
-```
-	A replace file nofication will show up click the green replace button. 
+    ![](photos/flash3.png)
 
-	The ItsyBitsy should then disconnect and not reappear
+5. Open ITSYM4BOOT in the other window and drag `Current.UF2` into it. 
+    ![](photos/flash4.png)
+
+
+6. A replace file nofication will show up click the green replace button. 
+
+    ![](photos/flash5.png)
+
+    The ItsyBitsy should then disconnect and not reappear
 
 Congrats! You've flashed the firmware on the ItsyBitsy!
 
@@ -94,16 +86,12 @@ then *DOUBLE CLICK* the reset button on the ItsyBitsy.
 Protip: a pair of pliers makes snapping the correct number of header pins much easier.
 ```
 
-```
-pic itsy in bread board 
-```
+![](photos/bread2.jpg)
 
 
 2. Find the 74hc126 line driver and place it in the breadboard.
 
-```
-pic linedriver in bread board 
-```
+![](photos/bread2.5.jpg)
 
 3. Use the double stick tape to attach the barrel jack adapter to the side of the breadboard. 
 
@@ -112,33 +100,27 @@ Protip: Apply pressure to the taped objects for at least 30 seconds to ensure a 
 ```
 
 Then wire the barrel jack termianls to their respective rails on the breadboard.
-```
-pic barel jack go brr
 
-```
+![](photos/bread3.jpg)
+
 4. Wiring up the Smart Servo Cables
 
 In order to connect the smart servo cables to the breadboard we need to use the double header pins. Take three double header pins and insert them into the smart servo cable.
 
 *Note, you will need to bend the outer pins going into the servo cable a little in order to make it fit. See below pic made using pliers for reference.
 
-```
-bent servo pic
-```
+![](photos/bent_header.jpg)
+
 
 Repeat the above for one side of all 3 servo cables.
 
-```
-finished cable end pic 
-```
+![](photos/smart_servo_wires.jpg)
 
 5. Pinning up the gripper servo
 
 Use a set of 3 double header pins to add pins to the end of the gripper servo wire.
 
-```
-gripper servo pic 
-```
+![](photos/servo_wire.jpg)
 
 6. Wire up the breadboard following the diagram below and keep mind the following useful information
 
@@ -152,9 +134,8 @@ add triple smart servo to diagram and label , show power ground and signal
 
 **LX-224 Pinout**
 
-```
-replace with new pin out pic
-```
+![](photos/motor_cable.jpg)
+
 **Gripper Server Pinout**
 
 Brown = Ground
@@ -163,12 +144,8 @@ Red   = 5v from USB
 
 Yellow = Servo Pulse
 
-```
-Wired board without servo cables
-```
-```
-Wired board with servo cables
-```
+![](photos/completed_board.jpg)
+![](photos/completed_board_wires.jpg)
 
 
 Congragualtions you've wired up the board. Get Ready to move on to the next step of provisioning the motors. 
@@ -187,9 +164,8 @@ While wiring you probably noticed that all 3 motors got the same signal, power a
 
 While provisioning motors we cannot have multiple motors connects, so remove all connected motors except for one, then plug in the barrel jack power connector and finally plug the usb cable into your computer. 
 
-```
-pic of plugged in board to usb and power
-```
+![](photos/full_plug_cal_board.jpg)
+
 
 After plugging in the wire click the reset button on the itsybitsy *ONE* time. You should see a small red led (next to the reset button) flash slowly (on for a second then off for a second). 
 ```
@@ -211,15 +187,12 @@ Protip: your itsybitsy may not be on the /dev/ttyACM0 port, if you try to run th
 ```
 
 If the command runs successfully a black black window will pop up. This is a serial monitor to that allows us to read and send serial data to the itsybitsy
-```
-pic of putty window
-```
+![](photos/putty1.png)
 
 Inorder to verify communication is working type ID in the window and you should get an reply that looks similar to below.
 
-``` 
-ID Command output
-```
+![](photos/putty2.png)
+
 
 ### 5.3 Setting Motor Provisions
 
@@ -229,10 +202,13 @@ In order to provision the motors we need to use the `ID` command, it is a very s
 ID 
 ```
 
+![](photos/putty2.png)
+
 will return the ID of the current motor that is plugged in
 
 ```
 ID Command Output (pic)
+
 ```
 
 and typing 
@@ -246,6 +222,9 @@ will set the ID of the current motor to X (X being a number).
 ```
 ID X Command Output again (pic)
 ```
+![](photos/putty4.png)
+
+
 
 Go ahead and provision the Smart servos with ID's 1,2, and 3. 
 
@@ -280,10 +259,8 @@ Starting the planner
 ```
 
 on the putty terminal. If this is not what you see contact an SA or Kevin. 
+![](photos/putty5.png)
 
-```
-img of calibrated motors. 
-```
 If you have made this far congrats you now have successfuly built a control board, provisioned your motors and calibrated them. Be careful not to turn the output shaft of the servos during the assembly. 
 
 Head back to the [main instructions](README.md) to continue with physcial assembly!

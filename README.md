@@ -183,7 +183,7 @@ The goal of this section is to give you an understanding of your kit and the par
 
 6) 1x - [Button](https://www.digikey.com/products/en?mpart=367&v=1528 ) : Meant to be in main kit, used as a microcontroller input (sold in pack of 20).
 
-7) 1x - PCB : A custom PCB that could be used, but the required components are not included in the kit.
+7) 1x - PCB: A custom PCB that could be used, but the required components are not included in the kit.
 
 ## Camera Kit v2
 (Not the camera kit provided to students for A20)
