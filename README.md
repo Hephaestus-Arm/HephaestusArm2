@@ -95,44 +95,24 @@ Tools in this section are stuff you **might** need to complete the build
 
 Feel free to source these tools from wherever is nearby and cheap, this is just the first amazon link or what was included in the tools kit. 
 
+# 2 Unboxing and Understanding Your Kit. 
 
-# 3 Build the electronics
+The goal of this section is to give you an understanding of your kit and the parts in it. We assume you ha
 
-[Wire the electronics](electronics.md)
+## 2.1 RBE 3001 Main Kit
 
-# 4 Build the arm
 
-[Build instructions](assembly.md)
+```
+add pic plus explanation / labeling  of components 
+```
 
-# 5 Calibrating the arm
 
-![Calibration Pose](armCalibration.png) 
+1) 3x-[Servo](https://www.amazon.com/dp/B081CTX6DM/ref=twister_B0817ZKWF9): Servo Motor that drives the main 3 joints of the arm.
 
-![Calibration Pose](photos/calibrationPose.jpg) 
 
-From now on, all you need to do to calibrate is move the robot to the  Calibrate pose and hit the calibration button on the breadboard. You will need to  calibrate the robot each time the ItsyBitsy is power cycled. 
+2) 1x-[Power Supply](https://www.digikey.com/product-detail/en/mean-well-usa-inc/GST60A07-P1J/1866-2147-ND/7703710): Provides power to arm, via a DC jack
 
-# 6 Communication
-
-[Communication Protocol](protocol.md)
-
-# 7 Matlab Setup
-
-[Setup Matlab and begin working](https://github.com/Hephaestus-Arm/RBE3001_Matlab)
-
-# 8 Bill Of Materials
-
-## Main Kit:
-
-3x motor https://www.amazon.com/dp/B081CTX6DM/ref=twister_B0817ZKWF9
-
-```NO Engineering substitutions here```
-
-1x power supply: https://www.digikey.com/product-detail/en/mean-well-usa-inc/GST60A07-P1J/1866-2147-ND/7703710
-
-```Engineering substitutions for cost ok here```
-
-1x Barrel Jack adapter: https://www.sparkfun.com/products/10288
+3) 1x-[Barrel Jack Adapter](https://www.sparkfun.com/products/10288):
 
 ```Engineering substitutions for cost ok here```
 
@@ -194,6 +174,15 @@ From now on, all you need to do to calibrate is move the robot to the  Calibrate
 
 1x Power cord https://www.digikey.com/product-detail/en/mean-well-usa-inc/YP12-YC12/1866-5006-ND/7707223
 
+*Note if you did not purchace the camera kit you will need to buy a [button](https://www.digikey.com/products/en?mpart=367&v=1528 ) to assemble the robot. Or if you are approved to go on campus you can get one from the lab. 
+
+
+## 2.2 RBE 3001 Camera Kit
+
+```
+add pic plus explanation / labeling  of components 
+```
+
 ## Camera Kit
 
 1x PSEye camera https://www.amazon.com/Sony-Station-Camera-Packaging-PlayStation-3/dp/B0735KNH2X/
@@ -217,6 +206,37 @@ From now on, all you need to do to calibrate is move the robot to the  Calibrate
 ## Camera Kit v2
 
 1 x https://www.adafruit.com/product/1643  $7.50
+
+
+# 3 Build the electronics
+
+This next step of instructions will guide you in assembeling the elctronics for the arm and then calibrating the servos.
+
+
+[Wire the electronics](electronics.md)
+
+# 4 Build the arm
+
+[Build instructions](assembly.md)
+
+# 5 Calibrating the arm
+
+![Calibration Pose](armCalibration.png) 
+
+![Calibration Pose](photos/calibrationPose.jpg) 
+
+From now on, all you need to do to calibrate is move the robot to the  Calibrate pose and hit the calibration button on the breadboard. You will need to  calibrate the robot each time the ItsyBitsy is power cycled. 
+
+# 6 Communication
+
+[Communication Protocol](protocol.md)
+
+# 7 Matlab Setup
+
+[Setup Matlab and begin working](https://github.com/Hephaestus-Arm/RBE3001_Matlab)
+
+
+
 
 # 7 CAD and simulation
 
