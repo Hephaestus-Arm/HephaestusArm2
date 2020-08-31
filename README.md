@@ -66,7 +66,7 @@ Items that start with :wrench: are found in the [Bookstore Tool Kit](https://wpi
 * [Needle Nose Pliers](https://www.amazon.com/Tools-VISE-GRIP-Pliers-6-Inch-2078216/dp/B000A0OW2M/ref=sr_1_3?dchild=1&keywords=needle+nose+pliers&qid=1598832659&s=industrial&sr=1-3)
 
 * [Ph1 Screw Driver](https://www.amazon.com/Wera-05118024001-Kraftform-Electronics-Screwdriver/dp/B0001P18M8/ref=sr_1_3?crid=5UV2I9OLZR1P&dchild=1&keywords=ph1+screwdriver&qid=1598832754&sprefix=ph1+s%2Caps%2C181&sr=8-3)
-
+:wrench:
 * :wrench: [Wire Stripper](https://www.pololu.com/product/1923)
 
 * :wrench: [Soldering Iron](https://www.sparkfun.com/products/14456)
@@ -89,7 +89,7 @@ Tools in this section are stuff you **might** need to complete the build
 
 * [Zipties](https://www.amazon.com/Cable-Nylon-Locking-Pieces-Black/dp/B07VRSQ6YL)
 
-* [Digital Multi Meter](https://www.sparkfun.com/products/12966)
+* :wrench: [Digital Multi Meter](https://www.sparkfun.com/products/12966)
 
 * [220 Grit Sandpaper](https://www.amazon.com/Fandeli-36027-Multipurpose-Sandpaper-25-Sheet/dp/B00WSVNHBS/ref=sr_1_2?crid=1YRPC72JKS2L9&dchild=1&keywords=220+sandpaper&qid=1598832549&s=industrial&sprefix=220+s%2Cindustrial%2C169&sr=1-2)
 
