@@ -59,7 +59,7 @@ The programs installed are
 
 ### 1.2.4 Required Tools 
 
-Tools in this section are stuff you **will** need to complete the build
+Tools in this section are stuff you **will** need to complete the build. If you are missing any of the required tools contact an SA and they may be able to provide workarounds.
 
 Items that start with :wrench: are found in the [Bookstore Tool Kit](https://wpi.bncollege.com/shop/BNCB_TextbookDetailView?displayStoreId=32554&urlRequestType=Base&catalogId=10001&productId=650018123733&langId=-1&partNumber=98_844002999&storeId=32554&sectionId=97501629&item=N).
 
