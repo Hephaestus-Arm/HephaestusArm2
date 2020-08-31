@@ -2,7 +2,8 @@
 
 This robot is for use in RBE 3001 as a teaching platform for robot kinematics and trajectory planning and image recognition. 
 
-![assem](photos/assembly.jpg)
+<img src="photos/assembly.jpg" width="600">
+
 
 
 ## 1.1 READ THIS SECTION BEFORE YOU DO ANYTHING
@@ -97,8 +98,7 @@ The goal of this section is to give you an understanding of your kit and the par
 ## 2.1 RBE 3001 Main Kit
 
 
-
-![assem](photos/mainkit2.jpg)
+<img src="photos/mainkit2.jpg" width="600">
 1) 3x - [Smart Servo Kit](https://www.amazon.com/dp/B081CTX6DM/ref=twister_B0817ZKWF9): Servo Motor that drives the main 3 joints of the arm,along with a cord and servo horns.
 
 2) 1x - [Power Supply](https://www.digikey.com/product-detail/en/mean-well-usa-inc/GST60A07-P1J/1866-2147-ND/7703710): Provides power to arm, via a DC jack.
@@ -140,7 +140,7 @@ The goal of this section is to give you an understanding of your kit and the par
 
 ### 3D Printed Parts
 
-![assem](photos/mainkit1.jpg)
+<img src="photos/mainkit1.jpg" width="600">
 
 1) 1x - Base: The arm's base
 
@@ -167,7 +167,7 @@ The goal of this section is to give you an understanding of your kit and the par
 
 ## 2.2 RBE 3001 Camera Kit
 
-![assem](photos/camerakit.jpg)
+<img src="photos/camerakit.jpg" width="600">
 
 ## Camera Kit v1
 
