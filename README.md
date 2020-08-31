@@ -43,6 +43,7 @@ Once you have Linux open a terminal (Ctrl+Alt+t) and run the following commands
 	sudo apt-get install bowlerstudio curl git putty  zip unzip lightdm
 	sudo dpkg-reconfigure  lightdm 
 ```
+Restart your computer and you should see a slightly different login screen when you boot into Ubuntu. 
 
 Doing so will install some programs that you need for later steps, as well as configure your login manager to avoid a known bug with the default one.
 

@@ -140,7 +140,8 @@ Use a set of 3 double header pins to add pins to the end of the gripper servo wi
 gripper servo pic 
 ```
 
-6. Wire up the breadboard following the diagram below
+6. Wire up the breadboard following the diagram below and keep mind the following useful information
+
 
 
 ```
@@ -148,6 +149,19 @@ add triple smart servo to diagram and label , show power ground and signal
 ```
 
 <img src="photos/hep-arm-witing.png" width="600">
+
+**LX-224 Pinout**
+
+```
+replace with new pin out pic
+```
+**Gripper Server Pinout**
+
+Brown = Ground
+
+Red   = 5v from USB
+
+Yellow = Servo Pulse
 
 ```
 Wired board without servo cables
@@ -157,112 +171,132 @@ Wired board with servo cables
 ```
 
 
+Congragualtions you've wired up the board. Get Ready to move on to the next step of provisioning the motors. 
 
 
-## 3 LX-224 Pinout
-
-<img src="photos/lx-224-cable-fixed.jpg" width="600">
-
-Looking into the pins, if the notch in the keyed cable is pointing 'down'
-
-From left to right:
-
-```
-GND , 7.5v , Serial  
-```
-
-NOTE when it is plugged into in a breadboard it looks reversed, because the image above is looking into the pin holes, but as you assemble it the pin holes face down into the breadboard.
-
-<img src="photos/closeup.jpg" width="600">
-
-## 4 Gripper Servo Pinout
-
-Brown = Ground
-
-Red   = 5v from USB
-
-Yellow = Servo Pulse
-
-## 5 Provision LX-224 ID numbers
+## 5 Provision Motor ID
 
 This section shows how to identify the motors in the ItsyBitsy's firmware. 
 
-### 5.1 Power up the system
+`COOPER FIX THIS IM DUMB`
 
-Plug in one and only one motor. 
+### Understanding the Smart Servo Communication. 
 
-Plug in the Power cable.
+While wiring you probably noticed that all 3 motors got the same signal, power and ground. The smart servo cables can be used to connect multiple smart servos to each other in a chain and still maintain individual functionality, provided they have been provisioned. (Think similar to I2C) However due to wire size chaining more than two smart servos together is not reccomended.
+
+
+### 5.1 Setting up the Breadboard for Provisioning
+
+While provisioning motors we cannot have multiple motors connects, so remove all connected motors except for one, then plug in the barrel jack power connector and finally plug the usb cable into your computer. 
+
+```
+pic of plugged in board to usb and power
+```
+
+After plugging in the wire click the reset button on the itsybitsy *ONE* time. You should see a small red led (next to the reset button) flash slowly (about once a 1 second). 
+```
+Protip: during the process or now your red led on your itsybitsy might go from a slow flash to a solid red. If this happens reset your board by hitting the reset button. 
+```
 
 ### 5.2 Start Putty
 
-Plug in the USB to the ItsyBitsy
-
-Open putty and set it to talk to the serial port:
+Open a terminal window and type the following command
+:
 
 ```
 putty -serial /dev/ttyACM0 -sercfg 115200,8,n,1,N
 ```
 
-<img src="photos/putty.png" width="600">
+```
+Protip: The command will not work unless all power cables are plugged in and led is slow blinking.
+Protip: your itsybitsy may not be on the /dev/ttyACM0 port, if you try to run the putty command and the above conditions are met and you still get an error, then go down to the Extras section 7.3 for a tutorial on how to find which port to use. Scroll back up and continue from here after. 
+```
 
-### 5.3 Read the provision state of the first motor
+If the command runs successfully a black black window will pop up. This is a serial monitor to that allows us to read and send serial data to the itsybitsy
+```
+pic of putty window
+```
 
-Type 
+Inorder to verify communication is working type ID in the window and you should get an reply that looks similar to below.
+
+``` 
+ID Command output
+```
+
+### 5.3 Setting Motor Provisions
+
+In order to provision the motors we need to use the `ID` command it is a very simple command that has two modes typing 
 
 ```
-ID
+ID 
 ```
- and hit enter. 
- 
- The firmware will print out the ID of the motor connected. 
- 
- ### 5.4 Provision Motor 1
- 
- Now type 
- 
- ```
- ID 1
- ```
- 
- and hit enter to set the ID of the base motor. 
- 
- Verify with step 6.3 above
- 
- ### 5.5 Provision Motor 2 
- 
- Unplug Motor 1 and plug in the second motor. Type: 
- 
-  ```
- ID 2
- ```
- 
- and hit enter to set the ID of the middle motor. 
- 
- Verify with step 6.3 above
- 
- ### 5.6 Provision Motor 3 
- 
- Unplug Motor 2 and plug in the third motor. Type: 
- 
- ```
- ID 3
- ```
- 
- and hit enter to set the ID of the elbow motor. 
- 
- Verify with step 6.3 above
- 
- Now you can plug in all 3 motors. 
+
+will return the ID of the current motor that is plugged in
+
+```
+ID command out put again
+```
+
+and typing 
+
+```
+ID X
+```
+
+will set the ID of the current motor to X (X being a number). 
+
+```
+ID X command Output
+```
+
+Go ahead and provision the Smart servos with ID's 1,2, and 3. 
+
+```
+Protip: you might need to reset the board between unplugging one servo and plugging in the next. 
+Protip: Having a sharpie/ or any other way marking the motors is useful to avoid confusion during assembely.
+```
+
+After provisioning you can plug in already provioned motors and check them with the ID command. 
+
+If all your motors keep their ID's congrats you have successfuly provisoned all 3 motors. Now onto calibration
+
+
+
 
 ## 6 Calibrate before beginning assembly
 
-Now plug in all 3 motors and reboot the firmware. Press and hold the  Calibrate button until the red LED on pin 13 flashes quickly (at least 5 seconds) where quickly is 100ms on 100ms off. All motors will be moved to their  Calibrate pose. Keep track of which index is which. 
+Calibrating the motors is an important step, while these servos are continous, they only 240 degrees of sensing that means your motors can be in a position after assembely where they may not be able to reach their entire range. In order to fix this we try to calibrate the motors and check they are able to reach their entire range before assembely.
+
+To calibrate. 
+
+1. Plug in all 3 motors and reboot the firmware. 
+
+2. Open up putty using the same command as you did earlier
+
+3. Press and hold the calibrate button 10 seconeds then let go. The motors should calibrate and move to a calibrated position. If successful you should see the lines.
+
+```
+Starting the motor motion after calibration
+
+Starting the planner 
+```
+
+on the putty terminal. If this is not what you see contact an SA or Kevin. 
+
+```
+img of calibrated motors. 
+```
+If you have made this far congrats you now have successfuly built a control board, provisioned your motors and calibrated them. Be careful not to turn the output shaft of the servo during the assembely. 
+
+Head back to the [main instructions](README.md) to continue with physcial assembely!
 
  ## 7 Extras
  
+ ### Datasheets
+
 [74hc126 Datasheet](https://www.ti.com/lit/ds/symlink/sn74hc126.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1597341911818)
 
-Text-based pinout of the board
+### 7.2 Text-based pinout of the board
 
 ItsyBitsy GPIO-12 to Servo Pulse
  
@@ -283,3 +317,20 @@ Calibrate Switch pin 2 to Ground
 Connect all grounds
 
 Barrel Jack 7.5v to LX-224 Power
+
+### 7.3 Finding which port the itsy bitsy is on. 
+
+Running the following command below will tell you each usb connected to your computer replace `/dev/ttyACM0` in the putty with the port you found from running the command.
+
+```
+for sysdevpath in $(find /sys/bus/usb/devices/usb*/ -name dev); do
+    (
+        syspath="${sysdevpath%/dev}"
+        devname="$(udevadm info -q name -p $syspath)"
+        [[ "$devname" == "bus/"* ]] && exit
+        eval "$(udevadm info -q property --export -p $syspath)"
+        [[ -z "$ID_SERIAL" ]] && exit
+        echo "/dev/$devname - $ID_SERIAL"
+    )
+done
+```
