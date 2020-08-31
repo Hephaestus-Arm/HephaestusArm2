@@ -2,48 +2,103 @@
 
 This robot is for use in RBE 3001 as a teaching platform for robot kinematics and trajecttory planning and image recognition. 
 
-<img src="photos/assembly.jpg" width="600">
-
-
-## 1.1 depenancies and tools
-
-* A PC running Ubuntu 18.04 linux
-* [BowlerStudio](https://commonwealthrobotics.com/) installed from the PPA or the .deb (this provides the USB driver)
-* Putty
-* [Matlab Installed using your WPI login](https://github.com/Hephaestus-Arm/RBE3001_Matlab)
-* Access to tools listed here: https://github.com/WPIRoboticsEngineering/ZenRobotBuildKit#tools-kit-online-only-suggested
-* Git
-
-
-## Optional
-
-* [Sloeber to compile firmware](https://github.com/WPIRoboticsEngineering/RobotInterfaceBoard/blob/master/InstallEclipse.md#linux-bundled-sloeber)
-
-
-
-# 2 CAD and simulation
-
-Open BowlerStudio, in the menu
-
 ```
-Add device -> creatures -> from git
-```
-and enter
-```
-https://github.com/Hephaestus-Arm/HephaestusArm2.git
-```
-then select
-```
-hephaestus.xml 
+Replace this with Pic of arm
 ```
 
-This will generate the CAD and run the simulation. 
 
-## STL's 
+## 1.1 READ THIS SECTION BEFORE YOU DO ANYTHING
 
-[Current Release Printable STL's](https://github.com/Hephaestus-Arm/HephaestusArm2/releases/download/0.1.0/release-0.1.0.zip)
+You need to follow all instructions in this guide **in order**, doing parts out of order means you may need to take apart the robot or risk breaking a component. 
 
-print with supports everywhere, do not reorent parts. 
+Read through each section completely and then do the actions in the guide. Doing this will make sure you have an understanding of why and what you are doing. 
+
+## 1.2 Dependancies and Tools
+
+### 1.2.1 Linux Install
+You need to install Ubuntu 18.04 on your personal computer
+
+[How to install Ubuntu](https://github.com/arjungandhi/3001-Ubuntu-Install)
+
+The rest of the guide assumes you have a base familiarity with the linux terminal and Ubuntu.
+
+If you do not here are resources to help you get familiar
+
+* [Ubuntu UI Help](https://youtu.be/lmeDvSgN6zY?t=68)
+* [Terminal Basics](https://ubuntu.com/tutorials/command-line-for-beginners#1-overview)
+
+
+
+
+
+### 1.2.2 Some Basic Programs 
+
+Once you have Linux open a terminal (Ctrl+Alt+t) and run the following commands 
+
+```
+	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 71EA898B 
+	sudo apt-get install software-properties-common
+	sudo add-apt-repository "deb http://ppa.launchpad.net/mad-hephaestus/commonwealthrobotics/ubuntu bionic main" -y
+	sudo apt-get update 
+	sudo apt-get install bowlerstudio curl git putty  zip unzip lightdm
+	sudo dpkg-reconfigure  lightdm 
+```
+
+Doing so will install some programs that you need for later steps, as well as configure your login manager to avoid a known bug with the default one.
+
+The programs installed are
+* BowlerStudio (Used for calibration and modeling of the robot arm)
+* curl (allows you to get files from the internet)
+* git (allows you to access and work with code repositories)
+* zip/unzip (allows you to zip and unzip files. duh.)
+* lightdm (an alternative login manager)
+
+### 1.2.3 Matlab
+
+[Guide To Install Matlab](https://github.com/Hephaestus-Arm/RBE3001_Matlab)
+
+### 1.2.4 Required Tools 
+
+Tools in this section are stuff you **will** need to complete the build
+
+Items that start with :wrench: are found in the [Bookstore Tool Kit](https://wpi.bncollege.com/shop/BNCB_TextbookDetailView?displayStoreId=32554&urlRequestType=Base&catalogId=10001&productId=650018123733&langId=-1&partNumber=98_844002999&storeId=32554&sectionId=97501629&item=N).
+
+* [Needle Nose Pliers](https://www.amazon.com/Tools-VISE-GRIP-Pliers-6-Inch-2078216/dp/B000A0OW2M/ref=sr_1_3?dchild=1&keywords=needle+nose+pliers&qid=1598832659&s=industrial&sr=1-3)
+
+* [Ph1 Screw Driver](https://www.amazon.com/Wera-05118024001-Kraftform-Electronics-Screwdriver/dp/B0001P18M8/ref=sr_1_3?crid=5UV2I9OLZR1P&dchild=1&keywords=ph1+screwdriver&qid=1598832754&sprefix=ph1+s%2Caps%2C181&sr=8-3)
+
+* :wrench: [Wire Stripper](https://www.pololu.com/product/1923)
+
+* :wrench: [Soldering Iron](https://www.sparkfun.com/products/14456)
+
+* :wrench: [Soldering Stand](https://www.sparkfun.com/products/9477)
+
+* :wrench: [Lead Free Solder](https://www.digikey.com/product-detail/en/aven-tools/17551LF/243-1341-ND/5252791)
+
+* [Double Sided Foam Tape](https://www.amazon.com/Scotch-Mounting-0-75-inch-350-inches-110-LongDC/dp/B009NP1OBC)
+
+* [Wire Kit](https://www.amazon.com/REXQualis-Breadboard-Assorted-Prototyping-Circuits/dp/B081H2JQRV)
+
+### 1.2.4 Useful Tools 
+
+Items that start with :wrench: are found in the [Bookstore Tool Kit](https://wpi.bncollege.com/shop/BNCB_TextbookDetailView?displayStoreId=32554&urlRequestType=Base&catalogId=10001&productId=650018123733&langId=-1&partNumber=98_844002999&storeId=32554&sectionId=97501629&item=N).
+
+Tools in this section are stuff you **might** need to complete the build
+
+* :wrench: [Solder Wick](https://www.sparkfun.com/products/9327)
+
+* [Zipties](https://www.amazon.com/Cable-Nylon-Locking-Pieces-Black/dp/B07VRSQ6YL)
+
+* [Digital Multi Meter](https://www.sparkfun.com/products/12966)
+
+* [220 Grit Sandpaper](https://www.amazon.com/Fandeli-36027-Multipurpose-Sandpaper-25-Sheet/dp/B00WSVNHBS/ref=sr_1_2?crid=1YRPC72JKS2L9&dchild=1&keywords=220+sandpaper&qid=1598832549&s=industrial&sprefix=220+s%2Cindustrial%2C169&sr=1-2)
+
+Feel free to source these tools from wherever is nearby and cheap, this is just the first amazon link or what was included in the tools kit. 
+
+```
+come back here and fix once kevin gives info add :wrench:
+```
+
 
 # 3 Build the electronics
 
@@ -167,7 +222,29 @@ From now on, all you need to do to calibrate is move the robot to the  Calibrate
 
 1 x https://www.adafruit.com/product/1643  $7.50
 
+# 7 CAD and simulation
+
+Open BowlerStudio, in the menu
+
+```
+Add device -> creatures -> from git
+```
+and enter
+```
+https://github.com/Hephaestus-Arm/HephaestusArm2.git
+```
+then select
+```
+hephaestus.xml 
+```
+
+This will generate the CAD and run the simulation. 
 
 
 
+## STL's 
+
+[Current Release Printable STL's](https://github.com/Hephaestus-Arm/HephaestusArm2/releases/download/0.1.0/release-0.1.0.zip)
+
+print with supports everywhere, do not reorent parts. 
 
