@@ -1,55 +1,31 @@
 # Electronics introduction
 
-<img src="photos/2.jpg" width="600">
-
-# 0 depenancies and tools
-
-
-## 0.1 Linux install
-
-Do NOT use a VM. Native install is nessissary for access to the robot arm. 
-
-* A PC running Ubuntu 18.04 linux
 ```
-	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 71EA898B 
-	sudo apt-get install software-properties-common
-	sudo add-apt-repository "deb http://ppa.launchpad.net/mad-hephaestus/commonwealthrobotics/ubuntu bionic main" -y
-	sudo apt-get update 
-	sudo apt-get install bowlerstudio curl git putty  zip unzip lightdm
-	sudo dpkg-reconfigure  lightdm 
+Replace with completed board pic
 ```
-Select lightdm as the default. 
 
-## 0.2 Tools
+# 0 Setup
 
-* Access to tools listed here: https://github.com/WPIRoboticsEngineering/ZenRobotBuildKit#tools-kit-online-only-suggested
+Before starting on this section you will need to have a working ubuntu section and installed all sofware on the initial [readme](README.md). As well as all the required tools mentioned there as well.
 
+## 0.1 Learn to Solder
 
-
-## Optional
-
-* [Sloeber to compile firmware](https://github.com/WPIRoboticsEngineering/RobotInterfaceBoard/blob/master/InstallEclipse.md#linux-bundled-sloeber)
-
-## 0.3 Learn to Solder
-
+If you do not know how to solder watch the video below on how to solder electrical components.
 
 [![Alt text](https://img.youtube.com/vi/FWBCbFPXJLg/0.jpg)](https://www.youtube.com/watch?v=FWBCbFPXJLg)
 
 
-# 1 Firmware
+# 1 Install Firmware to the ItsyBitsy
 
+The goal of this section is to flash the needed firmware onto the Adafruit ItsyBitsy
 
-Use the Adafruit flash drive emulation to program the Adafruit ItsyBitsy. The firmware source is found at 
+## 1.1 Firmware Download 
 
-[Source code for reference only](https://github.com/Hephaestus-Arm/HephaestusArm2-firmware/)
+In order to run the robot we will be using the [source code](https://github.com/Hephaestus-Arm/HephaestusArm2-firmware/) provided by the lab.
 
-but you will not need to compile the source. the FW is distributed as
+However you do not need to download or compile this code we have already done that for you. 
 
-## 1.1 Firmware Download
-
-https://github.com/Hephaestus-Arm/HephaestusArm2-firmware/releases
-
-download the latest version of:
+To get the pre-complied code, visit [here](https://github.com/Hephaestus-Arm/HephaestusArm2-firmware/releases) and download the lastest version of 
 
 ```
 CURRENT.UF2
@@ -57,10 +33,42 @@ CURRENT.UF2
 
 ## 1.2 Firmware program
 
-Double click the reset button on the ItsyBitsy while plugged in. It will show up as a flash drive to the computer. Drag and drop 'CURRENT.UF2' onto the root of the flash drive. 
+In order to program the ItsyBitsy we will be using Adafruits Flashdrive Emulation.
 
-The electronics for the Hephaerstus Arm are made using an Adafruit ItsyBitsy, a line driver and a button. 
+**Installing The Firmware**
 
+1. Plug in the Itsy Bitsy to your computer using the micro-usb cable in your kit
+
+```
+pic
+```
+
+2. Open up 2 File Explorer Windows on Ubuntu.
+
+```
+pic
+```
+
+3. Navigate to the download location of the firmware in one window (Probably your `Downloads` Folder)
+```
+pic
+```
+
+4. *Double Click* the reset button on the Itsy Bitsy. This will put it in bootloader mode. The Itsybitsy should disappear momentarily and then show up as `ITSYM4BOOT`.
+```
+pic
+```
+5. Open The ItsyBitsy in the other window and drag `Current.UF2` into it. 
+```
+pic
+```
+	A replace file nofication will show up click the green replace button. 
+
+	The ItsyBitsy should then disconnect and not reappear
+
+Congrats! You've flashed the firmware on the Itsy Bitsy!
+
+Go ahead and disconnect it from your computer. 
 ## 1.3 Troubleshooting
 
 If you see
@@ -75,7 +83,7 @@ as the flash drive ame instead of
 ItsyM4Boot
 ```
 
-then you didnt *DOUBLE CLICK* the button on the ItsyBItsy. 
+then *DOUBLE CLICK* the reset button on the ItsyBItsy. 
 
 ## 2 Components
 
