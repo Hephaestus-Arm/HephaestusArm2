@@ -59,14 +59,14 @@ The programs installed are
 
 ### 1.2.4 Required Tools 
 
-Tools in this section are stuff you **will** need to complete the build
+Tools in this section are stuff you **will** need to complete the build. If you are missing any of the required tools contact an SA and they may be able to provide workarounds.
 
 Items that start with :wrench: are found in the [Bookstore Tool Kit](https://wpi.bncollege.com/shop/BNCB_TextbookDetailView?displayStoreId=32554&urlRequestType=Base&catalogId=10001&productId=650018123733&langId=-1&partNumber=98_844002999&storeId=32554&sectionId=97501629&item=N).
 
 * [Needle Nose Pliers](https://www.amazon.com/Tools-VISE-GRIP-Pliers-6-Inch-2078216/dp/B000A0OW2M/ref=sr_1_3?dchild=1&keywords=needle+nose+pliers&qid=1598832659&s=industrial&sr=1-3)
 
-* [Ph1 Screw Driver](https://www.amazon.com/Wera-05118024001-Kraftform-Electronics-Screwdriver/dp/B0001P18M8/ref=sr_1_3?crid=5UV2I9OLZR1P&dchild=1&keywords=ph1+screwdriver&qid=1598832754&sprefix=ph1+s%2Caps%2C181&sr=8-3)
-:wrench:
+* :wrench:[Ph1 Screw Driver](https://www.amazon.com/Wera-05118024001-Kraftform-Electronics-Screwdriver/dp/B0001P18M8/ref=sr_1_3?crid=5UV2I9OLZR1P&dchild=1&keywords=ph1+screwdriver&qid=1598832754&sprefix=ph1+s%2Caps%2C181&sr=8-3)
+
 * :wrench: [Wire Stripper](https://www.pololu.com/product/1923)
 
 * :wrench: [Soldering Iron](https://www.sparkfun.com/products/14456)
@@ -97,85 +97,49 @@ Feel free to source these tools from wherever is nearby and cheap, this is just 
 
 # 2 Unboxing and Understanding Your Kit. 
 
-The goal of this section is to give you an understanding of your kit and the parts in it. We assume you ha
+The goal of this section is to give you an understanding of your kit and the parts in it. This section assumes you have purchased the [RBE 3001 Main kit](https://wpi.bncollege.com/shop/BNCB_TextbookDetailView?displayStoreId=32554&urlRequestType=Base&catalogId=10001&productId=650018123743&langId=-1&partNumber=98_844003009&storeId=32554&sectionId=97501637&item=N) and the [RBE 3001 Camera kit](https://wpi.bncollege.com/shop/BNCB_TextbookDetailView?displayStoreId=32554&urlRequestType=Base&catalogId=10001&productId=650018123744&langId=-1&partNumber=98_844003010&storeId=32554&sectionId=97501637&item=N).
 
 ## 2.1 RBE 3001 Main Kit
-
 
 ```
 add pic plus explanation / labeling  of components 
 ```
 
+1) 3x - [Smart Servo](https://www.amazon.com/dp/B081CTX6DM/ref=twister_B0817ZKWF9): Servo Motor that drives the main 3 joints of the arm.
 
-1) 3x-[Servo](https://www.amazon.com/dp/B081CTX6DM/ref=twister_B0817ZKWF9): Servo Motor that drives the main 3 joints of the arm.
+2) 1x - [Power Supply](https://www.digikey.com/product-detail/en/mean-well-usa-inc/GST60A07-P1J/1866-2147-ND/7703710): Provides power to arm, via a DC jack
 
+3) 1x - [Barrel Jack Adapter](https://www.sparkfun.com/products/10288): A DC jack to covert the power supply to a power and ground terminal
 
-2) 1x-[Power Supply](https://www.digikey.com/product-detail/en/mean-well-usa-inc/GST60A07-P1J/1866-2147-ND/7703710): Provides power to arm, via a DC jack
+4) 1x - [Adafruit ItsyBitsy](https://www.adafruit.com/product/3800) : The microcontroller for the arm
 
-3) 1x-[Barrel Jack Adapter](https://www.sparkfun.com/products/10288):
+5) 1x - [Line Driver](https://www.digikey.com/product-detail/en/texas-instruments/SN74HC126N/296-8221-5-ND) : An integrated cicuit to help control the servos
 
-```Engineering substitutions for cost ok here```
+6) 1x - [Breadboard](https://www.sparkfun.com/products/12002) : A board to help organize the circuit
 
-1x Adafruit ItsyBitsy https://www.adafruit.com/product/3800
+7) 4x - [10K Ohm Resistor](https://www.digikey.com/product-detail/en/stackpole-electronics-inc/CF14JT10K0/CF14JT10K0CT-ND/1830374) : These are not used in initial assembly of the arm
 
-```NO Engineering substitutions here```
+8) 1x - [Wire Kit](https://www.amazon.com/MCIGICM-Breadboard-Jumper-Cables-Arduino/dp/B081GMJVPB) : The wires used to connect electrical components
 
-1x Line Driver: https://www.digikey.com/product-detail/en/texas-instruments/SN74HC126N/296-8221-5-ND
+9) 1x - [USB Cable](https://www.amazon.com/AmazonBasics-Male-Micro-Cable-Black/dp/B0711PVX6Z) : A wire to connect the Itsy Bitsy to their computer
 
-```Engineering substitutions for cost ok here```
+10) 1x - [Header Pins](https://www.pololu.com/product/1065) : Pins to connect wires and the Itsybitsy to the breadboard
 
+11) 1x - [Thrust Bearing](https://www.mcmaster.com/5909k41) : A ring of bearings for the base joint
 
-1x Breadboard https://www.sparkfun.com/products/12002
+12) 2x - [Thrust Bearing Surface](https://www.mcmaster.com/5909K54-5909K54) : A metal ring to support the thrust bearing
 
-```Engineering substitutions for cost ok here```
+13) 20x - [Heat-Set Inserts](https://www.mcmaster.com/94180a361) : Threaded inserts for the 3D printed parts (sold in packs of 50)
 
-4x resistors https://www.digikey.com/product-detail/en/stackpole-electronics-inc/CF14JT10K0/CF14JT10K0CT-ND/1830374
+14) 7x - [M5x25](https://www.mcmaster.com/91292A129-91292A129) : Long bolts to assemble arm (sold in packs of 50)
 
-```Engineering substitutions for cost ok here```
+15) 13x - [M5x12](https://www.mcmaster.com/91290A228) : Short bolts to assemble arm (sold in  pack of 100)
 
-1x Wire kit: https://www.amazon.com/MCIGICM-Breadboard-Jumper-Cables-Arduino/dp/B081GMJVPB
-
-```Engineering substitutions for cost ok here```
-
-1x USB cable https://www.amazon.com/AmazonBasics-Male-Micro-Cable-Black/dp/B0711PVX6Z
-
-```Engineering substitutions for cost ok here```
-
-
-1x pin headers https://www.pololu.com/product/1065
-
-```Engineering substitutions for cost ok here```
-
-1x Thrust bearing: https://www.mcmaster.com/5909k41
-
-```Engineering substitutions for cost ok here```
-
-2x Thrust bearing surface:  https://www.mcmaster.com/5909K54-5909K54
-
-```Engineering substitutions for cost ok here```
-
-12x inserts https://www.mcmaster.com/94180a361 (sold in packs of 50)
-
-```Engineering substitutions for cost ok here```
-
-3x M5x25 https://www.mcmaster.com/91292A129-91292A129 (sold in packs of 50)
-
-```Engineering substitutions for cost ok here```
-
-13x M5x12 https://www.mcmaster.com/91290A228 (sold in  pack of 100)
-
-```Engineering substitutions for cost ok here```
-
-1x Gripper servo  https://www.digikey.com/products/en/motors-solenoids-driver-boards-modules/motors-ac-dc/178?k=mg92b
-
-   ```These are much cheaper in bulk from https://www.alibaba.com/product-detail/MG92B-Digital-Metal-Gear-Servo-For_60765301994.html ```
+16) 1x - [Gripper Servo](https://www.digikey.com/products/en/motors-solenoids-driver-boards-modules/motors-ac-dc/178?k=mg92b) : A Servo to operate the gripper
    
-2x Button (comes in 20 pack for $2.50) https://www.digikey.com/products/en?mpart=367&v=1528 
+17) 1x - [Power cord](https://www.digikey.com/product-detail/en/mean-well-usa-inc/YP12-YC12/1866-5006-ND/7707223) : Used to power arm
 
-1x Power cord https://www.digikey.com/product-detail/en/mean-well-usa-inc/YP12-YC12/1866-5006-ND/7707223
-
-*Note if you did not purchace the camera kit you will need to buy a [button](https://www.digikey.com/products/en?mpart=367&v=1528 ) to assemble the robot. Or if you are approved to go on campus you can get one from the lab. 
-
+*Note if you did not purchace the camera kit you will need to buy a [button](https://www.digikey.com/products/en?mpart=367&v=1528 ) to assemble the robot. Or if you are approved to go on campus you can get one from the Foisie lab. 
 
 ## 2.2 RBE 3001 Camera Kit
 
@@ -183,35 +147,28 @@ add pic plus explanation / labeling  of components
 add pic plus explanation / labeling  of components 
 ```
 
-## Camera Kit
+## Camera Kit v1
 
-1x PSEye camera https://www.amazon.com/Sony-Station-Camera-Packaging-PlayStation-3/dp/B0735KNH2X/
+1) 1x - [PSEye Camera](https://www.amazon.com/Sony-Station-Camera-Packaging-PlayStation-3/dp/B0735KNH2X/) : USB camera to enable image processing
 
-```NO Engineering substitutions here, sourcing is flexible```
+2) 1x - [Adjustable Stand](https://www.amazon.com/Magnetic-Adjustable-Indicator-Holder-Digital/dp/B00L5T2ZA8/) : A stand to set the height of the camera
 
-1x Adjustable stand https://www.amazon.com/Magnetic-Adjustable-Indicator-Holder-Digital/dp/B00L5T2ZA8/
+3) 1x - [CA Glue](https://www.amazon.com/Starbond-Cyanoacrylate-Microtips-Woodturning-Stabilizing/dp/B00C32ME6G/) : Super glue to attach some components
 
-```If its possible to source something without the base, just the M8 threaded end, that would be even better if cheaper```
+4) 1x - [Ring Light](https://www.newegg.com/p/0SW-01GA-00025?Item=9SIAK0NAUS4868&Tpk=9SIAK0NAUS4868) : Light to ring camera to ensure consistant lighting of the workspace
 
-1x CA glue https://www.amazon.com/Starbond-Cyanoacrylate-Microtips-Woodturning-Stabilizing/dp/B00C32ME6G/
+5) 1x - [Nut Insert](https://www.mcmaster.com/98965A410) : For mounting camera stand 
 
-  ``` Any small super glue is fine here```
-
-1x Ring light https://www.newegg.com/p/0SW-01GA-00025?Item=9SIAK0NAUS4868&Tpk=9SIAK0NAUS4868
-  
-  ```Sourcing a cheaper one is also good```
-
-1 x nut for mounting camera stand https://www.mcmaster.com/98965A410
+6) 1x - [Button](https://www.digikey.com/products/en?mpart=367&v=1528 ) : Meant to be in main kit, used as a microcontroller input (sold in pack of 20) 
 
 ## Camera Kit v2
+(Not the camera kit provided to students for A20)
 
-1 x https://www.adafruit.com/product/1643  $7.50
-
+1) 1x - [Small Ring Light](https://www.adafruit.com/product/1643) : Smaller alternative to the ring light above
 
 # 3 Build the electronics
 
 This next step of instructions will guide you in assembeling the elctronics for the arm and then calibrating the servos.
-
 
 [Wire the electronics](electronics.md)
 
@@ -225,7 +182,7 @@ This next step of instructions will guide you in assembeling the elctronics for 
 
 ![Calibration Pose](photos/calibrationPose.jpg) 
 
-From now on, all you need to do to calibrate is move the robot to the  Calibrate pose and hit the calibration button on the breadboard. You will need to  calibrate the robot each time the ItsyBitsy is power cycled. 
+From now on, all you need to do to calibrate the arm is move the robot to the calibrate pose and hit the calibration button on the breadboard. **You will need to  calibrate the robot every time the ItsyBitsy is power cycled.** 
 
 # 6 Communication
 
@@ -235,10 +192,7 @@ From now on, all you need to do to calibrate is move the robot to the  Calibrate
 
 [Setup Matlab and begin working](https://github.com/Hephaestus-Arm/RBE3001_Matlab)
 
-
-
-
-# 7 CAD and simulation
+# 8 CAD and simulation
 
 Open BowlerStudio, in the menu
 
@@ -256,11 +210,8 @@ hephaestus.xml
 
 This will generate the CAD and run the simulation. 
 
-
-
 ## STL's 
 
 [Current Release Printable STL's](https://github.com/Hephaestus-Arm/HephaestusArm2/releases/download/0.1.0/release-0.1.0.zip)
 
-print with supports everywhere, do not reorent parts. 
-
+Print these with supports everywhere, do not reorent the parts. They are printed in this orientation to increase operating strength.
