@@ -54,11 +54,7 @@ The programs installed are
 * zip/unzip (allows you to zip and unzip files)
 * lightdm (an alternative login manager)
 
-### 1.2.3 Matlab
-
-[Guide To Install Matlab](https://github.com/Hephaestus-Arm/RBE3001_Matlab)
-
-### 1.2.4 Required Tools 
+### 1.2.3 Required Tools 
 
 Tools in this section you **will** need to complete the build. If you are missing any of the required tools contact an SA and they may be able to provide workarounds.
 
@@ -189,15 +185,17 @@ This next step of instructions will guide you in assembeling the elctronics for 
 
 From now on, all you need to do to calibrate the arm is move the robot to the calibrate pose and hit the calibration button on the breadboard. **You will need to  calibrate the robot every time the ItsyBitsy is power cycled.** 
 
-# 6 Communication
-
-[Communication Protocol](protocol.md)
-
-# 7 Matlab Setup
+## 6 Matlab Setup
 
 [Setup Matlab and begin working](https://github.com/Hephaestus-Arm/RBE3001_Matlab)
 
-# 8 CAD and simulation
+# 7 Extras
+
+## 7.1 Communication
+
+[Communication Protocol](protocol.md)
+
+## 7.2 CAD and simulation
 
 Open BowlerStudio, in the menu
 
@@ -215,7 +213,7 @@ hephaestus.xml
 
 This will generate the CAD and run the simulation. 
 
-## STL's 
+## 7.3 STL's 
 
 [Current Release Printable STL's](https://github.com/Hephaestus-Arm/HephaestusArm2/releases/download/0.1.0/release-0.1.0.zip)
 
