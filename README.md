@@ -185,6 +185,8 @@ The goal of this section is to give you an understanding of your kit and the par
 
 7) 1x - PCB : A custom PCB that could be used, but the required components are not included in the kit.
 
+8) 1x - Power Cord : Not needed for assembly
+
 ## Camera Kit v2
 (Not the camera kit provided to students for A20)
 
