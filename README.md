@@ -139,7 +139,7 @@ add pic plus explanation / labeling  of components
    
 17) 1x - [Power cord](https://www.digikey.com/product-detail/en/mean-well-usa-inc/YP12-YC12/1866-5006-ND/7707223) : Used to power the arm.
 
-18) 1x - [Breakaway Header Pins](https://www.pololu.com/product/965) : Soldered to the ItsyBitsy.
+18) 1x - [Header Pins](https://www.pololu.com/product/965) : Soldered to the ItsyBitsy.
 
 *Note if you did not purchace the camera kit you will need to buy a [button](https://www.digikey.com/products/en?mpart=367&v=1528 ) to assemble the robot. Or if you are approved to go on campus you can get one from the Foisie lab. 
 
