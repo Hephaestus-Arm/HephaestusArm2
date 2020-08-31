@@ -85,21 +85,79 @@ ItsyM4Boot
 
 then *DOUBLE CLICK* the reset button on the ItsyBItsy. 
 
-## 2 Components
+## 2 Setting Up the Board
+
+
+1. Solder header pins onto the ItsyBitsy with headers and place it in the breadboard. Note you only need to solder pins to the long sides of the board don't worry about the back. See pic below for more referance
+
+```
+Protip: a pair of pliers makes snapping the header pins to the correct length way easier
+```
+
+```
+pic itsy in bread board 
+```
+
+
+2. Find the 74hc126 line driver and place it in the breadboard 
+
+```
+pic linedriver in bread board 
+```
+
+3. Use the double stick tape to attach the barrel jack adapter to the breadboard. 
+
+```
+Protip: Apply pressure to the taped objects for at least 30 seconds to ensure a good bond. And cut your tape to exact sizes to ensure neatness
+```
+
+And wire the it the positive and negative rails of the breadboard
+```
+pic barel jack go brr
+
+```
+4. Wiring up the Smart Servo Cables
+
+Inorder to connect the smart servo cables to the bread board we need to use the double header pins. Take three double header pins and insert them into the servo cable.
+
+*Note, you will need to bend the side going into the servo cable a little in order to make it fit. ( I just squished them together with a pair of pliers)
+
+```
+bent servo pic
+```
+
+Repeat for one side of all 3 servo cables
+
+```
+finished cable end pic 
+```
+
+5. Pinning up the gripper servo
+
+Use a set of 3 double header pins to add pins to the end of the gripper servo
+
+```
+gripper servo pic 
+```
+
+6. Wire up the bread board following the diagram below
+
+
+```
+add triple smart servo to diagram and label , show power ground and signal
+```
 
 <img src="photos/hep-arm-witing.png" width="600">
 
-Solder up the ItsyBitsy with headers and place it in the breadboard.
+```
+Wired board without servo cables
+```
+```
+Wired board with servo cables
+```
 
-Find the 74hc126 line driver and place it in the breadboard 
 
-Use the double stick tape to attach the barrel jack adapter to the breadboard. 
 
-Use the double sided headers to line up 3 LX-224 connections 
-
-Use the double sided headers to add a 3 pin servo header 
-
-NOTE the gripper servo and LX-224 motors use DIFFERENT voltages for power. 
 
 ## 3 LX-224 Pinout
 
