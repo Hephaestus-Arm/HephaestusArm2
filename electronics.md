@@ -37,7 +37,7 @@ In order to program the ItsyBitsy we will be using Adafruits Flashdrive Emulatio
 
 **Installing The Firmware**
 
-1. Plug in the Itsy Bitsy to your computer using the micro-usb cable in your kit
+1. Plug in the ItsyBitsy to your computer using the micro-usb cable in your kit
 
 ```
 pic
@@ -54,7 +54,7 @@ pic
 pic
 ```
 
-4. *Double Click* the reset button on the Itsy Bitsy. This will put it in bootloader mode. The Itsybitsy should disappear momentarily and then show up as `ITSYM4BOOT`.
+4. *Double Click* the reset button on the ItsyBitsy. This will put it in bootloader mode. The ItsyBitsy should disappear momentarily and then show up as `ITSYM4BOOT`.
 ```
 pic
 ```
@@ -66,7 +66,7 @@ pic
 
 	The ItsyBitsy should then disconnect and not reappear
 
-Congrats! You've flashed the firmware on the Itsy Bitsy!
+Congrats! You've flashed the firmware on the ItsyBitsy!
 
 Go ahead and disconnect it from your computer. 
 ## 1.3 Troubleshooting
@@ -77,7 +77,7 @@ If you see
 curcuitpython
 ```
 
-as the flash drive ame instead of
+as the flash drive name instead of
 
 ```
 ItsyM4Boot
@@ -91,9 +91,7 @@ then *DOUBLE CLICK* the reset button on the ItsyBItsy.
 
 Solder up the ItsyBitsy with headers and place it in the breadboard.
 
-Find the [74hc126](https://www.digikey.com/product-detail/en/texas-instruments/SN74HC126N/296-8221-5-ND) line driver and place it in the breadboard 
-
-[74hc126 Datasheet](https://www.ti.com/lit/ds/symlink/sn74hc126.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1597341911818)
+Find the 74hc126 line driver and place it in the breadboard 
 
 Use the double stick tape to attach the barrel jack adapter to the breadboard. 
 
@@ -101,7 +99,7 @@ Use the double sided headers to line up 3 LX-224 connections
 
 Use the double sided headers to add a 3 pin servo header 
 
-NOTE the servo and LX-224 motors use DIFFERENT voltages for power. 
+NOTE the gripper servo and LX-224 motors use DIFFERENT voltages for power. 
 
 ## 3 LX-224 Pinout
 
@@ -115,15 +113,15 @@ From left to right:
 GND , 7.5v , Serial  
 ```
 
-NOTE when its in a breadboard it looks reversed, because the image above is looking into the pin holes, but as you assemble it the pin holes face down into the breadboard.
+NOTE when it is plugged into in a breadboard it looks reversed, because the image above is looking into the pin holes, but as you assemble it the pin holes face down into the breadboard.
 
 <img src="photos/closeup.jpg" width="600">
 
 ## 4 Servo pinout
 
-Brown = ground
+Brown = Ground
 
-red   = 5v from USB
+Red   = 5v from USB
 
 Yellow = Servo Pulse
 
@@ -142,9 +140,9 @@ ItsyBitsy GPIO-9  to 74HC126 OE
 
 74HC126 Y         to LX-224 Serial Pin
 
-ItsyBitsy GPIO-11  to  Calibrate Switch pin 1
+ItsyBitsy GPIO-11 to  Calibrate Switch pin 1
 
- Calibrate Switch pin 2 to Ground
+Calibrate Switch pin 2 to Ground
 
 74HC126 Power to 3.3v
 
@@ -154,9 +152,15 @@ Barrel Jack 7.5v to LX-224 Power
 
 ## 6 Provision LX-224 ID numbers
 
-Program the FW to the ItsyBitsy and open Putty connecting to the serial port provided by the firmware. 
+This section shows how to identify the motors in the ItsyBitsy's firmware. 
 
-### 6.1 Start Putty
+### 6.1 Power up the system
+
+Plug in one and only one motor. 
+
+Plug in the Power cable.
+
+### 6.2 Start Putty
 
 Plug in the USB to the ItsyBitsy
 
@@ -167,12 +171,6 @@ putty -serial /dev/ttyACM0 -sercfg 115200,8,n,1,N
 ```
 
 <img src="photos/putty.png" width="600">
-
-### 6.2 Power up the system
-
-Plug in one and only one motor. 
-
-Plug in the Power cable.
 
 ### 6.3 Read the provision state of the first motor
 
@@ -227,6 +225,6 @@ ID
 
 Now plug in all 3 motors and reboot the firmware. Press and hold the  Calibrate button until the red LED on pin 13 flashes quickly (at least 5 seconds) where quickly is 100ms on 100ms off. All motors will be moved to their  Calibrate pose. Keep track of which index is which. 
 
+ ## 8 Extras
  
-
-
+[74hc126 Datasheet](https://www.ti.com/lit/ds/symlink/sn74hc126.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1597341911818)
