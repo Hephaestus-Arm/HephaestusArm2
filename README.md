@@ -1,6 +1,6 @@
 # 1 Hephaestus Arm v2
 
-This robot is for use in RBE 3001 as a teaching platform for robot kinematics and trajecttory planning and image recognition. 
+This robot is for use in RBE 3001 as a teaching platform for robot kinematics and trajectory planning and image recognition. 
 
 ```
 Replace this with Pic of arm
@@ -9,7 +9,7 @@ Replace this with Pic of arm
 
 ## 1.1 READ THIS SECTION BEFORE YOU DO ANYTHING
 
-You need to follow all instructions in this guide **in order**, doing parts out of order means you may need to take apart the robot or risk breaking a component. 
+You need to follow all instructions in this guide **in order**, doing steps out of order means you may need to take apart the robot or risk breaking a component. 
 
 Read through each section completely and then do the actions in the guide. Doing this will make sure you have an understanding of why and what you are doing. 
 
@@ -95,10 +95,6 @@ Tools in this section are stuff you **might** need to complete the build
 
 Feel free to source these tools from wherever is nearby and cheap, this is just the first amazon link or what was included in the tools kit. 
 
-```
-come back here and fix once kevin gives info add :wrench:
-```
-
 
 # 3 Build the electronics
 
@@ -114,7 +110,7 @@ come back here and fix once kevin gives info add :wrench:
 
 ![Calibration Pose](photos/calibrationPose.jpg) 
 
-From now on, all you need to do to calibrate is move the robot to the  Calibrate pose and hit the calibration button on the breadboard. You will need to  Calibrate the robot each time the Microcontroller is power cycled. 
+From now on, all you need to do to calibrate is move the robot to the  Calibrate pose and hit the calibration button on the breadboard. You will need to  calibrate the robot each time the ItsyBitsy is power cycled. 
 
 # 6 Communication
 
