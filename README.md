@@ -140,7 +140,7 @@ The goal of this section is to give you an understanding of your kit and the par
 
 ### 3D Printed Parts
 
-![assem](photos/closeup.jpg)
+![assem](photos/mainkit1.jpg)
 
 1) 1x - Base: The arm's base
 
