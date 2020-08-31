@@ -138,6 +138,29 @@ add pic plus explanation / labeling  of components
 
 18) 1x - [Header Pins](https://www.pololu.com/product/965) : Soldered to the ItsyBitsy.
 
+### 3D Printed Parts
+1) 1x - [Base]() : The arm's base
+
+2) 1x - [Middle Link]() : The middle link of the arm
+
+3) 1x - [Gripper Main]() : The main part of the gripper mechanism
+
+4) 1x - [Gripper Claw]() : The mobile part of the gripper
+
+5) 1x - [Base Cover]() : The part of the base joint that will rotate
+
+6) 1x - [Gripper Cover]() : The panel to hold the smart servo at the gripper's base
+
+7) 1x - [Camera Stand Base]() : A part to mount a threaded stand to the board
+
+8) 1x - [Board}() : A wooden board to mount the arm
+
+9) 1x - [5 Hole Bar]() : A bar with five holes to mount a servo horn
+
+10) 1x - [3 Hole Bar]() : A bar with three holes for holding a servo
+
+11) 5x - [Orb]() : Pink, yellow, purple, green, and black colored orbs
+
 *Note if you did not purchace the camera kit you will need to buy a [button](https://www.digikey.com/products/en?mpart=367&v=1528 ) to assemble the robot. Or if you are approved to go on campus you can get one from the Foisie lab. 
 
 ## 2.2 RBE 3001 Camera Kit
