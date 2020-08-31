@@ -127,7 +127,7 @@ Use a set of 3 double header pins to add pins to the end of the gripper servo wi
 
 
 ```
-add triple smart servo to diagram and label , show power ground and signal
+In the below diagram you can have multiple smart servo wires lined up on the breadboard, all wired to the same ports
 ```
 
 <img src="photos/hep-arm-witing.png" width="600">

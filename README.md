@@ -99,7 +99,7 @@ The goal of this section is to give you an understanding of your kit and the par
 
 
 ![assem](photos/mainkit2.jpg)
-1) 3x - [Smart Servo](https://www.amazon.com/dp/B081CTX6DM/ref=twister_B0817ZKWF9): Servo Motor that drives the main 3 joints of the arm.
+1) 3x - [Smart Servo Kit](https://www.amazon.com/dp/B081CTX6DM/ref=twister_B0817ZKWF9): Servo Motor that drives the main 3 joints of the arm,along with a cord and servo horns.
 
 2) 1x - [Power Supply](https://www.digikey.com/product-detail/en/mean-well-usa-inc/GST60A07-P1J/1866-2147-ND/7703710): Provides power to arm, via a DC jack.
 
@@ -167,7 +167,7 @@ The goal of this section is to give you an understanding of your kit and the par
 
 ## 2.2 RBE 3001 Camera Kit
 
-![assem](photos/mainkit2.jpg)
+![assem](photos/camerakit.jpg)
 
 ## Camera Kit v1
 
@@ -184,6 +184,8 @@ The goal of this section is to give you an understanding of your kit and the par
 6) 1x - [Button](https://www.digikey.com/products/en?mpart=367&v=1528 ) : Meant to be in main kit, used as a microcontroller input (sold in pack of 20).
 
 7) 1x - PCB: A custom PCB that could be used, but the required components are not included in the kit.
+
+8) 1x - Power Cord : Not needed for assembly
 
 ## Camera Kit v2
 (Not the camera kit provided to students for A20)
