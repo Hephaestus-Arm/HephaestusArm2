@@ -16,13 +16,13 @@ Read through each section completely and then do the actions in the guide. Doing
 ## 1.2 Dependancies and Tools
 
 ### 1.2.1 Linux Install
-You need to install Ubuntu 18.04 on your personal computer
+You need to install Ubuntu 18.04 on your personal computer.
 
 [How to install Ubuntu](https://github.com/arjungandhi/3001-Ubuntu-Install)
 
 The rest of the guide assumes you have a base familiarity with the linux terminal and Ubuntu.
 
-If you do not here are resources to help you get familiar
+If you do not, here are resources to help you get familiar
 
 * [Ubuntu UI Help](https://youtu.be/lmeDvSgN6zY?t=68)
 * [Terminal Basics](https://ubuntu.com/tutorials/command-line-for-beginners#1-overview)
@@ -50,7 +50,7 @@ The programs installed are
 * BowlerStudio (Used for calibration and modeling of the robot arm)
 * curl (allows you to get files from the internet)
 * git (allows you to access and work with code repositories)
-* zip/unzip (allows you to zip and unzip files. duh.)
+* zip/unzip (allows you to zip and unzip files)
 * lightdm (an alternative login manager)
 
 ### 1.2.3 Matlab
@@ -59,7 +59,7 @@ The programs installed are
 
 ### 1.2.4 Required Tools 
 
-Tools in this section are stuff you **will** need to complete the build. If you are missing any of the required tools contact an SA and they may be able to provide workarounds.
+Tools in this section you **will** need to complete the build. If you are missing any of the required tools contact an SA and they may be able to provide workarounds.
 
 Items that start with :wrench: are found in the [Bookstore Tool Kit](https://wpi.bncollege.com/shop/BNCB_TextbookDetailView?displayStoreId=32554&urlRequestType=Base&catalogId=10001&productId=650018123733&langId=-1&partNumber=98_844002999&storeId=32554&sectionId=97501629&item=N).
 
@@ -83,7 +83,7 @@ Items that start with :wrench: are found in the [Bookstore Tool Kit](https://wpi
 
 Items that start with :wrench: are found in the [Bookstore Tool Kit](https://wpi.bncollege.com/shop/BNCB_TextbookDetailView?displayStoreId=32554&urlRequestType=Base&catalogId=10001&productId=650018123733&langId=-1&partNumber=98_844002999&storeId=32554&sectionId=97501629&item=N).
 
-Tools in this section are stuff you **might** need to complete the build
+Tools in this section you **might** need to complete the build.
 
 * :wrench: [Solder Wick](https://www.sparkfun.com/products/9327)
 
@@ -107,37 +107,39 @@ add pic plus explanation / labeling  of components
 
 1) 3x - [Smart Servo](https://www.amazon.com/dp/B081CTX6DM/ref=twister_B0817ZKWF9): Servo Motor that drives the main 3 joints of the arm.
 
-2) 1x - [Power Supply](https://www.digikey.com/product-detail/en/mean-well-usa-inc/GST60A07-P1J/1866-2147-ND/7703710): Provides power to arm, via a DC jack
+2) 1x - [Power Supply](https://www.digikey.com/product-detail/en/mean-well-usa-inc/GST60A07-P1J/1866-2147-ND/7703710): Provides power to arm, via a DC jack.
 
-3) 1x - [Barrel Jack Adapter](https://www.sparkfun.com/products/10288): A DC jack to covert the power supply to a power and ground terminal
+3) 1x - [Barrel Jack Adapter](https://www.sparkfun.com/products/10288): A DC jack to covert the power supply to a power and ground terminal.
 
-4) 1x - [Adafruit ItsyBitsy](https://www.adafruit.com/product/3800) : The microcontroller for the arm
+4) 1x - [Adafruit ItsyBitsy](https://www.adafruit.com/product/3800) : The microcontroller for the arm.
 
-5) 1x - [Line Driver](https://www.digikey.com/product-detail/en/texas-instruments/SN74HC126N/296-8221-5-ND) : An integrated cicuit to help control the servos
+5) 1x - [Line Driver](https://www.digikey.com/product-detail/en/texas-instruments/SN74HC126N/296-8221-5-ND) : An integrated cicuit to help control the servos.
 
-6) 1x - [Breadboard](https://www.sparkfun.com/products/12002) : A board to help organize the circuit
+6) 1x - [Breadboard](https://www.sparkfun.com/products/12002) : A board to help organize the circuit.
 
-7) 4x - [10K Ohm Resistor](https://www.digikey.com/product-detail/en/stackpole-electronics-inc/CF14JT10K0/CF14JT10K0CT-ND/1830374) : These are not used in initial assembly of the arm
+7) 4x - [10K Ohm Resistor](https://www.digikey.com/product-detail/en/stackpole-electronics-inc/CF14JT10K0/CF14JT10K0CT-ND/1830374) : These are not used in initial assembly of the arm.
 
-8) 1x - [Wire Kit](https://www.amazon.com/MCIGICM-Breadboard-Jumper-Cables-Arduino/dp/B081GMJVPB) : The wires used to connect electrical components
+8) 1x - [Wire Kit](https://www.amazon.com/MCIGICM-Breadboard-Jumper-Cables-Arduino/dp/B081GMJVPB) : The wires used to connect electrical components.
 
-9) 1x - [USB Cable](https://www.amazon.com/AmazonBasics-Male-Micro-Cable-Black/dp/B0711PVX6Z) : A wire to connect the Itsy Bitsy to their computer
+9) 1x - [USB Cable](https://www.amazon.com/AmazonBasics-Male-Micro-Cable-Black/dp/B0711PVX6Z) : A wire to connect the ItsyBitsy to their computer.
 
-10) 1x - [Header Pins](https://www.pololu.com/product/1065) : Pins to connect wires and the Itsybitsy to the breadboard
+10) 1x - [Double Header Pins](https://www.pololu.com/product/1065) : Pins to connect wires and the ItsyBitsy to the breadboard.
 
-11) 1x - [Thrust Bearing](https://www.mcmaster.com/5909k41) : A ring of bearings for the base joint
+11) 1x - [Thrust Bearing](https://www.mcmaster.com/5909k41) : A ring of bearings for the base joint.
 
-12) 2x - [Thrust Bearing Surface](https://www.mcmaster.com/5909K54-5909K54) : A metal ring to support the thrust bearing
+12) 2x - [Thrust Bearing Surface](https://www.mcmaster.com/5909K54-5909K54) : A metal ring to support the thrust bearing.
 
-13) 20x - [Heat-Set Inserts](https://www.mcmaster.com/94180a361) : Threaded inserts for the 3D printed parts (sold in packs of 50)
+13) 20x - [Heat-Set Inserts](https://www.mcmaster.com/94180a361) : Threaded inserts for the 3D printed parts (sold in packs of 50).
 
-14) 7x - [M5x25](https://www.mcmaster.com/91292A129-91292A129) : Long bolts to assemble arm (sold in packs of 50)
+14) 7x - [M5x25](https://www.mcmaster.com/91292A129-91292A129) : Long bolts to assemble arm (sold in packs of 50).
 
-15) 13x - [M5x12](https://www.mcmaster.com/91290A228) : Short bolts to assemble arm (sold in  pack of 100)
+15) 13x - [M5x12](https://www.mcmaster.com/91290A228) : Short bolts to assemble arm (sold in  pack of 100).
 
-16) 1x - [Gripper Servo](https://www.digikey.com/products/en/motors-solenoids-driver-boards-modules/motors-ac-dc/178?k=mg92b) : A Servo to operate the gripper
+16) 1x - [Gripper Servo](https://www.digikey.com/products/en/motors-solenoids-driver-boards-modules/motors-ac-dc/178?k=mg92b) : A servo to operate the gripper.
    
-17) 1x - [Power cord](https://www.digikey.com/product-detail/en/mean-well-usa-inc/YP12-YC12/1866-5006-ND/7707223) : Used to power arm
+17) 1x - [Power cord](https://www.digikey.com/product-detail/en/mean-well-usa-inc/YP12-YC12/1866-5006-ND/7707223) : Used to power the arm.
+
+18) 1x - [Breakaway Header Pins](https://www.pololu.com/product/965) : Soldered to the ItsyBitsy.
 
 *Note if you did not purchace the camera kit you will need to buy a [button](https://www.digikey.com/products/en?mpart=367&v=1528 ) to assemble the robot. Or if you are approved to go on campus you can get one from the Foisie lab. 
 
@@ -149,22 +151,24 @@ add pic plus explanation / labeling  of components
 
 ## Camera Kit v1
 
-1) 1x - [PSEye Camera](https://www.amazon.com/Sony-Station-Camera-Packaging-PlayStation-3/dp/B0735KNH2X/) : USB camera to enable image processing
+1) 1x - [PSEye Camera](https://www.amazon.com/Sony-Station-Camera-Packaging-PlayStation-3/dp/B0735KNH2X/) : USB camera to enable image processing.
 
-2) 1x - [Adjustable Stand](https://www.amazon.com/Magnetic-Adjustable-Indicator-Holder-Digital/dp/B00L5T2ZA8/) : A stand to set the height of the camera
+2) 1x - [Adjustable Stand](https://www.amazon.com/Magnetic-Adjustable-Indicator-Holder-Digital/dp/B00L5T2ZA8/) : A stand to set the height of the camera.
 
-3) 1x - [CA Glue](https://www.amazon.com/Starbond-Cyanoacrylate-Microtips-Woodturning-Stabilizing/dp/B00C32ME6G/) : Super glue to attach some components
+3) 1x - [CA Glue](https://www.amazon.com/Starbond-Cyanoacrylate-Microtips-Woodturning-Stabilizing/dp/B00C32ME6G/) : Super glue to attach some components.
 
-4) 1x - [Ring Light](https://www.newegg.com/p/0SW-01GA-00025?Item=9SIAK0NAUS4868&Tpk=9SIAK0NAUS4868) : Light to ring camera to ensure consistant lighting of the workspace
+4) 1x - [Ring Light](https://www.newegg.com/p/0SW-01GA-00025?Item=9SIAK0NAUS4868&Tpk=9SIAK0NAUS4868) : Light to ring camera to ensure consistant lighting of the workspace.
 
-5) 1x - [Nut Insert](https://www.mcmaster.com/98965A410) : For mounting camera stand 
+5) 1x - [Nut Insert](https://www.mcmaster.com/98965A410) : For mounting camera stand.
 
-6) 1x - [Button](https://www.digikey.com/products/en?mpart=367&v=1528 ) : Meant to be in main kit, used as a microcontroller input (sold in pack of 20) 
+6) 1x - [Button](https://www.digikey.com/products/en?mpart=367&v=1528 ) : Meant to be in main kit, used as a microcontroller input (sold in pack of 20).
+
+7) 1x - PCB : A custom PCB that could be used, but the required components are not included in the kit.
 
 ## Camera Kit v2
 (Not the camera kit provided to students for A20)
 
-1) 1x - [Small Ring Light](https://www.adafruit.com/product/1643) : Smaller alternative to the ring light above
+1) 1x - [Small Ring Light](https://www.adafruit.com/product/1643) : Smaller alternative to the ring light in camera kit v1.
 
 # 3 Build the electronics
 
