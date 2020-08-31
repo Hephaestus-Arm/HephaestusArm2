@@ -6,6 +6,7 @@ these instructions are for the various problems people have run into
 
 * Boot into grub onetime menu by holding SHIFT while booting
 * select recovery mode
+* select enable networking
 * select login as root
 * run
 ```
