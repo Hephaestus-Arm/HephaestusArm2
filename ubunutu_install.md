@@ -27,16 +27,16 @@ If you want to decrypt your hard drive, all you need to do is turn off BitLocker
 
 1. Click **Start** , click **Control Panel**, click **System and Security** (if the control panel items are listed by category), and then click **BitLocker Drive Encryption**.
 
-![bl1](pics/bl-1.png)
+![bl1](photos/bl-1.png)
 
-![bl2](pics/bl-2.png)
+![bl2](photos/bl-2.png)
 
-![bl-3](pics/bl-3.png)
+![bl-3](photos/bl-3.png)
 
 2. In the **BitLocker Drive Encryption** control panel, click **Turn Off BitLocker**.
 
 If you dont see a **Turn Off BitLocker** then congrats BitLocker is already off.
-![Welcome](pics/bl-4.png)
+![Welcome](photos/bl-4.png)
 
 3. Click **Decrypt Drive** to start the decryption process. This process will take a while.
 
@@ -63,7 +63,7 @@ This procedure varies per model of laptop and the best way to find out what the 
 
 When you are successful in choosing a device to boot off you should see a screen that looks like this. 
 
-![grub](pics/grub.png)
+![grub](photos/grub.png)
 
 Select The **Install Ubuntu** Option to being the install process
 
@@ -72,7 +72,7 @@ Select The **Install Ubuntu** Option to being the install process
 1.
     Once Ubuntu has booted, you will be presented with a screen that looks like this.
 
-    ![Welcome](pics/1-Welcome.png)
+    ![Welcome](photos/1-Welcome.png)
 
     Click Continue to begin the installer. You can open the installer again later if you choose to try it out, but remember it will be far slower running from a Disc/USB than had you installed it, and nothing you do will actually be saved.
 
@@ -81,7 +81,7 @@ Select The **Install Ubuntu** Option to being the install process
     Choose your Keyboard Layout
     This is probably the most technical step in the installation, made a lot simpler by the Detect Keyboard Layout. Just click that and follow the instructions on screen.
 
-    ![Keyboard](pics/2-KeyboardLayout.png)
+    ![Keyboard](photos/2-KeyboardLayout.png)
 
 
 3. 
@@ -89,7 +89,7 @@ Select The **Install Ubuntu** Option to being the install process
 
     If you have internet connected go ahead and select install 3rd party software for graphics and wifi
 
-    ![Updates](pics/3-UpdatesAndOtherSoftware.png)
+    ![Updates](photos/3-UpdatesAndOtherSoftware.png)
    
 4. 
     Yours will probably look a little different to mine here. My hard drive doesn't have anything on it yet, so I can choose either to use the whole disk, or specify partitions manually (surprisingly easy stuff). Yours may have a slightly different first option, and one or two extra.
@@ -102,12 +102,12 @@ Select The **Install Ubuntu** Option to being the install process
 
     *you do not need to encrypt the disk or use LVM, I just stole this photo off the internet.
 
-    ![Install Type](pics/4-InstallationType.png)
+    ![Install Type](photos/4-InstallationType.png)
 
 5. 
     Confirm your Choice
 
-    ![Confirm](pics/5-Confirm.png)
+    ![Confirm](photos/5-Confirm.png)
 
     After clicking continue, you may be presented with a confirmation screen, much like this, to confirm your choices.
 
@@ -117,7 +117,7 @@ Select The **Install Ubuntu** Option to being the install process
 6. 
     Choose your Location
 
-    ![Timezone](pics/6-Timezone.png)
+    ![Timezone](photos/6-Timezone.png)
 
     Now you get to choose your location by dropping a pin on this nifty looking map. This is to select your timezone and apply any regional adjustments.
 
@@ -125,7 +125,7 @@ Select The **Install Ubuntu** Option to being the install process
     Set a Username and Password
     Now you get to enter your name, the name you want your computer to be (not really important), your username (again, you won't see this much, but it can't have capitals or spaces, best leave as it is made from your real name), a password (if you want, then confirm it, and keep it strong), whether or not to log in automatically, and whether or not to encrypt your home folder (which is where documents, music, and video folder can be found, among others).
 
-    ![Login](pics/7-Login.png)
+    ![Login](photos/7-Login.png)
 
     I would not recommend encrypting your home folder, as this usually complicates things for you as much as any potential trespassers. It can lead to complications with keyrings, forgotten passwords, and bad data recovery. Only use if it is a company policy, or you thoroughly understand what you are doing. Also, only set your password to nothing if you are unlikely to ever want one, otherwise yet more compilations with keyrings and automatic unlocking-on-login can arise.
 

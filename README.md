@@ -17,7 +17,7 @@ Read through each section completely and then do the actions in the guide. Doing
 ### 1.2.1 Linux Install
 You need to install Ubuntu 18.04 on your personal computer.
 
-[How to install Ubuntu](https://github.com/arjungandhi/3001-Ubuntu-Install)
+[How to install Ubuntu](ubuntu_install.md)
 
 The rest of the guide assumes you have a base familiarity with the linux terminal and Ubuntu.
 
