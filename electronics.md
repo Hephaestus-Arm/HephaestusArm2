@@ -198,7 +198,6 @@ Plug in the Power cable.
 Plug in the USB to the ItsyBitsy
 
 Open putty and set it to talk to the serial port:
-<img src="photos/hep-arm-witing.png" width="600">
 
 ```
 putty -serial /dev/ttyACM0 -sercfg 115200,8,n,1,N
