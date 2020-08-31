@@ -140,7 +140,7 @@ The goal of this section is to give you an understanding of your kit and the par
 
 ### 3D Printed Parts
 
-![assem](photos/camerakit.jpg)
+![assem](photos/closeup.jpg)
 
 1) 1x - Base: The arm's base
 
@@ -167,7 +167,7 @@ The goal of this section is to give you an understanding of your kit and the par
 
 ## 2.2 RBE 3001 Camera Kit
 
-![assem](photos/mainkit2.jpg)
+![assem](photos/camerakit.jpg)
 
 ## Camera Kit v1
 
