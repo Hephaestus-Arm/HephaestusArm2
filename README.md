@@ -40,8 +40,15 @@ Once you have Linux open a terminal (Ctrl+Alt+t) and run the following commands
 	sudo add-apt-repository "deb http://ppa.launchpad.net/mad-hephaestus/commonwealthrobotics/ubuntu bionic main" -y
 	sudo apt-get update 
 	sudo apt-get install bowlerstudio curl git putty  zip unzip lightdm
-	sudo dpkg-reconfigure  lightdm 
 ```
+
+After running the commands above a menu should pop up allowing you to choose between lightdm and gdm3.
+
+If the menu does not pop up run. 
+```
+sudo dpkg-reconfigure lightdm 
+```
+
 Restart your computer and you should see a slightly different login screen when you boot into Ubuntu. 
 
 Doing so will install some programs that you need for later steps, as well as configure your login manager to avoid a known bug with the default one.
