@@ -47,7 +47,8 @@ Restart your computer and you should see a slightly different login screen when 
 Doing so will install some programs that you need for later steps, as well as configure your login manager to avoid a known bug with the default one.
 
 The programs installed are
-* BowlerStudio (Used for design modeling of the robot arm, install drivers, and unit-test hardware, this is for 3d display of the robot)
+* BowlerStudio 
+ ** Used for design modeling of the robot arm, install drivers, and unit-test hardware, this is for 3d display of the robot
 * curl (allows you to get files from the internet)
 * git (allows you to access and work with code repositories)
 * zip/unzip (allows you to zip and unzip files)
