@@ -139,7 +139,7 @@ Select The **Install Ubuntu** Option to being the install process
 Q: Can I use a VM?  <br />
 A: No. The communication protocal the arm uses requires it to be run on "bare metal" anything else will be too slow. 
 
-Q: Can I use the Ubuntu subsystem for Linux?  <br/>
+Q: Can I use the Ubuntu subsystem for Winodws (WSL)?  <br/>
 A: No for the same protocal reasons as above. Also why. 
 
 Q: I don't have enough space on my computer to install Ubuntu  <br />
