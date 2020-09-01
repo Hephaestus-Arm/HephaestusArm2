@@ -45,7 +45,7 @@ In order to program the ItsyBitsy we will be using Adafruits Flashdrive Emulatio
 3. Navigate to the download location of the firmware in one window (Probably your `Downloads` Folder).
     <img src="photos/flash2.jpg" width="600">
 
-4. *Double Click* the reset button on the ItsyBitsy. This will put it in bootloader mode. The ItsyBitsy should disappear momentarily and then show up as `ITSYM4BOOT`.
+4. *Double Click* the reset button on the ItsyBitsy. This will put it in bootloader mode. The ItsyBitsy should disappear momentarily and then show up as `ITSYM4BOOT`.<br/>
     <img src="photos/flash3.jpg" width="600">
 
 5. Open ITSYM4BOOT in the other window and drag `Current.UF2` into it. 
@@ -120,7 +120,7 @@ Repeat the above for one side of all 3 servo cables.
 
 Use a set of 3 double header pins to add pins to the end of the gripper servo wire.
 
-<img src="photos/servo_wire.jpg" width="600">
+<img src="photos/Servo_wire.jpg" width="600">
 
 6. Wire up the breadboard following the diagram below and keep mind the following useful information
 
@@ -143,9 +143,12 @@ Brown = Ground
 Red   = 5v from USB
 
 Yellow = Servo Pulse
+
+
+
 <img src="photos/completed_board.jpg" width="600">
 <img src="photos/completed_board_wires.jpg" width="600">
-
+*Note in the photos above and below we are missing a wire form 3.3V on the Itsybitsy to the buffer chip make sure to have this wire its important. 
 
 
 Congragualtions you've wired up the board. Get Ready to move on to the next step of provisioning the motors. 
@@ -175,8 +178,7 @@ Protip: during the process or now your red led on your itsybitsy might go from a
 
 ### 5.2 Start Putty
 
-Open a terminal window and type the following command
-:
+Open a terminal window and type the following command:
 
 ```
 putty -serial /dev/ttyACM0 -sercfg 115200,8,n,1,N
@@ -188,6 +190,7 @@ Protip: your itsybitsy may not be on the /dev/ttyACM0 port, if you try to run th
 ```
 
 If the command runs successfully a black black window will pop up. This is a serial monitor to that allows us to read and send serial data to the itsybitsy
+<br/>
 <img src="photos/putty1.png" width="600">
 
 Inorder to verify communication is working type ID in the window and you should get an reply that looks similar to below.

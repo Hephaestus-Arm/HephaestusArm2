@@ -17,7 +17,7 @@ Read through each section completely and then do the actions in the guide. Doing
 ### 1.2.1 Linux Install
 You need to install Ubuntu 18.04 on your personal computer.
 
-[How to install Ubuntu](ubuntu_install.md)
+[How to install Ubuntu](ubunutu_install.md)
 
 The rest of the guide assumes you have a base familiarity with the linux terminal and Ubuntu.
 
@@ -47,7 +47,8 @@ Restart your computer and you should see a slightly different login screen when 
 Doing so will install some programs that you need for later steps, as well as configure your login manager to avoid a known bug with the default one.
 
 The programs installed are
-* BowlerStudio (Used for calibration and modeling of the robot arm)
+* BowlerStudio 
+* Used for design modeling of the robot arm, install drivers, and unit-test hardware, this is for 3d display of the robot
 * curl (allows you to get files from the internet)
 * git (allows you to access and work with code repositories)
 * zip/unzip (allows you to zip and unzip files)
