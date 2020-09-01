@@ -144,21 +144,21 @@ The goal of this section is to give you an understanding of your kit and the par
 
 1) 1x - Base: The arm's base
 
-2) 1x - Middle Link: The middle link of the arm
+2) 1x - Link 3 Bracket: The middle link of the arm
 
-3) 1x - Gripper Main: The main part of the gripper mechanism
+3) 1x - Main Gripper Body: The main part of the gripper mechanism
 
 4) 1x - Gripper Claw: The mobile part of the gripper
 
-5) 1x - Base Cover: The part of the base joint that will rotate
+5) 1x - Link 1 Output Bracket: The part of the base joint that will rotate
 
-6) 1x - Gripper Cover: The panel to hold the smart servo at the gripper's base
+6) 1x - Link 3 Output Bracket: The panel to hold the smart servo at the gripper's base
 
 7) 1x - Camera Stand Base: A part to mount a threaded stand to the board
 
 8) 1x - Board: A wooden board to mount the arm
 
-9) 1x - 5 Hole Bar: A bar with five holes to mount a servo horn
+9) 1x - Link 2 Output Bracket: A bar with five holes to mount a servo horn
 
 10) 1x - 3 Hole Bar: A bar with three holes for holding a servo
 
