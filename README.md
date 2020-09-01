@@ -99,6 +99,7 @@ The goal of this section is to give you an understanding of your kit and the par
 
 
 <img src="photos/mainkit2.jpg" width="600">
+
 1) 3x - [Smart Servo Kit](https://www.amazon.com/dp/B081CTX6DM/ref=twister_B0817ZKWF9): Servo Motor that drives the main 3 joints of the arm,along with a cord and servo horns.
 
 2) 1x - [Power Supply](https://www.digikey.com/product-detail/en/mean-well-usa-inc/GST60A07-P1J/1866-2147-ND/7703710): Provides power to arm, via a DC jack.
