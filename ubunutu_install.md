@@ -27,6 +27,8 @@ If you want to decrypt your hard drive, all you need to do is turn off BitLocker
 
 1. Click **Start** , click **Control Panel**, click **System and Security** (if the control panel items are listed by category), and then click **BitLocker Drive Encryption**.
 
+If bitlocker does not show up here then your verison of windows does not have it and you can skip this step.
+
 ![bl1](photos/bl-1.png)
 
 ![bl2](photos/bl-2.png)
@@ -137,7 +139,7 @@ Select The **Install Ubuntu** Option to being the install process
 
 ## FAQ
 
-Q: How do I connect to WPI wireless networks
+Q: How do I connect to WPI wireless networks <br/>
 A: Follow this guide from ITS https://hub.wpi.edu/article/403/connect-to-wpi-wireless-on-ubuntu
 
 Q: Can I use a VM?  <br />
