@@ -40,8 +40,15 @@ Once you have Linux open a terminal (Ctrl+Alt+t) and run the following commands
 	sudo add-apt-repository "deb http://ppa.launchpad.net/mad-hephaestus/commonwealthrobotics/ubuntu bionic main" -y
 	sudo apt-get update 
 	sudo apt-get install bowlerstudio curl git putty  zip unzip lightdm
-	sudo dpkg-reconfigure  lightdm 
 ```
+
+After running the commands above a menu should pop up allowing you to choose between lightdm and gdm3.
+
+If the menu does not pop up run. 
+```
+sudo dpkg-reconfigure lightdm 
+```
+
 Restart your computer and you should see a slightly different login screen when you boot into Ubuntu. 
 
 Doing so will install some programs that you need for later steps, as well as configure your login manager to avoid a known bug with the default one.
@@ -100,6 +107,9 @@ The goal of this section is to give you an understanding of your kit and the par
 
 
 <img src="photos/mainkit2.jpg" width="600">
+
+*Note the box in the image is not included get your own. 
+
 1) 3x - [Smart Servo Kit](https://www.amazon.com/dp/B081CTX6DM/ref=twister_B0817ZKWF9): Servo Motor that drives the main 3 joints of the arm,along with a cord and servo horns.
 
 2) 1x - [Power Supply](https://www.digikey.com/product-detail/en/mean-well-usa-inc/GST60A07-P1J/1866-2147-ND/7703710): Provides power to arm, via a DC jack.
@@ -145,21 +155,21 @@ The goal of this section is to give you an understanding of your kit and the par
 
 1) 1x - Base: The arm's base
 
-2) 1x - Middle Link: The middle link of the arm
+2) 1x - Link 3 Bracket: The middle link of the arm
 
-3) 1x - Gripper Main: The main part of the gripper mechanism
+3) 1x - Main Gripper Body: The main part of the gripper mechanism
 
 4) 1x - Gripper Claw: The mobile part of the gripper
 
-5) 1x - Base Cover: The part of the base joint that will rotate
+5) 1x - Link 1 Output Bracket: The part of the base joint that will rotate
 
-6) 1x - Gripper Cover: The panel to hold the smart servo at the gripper's base
+6) 1x - Link 3 Output Bracket: The panel to hold the smart servo at the gripper's base
 
 7) 1x - Camera Stand Base: A part to mount a threaded stand to the board
 
 8) 1x - Board: A wooden board to mount the arm
 
-9) 1x - 5 Hole Bar: A bar with five holes to mount a servo horn
+9) 1x - Link 2 Output Bracket: A bar with five holes to mount a servo horn
 
 10) 1x - 3 Hole Bar: A bar with three holes for holding a servo
 

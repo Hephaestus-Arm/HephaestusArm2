@@ -1,6 +1,6 @@
 # Electronics Instructions
 
-<img src="photos/completed_board_wires.jpg" width="600">
+<img src="photos/full_board_wires.jpg" width="600">
 
 # 0 Setup
 
@@ -146,8 +146,8 @@ Yellow = Servo Pulse
 
 
 
-<img src="photos/completed_board.jpg" width="600">
-<img src="photos/completed_board_wires.jpg" width="600">
+<img src="photos/full_board.jpg" width="600">
+<img src="photos/full_board_wires.jpg" width="600">
 *Note in the photos above and below we are missing a wire form 3.3V on the Itsybitsy to the buffer chip make sure to have this wire its important. 
 
 
@@ -291,7 +291,7 @@ Barrel Jack 7.5v to LX-224 Power
 
 ### 7.3 Finding which port the ItsyBitsy is on. 
 
-Running the following command below will tell you each usb connected to your computer replace `/dev/ttyACM0` in the putty with the port you found from running the command.
+Running the following command below will tell you each usb device connected to your computer. Replace `/dev/ttyACM0` in the putty command with the port connected to your ItsyBitsy.
 
 ```
 for sysdevpath in $(find /sys/bus/usb/devices/usb*/ -name dev); do
