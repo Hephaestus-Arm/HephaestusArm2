@@ -79,7 +79,7 @@ Hammer in the M8 Tee nut for the into the camera stand.
 Use the soldering iron to insert the other inserts. 
 
 ```
-Protip: About 400 degrees celcius worked well for me.
+Protip: About 400C worked well for me.
 ```
 
 <img src="photos/70.jpg" width="300">
@@ -98,7 +98,11 @@ Protip: About 400 degrees celcius worked well for me.
 
 You should have 3 splined horns and 3 idler horns in your kit, if you don't contact an LA. Use only the splined horns for assembly, the idle horns are not needed.
 
-**add pic for difference between spline and idle horn**
+```
+Protip: the splined horns are the ones with teeth
+```
+
+%add pic for difference between spline and idle horn%
 
 ## 4.1 Link 1 Servo Horn
 
@@ -135,8 +139,6 @@ Using the small servo screws to screw the motor in place.
 <img src="photos/47.jpg" width="300">
 
 
-
-
 # 7 Motor 3
 
 Using 3 small servo screws attach motor 3 to the link 3 bracket
@@ -147,9 +149,10 @@ Using 3 small servo screws attach motor 3 to the link 3 bracket
 # 8 Gripper Assembely
 Push the gripper servo into its hole on the main gripper body. 
 
+**Please note we are aware of a tolerancing issue on this part. You can check if you are affected, by measuring the width of the slot (if you get a measurement of less than 11.9 you are affected), or by attempting to seat the servo. If you are affected by this contact the lab staff to get a replacement, if you are virtual follow the instructions on the protip below for how to widen the slot. **
 ```
 Protip: Do not apply force on the spline of the servo you risk damaging it 
-Protip: If your gripper servo is not able to be pushed in by hand, do not hammer it, instead file the inside of the slot. 
+Protip: If your gripper servo is not able to be pushed in by hand, do not hammer it or force it in, doing so risks damaging the servo lightly sand the outside of the servo and file the inside of the slot as needed.
 ```
 
 <img src="photos/41.jpg" width="300">
@@ -164,7 +167,7 @@ Then use a short bolt to attach the other part of the gripper.
 
 Remove the backing of the breadboard and use the double stick tape to attach the breadboard to the base
 
-***ADD more pics*
+%ADD more pics%
 
 # 10 Calibrate Motors
 
@@ -197,20 +200,25 @@ Use the passive support screw to attach the printed links to the passive side of
 
 The pose below is the calibration pose. It is where the servos assume they are when they boot up. Assemble your robot in this pose and do **not** rotate the servo at all. Doing so will mean you might need to take apart the robot later.
 
+```
+Protip: providing power to the motors mean they will hold their position which can be helpful for preventing unwanted rotation
+```
+
 <img src="armCalibration.png" width="300">
 
 
 ## 13.1 Servo 2 
 
-Place Servo 2 into the Link 1 Output Backet. 
+Place Servo 2 into the Link 1 Output Backet. But do not screw it in
 
 <img src="photos/23.jpg" width="300">
+
+Then move the robot into the calibration pose.
 
 
 ##  13.2 Servo 1 Horn Screw
 
-
-Using the servo horn, screw the horn to servo one with the Link 1 Output Bracket in the calibration pose.
+Remove Servo 2 and use the servo horn bolt to screw the horn to servo one with the Link 1 Output Bracket in the calibration pose.
 
 <img src="photos/23.jpg" width="300">
 
@@ -224,7 +232,7 @@ Place Servo 2 back into the Link 1 Output bracket.
 ## 13.4 Servo 2 Horn Screw
 
 
-Using the servo horn, screw the horn to Servo 2 with the Link 2 Output bracket in the calibration pose. Then Attach the Link 2 Output Bracket to the link 3 bracket using the long bolts. 
+Using the servo horn bolt, screw the horn to Servo 2 with the Link 2 Output bracket in the calibration pose. Then Attach the Link 2 Output Bracket to the link 3 bracket using the long bolts. 
 
 <img src="photos/22.jpg" width="300">
 <img src="photos/21.jpg" width="300">
@@ -232,7 +240,7 @@ Using the servo horn, screw the horn to Servo 2 with the Link 2 Output bracket i
 
 # 13.5 Motor 3 Horn Screw
 
-Using the servo horn, screw the horn to Servo 3 with the Link 3 Output bracket in the calibration pose. Then use the short bolts to attach the Output bracket to the gripper body
+Using the servo horn bolt, screw the horn to Servo 3 with the Link 3 Output bracket in the calibration pose. Then use the short bolts to attach the Output bracket to the gripper body
 
 <img src="photos/19.jpg" width="300">
 <img src="photos/18.jpg" width="300">
@@ -244,10 +252,25 @@ Using the servo horn, screw the horn to Servo 3 with the Link 3 Output bracket i
 
  Calibrate the robot in its calibration pose now that all motors are in place. 
  
- If your robot does not move during calibration, CONGRATS! you have a fully assembled robot arm.
-
- If it does move you need to dissasble and adjust the servos so they are calibrated. 
+ ## 14.1 Robot stays in calibration pose
  
+  If your robot does not move during calibration, CONGRATS! you have a fully assembled robot arm.
+  
+  Proceed to the next step to finish assembeling the robot. 
+  
+## 14.1 Robot moves from calibration pose
+
+ If one of the motors comes off the calibrtation pose, pull that horn and reset it closer to the correct pose, if you have to err to one side go past the calibration pose away from where the motor moved itself. Then re preform Step 14.
+ 
+ 
+# 16 Servo Case Screws
+
+Use the small servo screws to screw in the case screw for each Servos 2/3 these are the 7 small holes found on the bottom and top of the servo. 
+
+<img src="photos/3.jpg" width="300">
+<img src="photos/4.jpg" width="300">
+
+
 # 15 Gripper
 
 Plug in the gripper servo and power up the system
