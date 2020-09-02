@@ -291,7 +291,7 @@ Barrel Jack 7.5v to LX-224 Power
 
 ### 7.3 Finding which port the ItsyBitsy is on. 
 
-Running the following command below will tell you each usb connected to your computer replace `/dev/ttyACM0` in the putty with the port you found from running the command.
+Running the following command below will tell you each usb device connected to your computer. Replace `/dev/ttyACM0` in the putty command with the port connected to your ItsyBitsy.
 
 ```
 for sysdevpath in $(find /sys/bus/usb/devices/usb*/ -name dev); do
