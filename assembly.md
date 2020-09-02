@@ -70,7 +70,7 @@ Hammer in the M8 Tee nut for the into the camera stand.
 Use the soldering iron to insert the other inserts. 
 
 ```
-Protip: About 400 degress worked well for me.
+Protip: About 400 degrees celcius worked well for me.
 ```
 
 <img src="photos/70.jpg" width="300">
