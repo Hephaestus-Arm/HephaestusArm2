@@ -133,8 +133,12 @@ Select The **Install Ubuntu** Option to being the install process
     Wait for the Install to finish. 
 
     Once its done restart the computer, unplug the usb drive and you should be greeted by a grub menu that will allow you to boot into either Ubuntu or Windows. (or just Ubuntu if you aren't dual booting)
+    
 
 ## FAQ
+
+Q: How do I connect to WPI wireless networks
+A: Follow this guide from ITS https://hub.wpi.edu/article/403/connect-to-wpi-wireless-on-ubuntu
 
 Q: Can I use a VM?  <br />
 A: No. The communication protocal the arm uses requires it to be run on "bare metal" anything else will be too slow. 
