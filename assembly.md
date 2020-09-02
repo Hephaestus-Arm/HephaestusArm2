@@ -15,16 +15,25 @@ If you have not done all of the above steps go back complete them and then retur
 
 ## 1 Pictures of Parts 
 
-**add images here**
-<small servo screw>
+Small Servo Screw
+
+<img src="photos/short_servo_screw.jpg" width="300">
  
-<servo horn bolt>
- 
- <passive support Screw
- 
- <long bolt>
- 
- <short bolt>
+Servo Horn Bolt
+
+<img src="photos/horn_bolt.jpg" width="300">
+
+Passive Support Screw
+
+<img src="photos/support_screw.jpg" width="300">
+
+Long Bolt
+
+<img src="photos/long_bolt.jpg" width="300">
+
+Short Bolt
+
+<img src="photos/short_bolt.jpg" width="300">
 
 ## 2 3D Printed Part Prep
 

@@ -1,6 +1,6 @@
 # Electronics Instructions
 
-<img src="photos/completed_board_wires.jpg" width="600">
+<img src="photos/full_board_wires.jpg" width="600">
 
 # 0 Setup
 
@@ -146,8 +146,8 @@ Yellow = Servo Pulse
 
 
 
-<img src="photos/completed_board.jpg" width="600">
-<img src="photos/completed_board_wires.jpg" width="600">
+<img src="photos/full_board.jpg" width="600">
+<img src="photos/full_board_wires.jpg" width="600">
 *Note in the photos above and below we are missing a wire form 3.3V on the Itsybitsy to the buffer chip make sure to have this wire its important. 
 
 
