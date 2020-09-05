@@ -42,7 +42,7 @@ Once you have Linux open a terminal (Ctrl+Alt+t) and run the following commands
 	sudo apt-get install bowlerstudio curl git putty  zip unzip lightdm
 ```
 
-After running the commands above a menu should pop up allowing you to choose between lightdm and gdm3.
+After running the commands above a menu should pop up allowing you to choose between lightdm and gdm3.Choose the lightdm option
 
 If the menu does not pop up run. 
 ```
