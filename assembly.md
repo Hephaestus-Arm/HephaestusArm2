@@ -158,7 +158,7 @@ Protip: If your gripper servo is not able to be pushed in by hand, do not hammer
 <img src="photos/41.jpg" width="300">
 <img src="photos/40.jpg" width="300">
 
-Then use a short bolt to attach the other part of the gripper.
+Then use a long bolt to attach the other part of the gripper.
 
 <img src="photos/42.jpg" width="300">
 
