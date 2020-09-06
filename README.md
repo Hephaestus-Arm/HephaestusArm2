@@ -40,6 +40,7 @@ Once you have Linux open a terminal (Ctrl+Alt+t) and run the following commands
 	sudo add-apt-repository "deb http://ppa.launchpad.net/mad-hephaestus/commonwealthrobotics/ubuntu bionic main" -y
 	sudo apt-get update 
 	sudo apt-get install bowlerstudio curl git putty  zip unzip lightdm
+	sudo adduser $(whoami) dialout
 ```
 
 After running the commands above a menu should pop up allowing you to choose between lightdm and gdm3.Choose the lightdm option
