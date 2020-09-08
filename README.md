@@ -30,7 +30,7 @@ If you do not, here are resources to help you get familiar
 
 
 
-### 1.2.2 Some Basic Programs 
+### 1.2.2 Required Programs 
 
 Once you have Linux open a terminal (Ctrl+Alt+t) and run the following commands 
 
