@@ -58,8 +58,6 @@ Protip: A sharp pointy object like an icepick can also be useful for removing th
 
 After removing the support material , go through each part and chamfer the edges where a motor goes as shown in the pictures below (This step is **critical** for ensuring your smart servos fit easily.)
 
-<img src="photos/temppic.jpg" width="300"> <!--base joint-->
-<img src="photos/temppic.jpg" width="300"> <!--middle joint-->
 
 
 Additionally debur any holes for bolts or screws found on the part.
