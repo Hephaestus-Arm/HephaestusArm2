@@ -294,14 +294,5 @@ Barrel Jack 7.5v to LX-224 Power
 Running the following command below will tell you each usb device connected to your computer. Replace `/dev/ttyACM0` in the putty command with the port connected to your ItsyBitsy.
 
 ```
-for sysdevpath in $(find /sys/bus/usb/devices/usb*/ -name dev); do
-    (
-        syspath="${sysdevpath%/dev}"
-        devname="$(udevadm info -q name -p $syspath)"
-        [[ "$devname" == "bus/"* ]] && exit
-        eval "$(udevadm info -q property --export -p $syspath)"
-        [[ -z "$ID_SERIAL" ]] && exit
-        echo "/dev/$devname - $ID_SERIAL"
-    )
-done
+ls -al /dev/ttyACM*
 ```
