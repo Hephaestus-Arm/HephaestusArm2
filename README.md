@@ -237,16 +237,9 @@ From now on, all you need to do to calibrate the arm is move the robot to the ca
 Open BowlerStudio, in the menu
 
 ```
-Add device -> creatures -> from git
+Add device -> creatures -> Hephaestus Arm V2
 ```
-and enter
-```
-https://github.com/Hephaestus-Arm/HephaestusArm2.git
-```
-then select
-```
-hephaestus.xml 
-```
+
 
 This will generate the CAD and run the simulation. 
 
