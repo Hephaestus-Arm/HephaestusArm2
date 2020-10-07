@@ -197,12 +197,13 @@ The goal of this section is to give you an understanding of your kit and the par
 
 7) 1x - PCB: A custom PCB that could be used, but the required components are not included in the kit.
 
-8) 1x - Power Cord : Not needed for assembly
 
 ## Camera Kit v2
 (Not the camera kit provided to students for A20)
 
 1) 1x - [Small Ring Light](https://www.adafruit.com/product/1643) : Smaller alternative to the ring light in camera kit v1.
+
+2) 1x [Camera](https://www.amazon.com/ELP-Camera-Building-Industrial-Security/dp/B00VFQK1Q6) 
 
 # 3 Build the electronics
 
