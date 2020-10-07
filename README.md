@@ -145,7 +145,9 @@ The goal of this section is to give you an understanding of your kit and the par
    
 17) 1x - [Power cord](https://www.digikey.com/product-detail/en/mean-well-usa-inc/YP12-YC12/1866-5006-ND/7707223) : Used to power the arm.
 
-18) 1x - [Header Pins](https://www.pololu.com/product/965) : Soldered to the ItsyBitsy.
+
+18) 1x - [Button](https://www.digikey.com/products/en?mpart=367&v=1528 ) : used as a microcontroller input (sold in pack of 20).
+
 
 *Note if you did not purchace the camera kit you will need to buy a [button](https://www.digikey.com/products/en?mpart=367&v=1528 ) to assemble the robot. Or if you are approved to go on campus you can get one from the Foisie lab. 
 
@@ -193,9 +195,6 @@ The goal of this section is to give you an understanding of your kit and the par
 
 5) 1x - [Nut Insert](https://www.mcmaster.com/98965A410) : For mounting camera stand.
 
-6) 1x - [Button](https://www.digikey.com/products/en?mpart=367&v=1528 ) : Meant to be in main kit, used as a microcontroller input (sold in pack of 20).
-
-7) 1x - PCB: A custom PCB that could be used, but the required components are not included in the kit.
 
 
 ## Camera Kit v2
