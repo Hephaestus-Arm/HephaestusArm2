@@ -202,7 +202,7 @@ The goal of this section is to give you an understanding of your kit and the par
 
 1) 1x - [Small Ring Light](https://www.adafruit.com/product/1643) : Smaller alternative to the ring light in camera kit v1.
 
-2) 1x [Camera](https://www.amazon.com/ELP-Camera-Building-Industrial-Security/dp/B00VFQK1Q6) 
+2) 1x [Camera](http://www.webcamerausb.com/elp-usb-security-camera-low-light-1080p-sony-imx322-hd-sensor-h264-voice-recording-pinhole-spy-camera-for-video-conference-p-236.html) 
 
 # 3 Build the electronics
 
