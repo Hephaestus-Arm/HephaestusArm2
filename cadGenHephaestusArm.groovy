@@ -919,6 +919,7 @@ return new ICadGenerator(){
 							.transformed(calibrationFrame)
 							//.movey(-100)
 							.difference(vitamins)
+		calibration.setName("CalibrationObject-"+jointSpaceVect[0]+"-"+jointSpaceVect[1]+"-"+jointSpaceVect[2])				
 		calibration.setColor(javafx.scene.paint.Color.LIME)
 		allCad.add(calibration)
 		
