@@ -128,7 +128,7 @@
 	<DHParameters>
 		<Delta>0.0</Delta>
 		<Theta>-90.0</Theta>
-		<Radius>100.0</Radius>
+		<Radius>85.0</Radius>
 		<Alpha>0.0</Alpha>
 	</DHParameters>
 
@@ -165,7 +165,7 @@
 
 	</vitamins>
 	<passive>false</passive>
-	<mass>0.020800000000000006</mass>
+	<mass>0.0208</mass>
 	<centerOfMassFromCentroid>	<x>0.0</x>
 	<y>0.0</y>
 	<z>0.0</z>
