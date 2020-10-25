@@ -165,7 +165,7 @@
 
 	</vitamins>
 	<passive>false</passive>
-	<mass>0.0208</mass>
+	<mass>0.020800000000000006</mass>
 	<centerOfMassFromCentroid>	<x>0.0</x>
 	<y>0.0</y>
 	<z>0.0</z>
@@ -184,7 +184,7 @@
 	<DHParameters>
 		<Delta>0.0</Delta>
 		<Theta>90.0</Theta>
-		<Radius>75.0</Radius>
+		<Radius>55.0</Radius>
 		<Alpha>0.0</Alpha>
 
 		<mobilebase>
@@ -277,13 +277,13 @@
 </ZframeToRAS>
 
 <baseToZframe>
-	<x>-32.25619983422823</x>
-	<y>-23.654546545100708</y>
-	<z>9.999999999999995</z>
-	<rotw>0.95036966382974</rotw>
-	<rotx>-1.0504036250834272E-16</rotx>
-	<roty>-4.718657605620412E-19</roty>
-	<rotz>0.3111229693740838</rotz>
+	<x>-28.284271247461906</x>
+	<y>-28.284271247461906</y>
+	<z>10.000000000000002</z>
+	<rotw>0.9238795325112867</rotw>
+	<rotx>1.0257123289739562E-16</rotx>
+	<roty>4.2486395775430656E-17</roty>
+	<rotz>0.38268343236508995</rotz>
 </baseToZframe>
 
 </appendage>
@@ -366,13 +366,13 @@
 </ZframeToRAS>
 
 <baseToZframe>
-	<x>-64.7102722528812</x>
-	<y>-69.03144692788928</y>
-	<z>7.149836278586007E-15</z>
-	<rotw>-0.3196233472278281</rotw>
-	<rotx>-0.6307463166019117</rotx>
-	<roty>0.31962334722782787</roty>
-	<rotz>-0.6307463166019122</rotz>
+	<x>-42.696342007354076</x>
+	<y>-67.30365799264594</y>
+	<z>1.6431300764452314E-15</z>
+	<rotw>-0.2705980500730986</rotw>
+	<rotx>-0.6532814824381883</rotx>
+	<roty>0.2705980500730984</roty>
+	<rotz>-0.6532814824381883</rotz>
 </baseToZframe>
 
 </appendage>
