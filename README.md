@@ -127,7 +127,7 @@ The goal of this section is to give you an understanding of your kit and the par
 
 8) 1x - [Wire Kit](https://www.amazon.com/MCIGICM-Breadboard-Jumper-Cables-Arduino/dp/B081GMJVPB) : The wires used to connect electrical components.
 
-9) 1x - [USB Cable](https://www.amazon.com/AmazonBasics-Male-Micro-Cable-Black/dp/B0711PVX6Z) : A wire to connect the ItsyBitsy to their computer.
+9) 1x - [USB Cable](https://www.amazon.com/NetDot-Magnetic-Charging-Transfer-Compatible/dp/B07QDS3CHN) : A wire to connect the ItsyBitsy to their computer.
 
 10) 1x - [Double Header Pins](https://www.pololu.com/product/1065) : Pins to connect wires and the ItsyBitsy to the breadboard.
 
