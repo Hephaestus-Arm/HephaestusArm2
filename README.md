@@ -139,17 +139,19 @@ The goal of this section is to give you an understanding of your kit and the par
 
  12x [M3x10 bolts](https://www.mcmaster.com/91290A115/) 
 
- 1x	Barrel_Jack	Digike PN: CP-102AH-ND	
+ 1x	Barrel_Jack	   Digikey PN: CP-102AH-ND	
  
- 2x	Conn_01x03_Male	Digike PN: PPPC031LFBN-RC	
+ 2x	Conn_01x03_Male	   Digikey PN: PPPC031LFBN-RC	
  
- 3x	Conn_01x03_Male	Digike PN: 455-1705-ND	
+ 3x	Conn_01x03_Male	   Digikey PN: 455-1705-ND	
 
- 1x	SW_SPDT		Digike PN: OS102011MS2QS1	
+ 1x	SW_SPDT		   Digikey PN: OS102011MS2QS1	
 
- 2x	SW_SPST		Digike PN: 486-3460-ND	
+ 2x	SW_SPST		   Digikey PN: 486-3460-ND	
 
- 1x	74126		Digike PN: 296-8221-5-ND	
+ 1x	74126		   Digikey PN: 296-8221-5-ND	
+ 
+ 2x     1x14 header        https://www.digikey.com/en/products/detail/sullins-connector-solutions/PPTC141LFBN-RC
  
 *Note if you did not purchace the camera kit you will need to buy a [button](https://www.digikey.com/products/en?mpart=367&v=1528 ) to assemble the robot. Or if you are approved to go on campus you can get one from the Foisie lab. 
 
