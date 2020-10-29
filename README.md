@@ -111,47 +111,45 @@ The goal of this section is to give you an understanding of your kit and the par
 
 *Note the box in the image is not included get your own. 
 
-1) 3x - [Smart Servo Kit](https://www.amazon.com/dp/B081CTX6DM/ref=twister_B0817ZKWF9): Servo Motor that drives the main 3 joints of the arm,along with a cord and servo horns.
+ 3x - [Smart Servo Kit](https://www.amazon.com/dp/B081CTX6DM/ref=twister_B0817ZKWF9): Servo Motor that drives the main 3 joints of the arm,along with a cord and servo horns.
 
-2) 1x - [Power Supply](https://www.digikey.com/product-detail/en/mean-well-usa-inc/GST60A07-P1J/1866-2147-ND/7703710): Provides power to arm, via a DC jack.
+ 1x - [Power Supply](https://www.digikey.com/product-detail/en/mean-well-usa-inc/GST60A07-P1J/1866-2147-ND/7703710): Provides power to arm, via a DC jack.
 
-3) 1x - [Barrel Jack Adapter](https://www.sparkfun.com/products/10288): A DC jack to covert the power supply to a power and ground terminal.
+ 1x - [Adafruit ItsyBitsy](https://www.adafruit.com/product/3800) : The microcontroller for the arm.
 
-4) 1x - [Adafruit ItsyBitsy](https://www.adafruit.com/product/3800) : The microcontroller for the arm.
+ 1x - [USB Cable](https://www.amazon.com/NetDot-Magnetic-Charging-Transfer-Compatible/dp/B07QDS3CHN) : A wire to connect the ItsyBitsy to their computer.
 
-5) 1x - [Line Driver](https://www.digikey.com/product-detail/en/texas-instruments/SN74HC126N/296-8221-5-ND) : An integrated cicuit to help control the servos.
+ 1x - [Double Header Pins](https://www.pololu.com/product/1065) : Pins to connect wires and the ItsyBitsy to the breadboard.
 
-6) 1x - [Breadboard](https://www.sparkfun.com/products/12002) : A board to help organize the circuit.
+ 1x - [Thrust Bearing](https://www.mcmaster.com/5909k41) : A ring of bearings for the base joint.
 
-7) 4x - [10K Ohm Resistor](https://www.digikey.com/product-detail/en/stackpole-electronics-inc/CF14JT10K0/CF14JT10K0CT-ND/1830374) : These are not used in initial assembly of the arm.
+ 2x - [Thrust Bearing Surface](https://www.mcmaster.com/5909K54-5909K54) : A metal ring to support the thrust bearing.
 
-8) 1x - [Wire Kit](https://www.amazon.com/MCIGICM-Breadboard-Jumper-Cables-Arduino/dp/B081GMJVPB) : The wires used to connect electrical components.
+ 20x - [Heat-Set Inserts](https://www.mcmaster.com/94180a361) : Threaded inserts for the 3D printed parts (sold in packs of 50).
 
-9) 1x - [USB Cable](https://www.amazon.com/NetDot-Magnetic-Charging-Transfer-Compatible/dp/B07QDS3CHN) : A wire to connect the ItsyBitsy to their computer.
+ 7x - [M5x25](https://www.mcmaster.com/91292A129-91292A129) : Long bolts to assemble arm (sold in packs of 50).
 
-10) 1x - [Double Header Pins](https://www.pololu.com/product/1065) : Pins to connect wires and the ItsyBitsy to the breadboard.
+ 13x - [M5x12](https://www.mcmaster.com/91290A228) : Short bolts to assemble arm (sold in  pack of 100).
 
-11) 1x - [Thrust Bearing](https://www.mcmaster.com/5909k41) : A ring of bearings for the base joint.
-
-12) 2x - [Thrust Bearing Surface](https://www.mcmaster.com/5909K54-5909K54) : A metal ring to support the thrust bearing.
-
-13) 20x - [Heat-Set Inserts](https://www.mcmaster.com/94180a361) : Threaded inserts for the 3D printed parts (sold in packs of 50).
-
-14) 7x - [M5x25](https://www.mcmaster.com/91292A129-91292A129) : Long bolts to assemble arm (sold in packs of 50).
-
-15) 13x - [M5x12](https://www.mcmaster.com/91290A228) : Short bolts to assemble arm (sold in  pack of 100).
-
-16) 1x - [Gripper Servo](https://www.digikey.com/products/en/motors-solenoids-driver-boards-modules/motors-ac-dc/178?k=mg92b) : A servo to operate the gripper.
+ 1x - [Gripper Servo](https://www.digikey.com/products/en/motors-solenoids-driver-boards-modules/motors-ac-dc/178?k=mg92b) : A servo to operate the gripper.
    
-17) 1x - [Power cord](https://www.digikey.com/product-detail/en/mean-well-usa-inc/YP12-YC12/1866-5006-ND/7707223) : Used to power the arm.
+ 1x - [Power cord](https://www.digikey.com/product-detail/en/mean-well-usa-inc/YP12-YC12/1866-5006-ND/7707223) : Used to power the arm.
 
+ 3x [Metal horn](https://www.amazon.com/Magic-Shell-Aluminum-Standard-Accessories/dp/B07KR5Q1Y9) sold in packs of 5
 
-18) 1x - [Button](https://www.digikey.com/products/en?mpart=367&v=1528 ) : used as a microcontroller input (sold in pack of 20).
+ 12x [M3x10 bolts](https://www.mcmaster.com/91290A115/) 
 
-19) 3x [Metal horn](https://www.amazon.com/Magic-Shell-Aluminum-Standard-Accessories/dp/B07KR5Q1Y9) sold in packs of 5
+ 1x	Barrel_Jack	CP-102AH-ND	
+ 
+ 2x	Conn_01x03_Male	PPPC031LFBN-RC	
+ 
+ 3x	Conn_01x03_Male	455-1705-ND	
 
-20) 12x [M3x10 bolts](https://www.mcmaster.com/91290A115/) 
+ 1x	SW_SPDT	OS102011MS2QS1	
 
+ 2x	SW_SPST	Schurter Inc.	
+
+ 1x	74126	296-8221-5-ND	Package_DIP:DIP-14_W7.62mm
 
 *Note if you did not purchace the camera kit you will need to buy a [button](https://www.digikey.com/products/en?mpart=367&v=1528 ) to assemble the robot. Or if you are approved to go on campus you can get one from the Foisie lab. 
 
