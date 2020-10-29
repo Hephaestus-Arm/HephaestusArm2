@@ -148,6 +148,10 @@ The goal of this section is to give you an understanding of your kit and the par
 
 18) 1x - [Button](https://www.digikey.com/products/en?mpart=367&v=1528 ) : used as a microcontroller input (sold in pack of 20).
 
+19) 3x [Metal horn](https://www.amazon.com/Magic-Shell-Aluminum-Standard-Accessories/dp/B07KR5Q1Y9) sold in packs of 5
+
+20) 12x [M3x10 bolts](https://www.mcmaster.com/91290A115/) 
+
 
 *Note if you did not purchace the camera kit you will need to buy a [button](https://www.digikey.com/products/en?mpart=367&v=1528 ) to assemble the robot. Or if you are approved to go on campus you can get one from the Foisie lab. 
 
