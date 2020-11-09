@@ -74,8 +74,8 @@ return new ICadGenerator(){
 	def cornerRad=2
 	String boltsize = "M5x25"
 	def insert=["heatedThreadedInsert", "M5"]
-	def insertCamera=["teeNutWithProngs", "M8"]
-	def cameraInsertLength = Vitamins.get( insertCamera[0],insertCamera[1]).getTotalZ()
+	def insertCamera=["heatedThreadedInsert", "M5"]
+	def cameraInsertLength = 100
 	HashMap<String,Object> measurmentsHorn = Vitamins.getConfiguration(  "LewanSoulHorn","round")
 	def hornKeepawayLen = measurmentsHorn.mountPlateToHornTop
 	double centerlineToOuterSurfacePositiveZ = centerTheMotorsValue+movingPartClearence+hornKeepawayLen-1
@@ -574,10 +574,10 @@ return new ICadGenerator(){
 		double baseCoreheight = 1;
 		def insertMeasurments= Vitamins.getConfiguration(insert[0],
 			insert[1])
-		double xOffset = grid*7;
-		double yOffset = grid*6;
+		double xOffset = grid*7.5;
+		double yOffset = -grid*0.5;
 		def cameraNut = new TransformNR(xOffset+grid/2,yOffset+grid/2,0,new RotationNR(0,0,0))
-		CSG cameraBoltHole = new Cylinder(4.1,cameraInsertLength+2).toCSG()
+		CSG cameraBoltHole = new Cylinder(2.5,cameraInsertLength+2).toCSG()
 		def mountLoacionsCamera = [
 			new TransformNR(xOffset,yOffset,0,new RotationNR(180,0,0)),
 			new TransformNR(xOffset,yOffset+grid,0,new RotationNR(180,0,0)),
@@ -663,7 +663,7 @@ return new ICadGenerator(){
 			new TransformNR(baseGrid+yOffsetFeducial,-yOffsetFeducial,0,new RotationNR(180,0,0)),// feducial
 			new TransformNR(-baseGrid, baseGrid*7,0,new RotationNR(180,0,0)),// corner mount
 			new TransformNR( baseGrid*8, -baseGrid*5,0,new RotationNR(180,0,0)),// corner mount
-			new TransformNR( baseGrid*8,0,0,new RotationNR(180,0,0)),// corner mount
+			new TransformNR( baseGrid*8,baseGrid*7,0,new RotationNR(180,0,0)),// corner mount
 			new TransformNR( -baseGrid, -baseGrid*5,0,new RotationNR(180,0,0))// corner mount
 		]
 		def mountLoacions = [

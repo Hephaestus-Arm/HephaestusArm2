@@ -48,7 +48,7 @@
 		<vitamin>
 			<name>shaft</name>
 			<type>LewanSoulHorn</type>
-			<id>round</id>
+			<id>round_m3_bolts</id>
 		</vitamin>
 
 	</vitamins>
@@ -104,7 +104,7 @@
 		<vitamin>
 			<name>shaft</name>
 			<type>LewanSoulHorn</type>
-			<id>round</id>
+			<id>round_m3_bolts</id>
 		</vitamin>
 
 	</vitamins>
@@ -160,12 +160,12 @@
 		<vitamin>
 			<name>shaft</name>
 			<type>LewanSoulHorn</type>
-			<id>round</id>
+			<id>round_m3_bolts</id>
 		</vitamin>
 
 	</vitamins>
 	<passive>false</passive>
-	<mass>0.020800000000000006</mass>
+	<mass>0.0208</mass>
 	<centerOfMassFromCentroid>	<x>0.0</x>
 	<y>0.0</y>
 	<z>0.0</z>
