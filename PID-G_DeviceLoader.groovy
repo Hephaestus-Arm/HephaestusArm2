@@ -9,7 +9,6 @@ import Jama.Matrix;
 import edu.wpi.SimplePacketComs.*;
 import edu.wpi.SimplePacketComs.phy.*;
 
-import com.neuronrobotics.bowlerstudio.BowlerStudio
 import com.neuronrobotics.sdk.addons.kinematics.AbstractLink
 import com.neuronrobotics.sdk.addons.kinematics.AbstractRotoryLink
 import com.neuronrobotics.sdk.addons.kinematics.INewLinkProvider
