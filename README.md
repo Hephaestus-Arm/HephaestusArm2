@@ -56,7 +56,7 @@ Doing so will install some programs that you need for later steps, as well as co
 
 The programs installed are
 * BowlerStudio 
-* Used for design modeling of the robot arm, install drivers, and unit-test hardware, this is for 3d display of the robot
+  * Used for design modeling of the robot arm, install drivers, and unit-test hardware, this is for 3d display of the robot
 * curl (allows you to get files from the internet)
 * git (allows you to access and work with code repositories)
 * zip/unzip (allows you to zip and unzip files)
