@@ -106,18 +106,17 @@ Protip: the splined horns are the ones with teeth
 
 Attach a servo horn to the Link 1 Output Bracket using the small servo screws
 
-<img src="photos/58.jpg" width="300">
-<img src="photos/57.jpg" width="300">
-<img src="photos/56.jpg" width="300">
-<img src="photos/55.jpg" width="300">
-<img src="photos/54.jpg" width="300">
+<img src="photos/soldering/12.jpg" width="300">
+
+<img src="photos/soldering/13.jpg" width="300">
+<img src="photos/soldering/14.jpg" width="300">
+<img src="photos/soldering/15.jpg" width="300">
 
 ## 4.2 Link 2 & 3 Output Brackets
 
 Attach a servo horn to the Link 2 & 3 Output Brackets using the small servo screws
 
-<img src="photos/53.jpg" width="300">
-<img src="photos/52.jpg" width="300">
+<img src="photos/soldering/16.jpg" width="300">
 
 # 6 Motor 1
 
