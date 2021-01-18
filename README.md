@@ -187,32 +187,16 @@ The goal of this section is to give you an understanding of your kit and the par
 
 <img src="photos/camerakit.jpg" width="600">
 
-## Camera Kit v1
-
-1) 1x - [PSEye Camera](https://www.amazon.com/Sony-Station-Camera-Packaging-PlayStation-3/dp/B0735KNH2X/) : USB camera to enable image processing.
-
-2) 1x - [Adjustable Stand](https://www.amazon.com/Magnetic-Adjustable-Indicator-Holder-Digital/dp/B00L5T2ZA8/) : A stand to set the height of the camera.
-
-3) 1x - [CA Glue](https://www.amazon.com/Starbond-Cyanoacrylate-Microtips-Woodturning-Stabilizing/dp/B00C32ME6G/) : Super glue to attach some components.
-
-4) 1x - [Ring Light](https://www.newegg.com/p/0SW-01GA-00025?Item=9SIAK0NAUS4868&Tpk=9SIAK0NAUS4868) : Light to ring camera to ensure consistant lighting of the workspace.
-
-5) 1x - [Nut Insert](https://www.mcmaster.com/98965A410) : For mounting camera stand.
-
-
-
 ## Camera Kit v2
 (Not the camera kit provided to students for A20)
 
-1) 1x - [Small Ring Light](https://www.adafruit.com/product/1643) : Smaller alternative to the ring light in camera kit v1.
-
-2) 1x [Camera](http://www.webcamerausb.com/elp-usb-security-camera-low-light-1080p-sony-imx322-hd-sensor-h264-voice-recording-pinhole-spy-camera-for-video-conference-p-236.html) 
+1) 1x [Camera](http://www.webcamerausb.com/elp-usb-security-camera-low-light-1080p-sony-imx322-hd-sensor-h264-voice-recording-pinhole-spy-camera-for-video-conference-p-236.html) 
 
 # 3 Build the electronics
 
 This next step of instructions will guide you in assembeling the elctronics for the arm and then calibrating the servos.
 
-[Wire the electronics](electronics.md)
+[Wire the electronics](solderElectronics.md)
 
 # 4 Build the arm
 
