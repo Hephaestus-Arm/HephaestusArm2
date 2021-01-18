@@ -22,3 +22,8 @@
 /*.class
 /gripper.stl
 /.vscode
+/.project
+/.classpath
+/.cproject
+/cache/
+/*.class
