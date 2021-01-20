@@ -120,9 +120,6 @@ While wiring you probably noticed that all 3 motors got the same signal, power a
 
 While provisioning motors we cannot have multiple motors connects, so remove all connected motors except for one, then plug in the barrel jack power connector and finally plug the usb cable into your computer. 
 
-<img src="photos/full_plug_cal_board.jpg" width="600">
-
-
 
 After plugging in the wire click the reset button on the itsybitsy *ONE* time. You should see a small red led (next to the reset button) flash slowly (on for a second then off for a second). 
 ```
