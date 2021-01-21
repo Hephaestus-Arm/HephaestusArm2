@@ -196,7 +196,7 @@ To calibrate.
 
 2. Open up putty using the same command as you did earlier.
 
-3. Press and hold the calibrate button 10 seconeds then let go. The motors should calibrate and move to a calibrated position. If successful you should see the lines:
+3. Press and hold the "user" button 10 seconeds then let go. The motors should calibrate and move to a calibrated position. If successful you should see the lines:
 
 ```
 Starting the motor motion after calibration
