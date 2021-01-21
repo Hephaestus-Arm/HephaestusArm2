@@ -68,11 +68,7 @@ Protip: Use a drill bit or a dedicated deburring tool for the holes.
 ```
 
 
-# 3 Add Threaded Inserts
-
-Hammer in the M8 Tee nut for the into the camera stand.
-
-<img src="photos/71.jpg" width="300">
+# 3 Add Threaded Inserts {SOLDERING IRON HEAT SET}
 
 Use the soldering iron to insert the other inserts. 
 
