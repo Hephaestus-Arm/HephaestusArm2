@@ -164,7 +164,7 @@ Remove the backing of the breadboard and use the double stick tape to attach the
 
 # 10 Calibrate Motors
 
-Attach all motors to the breadboard (just like you did in the electronics section) and hold down the big button you added on the breadboard for 10 seconds, this should calibrate all the motors while they are in place. 
+Attach all motors to the HephaestusBrain and hold down the "user" button you for 10 seconds, this should calibrate all the motors while they are in place. 
 
 ```
 Protip: In order to verify this worked plug the microcontroller into the computer and run the calibration with putty on.
