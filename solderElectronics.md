@@ -207,6 +207,8 @@ Starting the planner
 on the putty terminal. If this is not what you see contact an SA or Kevin. 
 <img src="photos/putty5.png" width="600">
 
+If you do not see the output above, make sure you plug in the power and set the `SW MOTOR DISABLE` switch to `ENABLE`. Switched left is `DISABLE`, switch right is `ENABLE`
+
 If you have made this far congrats you now have successfuly built a control board, provisioned your motors and calibrated them. Be careful not to turn the output shaft of the servos during the assembly. 
 
 Head back to the [main instructions](README.md) to continue with physcial assembly!
