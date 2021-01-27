@@ -233,7 +233,7 @@ This will generate the CAD and run the simulation.
 
 ## 7.3 STL's 
 
-[Current Release Printable STL's](https://github.com/Hephaestus-Arm/HephaestusArm2/releases/download/0.1.0/release-0.1.0.zip)
+[Current Release Printable STL's and laser cut SVG](https://github.com/Hephaestus-Arm/HephaestusArm2/releases/)
 
 Print these with supports everywhere, do not reorent the parts. They are printed in this orientation to increase operating strength.
 
