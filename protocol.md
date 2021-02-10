@@ -40,19 +40,19 @@ Set the setpoint of the Motors with interpolation. Time is in milliseconds. The 
 # Get Positions and Setpoint
 
 | |ID | float| float|float | float|float |float |float|
-|--- |--- | --- |--- | --- |--- | --- |  --- | 
-| downstream Bytes |4 | --- |
+|--- |--- | --- |--- | --- |--- | --- |  --- | --- | 
+| downstream Bytes |4 | --- |--- | --- |--- | --- |  --- | --- | 
 | Contents downstream |1910 | --- |
 | upstream Bytes |4 | 4 | 4 |4 |4 |4 |4 |4 |
 | Contents upstream |1910 | the number of motors | motor 1 Setpoint|  motor 1 position |motor 2 Setpoint | motor 2 position |motor 3 Setpoint | motor 3 position | 
 
 # Get Velocity data
 
-| |ID |  float|float | float|float |float |float|float |float |float|
-|--- |--- | --- |--- | --- |--- | --- |  --- | --- | --- |  --- | 
+| |ID |  float|float | float|float |float |float|float |
+|--- |--- | --- |--- | --- |--- | --- |  --- | --- |
 | downstream Bytes |4 | --- |
 | Contents downstream |1822 | --- |
-| upstream Bytes |4 | 4 |4 |4 |4 |4 |4 |4 |4 |4 |
+| upstream Bytes |4 | 4 |4 |4 |4 |4 |4 |4 |
 | Contents upstream |1822 |  motor 1 Velocity Mode Setpoint|  motor 1 velocity |motor 1 computed effort | motor 2 Velocity Mode Setpoint|  motor 2 velocity |motor 2 computed effort |motor 3 Velocity Mode Setpoint|  motor 3 velocity |motor 3 computed effort |
 
 # ERROR packet
