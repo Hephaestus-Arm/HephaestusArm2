@@ -39,12 +39,12 @@ Set the setpoint of the Motors with interpolation. Time is in milliseconds. The 
 
 # Get Positions and Setpoint
 
-| |ID |  float|float | float|float |float |float|
+| |ID | float| float|float | float|float |float |float|
 |--- |--- | --- |--- | --- |--- | --- |  --- | 
 | downstream Bytes |4 | --- |
 | Contents downstream |1910 | --- |
-| upstream Bytes |4 | 4 |4 |4 |4 |4 |4 |
-| Contents upstream |1910 |  motor 1 Setpoint|  motor 1 position |motor 2 Setpoint | motor 2 position |motor 3 Setpoint | motor 3 position | 
+| upstream Bytes |4 | 4 | 4 |4 |4 |4 |4 |4 |
+| Contents upstream |1910 | mS duration of move| motor 1 Setpoint|  motor 1 position |motor 2 Setpoint | motor 2 position |motor 3 Setpoint | motor 3 position | 
 
 # Get Velocity data
 
