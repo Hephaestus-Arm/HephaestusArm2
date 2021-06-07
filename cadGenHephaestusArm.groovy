@@ -578,8 +578,9 @@ return new ICadGenerator(){
 			insert[1])
 		double xOffset = grid*7.5;
 		double yOffset = -grid*0.5;
-		def cameraNut = new TransformNR(xOffset+grid/2,yOffset+grid/2,0,new RotationNR(0,0,0))
 		def cameraHeight =120
+		def cameraNut = new TransformNR(xOffset+grid/2,yOffset+grid/2,0,new RotationNR(0,0,0))
+		
 		CSG cameraBoltHole = new Cylinder(2.5,cameraInsertLength+cameraHeight+2).toCSG()
 		CSG cameraCone =  new Cylinder(grid/2, // Radius at the bottom
                       		insertMeasurments.diameter/2+2, // Radius at the top
@@ -600,7 +601,7 @@ return new ICadGenerator(){
 				)
 				
 		}
-		vitaminLocations.put(cameraNut.copy(), [
+		vitaminLocations.put(cameraNut.copy().translateZ(cameraHeight-cameraInsertLength+1), [
 			insertCamera[0],
 			insertCamera[1]
 		])
