@@ -75,7 +75,7 @@ return new ICadGenerator(){
 	String boltsize = "M5x25"
 	def insert=["heatedThreadedInsert", "M5"]
 	def insertCamera=["heatedThreadedInsert", "M5"]
-	def cameraInsertLength = 100
+	def cameraInsertLength = 15
 	HashMap<String,Object> measurmentsHorn = Vitamins.getConfiguration(  "LewanSoulHorn","round")
 	def hornKeepawayLen = measurmentsHorn.mountPlateToHornTop
 	double centerlineToOuterSurfacePositiveZ = centerTheMotorsValue+movingPartClearence+hornKeepawayLen-1
@@ -577,14 +577,21 @@ return new ICadGenerator(){
 		double xOffset = grid*7.5;
 		double yOffset = -grid*0.5;
 		def cameraNut = new TransformNR(xOffset+grid/2,yOffset+grid/2,0,new RotationNR(0,0,0))
-		CSG cameraBoltHole = new Cylinder(2.5,cameraInsertLength+2).toCSG()
+		def cameraHeight =120
+		CSG cameraBoltHole = new Cylinder(2.5,cameraInsertLength+cameraHeight+2).toCSG()
+		CSG cameraCone =  new Cylinder(grid/2, // Radius at the bottom
+                      		insertMeasurments.diameter/2+2, // Radius at the top
+                      		cameraHeight, // Height
+                      		(int)8 //resolution
+                      		).toCSG()//convert to CSG to display 
+							 .transformed(TransformFactory.nrToCSG(cameraNut))
 		def mountLoacionsCamera = [
 			new TransformNR(xOffset,yOffset,0,new RotationNR(180,0,0)),
 			new TransformNR(xOffset,yOffset+grid,0,new RotationNR(180,0,0)),
 			new TransformNR(xOffset+grid,yOffset,0,new RotationNR(180,0,0)),
 			new TransformNR(xOffset+grid,yOffset+grid,0,new RotationNR(180,0,0))
 		]
-		def corners =[]
+		def corners =[cameraCone]
 		for(TransformNR t:mountLoacionsCamera) {
 			def tr = TransformFactory.nrToCSG(t)
 			corners.add(cameraBuildingBlockRound.toZMax().transformed(tr)
