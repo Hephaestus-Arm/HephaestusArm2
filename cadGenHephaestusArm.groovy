@@ -75,7 +75,9 @@ return new ICadGenerator(){
 	String boltsize = "M5x25"
 	def insert=["heatedThreadedInsert", "M5"]
 	def insertCamera=["heatedThreadedInsert", "M5"]
-	def cameraInsertLength = 10
+	def insertMeasurments= Vitamins.getConfiguration(insert[0],
+		insert[1])
+	def cameraInsertLength = insertMeasurments.installLength
 	HashMap<String,Object> measurmentsHorn = Vitamins.getConfiguration(  "LewanSoulHorn","round")
 	def hornKeepawayLen = measurmentsHorn.mountPlateToHornTop
 	double centerlineToOuterSurfacePositiveZ = centerTheMotorsValue+movingPartClearence+hornKeepawayLen-1
@@ -704,7 +706,7 @@ return new ICadGenerator(){
 		TransformNR centerOfMassFromCentroid=new TransformNR();
 		def vitamins=[]
 		mountLoacionsCamera.forEach{
-			vitamins.add(new Cylinder(5.75/2,cameraInsertLength+1)
+			vitamins.add(new Cylinder(5.75/2,cameraInsertLength)
 				.toCSG()
 				.toZMax()
 				.transformed(TransformFactory.nrToCSG(it))
@@ -806,15 +808,7 @@ return new ICadGenerator(){
 					new Vector3d(0, 3, 0)
 		]
 		CSG pointer = HullUtil.hull(points)
-		cameraBlock=cameraBlock.difference(vitamins)
-		cameraBlock.setColor(javafx.scene.paint.Color.BLUE)
-		cameraBlock.setName("CameraStandMount")
-		cameraBlock.setManufacturing ({ mfg ->
-			return mfg.roty(180).toZMin()
-		})
-		cameraBlock.setManipulator(b.getRootListener())
 		
-		allCad.add(cameraBlock)
 		def Base = CSG.unionAll(coreParts)
 				.union(calibrationFramemountUnit)
 				.union(calibrationFramemountUnit.mirrory())
@@ -843,6 +837,16 @@ return new ICadGenerator(){
 						.movez(1)
 						.movex(-extra)
 						.difference(boltHolePattern)
+		cameraBlock=cameraBlock.difference(paper)
+			.difference(vitamins)
+		cameraBlock.setColor(javafx.scene.paint.Color.BLUE)
+		cameraBlock.setName("CameraStandMount")
+		cameraBlock.setManufacturing ({ mfg ->
+			return mfg.toZMin()
+		})
+		cameraBlock.setManipulator(b.getRootListener())
+		
+		allCad.add(cameraBlock)
 		def board = new Cube(boardx,boardy,boardThickness).toCSG()
 						.toZMax()
 						.toXMin()
