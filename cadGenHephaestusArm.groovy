@@ -75,7 +75,7 @@ return new ICadGenerator(){
 	String boltsize = "M5x25"
 	def insert=["heatedThreadedInsert", "M5"]
 	def insertCamera=["heatedThreadedInsert", "M5"]
-	def cameraInsertLength = 15
+	def cameraInsertLength = 10
 	HashMap<String,Object> measurmentsHorn = Vitamins.getConfiguration(  "LewanSoulHorn","round")
 	def hornKeepawayLen = measurmentsHorn.mountPlateToHornTop
 	double centerlineToOuterSurfacePositiveZ = centerTheMotorsValue+movingPartClearence+hornKeepawayLen-1
