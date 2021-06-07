@@ -593,10 +593,10 @@ return new ICadGenerator(){
 			new TransformNR(xOffset+grid,yOffset,0,new RotationNR(180,0,0)),
 			new TransformNR(xOffset+grid,yOffset+grid,0,new RotationNR(180,0,0))
 		]
-		def corners =[cameraCone]
+		def corners =[cameraCone.movez(1)]
 		for(TransformNR t:mountLoacionsCamera) {
 			def tr = TransformFactory.nrToCSG(t)
-			corners.add(cameraBuildingBlockRound.toZMax().transformed(tr)
+			corners.add(cameraBuildingBlockRound.toZMax().transformed(tr).movez(1)
 				)
 				
 		}
@@ -741,6 +741,15 @@ return new ICadGenerator(){
 
 			//do com calculation here for centerOfMassFromCentroid and totalMass
 		}
+		
+		cameraBlock=cameraBlock.difference(vitamins)
+		cameraBlock.setColor(javafx.scene.paint.Color.BLUE)
+		cameraBlock.setName("CameraStandMount")
+		cameraBlock.setManufacturing ({ mfg ->
+			return mfg.toZMin()
+		})
+		cameraBlock.setManipulator(b.getRootListener())
+		
 		//Do additional CAD and add to the running CoM
 		def thrustMeasurments= Vitamins.getConfiguration("ballBearing",
 				thrustBearingSize)
@@ -837,14 +846,7 @@ return new ICadGenerator(){
 						.movez(1)
 						.movex(-extra)
 						.difference(boltHolePattern)
-		cameraBlock=cameraBlock.difference(paper)
-			.difference(vitamins)
-		cameraBlock.setColor(javafx.scene.paint.Color.BLUE)
-		cameraBlock.setName("CameraStandMount")
-		cameraBlock.setManufacturing ({ mfg ->
-			return mfg.toZMin()
-		})
-		cameraBlock.setManipulator(b.getRootListener())
+
 		
 		allCad.add(cameraBlock)
 		def board = new Cube(boardx,boardy,boardThickness).toCSG()
@@ -863,6 +865,7 @@ return new ICadGenerator(){
 		.movez(-boardThickness)
 		.difference(boltHoleKeepawayPattern)
 		.difference(vitamins)
+
 		cardboard.setColor(javafx.scene.paint.Color.SADDLEBROWN)
 		
 		cardboard.addExportFormat("svg")
