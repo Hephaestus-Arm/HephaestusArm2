@@ -117,7 +117,7 @@ The goal of this section is to give you an understanding of your kit and the par
 
  1x - [Adafruit ItsyBitsy](https://www.adafruit.com/product/3800) : The microcontroller for the arm.
 
- 1x - [USB Cable](https://www.amazon.com/NetDot-Magnetic-Charging-Transfer-Compatible/dp/B07QDS3CHN) : A wire to connect the ItsyBitsy to their computer.
+ 1x - [USB Cable](https://www.amazon.com/dp/B07232M876/) : A wire to connect the ItsyBitsy to their computer.
 
  1x - [Double Header Pins](https://www.pololu.com/product/1065) : Pins to connect wires and the ItsyBitsy to the breadboard.
 
