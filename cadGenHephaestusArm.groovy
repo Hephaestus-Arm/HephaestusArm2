@@ -77,7 +77,7 @@ return new ICadGenerator(){
 	def insertCamera=["heatedThreadedInsert", "M5"]
 	def insertMeasurments= Vitamins.getConfiguration(insert[0],
 		insert[1])
-	def cameraInsertLength = insertMeasurments.installLength
+	double cameraInsertLength = insertMeasurments.installLength
 	HashMap<String,Object> measurmentsHorn = Vitamins.getConfiguration(  "LewanSoulHorn","round")
 	double hornKeepawayLen = measurmentsHorn.mountPlateToHornTop
 	double centerlineToOuterSurfacePositiveZ = centerTheMotorsValue+movingPartClearence+hornKeepawayLen-1
