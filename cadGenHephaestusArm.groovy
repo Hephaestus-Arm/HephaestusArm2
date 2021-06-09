@@ -79,7 +79,7 @@ return new ICadGenerator(){
 		insert[1])
 	def cameraInsertLength = insertMeasurments.installLength
 	HashMap<String,Object> measurmentsHorn = Vitamins.getConfiguration(  "LewanSoulHorn","round")
-	def hornKeepawayLen = measurmentsHorn.mountPlateToHornTop
+	double hornKeepawayLen = measurmentsHorn.mountPlateToHornTop
 	double centerlineToOuterSurfacePositiveZ = centerTheMotorsValue+movingPartClearence+hornKeepawayLen-1
 	double centerlineToOuterSurfaceNegativeZ = -(centerTheMotorsValue+movingPartClearence+linkThickness)
 	CSG linkBuildingBlockRoundCyl = new Cylinder(linkYDimention/2,linkYDimention/2,linkThickness,30)
