@@ -144,6 +144,7 @@ return new ICadGenerator(){
 				conf.getShaftType(),
 				conf.getShaftSize()
 		])
+
 		TransformNR locationOfBearing = locationOfMotorMount.copy().translateY(1)
 		if(linkIndex==0) {
 			vitaminLocations.put(locationOfBearing, [
@@ -659,6 +660,10 @@ return new ICadGenerator(){
 			])
 			// cut the hole in the base for the shaft
 			vitaminLocations.put(pinionRoot, [
+				conf.getShaftType(),
+				conf.getShaftSize()
+			])
+			vitaminLocations.put(pinionRoot.copy().translateZ(3), [
 				conf.getShaftType(),
 				conf.getShaftSize()
 			])
