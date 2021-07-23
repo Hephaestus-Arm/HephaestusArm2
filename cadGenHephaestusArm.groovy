@@ -80,7 +80,7 @@ return new ICadGenerator(){
 	double cameraInsertLength = insertMeasurments.installLength
 	HashMap<String,Object> measurmentsHorn = Vitamins.getConfiguration(  "LewanSoulHorn","round")
 	double hornKeepawayLen = measurmentsHorn.mountPlateToHornTop
-	double centerlineToOuterSurfacePositiveZ = centerTheMotorsValue+movingPartClearence+hornKeepawayLen-1
+	double centerlineToOuterSurfacePositiveZ = centerTheMotorsValue+movingPartClearence+hornKeepawayLen-2
 	double centerlineToOuterSurfaceNegativeZ = -(centerTheMotorsValue+movingPartClearence+linkThickness)
 	CSG linkBuildingBlockRoundCyl = new Cylinder(linkYDimention/2,linkYDimention/2,linkThickness,30)
 		.toCSG()
@@ -288,7 +288,7 @@ return new ICadGenerator(){
 		
 		if(linkIndex==1) {
 			double braceDistance=-5;
-			double linkClearence = 18.5
+			double linkClearence = 22.5
 			def mountMotorSidekw = linkBuildingBlockRoundCyl
 										.movez(centerTheMotorsValue)
 										.movex(-linkClearence-movingPartClearence)
