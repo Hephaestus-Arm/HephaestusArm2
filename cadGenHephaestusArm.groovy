@@ -663,10 +663,10 @@ return new ICadGenerator(){
 				conf.getShaftType(),
 				conf.getShaftSize()
 			])
-			vitaminLocations.put(pinionRoot.copy().translateZ(3), [
-				conf.getShaftType(),
-				conf.getShaftSize()
-			])
+//			vitaminLocations.put(pinionRoot.copy().translateZ(3), [
+//				conf.getShaftType(),
+//				conf.getShaftSize()
+//			])
 		}
 		
 		double yOffsetFeducial = baseGrid*4
