@@ -68,6 +68,8 @@ return new ICadGenerator(){
 	double centerTheMotorsValue=20;
 	double radiusOfGraspingObject=12.5;
 	double movingPartClearence =1.5
+	double thrustBearing_inset_Into_bottom = 1
+	double topOfHornToBotomOfBaseLinkDistance = movingPartClearence-thrustBearing_inset_Into_bottom
 	double linkThickness = 6
 	double linkYDimention = 20;
 	double GripperServoYOffset = 35
@@ -78,7 +80,7 @@ return new ICadGenerator(){
 	def insertMeasurments= Vitamins.getConfiguration(insert[0],
 		insert[1])
 	double cameraInsertLength = insertMeasurments.installLength
-	HashMap<String,Object> measurmentsHorn = Vitamins.getConfiguration(  "LewanSoulHorn","round")
+	HashMap<String,Object> measurmentsHorn = Vitamins.getConfiguration(  "LewanSoulHorn","round_m3_bolts")
 	double hornKeepawayLen = measurmentsHorn.mountPlateToHornTop
 	double centerlineToOuterSurfacePositiveZ = centerTheMotorsValue+movingPartClearence+hornKeepawayLen-2
 	double centerlineToOuterSurfaceNegativeZ = -(centerTheMotorsValue+movingPartClearence+linkThickness)
@@ -128,6 +130,7 @@ return new ICadGenerator(){
 		def thrustMeasurments= Vitamins.getConfiguration("ballBearing",
 			thrustBearingSize)
 		def baseCorRad = thrustMeasurments.outerDiameter/2+5
+		
 		double servoAllignmentAngle=0
 		CSG gripperMotor=null;
 		TransformNR locationOfGripperHinge=null
@@ -137,7 +140,7 @@ return new ICadGenerator(){
 		def insertMeasurments= Vitamins.getConfiguration(insert[0],
 			insert[1])
 		if(linkIndex==0)
-			shaftLocation.translateY(zOffset)
+			shaftLocation.translateY(zOffset-topOfHornToBotomOfBaseLinkDistance)
 		else
 			shaftLocation.translateZ(centerTheMotorsValue)
 		vitaminLocations.put(shaftLocation, [
@@ -145,13 +148,15 @@ return new ICadGenerator(){
 				conf.getShaftSize()
 		])
 
-		TransformNR locationOfBearing = locationOfMotorMount.copy().translateY(1)
+		TransformNR locationOfBearing = locationOfMotorMount.copy().translateY(thrustBearing_inset_Into_bottom)
 		if(linkIndex==0) {
 			vitaminLocations.put(locationOfBearing, [
 				"ballBearing",
 				thrustBearingSize
 			])
 		}
+		CSG vitamin_LewanSoulHorn_round_m3_bolts = Vitamins.get("LewanSoulHorn", "round_m3_bolts")
+
 		if(linkIndex==1) {
 			def mountBoltOne =locationOfMotorMount.copy()
 							.times(new TransformNR().translateZ(centerlineToOuterSurfacePositiveZ+linkThickness)
@@ -512,7 +517,7 @@ return new ICadGenerator(){
 		}
 		
 		if(linkIndex==0) {
-			def z = dh.getD()-10-movingPartClearence/2
+			def z = dh.getD()-10
 			def supportBeam= new RoundedCube(linkYDimention+linkThickness*2.5,40+linkThickness*2,z)
 								.cornerRadius(cornerRad)
 								.toCSG()
@@ -643,14 +648,14 @@ return new ICadGenerator(){
 			if(locationOfBearing.getZ()>baseCoreheight)
 				baseCoreheight=locationOfBearing.getZ()
 			locationOfMotorMount.translateZ(-zOffset)
-			TransformNR pinionRoot = locationOfMotorMount.copy()
+			TransformNR pinionRoot = locationOfMotorMount.copy().translateZ(topOfHornToBotomOfBaseLinkDistance)
 			def extractionLocationOfMotor =locationOfMotorMount.copy().translateZ(-20)
 
 			vitaminLocations.put(locationOfBearing.copy().translateZ(-1), [
 				"ballBearing",
 				thrustBearingSize
 			])
-			vitaminLocations.put(locationOfMotorMount, [
+			vitaminLocations.put(locationOfMotorMount.copy().translateZ(topOfHornToBotomOfBaseLinkDistance), [
 				conf.getElectroMechanicalType(),
 				conf.getElectroMechanicalSize()
 			])
