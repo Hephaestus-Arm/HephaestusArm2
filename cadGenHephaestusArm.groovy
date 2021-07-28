@@ -655,7 +655,7 @@ return new ICadGenerator(){
 				"ballBearing",
 				thrustBearingSize
 			])
-			vitaminLocations.put(locationOfMotorMount.copy().translateZ(topOfHornToBotomOfBaseLinkDistance).translateZ(0.1), [
+			vitaminLocations.put(locationOfMotorMount.copy().translateZ(topOfHornToBotomOfBaseLinkDistance+1), [
 				conf.getElectroMechanicalType(),
 				conf.getElectroMechanicalSize()
 			])
