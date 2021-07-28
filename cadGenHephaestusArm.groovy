@@ -655,7 +655,7 @@ return new ICadGenerator(){
 				"ballBearing",
 				thrustBearingSize
 			])
-			vitaminLocations.put(locationOfMotorMount.copy().translateZ(topOfHornToBotomOfBaseLinkDistance), [
+			vitaminLocations.put(locationOfMotorMount.copy().translateZ(topOfHornToBotomOfBaseLinkDistance).translateZ(0.1), [
 				conf.getElectroMechanicalType(),
 				conf.getElectroMechanicalSize()
 			])
@@ -820,7 +820,8 @@ return new ICadGenerator(){
 		def cordCutter = new Cube(10,40,30).toCSG()
 							.toYMin()
 							.toZMax()
-							.movez(baseCoreheight-37)	
+							.movez(baseCoreheight-37)
+							.movez(topOfHornToBotomOfBaseLinkDistance+5)
 		
 		def points = [	new Vector3d(10,0,0),
 					new Vector3d(0, 0, 5),
