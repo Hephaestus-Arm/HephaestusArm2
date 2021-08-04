@@ -77,6 +77,7 @@ return new ICadGenerator(){
 	double pcbScrewXSpacing = 45.72
 	double pcbScrewYSpacing = 54.61
 	double pcbScrewMountHeight = 5
+	double pcbOffset = 0
 	
 	def cornerRad=2
 	String boltsize = "M5x25"
@@ -858,18 +859,20 @@ return new ICadGenerator(){
 						
 						
 						
-		def pcbmountpoints = [
-			new Transform( (pcbScrewXSpacing/2.0), (-pcbScrewYSpacing/2.0), 0),
-			new Transform( (pcbScrewXSpacing/2.0), (pcbScrewYSpacing/2.0), 0) ,
-			new Transform( (-pcbScrewXSpacing/2.0) , (-pcbScrewYSpacing/2.0), 0),
-			new Transform( (-pcbScrewXSpacing/2.0) , (pcbScrewYSpacing/2.0), 0)
+	
+		def pcbmountstud = new Cylinder(5,pcbScrewMountHeight).toCSG().roty(90).movex(Base.getMinX())
+		def pcbmountstuds = CSG.unionAll([
+			pcbmountstud.transformed(new Transform().movex(pcbScrewXSpacing/2.0).movez(-pcbScrewYSpacing/2.0)),
+			pcbmountstud.transformed(new Transform().movex(pcbScrewXSpacing/2.0).movez(pcbScrewYSpacing/2.0)),
+			pcbmountstud.transformed(new Transform().movex(-pcbScrewXSpacing/2.0).movez(-pcbScrewYSpacing/2.0)),
+			pcbmountstud.transformed(new Transform().movex(-pcbScrewXSpacing/2.0).movez(pcbScrewYSpacing/2.0))
 			]
-						
-		def pcbmountstud = new Cylinder(5,pcbScrewMountHeight).toCSG().roty(90).movex(-40)
-		for(TransformNR t:pcbmountpoints) {
-			//Base = Base.union(pcbmountstud.transformed(t))
-		}
-						
+			)
+		
+		/*
+		for(def t:pcbmountpoints) {
+			Base = Base.union(pcbmountstud.transformed(t))
+		}*/
 		Base.setColor(javafx.scene.paint.Color.PINK)
 		// add it to the return list
 		Base.setManipulator(b.getRootListener())
@@ -927,7 +930,7 @@ return new ICadGenerator(){
 			return mfg.toZMin()
 		})
 		paper.setColor(javafx.scene.paint.Color.WHITE)
-		allCad.addAll(Base,paper,board,cardboard)
+		allCad.addAll(Base,paper,board,cardboard,pcbmountstud,pcbmountstuds)
 		Base.addExportFormat("stl")
 		Base.addExportFormat("svg")
 		Base.setName("BaseMount")
