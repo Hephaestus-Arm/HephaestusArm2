@@ -859,13 +859,14 @@ return new ICadGenerator(){
 						
 						
 						
-	
+
 		def pcbmountstud = new Cylinder(5,pcbScrewMountHeight).toCSG().roty(90).movex(Base.getMinX())
 		def pcbmountstuds = CSG.unionAll([
 			pcbmountstud.transformed(new Transform().movex(pcbScrewXSpacing/2.0).movez(-pcbScrewYSpacing/2.0)),
 			pcbmountstud.transformed(new Transform().movex(pcbScrewXSpacing/2.0).movez(pcbScrewYSpacing/2.0)),
 			pcbmountstud.transformed(new Transform().movex(-pcbScrewXSpacing/2.0).movez(-pcbScrewYSpacing/2.0)),
 			pcbmountstud.transformed(new Transform().movex(-pcbScrewXSpacing/2.0).movez(pcbScrewYSpacing/2.0))
+
 			]
 			)
 		
