@@ -73,6 +73,11 @@ return new ICadGenerator(){
 	double linkThickness = 6
 	double linkYDimention = 20;
 	double GripperServoYOffset = 35
+	
+	double pcbScrewXSpacing = 45.72
+	double pcbScrewYSpacing = 54.61
+	double pcbScrewMountHeight = 5
+	
 	def cornerRad=2
 	String boltsize = "M5x25"
 	def insert=["heatedThreadedInsert", "M5"]
@@ -822,7 +827,13 @@ return new ICadGenerator(){
 							.toZMax()
 							.movez(baseCoreheight-37)
 							.movez(topOfHornToBotomOfBaseLinkDistance+5)
+		//pcbScrewXSpacing
+		//pcbScrewYSpacing
+	    //pcbScrewMountHeight
 		
+
+		
+							
 		def points = [	new Vector3d(10,0,0),
 					new Vector3d(0, 0, 5),
 					new Vector3d(0, -3, 0),
@@ -836,10 +847,29 @@ return new ICadGenerator(){
 				//.difference(vitamin_roundMotor_WPI_gb37y3530bracketOneKeepawayDistanceen)
 				.difference(vitamins)
 				.difference(calibrationTipKeepaway)
-				.difference(cordCutter)
+				.difference(cordCutter);
+				
+			
+
+				
 		Base = Base.intersect(Base.getBoundingBox().toXMin().movex(-baseCorRad))		
 		Base = Base.union(pointer.movex(Base.getMaxX()-2))
 						.union(pointer.rotz(90).movey(-baseCorRad+2))
+						
+						
+						
+		def pcbmountpoints = [
+			new Transform( (pcbScrewXSpacing/2.0), (-pcbScrewYSpacing/2.0), 0),
+			new Transform( (pcbScrewXSpacing/2.0), (pcbScrewYSpacing/2.0), 0) ,
+			new Transform( (-pcbScrewXSpacing/2.0) , (-pcbScrewYSpacing/2.0), 0),
+			new Transform( (-pcbScrewXSpacing/2.0) , (pcbScrewYSpacing/2.0), 0)
+			]
+						
+		def pcbmountstud = new Cylinder(5,pcbScrewMountHeight).toCSG().roty(90).movex(-40)
+		for(TransformNR t:pcbmountpoints) {
+			//Base = Base.union(pcbmountstud.transformed(t))
+		}
+						
 		Base.setColor(javafx.scene.paint.Color.PINK)
 		// add it to the return list
 		Base.setManipulator(b.getRootListener())
@@ -848,6 +878,10 @@ return new ICadGenerator(){
 			return null;
 		})
 		}
+		
+		
+		
+		
 		double extra = Math.abs(Base.getMinX())
 		double cornerOffset=grid*1.75
 		double boardx=8.5*25.4+cornerOffset
