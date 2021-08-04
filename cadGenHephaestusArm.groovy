@@ -859,10 +859,10 @@ return new ICadGenerator(){
 						
 						
 		def pcbmountpoints = [
-			new Transform( (pcbScrewXSpacing/2.0), (-pcbScrewYSpacing/2.0), 0),
-			new Transform( (pcbScrewXSpacing/2.0), (pcbScrewYSpacing/2.0), 0) ,
-			new Transform( (-pcbScrewXSpacing/2.0) , (-pcbScrewYSpacing/2.0), 0),
-			new Transform( (-pcbScrewXSpacing/2.0) , (pcbScrewYSpacing/2.0), 0)
+			new Transform( (pcbScrewXSpacing/2.0), (-pcbScrewYSpacing/2.0), 0.0),
+			new Transform( (pcbScrewXSpacing/2.0), (pcbScrewYSpacing/2.0), 0.0) ,
+			new Transform( (-pcbScrewXSpacing/2.0) , (-pcbScrewYSpacing/2.0), 0.0),
+			new Transform( (-pcbScrewXSpacing/2.0) , (pcbScrewYSpacing/2.0), 0.0)
 			]
 						
 		def pcbmountstud = new Cylinder(5,pcbScrewMountHeight).toCSG().roty(90).movex(-40)
