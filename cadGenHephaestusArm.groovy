@@ -74,10 +74,7 @@ return new ICadGenerator(){
 	double linkYDimention = 20;
 	double GripperServoYOffset = 35
 	
-	double pcbScrewXSpacing = 45.72
-	double pcbScrewYSpacing = 54.61
-	double pcbScrewMountHeight = 5
-	double pcbOffset = 0
+
 	
 	def cornerRad=2
 	String boltsize = "M5x25"
@@ -856,24 +853,22 @@ return new ICadGenerator(){
 		Base = Base.intersect(Base.getBoundingBox().toXMin().movex(-baseCorRad))		
 		Base = Base.union(pointer.movex(Base.getMaxX()-2))
 						.union(pointer.rotz(90).movey(-baseCorRad+2))
-						
-						
-						
 
-		def pcbmountstud = new Cylinder(5,pcbScrewMountHeight).toCSG().roty(90).movex(Base.getMinX())
-		def pcbmountstuds = CSG.unionAll([
-			pcbmountstud.transformed(new Transform().movex(pcbScrewXSpacing/2.0).movez(-pcbScrewYSpacing/2.0)),
-			pcbmountstud.transformed(new Transform().movex(pcbScrewXSpacing/2.0).movez(pcbScrewYSpacing/2.0)),
-			pcbmountstud.transformed(new Transform().movex(-pcbScrewXSpacing/2.0).movez(-pcbScrewYSpacing/2.0)),
-			pcbmountstud.transformed(new Transform().movex(-pcbScrewXSpacing/2.0).movez(pcbScrewYSpacing/2.0))
+		def pcbmount = ScriptingEngine.gitScriptRun(
+				"https://github.com/Hephaestus-Arm/HephaestusArm2.git", // git location of the library
+				"pcbmountpoints.groovy" , // file to load
+				// Parameters passed to the funcetion
+				[45.72, //Holes X Spacing
+					0, //Holes Y Spacing
+					5, //Pillar Dia
+					2, //Hole Dia
+					5, //Height
+				])
 
-			]
-			)
-		
-		/*
-		for(def t:pcbmountpoints) {
-			Base = Base.union(pcbmountstud.transformed(t))
-		}*/
+		pcbmount = pcbmount.rotz(90).roty(90).movex(Base.getMinX())
+		pcbmount = pcbmount.movez(-pcbmount.getMinZ()+2)
+
+		Base = Base.union(pcbmount)
 		Base.setColor(javafx.scene.paint.Color.PINK)
 		// add it to the return list
 		Base.setManipulator(b.getRootListener())
@@ -931,7 +926,9 @@ return new ICadGenerator(){
 			return mfg.toZMin()
 		})
 		paper.setColor(javafx.scene.paint.Color.WHITE)
-		allCad.addAll(Base,paper,board,cardboard,pcbmountstud,pcbmountstuds)
+		
+		Base = Base.movex(-(-pcbmount.getMinX()+pcbmount.getMaxX()))
+		allCad.addAll(Base,paper,board,cardboard)
 		Base.addExportFormat("stl")
 		Base.addExportFormat("svg")
 		Base.setName("BaseMount")
