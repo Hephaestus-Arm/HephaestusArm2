@@ -70,7 +70,7 @@ return new ICadGenerator(){
 	double movingPartClearence =1.5
 	double thrustBearing_inset_Into_bottom = 1
 	double topOfHornToBotomOfBaseLinkDistance = movingPartClearence-thrustBearing_inset_Into_bottom
-	double linkThickness = 5
+	
 	double linkYDimention = 20;
 	double GripperServoYOffset = 35
 	
@@ -85,6 +85,7 @@ return new ICadGenerator(){
 	double cameraInsertLength = insertMeasurments.installLength
 	HashMap<String,Object> measurmentsHorn = Vitamins.getConfiguration(  "LewanSoulHorn","round_m3_bolts")
 	double hornKeepawayLen = measurmentsHorn.mountPlateToHornTop
+	double linkThickness = hornKeepawayLen
 	double centerlineToOuterSurfacePositiveZ = centerTheMotorsValue+movingPartClearence+hornKeepawayLen-2
 	double centerlineToOuterSurfaceNegativeZ = -(centerTheMotorsValue+movingPartClearence+linkThickness)
 	CSG linkBuildingBlockRoundCyl = new Cylinder(linkYDimention/2,linkYDimention/2,linkThickness,30)
