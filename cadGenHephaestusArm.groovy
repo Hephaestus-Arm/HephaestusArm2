@@ -865,7 +865,7 @@ return new ICadGenerator(){
 					2, //Hole Dia
 					5, //Height
 				])
-
+		double extra = Math.abs(Base.getMinX())
 		pcbmount = pcbmount.rotz(90).roty(90).movex(Base.getMinX())
 		pcbmount = pcbmount.movez(-pcbmount.getMinZ()+2)
 
@@ -882,7 +882,7 @@ return new ICadGenerator(){
 		
 		
 		
-		double extra = Math.abs(Base.getMinX())
+		
 		double cornerOffset=grid*1.75
 		double boardx=8.5*25.4+cornerOffset
 		double boardy=11.0*25.4+cornerOffset
@@ -928,7 +928,6 @@ return new ICadGenerator(){
 		})
 		paper.setColor(javafx.scene.paint.Color.WHITE)
 		
-		Base = Base.movex(-(-pcbmount.getMinX()+pcbmount.getMaxX()))
 		allCad.addAll(Base,paper,board,cardboard)
 		Base.addExportFormat("stl")
 		Base.addExportFormat("svg")
