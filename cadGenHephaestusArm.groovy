@@ -882,7 +882,7 @@ return new ICadGenerator(){
 				2, //Height
 			])
 		double extra = Math.abs(Base.getMinX())
-		pcbmount = pcbmount.union(pcbmounttop.movey(35)).rotz(90).roty(90).movex(Base.getMinX())
+		pcbmount = pcbmount.union(pcbmounttop.movey(40)).rotz(90).roty(90).movex(Base.getMinX())
 		pcbmount = pcbmount.movez(-pcbmount.getMinZ()+2)
 
 
