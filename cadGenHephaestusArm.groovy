@@ -70,7 +70,7 @@ return new ICadGenerator(){
 	double movingPartClearence =1.5
 	double thrustBearing_inset_Into_bottom = 1
 	double topOfHornToBotomOfBaseLinkDistance = movingPartClearence-thrustBearing_inset_Into_bottom
-	double linkThickness = 6
+	double linkThickness = 5
 	double linkYDimention = 20;
 	double GripperServoYOffset = 35
 	
