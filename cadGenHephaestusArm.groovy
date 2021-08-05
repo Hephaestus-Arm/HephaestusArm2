@@ -867,14 +867,14 @@ return new ICadGenerator(){
 				[45.72, //Holes X Spacing
 					0, //Holes Y Spacing
 					5, //Pillar Dia
-					2, //Hole Dia
-					5, //Height
+					1.2, //Hole Dia
+					2, //Height
 				])
 		double extra = Math.abs(Base.getMinX())
 		pcbmount = pcbmount.rotz(90).roty(90).movex(Base.getMinX())
 		pcbmount = pcbmount.movez(-pcbmount.getMinZ()+2)
 
-		Base = Base.union(pcbmount)
+
 		Base.setColor(javafx.scene.paint.Color.PINK)
 		// add it to the return list
 		Base.setManipulator(b.getRootListener())
@@ -883,11 +883,10 @@ return new ICadGenerator(){
 			return null;
 		})
 		}
-		
-		
-		
-		
-		
+
+
+		Base = Base.union(pcbmount)
+
 		double cornerOffset=grid*1.75
 		double boardx=8.5*25.4+cornerOffset
 		double boardy=11.0*25.4+cornerOffset
