@@ -176,10 +176,10 @@ return new ICadGenerator(){
 									.translateY(+20))
 							
 			vitaminLocations.put(mountBoltOne,["capScrew", boltsize])
-			vitaminLocations.put(mountBoltOne.times(new TransformNR().translateZ(-linkThickness-hornKeepawayLen-0.5-insertMeasurments.installLength)),
+			vitaminLocations.put(mountBoltOne.times(new TransformNR().translateZ(-linkThickness-insertMeasurments.installLength)),
 				insert)
 			vitaminLocations.put(mountBoltTwo,["capScrew", boltsize])
-			vitaminLocations.put(mountBoltTwo.times(new TransformNR().translateZ(-linkThickness-hornKeepawayLen-0.5-insertMeasurments.installLength)),
+			vitaminLocations.put(mountBoltTwo.times(new TransformNR().translateZ(-linkThickness-insertMeasurments.installLength)),
 				insert)
 			
 		}
@@ -301,6 +301,7 @@ return new ICadGenerator(){
 		def actuatorCirclekw = linkBuildingBlockRoundCyl.movez(centerlineToOuterSurfacePositiveZ).transformed(actuatorSpace)
 		def passivLinkLug = gripperLug.transformed(actuatorSpace)
 		double offsetOfLinks=0.0
+		double braceBackSetFromMotorLinkTop=1.0
 		if(linkIndex==1) {
 			double braceDistance=-5;
 			
@@ -328,18 +329,18 @@ return new ICadGenerator(){
 													.movey(braceDistance)
 													.movex(-linkClearence-movingPartClearence-dh.getR()+bracketOneKeepawayDistance)
 			def bracemountMotorSide=actuatorCircle
-									.movez(-offsetOfLinks)
+									.movez(-braceBackSetFromMotorLinkTop)
 									.movex(bracketOneKeepawayDistance-linkYDimention/2)
 									.movey(braceDistance)
 										
 			def brace = CSG.unionAll([
 				bracemountMotorSide,
-				bracemountPassiveSideAlligned
+				bracemountPassiveSideAlligned.movez(-braceBackSetFromMotorLinkTop)
 				]).hull()
 			brace = brace
 						.union([
 							brace
-							.movez(-centerlineToOuterSurfacePositiveZ+centerlineToOuterSurfaceNegativeZ+0.5),
+							.movez(-centerlineToOuterSurfacePositiveZ+centerlineToOuterSurfaceNegativeZ+offsetOfLinks),
 							clearencelugMotorSide,clearencelugPassiveSide
 							]
 						).hull()
@@ -363,24 +364,21 @@ return new ICadGenerator(){
 							.hull()
 							.difference(vitamins)
 			def FullBracket =CSG.unionAll([center,passiveSide,brace])
-							.difference(motorSidePlatekw.getBoundingBox())
+							//.difference(motorSidePlatekw.getBoundingBox())
+							.difference(MotorMountBracket)
+							.union(motorSidePlate)
 							.difference(vitamins)
 							.difference(motorToCut)
-							.difference(MotorMountBracketkw.getBoundingBox())
-			def finalMiddlePlate = motorSidePlate
-								.difference(vitamins)
+
 								
 			
-			finalMiddlePlate.setColor(javafx.scene.paint.Color.GREENYELLOW)
 			MotorMountBracket.setColor(javafx.scene.paint.Color.DARKCYAN)
 			FullBracket.setColor(javafx.scene.paint.Color.YELLOW)
 			MotorMountBracket.setManipulator(manipulator)
 			FullBracket.setManipulator(manipulator)
-			finalMiddlePlate.setManipulator(manipulator)
 			FullBracket.setName("MiddleLinkMainBracket")
 			MotorMountBracket.setName("MiddleLinkActuatorBracket")
-			finalMiddlePlate.setName("MiddleLinkMiddleBracket")
-			allCad.addAll(FullBracket,MotorMountBracket,finalMiddlePlate)
+			allCad.addAll(FullBracket,MotorMountBracket)
 		}
 		if(linkIndex==2) {
 			CSG objectToGrab = new Sphere(radiusOfGraspingObject,32,16).toCSG()
