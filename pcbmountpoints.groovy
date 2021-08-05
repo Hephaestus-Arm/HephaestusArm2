@@ -26,6 +26,9 @@ double pcbHoleDia = args[3]
 
 
 def pcbmountstud = new Cylinder(pcbPillarDia,pcbPillarDia/2,pcbMountHeight).toCSG()
+def pcbmountbase = new Cylinder(pcbPillarDia,pcbMountHeight).toCSG()
+							.toZMax()
+pcbmountstud = pcbmountstud.union(pcbmountbase)
 def pcbmountstuds = CSG.unionAll([
 	pcbmountstud.movex(pcbScrewXSpacing/2.0).movey(-pcbScrewYSpacing/2.0),
 	pcbmountstud.movex(pcbScrewXSpacing/2.0).movey(pcbScrewYSpacing/2.0),
