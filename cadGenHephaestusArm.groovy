@@ -29,7 +29,6 @@ import eu.mihosoft.vrl.v3d.RoundedCylinder
 import eu.mihosoft.vrl.v3d.Sphere
 import eu.mihosoft.vrl.v3d.Transform
 
-import com.neuronrobotics.bowlerstudio.vitamins.*;
 import javafx.scene.transform.Affine;
 import  eu.mihosoft.vrl.v3d.ext.quickhull3d.*
 import eu.mihosoft.vrl.v3d.parametrics.LengthParameter
