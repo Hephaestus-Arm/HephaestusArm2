@@ -53,25 +53,18 @@ CSG moveDHValues(CSG incoming,DHLink dh ){
 
 return new ICadGenerator(){
 
-		static final int bracketOneKeepawayDistance = 50
-	//			private HashMap<String, GearManager>  map= new HashMap<>()
-	//			public  GearManager get(DHParameterKinematics b) {
-	//				if(map.get(b.getXml())==null) {
-	//					map.put(b.getXml(), new GearManager(b))
-	//				}
-	//				return map.get(b.getXml())
-	//			}
+    int bracketOneKeepawayDistance = 50
+
 	double motorGearPlateThickness = 10
 	double boardThickness =6.5
 	
 	def thrustBearingSize = "Thrust_1andAHalfinch"
-	double centerTheMotorsValue=20;
 	double radiusOfGraspingObject=12.5;
-	double movingPartClearence =1.5
+	
 	double thrustBearing_inset_Into_bottom = 1
 	double topOfHornToBotomOfBaseLinkDistance = movingPartClearence-thrustBearing_inset_Into_bottom
 	
-	double linkYDimention = 20;
+
 	double GripperServoYOffset = 35
 	
 
@@ -83,10 +76,22 @@ return new ICadGenerator(){
 	def insertMeasurments= Vitamins.getConfiguration(insert[0],
 		insert[1])
 	double cameraInsertLength = insertMeasurments.installLength
-	HashMap<String,Object> measurmentsHorn = Vitamins.getConfiguration(  "LewanSoulHorn","round_m3_bolts")
+	
+	HashMap<String,Object> measurmentsMotor = Vitamins.getConfiguration(  "LewanSoulMotor","lx_224")
+	HashMap<String,Object> measurmentsHorn = Vitamins.getConfiguration(  measurmentsMotor.shaftType,measurmentsMotor.shaftSize)
+	
+	double motorz =  measurmentsMotor.body_z
+	double motorPassiveLinkSideWasherTHickness=measurmentsMotor.shoulderHeight
 	double hornKeepawayLen = measurmentsHorn.mountPlateToHornTop
+	double centerTheMotorsValue=motorz/2;
+	double linkYDimention = measurmentsMotor.body_x;
+	double movingPartClearence =motorPassiveLinkSideWasherTHickness
+	double totalMotorAndHorn = motorz+hornKeepawayLen+movingPartClearence;
+	
+	
+	
 	double linkThickness = hornKeepawayLen
-	double centerlineToOuterSurfacePositiveZ = centerTheMotorsValue+movingPartClearence+hornKeepawayLen-2
+	double centerlineToOuterSurfacePositiveZ = centerTheMotorsValue+hornKeepawayLen
 	double centerlineToOuterSurfaceNegativeZ = -(centerTheMotorsValue+movingPartClearence+linkThickness)
 	CSG linkBuildingBlockRoundCyl = new Cylinder(linkYDimention/2,linkYDimention/2,linkThickness,30)
 		.toCSG()
@@ -110,6 +115,7 @@ return new ICadGenerator(){
 	double offsetValue = 0.6
 	@Override
 	public ArrayList<CSG> generateCad(DHParameterKinematics d, int linkIndex) {
+		System.out.println( "Total motor and horn length "+totalMotorAndHorn)
 		offset.setMM(offsetValue)
 		def vitaminLocations = new HashMap<TransformNR,ArrayList<String>>()
 		ArrayList<DHLink> dhLinks = d.getChain().getLinks()
@@ -294,10 +300,11 @@ return new ICadGenerator(){
 		def actuatorCircle = tipCupCircle.transformed(actuatorSpace)
 		def actuatorCirclekw = linkBuildingBlockRoundCyl.movez(centerlineToOuterSurfacePositiveZ).transformed(actuatorSpace)
 		def passivLinkLug = gripperLug.transformed(actuatorSpace)
-		
+		double offsetOfLinks=0.0
 		if(linkIndex==1) {
 			double braceDistance=-5;
-			double linkClearence = 22.5
+			
+			double linkClearence = totalMotorAndHorn/2
 			def mountMotorSidekw = linkBuildingBlockRoundCyl
 										.movez(centerTheMotorsValue)
 										.movex(-linkClearence-movingPartClearence)
@@ -313,15 +320,15 @@ return new ICadGenerator(){
 			def clearencelugMotorSide = mountMotorSide.movex(-dh.getR()+bracketOneKeepawayDistance)
 			def clearencelugMotorSidekw = mountMotorSidekw.movex(-dh.getR()+bracketOneKeepawayDistance)
 			def clearencelugPassiveSide = mountPassiveSide.movex(-dh.getR()+bracketOneKeepawayDistance)
-			CSG motorLink = actuatorCircle.movez(-0.5).movex(bracketOneKeepawayDistance)
-			CSG motorLinkkw = actuatorCirclekw.movez(-0.5).movex(bracketOneKeepawayDistance)
+			CSG motorLink = actuatorCircle.movez(-offsetOfLinks).movex(bracketOneKeepawayDistance)
+			CSG motorLinkkw = actuatorCirclekw.movez(-offsetOfLinks).movex(bracketOneKeepawayDistance)
 			def bracemountPassiveSideAlligned = linkBuildingBlockRound
 													.movez(centerlineToOuterSurfacePositiveZ)
-													.movez(-0.5)
+													.movez(-offsetOfLinks)
 													.movey(braceDistance)
 													.movex(-linkClearence-movingPartClearence-dh.getR()+bracketOneKeepawayDistance)
 			def bracemountMotorSide=actuatorCircle
-									.movez(-0.5)
+									.movez(-offsetOfLinks)
 									.movex(bracketOneKeepawayDistance-linkYDimention/2)
 									.movey(braceDistance)
 										
@@ -338,9 +345,9 @@ return new ICadGenerator(){
 						).hull()
 			def passiveSide = mountPassiveSideAlligned.union(passivLinkLug).hull()
 			def motorSidePlate = CSG.hullAll([clearencelugMotorSide,mountMotorSide]);
-			motorSidePlate=CSG.hullAll([motorSidePlate,motorSidePlate.toZMax().movez(centerlineToOuterSurfacePositiveZ-0.5)])
+			motorSidePlate=CSG.hullAll([motorSidePlate,motorSidePlate.toZMax().movez(centerlineToOuterSurfacePositiveZ-offsetOfLinks)])
 			def motorSidePlatekw = CSG.hullAll([clearencelugMotorSidekw,mountMotorSidekw]);
-			motorSidePlatekw=CSG.hullAll([motorSidePlatekw,motorSidePlatekw.toZMax().movez(centerlineToOuterSurfacePositiveZ-0.5)])
+			motorSidePlatekw=CSG.hullAll([motorSidePlatekw,motorSidePlatekw.toZMax().movez(centerlineToOuterSurfacePositiveZ-offsetOfLinks)])
 			
 			def center = CSG.unionAll([mountPassiveSideAlligned,mountMotorSide,clearencelugMotorSide,clearencelugPassiveSide])
 							.hull()
@@ -348,10 +355,10 @@ return new ICadGenerator(){
 							.rotz(180)
 							.movez(centerTheMotorsValue)
 							.transformed(actuatorSpace)
-			CSG MotorMountBracketkw = actuatorCirclekw.movez(-0.5)
+			CSG MotorMountBracketkw = actuatorCirclekw.movez(-offsetOfLinks)
 							.union(motorLinkkw)
 							.hull()
-			CSG MotorMountBracket = actuatorCircle.movez(-0.5)
+			CSG MotorMountBracket = actuatorCircle.movez(-offsetOfLinks)
 							.union(motorLink)
 							.hull()
 							.difference(vitamins)
@@ -414,13 +421,13 @@ return new ICadGenerator(){
 			
 			
 			
-			def servoCube = linkBuildingBlock.toXMax().movez(centerlineToOuterSurfacePositiveZ-0.5).roty(90).transformed(gripperSpace)	
+			def servoCube = linkBuildingBlock.toXMax().movez(centerlineToOuterSurfacePositiveZ-offsetOfLinks).roty(90).transformed(gripperSpace)	
 			def rightServoCube = linkBuildingBlock.toZMax().toXMin().movez(-centerlineToOuterSurfaceNegativeZ).roty(-90).transformed(gripperSpace)
 			
 			def servoBracket = servoCube.union(rightServoCube).hull()
 			def supportBracket = rightServoCube.union(passivLinkLug).hull()
 			def linkToCup = rightServoCube.union(gripperLug).hull()
-			def ActuatorBracket = servoCube.union(actuatorCircle.movez(-0.5)).hull()
+			def ActuatorBracket = servoCube.union(actuatorCircle.movez(-offsetOfLinks)).hull()
 									.difference(vitamins)
 			
 			CSG pincherCup = new  Cylinder(radiusOfGraspingObject/2,5).toCSG()
