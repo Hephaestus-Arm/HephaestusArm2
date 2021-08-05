@@ -849,9 +849,10 @@ return new ICadGenerator(){
 				
 			
 
-				
-		Base = Base.intersect(Base.getBoundingBox().toXMin().movex(-baseCorRad))		
-		Base = Base.union(pointer.movex(Base.getMaxX()-2))
+		def box=Base.getBoundingBox().toXMin().movex(-baseCorRad)
+		def Basetmp = Base.intersect(box)	
+		def cover =	 Base.difference(box)
+		Base = Basetmp.union(pointer.movex(Base.getMaxX()-2))
 						.union(pointer.rotz(90).movey(-baseCorRad+2))
 
 		def pcbmount = ScriptingEngine.gitScriptRun(
@@ -867,7 +868,7 @@ return new ICadGenerator(){
 
 		pcbmount = pcbmount.rotz(90).roty(90).movex(Base.getMinX())
 		pcbmount = pcbmount.movez(-pcbmount.getMinZ()+2)
-
+		double extra = Math.abs(Base.getMinX())
 		Base = Base.union(pcbmount)
 		Base.setColor(javafx.scene.paint.Color.PINK)
 		// add it to the return list
@@ -881,7 +882,7 @@ return new ICadGenerator(){
 		
 		
 		
-		double extra = Math.abs(Base.getMinX())
+		
 		double cornerOffset=grid*1.75
 		double boardx=8.5*25.4+cornerOffset
 		double boardy=11.0*25.4+cornerOffset
@@ -927,14 +928,13 @@ return new ICadGenerator(){
 		})
 		paper.setColor(javafx.scene.paint.Color.WHITE)
 		
-		Base = Base.movex(-(-pcbmount.getMinX()+pcbmount.getMaxX()))
-		allCad.addAll(Base,paper,board,cardboard)
+		allCad.addAll(Base,paper,board,cardboard,cover)
 		Base.addExportFormat("stl")
 		Base.addExportFormat("svg")
 		Base.setName("BaseMount")
 		b.setMassKg(totalMass)
 		b.setCenterOfMassFromCentroid(centerOfMassFromCentroid)
-		
+	
 		allCad.addAll(vitamins)
 		return allCad;
 	}
