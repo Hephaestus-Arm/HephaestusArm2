@@ -83,6 +83,7 @@ return new ICadGenerator(){
 	double motorz =  measurmentsMotor.body_z
 	double motorPassiveLinkSideWasherTHickness=measurmentsMotor.shoulderHeight
 	double hornKeepawayLen = measurmentsHorn.mountPlateToHornTop
+	double hornDiameter = measurmentsHorn.hornDiameter
 	double centerTheMotorsValue=motorz/2;
 	double linkYDimention = measurmentsMotor.body_x;
 	double movingPartClearence =motorPassiveLinkSideWasherTHickness
@@ -303,7 +304,7 @@ return new ICadGenerator(){
 		double offsetOfLinks=0.0
 		double braceBackSetFromMotorLinkTop=1.0
 		if(linkIndex==1) {
-			double braceDistance=-5;
+			double braceDistance=-hornDiameter/2;
 			
 			double linkClearence = totalMotorAndHorn/2
 			def mountMotorSidekw = linkBuildingBlockRoundCyl
@@ -330,7 +331,7 @@ return new ICadGenerator(){
 													.movex(-linkClearence-movingPartClearence-dh.getR()+bracketOneKeepawayDistance)
 			def bracemountMotorSide=actuatorCircle
 									.movez(-braceBackSetFromMotorLinkTop)
-									.movex(bracketOneKeepawayDistance-linkYDimention/2)
+									.movex(dh.getR()-hornDiameter*1.5)
 									.movey(braceDistance)
 										
 			def brace = CSG.unionAll([
@@ -340,7 +341,7 @@ return new ICadGenerator(){
 			brace = brace
 						.union([
 							brace
-							.movez(-centerlineToOuterSurfacePositiveZ+centerlineToOuterSurfaceNegativeZ+offsetOfLinks),
+							.movez(-centerlineToOuterSurfacePositiveZ+centerlineToOuterSurfaceNegativeZ+offsetOfLinks+braceBackSetFromMotorLinkTop),
 							clearencelugMotorSide,clearencelugPassiveSide
 							]
 						).hull()
@@ -526,13 +527,13 @@ return new ICadGenerator(){
 		}
 		
 		if(linkIndex==0) {
-			def z = dh.getD()-10
-			def supportBeam= new RoundedCube(linkYDimention+linkThickness*2.5,40+linkThickness*2,z)
+			def z = dh.getD()-linkYDimention/2-movingPartClearence
+			def supportBeam= new RoundedCube(linkYDimention+linkThickness*2.0,40+linkThickness*2,z)
 								.cornerRadius(cornerRad)
 								.toCSG()
 								.toZMax()
 			
-			def	baseOfArm = Parabola.coneByHeight(baseCorRad, 35)
+			def	baseOfArm = Parabola.coneByHeight(baseCorRad, 25)
 						.rotx(90)
 						.toZMin()
 						.movez(movingPartClearence)
