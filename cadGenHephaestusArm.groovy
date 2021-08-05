@@ -870,8 +870,19 @@ return new ICadGenerator(){
 					1.2, //Hole Dia
 					2, //Height
 				])
+		
+		def pcbmounttop = ScriptingEngine.gitScriptRun(
+			"https://github.com/Hephaestus-Arm/HephaestusArm2.git", // git location of the library
+			"pcbmountpoints.groovy" , // file to load
+			// Parameters passed to the funcetion
+			[0, //Holes X Spacing
+				0, //Holes Y Spacing
+				5, //Pillar Dia
+				1.2, //Hole Dia
+				2, //Height
+			])
 		double extra = Math.abs(Base.getMinX())
-		pcbmount = pcbmount.rotz(90).roty(90).movex(Base.getMinX())
+		pcbmount = pcbmount.union(pcbmounttop.movey(35)).rotz(90).roty(90).movex(Base.getMinX())
 		pcbmount = pcbmount.movez(-pcbmount.getMinZ()+2)
 
 
@@ -932,7 +943,7 @@ return new ICadGenerator(){
 		})
 		paper.setColor(javafx.scene.paint.Color.WHITE)
 		
-		allCad.addAll(Base,paper,board,cardboard)
+		allCad.addAll(Base,paper,board,cardboard,pcbmount)
 		Base.addExportFormat("stl")
 		Base.addExportFormat("svg")
 		Base.setName("BaseMount")
