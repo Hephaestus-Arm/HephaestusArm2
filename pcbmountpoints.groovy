@@ -8,7 +8,7 @@ if (args==null) {
 	args=[
 		45.72,
 		//Holes X Spacing
-		0,//54.61,
+		20,//54.61,
 		//Holes Y Spacing
 		5,
 		//Pillar Dia
@@ -27,19 +27,19 @@ double pcbHoleDia = args[3]
 
 def pcbmountstud = new Cylinder(pcbPillarDia,pcbPillarDia/2,pcbMountHeight).toCSG()
 def pcbmountstuds = CSG.unionAll([
-	pcbmountstud.transformed(new Transform().movex(pcbScrewXSpacing/2.0).movey(-pcbScrewYSpacing/2.0)),
-	pcbmountstud.transformed(new Transform().movex(pcbScrewXSpacing/2.0).movey(pcbScrewYSpacing/2.0)),
-	pcbmountstud.transformed(new Transform().movex(-pcbScrewXSpacing/2.0).movey(-pcbScrewYSpacing/2.0)),
-	pcbmountstud.transformed(new Transform().movex(-pcbScrewXSpacing/2.0).movey(pcbScrewYSpacing/2.0))
+	pcbmountstud.movex(pcbScrewXSpacing/2.0).movey(-pcbScrewYSpacing/2.0),
+	pcbmountstud.movex(pcbScrewXSpacing/2.0).movey(pcbScrewYSpacing/2.0),
+	pcbmountstud.movex(-pcbScrewXSpacing/2.0).movey(-pcbScrewYSpacing/2.0),
+	pcbmountstud.movex(-pcbScrewXSpacing/2.0).movey(pcbScrewYSpacing/2.0)
 
 ])
 
 def pcbscrewholecut = new Cylinder(pcbHoleDia/2,pcbMountHeight+0.2).toCSG().movez(-0.1)
 def pcbscrewholes = CSG.unionAll([
-	pcbscrewholecut.transformed(new Transform().movex(pcbScrewXSpacing/2.0).movey(-pcbScrewYSpacing/2.0)),
-	pcbscrewholecut.transformed(new Transform().movex(pcbScrewXSpacing/2.0).movey(pcbScrewYSpacing/2.0)),
-	pcbscrewholecut.transformed(new Transform().movex(-pcbScrewXSpacing/2.0).movey(-pcbScrewYSpacing/2.0)),
-	pcbscrewholecut.transformed(new Transform().movex(-pcbScrewXSpacing/2.0).movey(pcbScrewYSpacing/2.0))
+	pcbscrewholecut.movex(pcbScrewXSpacing/2.0).movey(-pcbScrewYSpacing/2.0),
+	pcbscrewholecut.movex(pcbScrewXSpacing/2.0).movey(pcbScrewYSpacing/2.0),
+	pcbscrewholecut.movex(-pcbScrewXSpacing/2.0).movey(-pcbScrewYSpacing/2.0),
+	pcbscrewholecut.movex(-pcbScrewXSpacing/2.0).movey(pcbScrewYSpacing/2.0)
 
 ])
 
