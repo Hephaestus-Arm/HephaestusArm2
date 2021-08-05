@@ -434,7 +434,7 @@ return new ICadGenerator(){
 			def pincherBracket = gripperLug.union(pincherCup).hull()
 			
 			
-			double hingeDiameter = 12
+			double hingeDiameter = 10
 			def hingeBarrel = new RoundedCylinder(hingeDiameter/2,linkYDimention)
 									.cornerRadius(cornerRad)
 									.toCSG()
@@ -471,7 +471,7 @@ return new ICadGenerator(){
 							.toXMin()
 							.toZMax()
 							.movex(centerlineToOuterSurfaceNegativeZ-linkThickness)
-							.movey(20)
+							.movey(21)
 							.transformed(hinge)
 			def movingHingeBarrel =  new Cylinder(hingeDiameter/2,linkThickness).toCSG()
 											.movez(-linkYDimention/2-linkThickness/2)

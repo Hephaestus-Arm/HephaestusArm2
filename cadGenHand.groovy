@@ -48,6 +48,7 @@ return new ICadGenerator(){
 		
 			File dir= ScriptingEngine.getRepositoryCloneDirectory(d.getGitCadEngine()[0])
 			File gripperFile = new File(dir.getAbsolutePath()+"/gripper.stl")
+
 			CSG gripperMovingCup  = moveDHValues(Vitamins.get(gripperFile).rotz(90),d.getDhLink(linkIndex))
 			
 			gripperMovingCup.setColor(javafx.scene.paint.Color.LIGHTPINK)
