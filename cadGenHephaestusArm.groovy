@@ -657,7 +657,7 @@ return new ICadGenerator(){
 			if(locationOfBearing.getZ()>baseCoreheight)
 				baseCoreheight=locationOfBearing.getZ()
 			locationOfMotorMount.translateZ(-zOffset)
-			TransformNR pinionRoot = locationOfMotorMount.copy().translateZ(topOfHornToBotomOfBaseLinkDistance)
+			TransformNR pinionRoot = locationOfMotorMount.copy().translateZ(topOfHornToBotomOfBaseLinkDistance+1)
 			def extractionLocationOfMotor =locationOfMotorMount.copy().translateZ(-20)
 
 			vitaminLocations.put(locationOfBearing.copy().translateZ(-1), [
