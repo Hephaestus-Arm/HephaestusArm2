@@ -36,6 +36,11 @@ import eu.mihosoft.vrl.v3d.Vector3d
 
 
 double grid =25
+double cornerOffset=grid*1.75
+double boardx=8.5*25.4+cornerOffset
+double boardy=11.0*25.4+cornerOffset
+// radius of rounded corners on base plate
+double cornerRadius=5;
 
 CSG reverseDHValues(CSG incoming,DHLink dh ){
 	//println "Reversing "+dh
@@ -690,11 +695,10 @@ return new ICadGenerator(){
 			new TransformNR(baseGrid+yOffsetFeducial,yOffsetFeducial,0,new RotationNR(180,0,0)),// feducial
 			new TransformNR(yOffsetFeducial-baseGrid,0,0,new RotationNR(180,0,0)),// feducial
 			new TransformNR(baseGrid+yOffsetFeducial,-yOffsetFeducial,0,new RotationNR(180,0,0)),// feducial
-			new TransformNR(-baseGrid, baseGrid*7,0,new RotationNR(180,0,0)),// corner mount
-			new TransformNR( baseGrid*8, -baseGrid*5,0,new RotationNR(180,0,0)),// corner mount
-			new TransformNR( baseGrid*8,baseGrid*7,0,new RotationNR(180,0,0)),// corner mount
-			new TransformNR( -baseGrid, -baseGrid*5,0,new RotationNR(180,0,0))// corner mount
+
 		]
+
+		
 		def mountLoacions = [
 			new TransformNR(baseGrid,0,0,new RotationNR(180,0,0)),//base
 			new TransformNR(-baseGrid,baseGrid,0,new RotationNR(180,0,0)),//base
@@ -709,6 +713,19 @@ return new ICadGenerator(){
 
 		}
 		mountLoacionsFeducials.forEach{
+			vitaminLocations.put(it.copy().translateZ(-boardThickness),
+					["capScrew", boltsize])
+			vitaminLocations.put(it.copy().translateZ(insertMeasurments.installLength),
+					insert)
+
+		}
+		def mountLocationsCorners = [
+			new TransformNR(-(boardx/2 - cornerRadius), -(boardy/2 - cornerRadius),0,new RotationNR(180,0,0)),// corner mount
+			new TransformNR(-(boardx/2 - cornerRadius),  (boardy/2 - cornerRadius),0,new RotationNR(180,0,0)),// corner mount
+			new TransformNR( (boardx/2 - cornerRadius), -(boardy/2 - cornerRadius),0,new RotationNR(180,0,0)),// corner mount
+			new TransformNR( (boardx/2 - cornerRadius),  (boardy/2 - cornerRadius),0,new RotationNR(180,0,0))// corner mount
+			]
+		mountLocationsCorners.forEach{
 			vitaminLocations.put(it.copy().translateZ(-boardThickness),
 					["capScrew", boltsize])
 			vitaminLocations.put(it.copy().translateZ(insertMeasurments.installLength),
@@ -898,9 +915,7 @@ return new ICadGenerator(){
 
 		Base = Base.union(pcbmount)
 
-		double cornerOffset=grid*1.75
-		double boardx=8.5*25.4+cornerOffset
-		double boardy=11.0*25.4+cornerOffset
+
 		def paper = new Cube(8.5*25.4,11.0*25.4,1).toCSG()
 						.toZMax()
 						.toXMin()
@@ -910,8 +925,7 @@ return new ICadGenerator(){
 
 		
 		allCad.add(cameraBlock)
-		
-		double cornerRadius=5;
+
 		// Cyl for radius
 		def cornerCyl = new Cylinder(cornerRadius,cornerRadius,boardThickness,80).toCSG();
 		
