@@ -55,7 +55,7 @@ return new ICadGenerator(){
     int bracketOneKeepawayDistance = 50
 
 	double motorGearPlateThickness = 10
-	double boardThickness =6.5
+	double boardThickness =10
 	
 	def thrustBearingSize = "Thrust_1andAHalfinch"
 	double radiusOfGraspingObject=12.5;
@@ -867,7 +867,7 @@ return new ICadGenerator(){
 				[45.72, //Holes X Spacing
 					0, //Holes Y Spacing
 					5, //Pillar Dia
-					1.2, //Hole Dia
+					1.8, //Hole Dia
 					2, //Height
 				])
 		
@@ -878,7 +878,7 @@ return new ICadGenerator(){
 			[0, //Holes X Spacing
 				0, //Holes Y Spacing
 				5, //Pillar Dia
-				1.2, //Hole Dia
+				1.8, //Hole Dia
 				2, //Height
 			])
 		double extra = Math.abs(Base.getMinX())
@@ -910,14 +910,34 @@ return new ICadGenerator(){
 
 		
 		allCad.add(cameraBlock)
-		def board = new Cube(boardx,boardy,boardThickness).toCSG()
-						.toZMax()
+		
+		double cornerRadius=5;
+		// Cyl for radius
+		def cornerCyl = new Cylinder(cornerRadius,cornerRadius,boardThickness,80).toCSG();
+		
+		// Make 4 copies and hull them.
+		def board = CSG.hullAll([
+			cornerCyl.movex(-(boardx/2 - cornerRadius)).movey(-(boardy/2 - cornerRadius)),
+			cornerCyl.movex(-(boardx/2 - cornerRadius)).movey((boardy/2 - cornerRadius)),
+			cornerCyl.movex((boardx/2 - cornerRadius)).movey(-(boardy/2 - cornerRadius)),
+			cornerCyl.movex((boardx/2 - cornerRadius)).movey((boardy/2 - cornerRadius))			
+			])
+		
+		// Scoot arm over so the paper doesn't awkwardly hang out over edge
+		double cornerNudge = -10
+		board = board.movex(cornerNudge).movey(cornerNudge)
+		
+		board = board.toZMax()
 						.toXMin()
 						.movex(-extra)
 						.movey(cornerOffset/2)
 						//.difference(boltHolePattern)
 						.difference(vitamins)
-		board.setColor(javafx.scene.paint.Color.SANDYBROWN)
+		
+
+						
+		
+		board.setColor(javafx.scene.paint.Color.WHITESMOKE)
 		def cardboard = new Cube(boardx,boardy,2).toCSG()
 		.toZMax()
 		.toXMin()
@@ -943,7 +963,7 @@ return new ICadGenerator(){
 		})
 		paper.setColor(javafx.scene.paint.Color.WHITE)
 		
-		allCad.addAll(Base,paper,board,cardboard,pcbmount)
+		allCad.addAll(Base,paper,pcbmount,board)//cardboard,board,paper
 		Base.addExportFormat("stl")
 		Base.addExportFormat("svg")
 		Base.setName("BaseMount")
