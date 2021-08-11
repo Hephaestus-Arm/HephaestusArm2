@@ -39,6 +39,8 @@ double grid =25
 double cornerOffset=grid*1.75
 double boardx=8.5*25.4+cornerOffset
 double boardy=11.0*25.4+cornerOffset
+// Scoot arm over so the paper doesn't awkwardly hang out over edge
+double cornerNudge = -10
 // radius of rounded corners on base plate
 double cornerRadius=5;
 
@@ -720,10 +722,10 @@ return new ICadGenerator(){
 
 		}
 		def mountLocationsCorners = [
-			new TransformNR(-(boardx/2 - cornerRadius), -(boardy/2 - cornerRadius),0,new RotationNR(180,0,0)),// corner mount
-			new TransformNR(-(boardx/2 - cornerRadius),  (boardy/2 - cornerRadius),0,new RotationNR(180,0,0)),// corner mount
-			new TransformNR( (boardx/2 - cornerRadius), -(boardy/2 - cornerRadius),0,new RotationNR(180,0,0)),// corner mount
-			new TransformNR( (boardx/2 - cornerRadius),  (boardy/2 - cornerRadius),0,new RotationNR(180,0,0))// corner mount
+			//new TransformNR(-(boardx/2 - cornerRadius), -(boardy/2 - cornerRadius),0,new RotationNR(180,0,0)),// corner mount
+			//new TransformNR(-(boardx/2 - cornerRadius),  (boardy/2 - cornerRadius),0,new RotationNR(180,0,0)),// corner mount
+			//new TransformNR( (boardx/2 - cornerRadius), -(boardy/2 - cornerRadius),0,new RotationNR(180,0,0)),// corner mount
+			//new TransformNR( (boardx/2 - cornerRadius),  (boardy/2 - cornerRadius),0,new RotationNR(180,0,0))// corner mount
 			]
 		mountLocationsCorners.forEach{
 			vitaminLocations.put(it.copy().translateZ(-boardThickness),
@@ -928,6 +930,7 @@ return new ICadGenerator(){
 
 		// Cyl for radius
 		def cornerCyl = new Cylinder(cornerRadius,cornerRadius,boardThickness,80).toCSG();
+
 		
 		// Make 4 copies and hull them.
 		def board = CSG.hullAll([
@@ -937,8 +940,17 @@ return new ICadGenerator(){
 			cornerCyl.movex((boardx/2 - cornerRadius)).movey((boardy/2 - cornerRadius))			
 			])
 		
-		// Scoot arm over so the paper doesn't awkwardly hang out over edge
-		double cornerNudge = -10
+		// hacky non vitamin hole solution
+		/*
+		def holeCyl = new Cylinder(5,5,boardThickness+0.5,80).toCSG()
+		def hackyholes = CSG.unionAll([
+			holeCyl.movex(-(boardx/2 - cornerRadius)).movey(-(boardy/2 - cornerRadius)),
+			holeCyl.movex(-(boardx/2 - cornerRadius)).movey((boardy/2 - cornerRadius)),
+			holeCyl.movex((boardx/2 - cornerRadius)).movey(-(boardy/2 - cornerRadius)),
+			holeCyl.movex((boardx/2 - cornerRadius)).movey((boardy/2 - cornerRadius))
+			])
+		board = board.difference(hackyholes)
+*/
 		board = board.movex(cornerNudge).movey(cornerNudge)
 		
 		board = board.toZMax()
@@ -977,7 +989,7 @@ return new ICadGenerator(){
 		})
 		paper.setColor(javafx.scene.paint.Color.WHITE)
 		
-		allCad.addAll(Base,paper,pcbmount,board)//cardboard,board,paper
+		allCad.addAll(Base,paper,pcbmount,board,hackyholes)//cardboard,board,paper
 		Base.addExportFormat("stl")
 		Base.addExportFormat("svg")
 		Base.setName("BaseMount")
