@@ -941,16 +941,17 @@ return new ICadGenerator(){
 			])
 		
 		// hacky non vitamin hole solution
-		/*
-		def holeCyl = new Cylinder(5,5,boardThickness+0.5,80).toCSG()
+		
+		def holeCyl = new Cylinder(5,5,boardThickness+1,80).toCSG().movez(-0.5)
+		double holenudge = 10
 		def hackyholes = CSG.unionAll([
-			holeCyl.movex(-(boardx/2 - cornerRadius)).movey(-(boardy/2 - cornerRadius)),
-			holeCyl.movex(-(boardx/2 - cornerRadius)).movey((boardy/2 - cornerRadius)),
-			holeCyl.movex((boardx/2 - cornerRadius)).movey(-(boardy/2 - cornerRadius)),
-			holeCyl.movex((boardx/2 - cornerRadius)).movey((boardy/2 - cornerRadius))
+			holeCyl.movex(-(boardx/2 - cornerRadius - holenudge)).movey(-(boardy/2 - cornerRadius - holenudge)),
+			holeCyl.movex(-(boardx/2 - cornerRadius - holenudge)).movey((boardy/2 - cornerRadius - holenudge)),
+			holeCyl.movex((boardx/2 - cornerRadius - holenudge)).movey(-(boardy/2 - cornerRadius - holenudge)),
+			holeCyl.movex((boardx/2 - cornerRadius - holenudge)).movey((boardy/2 - cornerRadius - holenudge))
 			])
 		board = board.difference(hackyholes)
-*/
+
 		board = board.movex(cornerNudge).movey(cornerNudge)
 		
 		board = board.toZMax()
@@ -989,7 +990,7 @@ return new ICadGenerator(){
 		})
 		paper.setColor(javafx.scene.paint.Color.WHITE)
 		
-		allCad.addAll(Base,paper,pcbmount,board,hackyholes)//cardboard,board,paper
+		allCad.addAll(Base,paper,pcbmount,board)//cardboard,board,paper
 		Base.addExportFormat("stl")
 		Base.addExportFormat("svg")
 		Base.setName("BaseMount")
