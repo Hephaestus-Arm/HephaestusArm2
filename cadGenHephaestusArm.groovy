@@ -600,7 +600,10 @@ return new ICadGenerator(){
 			insert[1])
 		double xOffset = grid*7.5;
 		double yOffset = -grid*0.5;
-		def cameraHeight =120+(25.4*1.5)
+		def cameraHeight_parameterized
+		def cameraHeight_default = 120+(25.4*6.5)
+		cameraHeight_parameterized = new LengthParameter("Camera Stand Height",cameraHeight_default,[cameraHeight_default+200,cameraHeight_default-200])
+		def cameraHeight = cameraHeight_parameterized.getMM();
 		def cameraNut = new TransformNR(xOffset+grid/2,yOffset+grid/2,0,new RotationNR(0,0,0))
 		
 		CSG cameraBoltHole = new Cylinder(2.5,cameraInsertLength+cameraHeight+2).toCSG()
@@ -782,6 +785,7 @@ return new ICadGenerator(){
 		}
 		
 		cameraBlock=cameraBlock.difference(vitamins)
+		cameraBlock.setParameter(cameraHeight_parameterized)
 		cameraBlock.setColor(javafx.scene.paint.Color.BLUE)
 		cameraBlock.setName("CameraStandMount")
 		cameraBlock.setManufacturing ({ mfg ->
