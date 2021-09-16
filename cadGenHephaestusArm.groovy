@@ -601,7 +601,7 @@ return new ICadGenerator(){
 		double xOffset = grid*7.5;
 		double yOffset = -grid*0.5;
 		def cameraHeight_parameterized
-		def cameraHeight_default = 120+(25.4*6.5)
+		def cameraHeight_default = (25.4*9.75)
 		cameraHeight_parameterized = new LengthParameter("Camera Stand Height",cameraHeight_default,[cameraHeight_default+200,cameraHeight_default-200])
 		def cameraHeight = cameraHeight_parameterized.getMM();
 		def cameraNut = new TransformNR(xOffset+grid/2,yOffset+grid/2,0,new RotationNR(0,0,0))
