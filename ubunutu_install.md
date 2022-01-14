@@ -1,6 +1,6 @@
-This guide is specifically on how to get from Linux to Windows.
+This guide is specifically on how to get from Linux to Windows. For mac users we reccomend using the parallels vm software, reach out to an SA for the most updated parallels image.
 
-Note if you're concerned about this feel free to reach out to an SA come in during our office hours or reach out to Arjun and Cooper on the rbe discord server for non office hour help. 
+Note if you're concerned about this feel free to reach out to an SA come in during our office hours or reach out on the RBE discord server for non office hour help. 
 
 If you have questions reference the FAQ below.
 
@@ -18,7 +18,7 @@ This is your only warning.
 
 Bit Locker is Microsofts way of keeping you "safe". Basically its a program will lock down your hard drive and encrypt all the data if it notices something other than Windows modifying either the drive or the bios.* (We will be doing at least one probably both). 
 
-*If you get bitlockered, reach out to Arjun or Cooper we *might* be able to help you.
+*If you get bitlockered, reach out to and SA and we *might* be able to help you.
 
 Thankfully we can disable the program. 
 
@@ -48,7 +48,7 @@ You need atleast 30gb of free space on your hard drive, Idealy 50gb+, (personsal
 
 ## Creating a Bootable USB
 
-A bootable usb is a flash drive that you can put an operating system on and then use to load a live enviroment on your computer. 
+A bootable usb is a flash drive that you can put an operating system on and then use to load a live enviroment on your computer. If you can't set one up the SAs will have one available upon request.
 
 Follow [this](https://ubuntu.com/tutorials/create-a-usb-stick-on-windows#1-overview) tutorial by Ubuntu. It goes over flash drive selection installing needed programs and anything else you might need. 
 
@@ -162,3 +162,5 @@ However worse come to worst you *can* run it on an external hard drive but it'll
 Q: Can I use Ubuntu 20.04 <br/>
 A: Theoretically yes, however lab staff will all be running on 18.04, and 20.04 is untested. 
 
+Q: What if none of this works <br />
+A: AK 120 has many lab computers set up for this class already so a dual booted laptop is QOL not required.
