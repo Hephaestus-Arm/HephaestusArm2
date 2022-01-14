@@ -37,30 +37,24 @@ Once you have Linux open a terminal (Ctrl+Alt+t) and run the following commands
 ```
 	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 71EA898B 
 	sudo apt-get install software-properties-common
-	sudo add-apt-repository "deb http://ppa.launchpad.net/mad-hephaestus/commonwealthrobotics/ubuntu bionic main" -y
 	sudo apt-get update 
-	sudo apt-get install bowlerstudio curl git putty  zip unzip lightdm
+	sudo apt-get install curl git putty zip unzip
 	sudo adduser $(whoami) dialout
 ```
 
-After running the commands above a menu should pop up allowing you to choose between lightdm and gdm3.Choose the lightdm option
-
-If the menu does not pop up run. 
-```
-sudo dpkg-reconfigure lightdm 
-```
-
-Restart your computer and you should see a slightly different login screen when you boot into Ubuntu. 
-
-Doing so will install some programs that you need for later steps, as well as configure your login manager to avoid a known bug with the default one.
-
 The programs installed are
-* BowlerStudio 
-  * Used for design modeling of the robot arm, install drivers, and unit-test hardware, this is for 3d display of the robot
 * curl (allows you to get files from the internet)
 * git (allows you to access and work with code repositories)
 * zip/unzip (allows you to zip and unzip files)
-* lightdm (an alternative login manager)
+
+Next set up the udev rules to communicate with the arm
+* [Download this file](81-neuronrobotics.rules)
+* Run the below commands
+```
+	sudo cp ~/Downloads/81-neuronrobotics.rules /etc/udev/rules.d/81-neuronrobotics.rules # Moves the folder to the required location 
+	sudo udevadm trigger # Updates udev rules to include the new file
+```
+
 
 ### 1.2.3 Required Tools 
 
