@@ -39,15 +39,15 @@ Once you have Linux open a terminal (Ctrl+Alt+t) and run the following commands
 	sudo apt-get install software-properties-common
 	sudo add-apt-repository "deb http://ppa.launchpad.net/mad-hephaestus/commonwealthrobotics/ubuntu bionic main" -y
 	sudo apt-get update 
-	sudo apt-get install bowlerstudio curl git putty  zip unzip lightdm
+	sudo apt-get install bowlerstudio curl git putty  zip unzip lxdm
 	sudo adduser $(whoami) dialout
 ```
 
-After running the commands above a menu should pop up allowing you to choose between lightdm and gdm3.Choose the lightdm option
+After running the commands above a menu should pop up allowing you to choose between lxdm and gdm3.Choose the lxdm option
 
 If the menu does not pop up run. 
 ```
-sudo dpkg-reconfigure lightdm 
+sudo dpkg-reconfigure lxdm 
 ```
 
 Restart your computer and you should see a slightly different login screen when you boot into Ubuntu. 
@@ -60,7 +60,7 @@ The programs installed are
 * curl (allows you to get files from the internet)
 * git (allows you to access and work with code repositories)
 * zip/unzip (allows you to zip and unzip files)
-* lightdm (an alternative login manager)
+* lxdm (an alternative login manager to avoid a bug in gdm3 wrt to the driver file)
 
 ### 1.2.3 Required Tools 
 
