@@ -1,0 +1,20 @@
+SUBSYSTEM=="tty", ATTRS{product}=="*Bootloader*",			SYMLINK+="Bootloader%n",   SYMLINK+="Bootloader.%E{ID_SERIAL_SHORT}", 	MODE="0777", ENV{ID_MM_DEVICE_IGNORE}="1"
+SUBSYSTEM=="tty",ATTRS{idVendor}=="04d8", ATTRS{idProduct}=="3742", 	SYMLINK+="DyIO%n",	   SYMLINK+="DyIO.%E{ID_SERIAL_SHORT}", 	MODE="0777", ENV{ID_MM_DEVICE_IGNORE}="1"
+SUBSYSTEM=="tty",ATTRS{idVendor}=="04d8", 	SYMLINK+="BowlerDevice%n", SYMLINK+="BowlerDevice.%E{ID_SERIAL_SHORT}", MODE="0777", ENV{ID_MM_DEVICE_IGNORE}="1"
+SUBSYSTEM=="usb",ATTR{idVendor}=="04d8",MODE="0777"
+SUBSYSTEM=="usb",ATTR{idVendor}=="15d1",MODE="0777"
+SUBSYSTEM=="tty",ATTRS{idVendor}=="15d1", 	SYMLINK+="HOKYO%n", SYMLINK+="HOKYO.%E{ID_SERIAL_SHORT}", MODE="0777", ENV{ID_MM_DEVICE_IGNORE}="1"
+
+# Arduino 101 in DFU Mode
+SUBSYSTEM=="tty", ENV{ID_REVISION}=="8087", ENV{ID_MODEL_ID}=="0ab6", MODE="0666", ENV{ID_MM_DEVICE_IGNORE}="1", ENV{ID_MM_CANDIDATE}="0"
+SUBSYSTEM=="usb", ATTR{idVendor}=="8087", ATTR{idProduct}=="0aba", MODE="0666", ENV{ID_MM_DEVICE_IGNORE}="1"
+# teensy
+ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789B]?", ENV{ID_MM_DEVICE_IGNORE}="1"
+ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789A]?", ENV{MTP_NO_PROBE}="1"
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789ABCD]?", MODE:="0666"
+KERNEL=="ttyACM*", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789B]?", MODE:="0666"
+SUBSYSTEM=="usb", ATTR{idVendor}=="3742", MODE="0666"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60",MODE="0777", SYMLINK+="esp32-%n"
+SUBSYSTEM=="usb", ATTR{idVendor}=="16C0", MODE="0777"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="16C0",MODE="0777", SYMLINK+="teensy-%n"
+SUBSYSTEM=="input*", PROGRAM="/bin/sh -c 'chown -R root:input /sys/class/input/*/ && chmod -R 770 /sys/class/input/*/;'"
