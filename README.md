@@ -30,6 +30,7 @@ If you do not, here are resources to help you get familiar
 
 
 
+
 ### 1.2.2 Required Programs 
 
 Once you have Linux open a terminal (Ctrl+Alt+t) and run the following commands 
@@ -37,7 +38,6 @@ Once you have Linux open a terminal (Ctrl+Alt+t) and run the following commands
 ```
 	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 71EA898B 
 	sudo apt-get install software-properties-common
-	sudo add-apt-repository "deb http://ppa.launchpad.net/mad-hephaestus/commonwealthrobotics/ubuntu bionic main" -y
 	sudo apt-get update 
 	sudo apt-get install bowlerstudio curl git putty  zip unzip lxdm
 	sudo adduser $(whoami) dialout
@@ -54,9 +54,8 @@ Restart your computer and you should see a slightly different login screen when 
 
 Doing so will install some programs that you need for later steps, as well as configure your login manager to avoid a known bug with the default one.
 
+
 The programs installed are
-* BowlerStudio 
-  * Used for design modeling of the robot arm, install drivers, and unit-test hardware, this is for 3d display of the robot
 * curl (allows you to get files from the internet)
 * git (allows you to access and work with code repositories)
 * zip/unzip (allows you to zip and unzip files)
