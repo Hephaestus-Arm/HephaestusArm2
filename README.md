@@ -60,6 +60,8 @@ The programs installed are
 * git (allows you to access and work with code repositories)
 * zip/unzip (allows you to zip and unzip files)
 * lxdm (an alternative login manager to avoid a bug in gdm3 wrt to the driver file)
+* BowlerStudio 
+  * Used for design modeling of the robot arm, install drivers, and unit-test hardware, this is for 3d display of the robot
 
 ### 1.2.3 Required Tools 
 
