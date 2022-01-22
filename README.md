@@ -37,6 +37,7 @@ Once you have Linux open a terminal (Ctrl+Alt+t) and run the following commands
 
 ```
 	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 71EA898B 
+	sudo add-apt-repository "deb http://ppa.launchpad.net/mad-hephaestus/commonwealthrobotics/ubuntu bionic main" -y
 	sudo apt-get install software-properties-common
 	sudo apt-get update 
 	sudo apt-get install bowlerstudio curl git putty  zip unzip lxdm
