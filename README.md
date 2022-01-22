@@ -49,10 +49,14 @@ The programs installed are
 * zip/unzip (allows you to zip and unzip files)
 
 Next set up the udev rules to communicate with the arm
-* [Download this file](81-neuronrobotics.rules)
+<!--* [Download this file](81-neuronrobotics.rules)-->
+<!-- login manager without locking issues (need to test on more varied hardware first) -->
+<!-- sudo apt-get install sddm  -->
 * Run the below commands
 ```
+	wget https://raw.githubusercontent.com/cbennet/HephaestusArm2/master/81-neuronrobotics.rules # Download rules file
 	sudo cp ~/Downloads/81-neuronrobotics.rules /etc/udev/rules.d/81-neuronrobotics.rules # Moves the folder to the required location 
+	sudo apt-get install lightdm # the default login manager can disable the mouse and keyboard so this installs an alternate
 	sudo udevadm trigger # Updates udev rules to include the new file
 ```
 
