@@ -39,27 +39,27 @@ Once you have Linux open a terminal (Ctrl+Alt+t) and run the following commands
 	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 71EA898B 
 	sudo apt-get install software-properties-common
 	sudo apt-get update 
-	sudo apt-get install curl git putty zip unzip
+	sudo apt-get install bowlerstudio curl git putty  zip unzip lxdm
 	sudo adduser $(whoami) dialout
 ```
+
+After running the commands above a menu should pop up allowing you to choose between lxdm and gdm3.Choose the lxdm option
+
+If the menu does not pop up run. 
+```
+sudo dpkg-reconfigure lxdm 
+```
+
+Restart your computer and you should see a slightly different login screen when you boot into Ubuntu. 
+
+Doing so will install some programs that you need for later steps, as well as configure your login manager to avoid a known bug with the default one.
+
 
 The programs installed are
 * curl (allows you to get files from the internet)
 * git (allows you to access and work with code repositories)
 * zip/unzip (allows you to zip and unzip files)
-
-Next set up the udev rules to communicate with the arm
-<!--* [Download this file](81-neuronrobotics.rules)-->
-<!-- login manager without locking issues (need to test on more varied hardware first) -->
-<!-- sudo apt-get install sddm  -->
-* Run the below commands
-```
-	wget https://raw.githubusercontent.com/cbennet/HephaestusArm2/master/81-neuronrobotics.rules # Download rules file
-	sudo cp ~/Downloads/81-neuronrobotics.rules /etc/udev/rules.d/81-neuronrobotics.rules # Moves the folder to the required location 
-	sudo apt-get install lightdm # the default login manager can disable the mouse and keyboard so this installs an alternate
-	sudo udevadm trigger # Updates udev rules to include the new file
-```
-
+* lxdm (an alternative login manager to avoid a bug in gdm3 wrt to the driver file)
 
 ### 1.2.3 Required Tools 
 
