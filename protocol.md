@@ -10,6 +10,16 @@ Our firmware uses an HID implementation built on the Adafruit TinyUSB stack.
 
 When you send a command, what you are doing is queing up a packet to be sent. When you read a packet, you are reading the most recent packet recived. There is a thread internal to the command library that will manage the sending and reciving of packets. The round trip time for a packet from the library to the device and back is 2ms max. There is a delay between when you send a packet and when the latest response from that packet can be read. To send a request and wait 3ms, then read it back will always result in the latest data Alternantly using a state machine to manage sending and reciving to prevent busy waits is a much better option. 
 
+# LED Light Ring
+
+Set the color and brightness of the ring.
+
+| |ID | float  |   float  |  float  |
+|--- |--- | --- | --- |  ---- | 
+| downstream Bytes |4 | 4 | 4 | 4 |
+| Contents downstream |2000 | Hue 0.0 to 1.0 | Saturation 0.0 to 1.0 | Brightness (value) 0.0 to 1.0 |
+| upstream Bytes |4 | --- | --- | --- | --- |
+| Contents upstream |2000 |---| --- | --- |
 
 # ServoServer
 
