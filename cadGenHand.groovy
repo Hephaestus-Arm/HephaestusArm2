@@ -3,8 +3,6 @@ import com.neuronrobotics.sdk.common.BowlerAbstractDevice
 import com.neuronrobotics.bowlerstudio.creature.ICadGenerator;
 import com.neuronrobotics.bowlerstudio.physics.TransformFactory
 import com.neuronrobotics.bowlerstudio.scripting.ScriptingEngine
-import com.neuronrobotics.bowlerstudio.BowlerStudio
-import com.neuronrobotics.bowlerstudio.creature.CreatureLab;
 import org.apache.commons.io.IOUtils;
 import com.neuronrobotics.bowlerstudio.vitamins.*;
 import com.neuronrobotics.sdk.addons.kinematics.AbstractLink
