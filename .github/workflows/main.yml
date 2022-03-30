@@ -6,7 +6,7 @@ on:
 
 jobs:
   call-workflow-passing-data:
-    uses: CommonWealthRobotics/Bowler-Script-Release-CI/.github/workflows/reusable-release.yml@feature/linksource
+    uses: CommonWealthRobotics/Bowler-Script-Release-CI/.github/workflows/reusable-release.yml@main
     with:
       filename: "Hephaestus-Arm-Manufacturing-Files"
       filelocation: "./hephaestus.xml"   
