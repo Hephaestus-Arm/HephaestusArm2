@@ -5,7 +5,7 @@
 		<file>cadGenHephaestusArm.groovy</file>
 	</cadEngine>
 	<driveEngine>
-		<git>https://github.com/Hephaestus-Arm/HephaestusArm2.git</git>
+		<git>https://github.com/madhephaestus/carl-the-hexapod.git</git>
 		<file>WalkingDriveEngine.groovy</file>
 	</driveEngine>
 
@@ -23,9 +23,9 @@
 	</kinematics>
 <link>
 	<name>basePan</name>
-	<deviceName>virtualDev_new</deviceName>
+	<deviceName>hephaestus-16c00486</deviceName>
 	<type>virtual</type>
-	<index>0</index>
+	<index>3</index>
 	<scale>0.33</scale>
 	<upperLimit>255.0</upperLimit>
 	<lowerLimit>0.0</lowerLimit>
@@ -107,9 +107,9 @@
 </link>
 <link>
 	<name>baseTilt</name>
-	<deviceName>virtualDev_new</deviceName>
+	<deviceName>hephaestus-16c00486</deviceName>
 	<type>virtual</type>
-	<index>1</index>
+	<index>4</index>
 	<scale>0.33</scale>
 	<upperLimit>255.0</upperLimit>
 	<lowerLimit>0.0</lowerLimit>
@@ -191,9 +191,9 @@
 </link>
 <link>
 	<name>elbow</name>
-	<deviceName>virtualDev_new</deviceName>
+	<deviceName>hephaestus-16c00486</deviceName>
 	<type>virtual</type>
-	<index>2</index>
+	<index>5</index>
 	<scale>0.33</scale>
 	<upperLimit>255.0</upperLimit>
 	<lowerLimit>15.223880597014928</lowerLimit>
@@ -301,13 +301,285 @@
 </leg>
 <appendage>
 
-<name>Hand</name>
+<name>HephaestusArmLimbOne</name>
 	<cadEngine>
 		<git>https://github.com/Hephaestus-Arm/HephaestusArm2.git</git>
 		<file>cadGenHephaestusArm.groovy</file>
 	</cadEngine>
 	<kinematics>
+		<git>https://github.com/madhephaestus/carl-the-hexapod.git</git>
+		<file>DefaultDhSolver.groovy</file>
+	</kinematics>
+<link>
+	<name>basePan</name>
+	<deviceName>hephaestus-16c00486</deviceName>
+	<type>pidg-link</type>
+	<index>0</index>
+	<scale>1.0</scale>
+	<upperLimit>91.0</upperLimit>
+	<lowerLimit>-91.0</lowerLimit>
+	<upperVelocity>1.0E8</upperVelocity>
+	<lowerVelocity>-1.0E8</lowerVelocity>
+	<staticOffset>0.0</staticOffset>
+	<deviceTheoreticalMax>180.0</deviceTheoreticalMax>
+	<deviceTheoreticalMin>-180.0</deviceTheoreticalMin>
+	<isLatch>true</isLatch>
+	<indexLatch>180.0</indexLatch>
+	<isStopOnLatch>false</isStopOnLatch>
+	<homingTPS>10000000</homingTPS>
+
+	<vitamins>
+
+		<vitamin>
+			<name>electroMechanical</name>
+			<type>LewanSoulMotor</type>
+			<id>lx_224</id>
+			<pose>
+	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-0.0</rotx>
+	<roty>-0.0</roty>
+	<rotz>-0.0</rotz>
+			</pose>
+			<frame>lastlink</frame>
+			<script>false</script>
+		</vitamin>
+
+		<vitamin>
+			<name>shaft</name>
+			<type>LewanSoulHorn</type>
+			<id>round_m3_bolts</id>
+			<pose>
+	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-0.0</rotx>
+	<roty>-0.0</roty>
+	<rotz>-0.0</rotz>
+			</pose>
+			<frame>origin</frame>
+			<script>false</script>
+		</vitamin>
+
+	</vitamins>
+	<passive>false</passive>
+	<mass>0.074</mass>
+	<centerOfMassFromCentroid>
+	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-0.0</rotx>
+	<roty>-0.0</roty>
+	<rotz>-0.0</rotz>
+</centerOfMassFromCentroid>
+	<imuFromCentroid>
+	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-0.0</rotx>
+	<roty>-0.0</roty>
+	<rotz>-0.0</rotz>
+</imuFromCentroid>
+
+	<DHParameters>
+		<Delta>40.0</Delta>
+		<Theta>0.0</Theta>
+		<Radius>0.0</Radius>
+		<Alpha>-90.0</Alpha>
+	</DHParameters>
+
+</link>
+<link>
+	<name>baseTilt</name>
+	<deviceName>hephaestus-16c00486</deviceName>
+	<type>pidg-link</type>
+	<index>1</index>
+	<scale>1.0</scale>
+	<upperLimit>95.0</upperLimit>
+	<lowerLimit>-54.0</lowerLimit>
+	<upperVelocity>1.0E8</upperVelocity>
+	<lowerVelocity>-1.0E8</lowerVelocity>
+	<staticOffset>0.0</staticOffset>
+	<deviceTheoreticalMax>180.0</deviceTheoreticalMax>
+	<deviceTheoreticalMin>-180.0</deviceTheoreticalMin>
+	<isLatch>true</isLatch>
+	<indexLatch>128.0</indexLatch>
+	<isStopOnLatch>false</isStopOnLatch>
+	<homingTPS>10000000</homingTPS>
+
+	<vitamins>
+
+		<vitamin>
+			<name>electroMechanical</name>
+			<type>LewanSoulMotor</type>
+			<id>lx_224</id>
+			<pose>
+	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-0.0</rotx>
+	<roty>-0.0</roty>
+	<rotz>-0.0</rotz>
+			</pose>
+			<frame>lastlink</frame>
+			<script>false</script>
+		</vitamin>
+
+		<vitamin>
+			<name>shaft</name>
+			<type>LewanSoulHorn</type>
+			<id>round_m3_bolts</id>
+			<pose>
+	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-0.0</rotx>
+	<roty>-0.0</roty>
+	<rotz>-0.0</rotz>
+			</pose>
+			<frame>origin</frame>
+			<script>false</script>
+		</vitamin>
+
+	</vitamins>
+	<passive>false</passive>
+	<mass>0.068</mass>
+	<centerOfMassFromCentroid>
+	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-0.0</rotx>
+	<roty>-0.0</roty>
+	<rotz>-0.0</rotz>
+</centerOfMassFromCentroid>
+	<imuFromCentroid>
+	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-0.0</rotx>
+	<roty>-0.0</roty>
+	<rotz>-0.0</rotz>
+</imuFromCentroid>
+
+	<DHParameters>
+		<Delta>0.0</Delta>
+		<Theta>-90.0</Theta>
+		<Radius>100.0</Radius>
+		<Alpha>0.0</Alpha>
+	</DHParameters>
+
+</link>
+<link>
+	<name>elbow</name>
+	<deviceName>hephaestus-16c00486</deviceName>
+	<type>pidg-link</type>
+	<index>2</index>
+	<scale>1.0</scale>
+	<upperLimit>63.0</upperLimit>
+	<lowerLimit>-86.0</lowerLimit>
+	<upperVelocity>1.0E8</upperVelocity>
+	<lowerVelocity>-1.0E8</lowerVelocity>
+	<staticOffset>0.0</staticOffset>
+	<deviceTheoreticalMax>180.0</deviceTheoreticalMax>
+	<deviceTheoreticalMin>-180.0</deviceTheoreticalMin>
+	<isLatch>true</isLatch>
+	<indexLatch>121.0</indexLatch>
+	<isStopOnLatch>false</isStopOnLatch>
+	<homingTPS>10000000</homingTPS>
+
+	<vitamins>
+
+		<vitamin>
+			<name>electroMechanical</name>
+			<type>LewanSoulMotor</type>
+			<id>lx_224</id>
+			<pose>
+	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-0.0</rotx>
+	<roty>-0.0</roty>
+	<rotz>-0.0</rotz>
+			</pose>
+			<frame>lastlink</frame>
+			<script>false</script>
+		</vitamin>
+
+		<vitamin>
+			<name>shaft</name>
+			<type>LewanSoulHorn</type>
+			<id>round_m3_bolts</id>
+			<pose>
+	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-0.0</rotx>
+	<roty>-0.0</roty>
+	<rotz>-0.0</rotz>
+			</pose>
+			<frame>origin</frame>
+			<script>false</script>
+		</vitamin>
+
+	</vitamins>
+	<passive>false</passive>
+	<mass>0.0208</mass>
+	<centerOfMassFromCentroid>
+	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-0.0</rotx>
+	<roty>-0.0</roty>
+	<rotz>-0.0</rotz>
+</centerOfMassFromCentroid>
+	<imuFromCentroid>
+	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-0.0</rotx>
+	<roty>-0.0</roty>
+	<rotz>-0.0</rotz>
+</imuFromCentroid>
+
+	<DHParameters>
+		<Delta>0.0</Delta>
+		<Theta>90.0</Theta>
+		<Radius>100.0</Radius>
+		<Alpha>0.0</Alpha>
+
+		<mobilebase>
+	<cadEngine>
 		<git>https://github.com/Hephaestus-Arm/HephaestusArm2.git</git>
+		<file>cadGenHand.groovy</file>
+	</cadEngine>
+	<driveEngine>
+		<git>https://github.com/madhephaestus/carl-the-hexapod.git</git>
+		<file>WalkingDriveEngine.groovy</file>
+	</driveEngine>
+
+<name>HephaestusHand</name>
+<appendage>
+
+<name>Hand</name>
+	<cadEngine>
+		<git>https://github.com/Hephaestus-Arm/HephaestusArm2.git</git>
+		<file>cadGenHand.groovy</file>
+	</cadEngine>
+	<kinematics>
+		<git>https://github.com/madhephaestus/carl-the-hexapod.git</git>
 		<file>DefaultDhSolver.groovy</file>
 	</kinematics>
 <link>
@@ -420,6 +692,127 @@
 </baseToZframe>
 
 </appendage>
+<appendage>
+
+<name>HandActuator</name>
+	<cadEngine>
+		<git>https://github.com/Hephaestus-Arm/HephaestusArm2.git</git>
+		<file>cadGenHand.groovy</file>
+	</cadEngine>
+	<kinematics>
+		<git>https://github.com/madhephaestus/carl-the-hexapod.git</git>
+		<file>DefaultDhSolver.groovy</file>
+	</kinematics>
+<link>
+	<name>gripperActuator</name>
+	<deviceName>hephaestus-16c00486</deviceName>
+	<type>gripperLink</type>
+	<index>0</index>
+	<scale>0.5</scale>
+	<upperLimit>180.0</upperLimit>
+	<lowerLimit>0.0</lowerLimit>
+	<upperVelocity>1.0E8</upperVelocity>
+	<lowerVelocity>-1.0E8</lowerVelocity>
+	<staticOffset>0.0</staticOffset>
+	<deviceTheoreticalMax>180.0</deviceTheoreticalMax>
+	<deviceTheoreticalMin>0.0</deviceTheoreticalMin>
+	<isLatch>true</isLatch>
+	<indexLatch>180.0</indexLatch>
+	<isStopOnLatch>false</isStopOnLatch>
+	<homingTPS>10000000</homingTPS>
+
+	<vitamins>
+
+		<vitamin>
+			<name>electroMechanical</name>
+			<type>hobbyServo</type>
+			<id>mg92b</id>
+			<pose>
+	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-0.0</rotx>
+	<roty>-0.0</roty>
+	<rotz>-0.0</rotz>
+			</pose>
+			<frame>lastlink</frame>
+			<script>false</script>
+		</vitamin>
+
+		<vitamin>
+			<name>shaft</name>
+			<type>hobbyServoHorn</type>
+			<id>tproSG90_1</id>
+			<pose>
+	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-0.0</rotx>
+	<roty>-0.0</roty>
+	<rotz>-0.0</rotz>
+			</pose>
+			<frame>origin</frame>
+			<script>false</script>
+		</vitamin>
+
+	</vitamins>
+	<passive>false</passive>
+	<mass>0.01</mass>
+	<centerOfMassFromCentroid>
+	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>0.0</rotx>
+	<roty>0.0</roty>
+	<rotz>0.0</rotz>
+</centerOfMassFromCentroid>
+	<imuFromCentroid>
+	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-0.0</rotx>
+	<roty>-0.0</roty>
+	<rotz>-0.0</rotz>
+</imuFromCentroid>
+
+	<DHParameters>
+		<Delta>0.0</Delta>
+		<Theta>0.0</Theta>
+		<Radius>40.0</Radius>
+		<Alpha>-90.0</Alpha>
+	</DHParameters>
+
+</link>
+
+<ZframeToRAS
+>
+	<x>99.99999999999999</x>
+	<y>1.8301672546016674E-14</y>
+	<z>195.0</z>
+	<rotw>0.7071067811865476</rotw>
+	<rotx>-0.7071067811865475</rotx>
+	<roty>-7.850462293418873E-17</roty>
+	<rotz>3.925231146709441E-17</rotz>
+
+</ZframeToRAS>
+
+<baseToZframe>
+
+	<x>-94.25190260973095</x>
+	<y>-51.423135400768714</y>
+	<z>5.506706202140776E-15</z>
+	<rotw>-0.40916059660966075</rotw>
+	<rotx>-0.576704088924317</rotx>
+	<roty>0.4091605966096606</roty>
+	<rotz>-0.576704088924317</rotz>
+
+</baseToZframe>
+
+</appendage>
 
 <ZframeToRAS>
 
@@ -444,7 +837,86 @@
 	<rotz>-0.0</rotz>
 
 </baseToZframe>
-	<mass>0.5</mass>
+	<mass>0.001</mass>
+	<centerOfMassFromCentroid>
+	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-0.0</rotx>
+	<roty>-0.0</roty>
+	<rotz>-0.0</rotz>
+</centerOfMassFromCentroid>
+	<imuFromCentroid>
+	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-0.0</rotx>
+	<roty>-0.0</roty>
+	<rotz>-0.0</rotz>
+</imuFromCentroid>
+
+	<vitamins>
+
+	</vitamins>
+
+</mobilebase>
+
+	</DHParameters>
+
+</link>
+
+<ZframeToRAS
+>
+	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-0.0</rotx>
+	<roty>-0.0</roty>
+	<rotz>-0.0</rotz>
+
+</ZframeToRAS>
+
+<baseToZframe>
+
+	<x>0.0</x>
+	<y>0.0</y>
+	<z>55.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-2.7755575615628907E-17</rotx>
+	<roty>-2.775557561562889E-17</roty>
+	<rotz>8.326672684688674E-17</rotz>
+
+</baseToZframe>
+
+</appendage>
+
+<ZframeToRAS>
+
+	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-0.0</rotx>
+	<roty>-0.0</roty>
+	<rotz>-0.0</rotz>
+
+</ZframeToRAS>
+
+<baseToZframe>
+
+	<x>0.0</x>
+	<y>0.0</y>
+	<z>0.0</z>
+	<rotw>1.0</rotw>
+	<rotx>-0.0</rotx>
+	<roty>-0.0</roty>
+	<rotz>-0.0</rotz>
+
+</baseToZframe>
+	<mass>0.17000000000000004</mass>
 	<centerOfMassFromCentroid>
 	<x>0.0</x>
 	<y>0.0</y>
